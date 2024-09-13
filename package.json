@@ -2,6 +2,8 @@
   "name": "canvas-painter",
   "version": "0.1.0",
   "description": "A simple yet powerful library for drawing basic shapes (rectangles, circles, etc.) on HTML5 Canvas with ease. Perfect for creating 2D graphics in JavaScript projects.",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "files": [
     "dist"
