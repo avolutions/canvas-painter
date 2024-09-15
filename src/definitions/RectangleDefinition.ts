@@ -1,5 +1,5 @@
-import { Angle } from "../types/Angle.js";
-import { Point } from "../types/Point.js";
+import { Angle } from "../types1/Angle.js";
+import { Point } from "../types1/Point.js";
 import { IShapeDefinition } from "./IShapeDefinition.js";
 
 export class RectangleDefinition implements IShapeDefinition {

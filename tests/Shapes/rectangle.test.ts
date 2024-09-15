@@ -1,6 +1,6 @@
-import { Point } from '../../src/types/Point';
+import { Point } from '../../src/types1/Point';
 import { Rectangle } from '../../src/shapes/Rectangle';
-import { Angle } from '../../src/types/Angle';
+import { Angle } from '../../src/types1/Angle';
 
 describe('Rectangle class', () => {
   test("should initialize the rectangle correctly via constructor", () => {
