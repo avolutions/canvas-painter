@@ -1,26 +1,47 @@
 import { CanvasOptions } from "./options/CanvasOptions.js";
 import { IShape } from "./shapes/IShape.js";
 
+/**
+ * Class representing a Canvas element that can manage and render shapes.
+ */
 export class Canvas {
+  /** The HTML canvas element being managed. */
   private _canvas: HTMLCanvasElement;
+
+  /** The 2D rendering context of the canvas. */
   private _context: CanvasRenderingContext2D;
+
+  /** Configuration options for the canvas, including dimensions. */
   private _options: CanvasOptions;
+
+  /** List of shapes being watched for changes and re-rendered. */
   private watchedShapes: IShape[] = [];
 
+  /** Default options for the canvas dimensions. */
   private _defaultOptions: CanvasOptions = {
     width: 300,
     height: 150
-  }
+  };
 
+  /**
+   * Constructs a new Canvas instance.
+   *
+   * @param {HTMLCanvasElement} canvas - The HTML canvas element.
+   * @param {CanvasRenderingContext2D} context - The 2D rendering context of the canvas.
+   * @param {CanvasOptions} [options] - Optional configuration options for the canvas.
+   * @private
+   */
   private constructor(canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, options?: CanvasOptions) {
     this._canvas = canvas;
     this._context = context;
 
+    // Merge default options with the provided options
     this._options = {
       ...this._defaultOptions,
       ...options
-    };;
+    };
 
+    // Set canvas dimensions if provided
     if (this._options.width != null) {
       this._canvas.width = this._options.width;
     }
@@ -29,42 +50,62 @@ export class Canvas {
     }
   }
 
-  static init(id: string, options?: CanvasOptions) {
+  /**
+   * Initializes a Canvas instance by retrieving the canvas element by ID and its context.
+   *
+   * @param {string} id - The ID of the HTML canvas element.
+   * @param {CanvasOptions} [options] - Optional configuration options for the canvas.
+   * @returns {Canvas} A new Canvas instance.
+   * @throws {Error} If the canvas element is not found or is not a valid canvas.
+   */
+  static init(id: string, options?: CanvasOptions): Canvas {
     const canvas = document.getElementById(id);
     if (!canvas) {
-      // TODO
       throw new Error(`Element with id '${id}' not found`);
     }
 
     if (!(canvas instanceof HTMLCanvasElement)) {
-      // TODO
       throw new Error(`Element with id '${id}' is not a canvas`);
     }
 
     const context = canvas.getContext('2d', options);
     if (!(context instanceof CanvasRenderingContext2D)) {
-      // TODO
       throw new Error(`Failed to get '2d' context from canvas`);
     }
 
     return new Canvas(canvas, context, options);
   }
 
+  /**
+   * Registers a shape to be watched for changes and renders it.
+   *
+   * @param {IShape} shape - The shape to watch and render on the canvas.
+   */
   watch(shape: IShape): void {
+    // Add an observer to redraw the canvas when the shape changes
     shape.addObserver(() => this.draw());
     this.watchedShapes.push(shape);
-    this.draw();
+    this.draw(); // Initial draw after adding the shape
   }
 
+  /**
+   * Gets the 2D rendering context of the canvas.
+   *
+   * @returns {CanvasRenderingContext2D} The 2D context of the canvas.
+   */
   get context(): CanvasRenderingContext2D {
     return this._context;
   }
 
-  private draw() {
-    // Clear the canvas
+  /**
+   * Clears the canvas and re-renders all watched shapes.
+   * @private
+   */
+  private draw(): void {
+    // Clear the entire canvas
     this.context.clearRect(0, 0, this._canvas.width, this._canvas.height);
 
-    // Re-render all shapes
+    // Render each watched shape
     this.watchedShapes.forEach(shape => shape.render(this.context));
   }
 }
