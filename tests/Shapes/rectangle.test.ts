@@ -1,5 +1,5 @@
 import { Point } from '../../src/types/Point';
-import { Rectangle } from '../../src/shapes/Rectangle';
+import { Rectangle } from '../../src/shapes1/Rectangle';
 import { Angle } from '../../src/types/Angle';
 
 describe('Rectangle class', () => {
