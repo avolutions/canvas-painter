@@ -1,5 +1,5 @@
-import { Angle } from "../types1/Angle.js";
-import { Point } from "../types1/Point.js";
+import { Angle } from "../types/Angle.js";
+import { Point } from "../types/Point.js";
 import { RectangleDefinition } from "../definitions/RectangleDefinition.js";
 import { Shape } from "./Shape.js";
 

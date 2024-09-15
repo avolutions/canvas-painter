@@ -1,4 +1,4 @@
-import { Point } from '../../src/types1/Point'
+import { Point } from '../../src/types/Point'
 
 describe('Point class', () => {
   test('should create a point with given x and y coordinates', () => {
