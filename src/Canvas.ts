@@ -1,21 +1,25 @@
 import { CanvasOptions } from "./options/CanvasOptions.js";
 import { IShape } from "./shapes/IShape.js";
 
-const defaultOptions: CanvasOptions = {
-  width: 300,
-  height: 150
-}
-
 export class Canvas {
   private _canvas: HTMLCanvasElement;
   private _context: CanvasRenderingContext2D;
   private _options: CanvasOptions;
   private watchedShapes: IShape[] = [];
 
-  private constructor(canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, options: CanvasOptions) {
+  private _defaultOptions: CanvasOptions = {
+    width: 300,
+    height: 150
+  }
+
+  private constructor(canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, options?: CanvasOptions) {
     this._canvas = canvas;
     this._context = context;
-    this._options = options;
+
+    this._options = {
+      ...this._defaultOptions,
+      ...options
+    };;
 
     if (this._options.width != null) {
       this._canvas.width = this._options.width;
@@ -42,11 +46,6 @@ export class Canvas {
       // TODO
       throw new Error(`Failed to get '2d' context from canvas`);
     }
-
-    options = {
-      ...defaultOptions,
-      ...options
-    };
 
     return new Canvas(canvas, context, options);
   }
