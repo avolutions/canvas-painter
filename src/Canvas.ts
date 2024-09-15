@@ -1,5 +1,5 @@
 import { CanvasOptions } from "./options/CanvasOptions.js";
-import { IShape } from "./shapes1/IShape.js";
+import { IShape } from "./shapes/IShape.js";
 
 const defaultOptions: CanvasOptions = {
   width: 300,
