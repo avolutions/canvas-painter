@@ -1,4 +1,4 @@
-import { Angle } from '../../src/Types/Angle'
+import { Angle } from '../../src/types/Angle'
 
 describe('Angle class', () => {
 

@@ -3,7 +3,7 @@
  */
 
 import { Canvas } from '../src/Canvas';
-import { IShape } from '../src/Shapes/IShape';
+import { IShape } from '../src/shapes/IShape';
 
 global.CanvasRenderingContext2D = class {
   clearRect = jest.fn();
