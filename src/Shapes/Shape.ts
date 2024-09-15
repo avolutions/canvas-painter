@@ -1,4 +1,4 @@
-import { IShapeDefinition } from "../ShapeDefinitions/IShapeDefinition.js";
+import { IShapeDefinition } from "../definitions/IShapeDefinition.js";
 import { IShape } from "./IShape.js";
 
 export abstract class Shape<T extends IShapeDefinition> implements IShape {

@@ -1,32 +1,54 @@
-import { IShape } from "./Shapes/IShape.js";
+import { CanvasOptions } from "./options/CanvasOptions.js";
+import { IShape } from "./shapes/IShape.js";
+
+const defaultOptions: CanvasOptions = {
+  width: 300,
+  height: 150
+}
 
 export class Canvas {
+  private _canvas: HTMLCanvasElement;
   private _context: CanvasRenderingContext2D;
+  private _options: CanvasOptions;
   private watchedShapes: IShape[] = [];
 
-  private constructor(context: CanvasRenderingContext2D) {
+  private constructor(canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, options: CanvasOptions) {
+    this._canvas = canvas;
     this._context = context;
+    this._options = options;
+
+    if (this._options.width != null) {
+      this._canvas.width = this._options.width;
+    }
+    if (this._options.height != null) {
+      this._canvas.height = this._options.height;
+    }
   }
 
-  static init(id: string, options?: any) {
-    const element = document.getElementById(id);
-    if (!element) {
+  static init(id: string, options?: CanvasOptions) {
+    const canvas = document.getElementById(id);
+    if (!canvas) {
       // TODO
       throw new Error(`Element with id '${id}' not found`);
     }
 
-    if (!(element instanceof HTMLCanvasElement)) {
+    if (!(canvas instanceof HTMLCanvasElement)) {
       // TODO
       throw new Error(`Element with id '${id}' is not a canvas`);
     }
 
-    const context = element.getContext('2d', options);
+    const context = canvas.getContext('2d', options);
     if (!(context instanceof CanvasRenderingContext2D)) {
       // TODO
       throw new Error(`Failed to get '2d' context from canvas`);
     }
 
-    return new Canvas(context);
+    options = {
+      ...defaultOptions,
+      ...options
+    };
+
+    return new Canvas(canvas, context, options);
   }
 
   watch(shape: IShape): void {
@@ -39,9 +61,9 @@ export class Canvas {
     return this._context;
   }
 
-  draw() {
+  private draw() {
     // Clear the canvas
-    this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+    this.context.clearRect(0, 0, this._canvas.width, this._canvas.height);
 
     // Re-render all shapes
     this.watchedShapes.forEach(shape => shape.render(this.context));

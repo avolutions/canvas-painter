@@ -1,6 +1,6 @@
-import { Angle } from "../Types/Angle.js";
-import { Point } from "../Types/Point.js";
-import { RectangleDefinition } from "../ShapeDefinitions/RectangleDefinition.js";
+import { Angle } from "../types/Angle.js";
+import { Point } from "../types/Point.js";
+import { RectangleDefinition } from "../definitions/RectangleDefinition.js";
 import { Shape } from "./Shape.js";
 
 export class Rectangle extends Shape<RectangleDefinition> {
