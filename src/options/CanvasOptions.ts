@@ -1,3 +1,5 @@
+import { CanvasStyle } from "../styles/CanvasStyle";
+
 /**
  * Interface representing the options for configuring a canvas.
  *
@@ -15,4 +17,6 @@ export interface CanvasOptions {
    * If not provided, the default height will be used.
    */
   height?: number;
+
+  style?: CanvasStyle;
 }

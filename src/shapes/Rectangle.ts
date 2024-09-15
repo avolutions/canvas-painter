@@ -2,6 +2,7 @@ import { Angle } from "../types/Angle.js";
 import { Point } from "../types/Point.js";
 import { RectangleDefinition } from "../definitions/RectangleDefinition.js";
 import { Shape } from "./Shape.js";
+import { RectangleStyle } from "../styles/RectangleStyle.js";
 
 /**
  * Class representing a Rectangle, extending the Shape class with a RectangleDefinition.
@@ -18,9 +19,9 @@ export class Rectangle extends Shape<RectangleDefinition> {
    * @param {number} height - The height of the rectangle.
    * @param {number} [rotation=0] - The initial rotation of the rectangle in degrees.
    */
-  constructor(x: number, y: number, width: number, height: number, rotation: number = 0) {
+  constructor(x: number, y: number, width: number, height: number, rotation: number = 0, style: RectangleStyle = {}) {
     // Create a RectangleDefinition using the provided parameters
-    const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, Angle.fromDegrees(rotation));
+    const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, Angle.fromDegrees(rotation), style);
     super(rectangleDefinition);
   }
 
@@ -58,6 +59,10 @@ export class Rectangle extends Shape<RectangleDefinition> {
     return this._definition.angle;
   }
 
+  public get style(): RectangleStyle {
+    return this._definition.style;
+  }
+
   // Setters
 
   /**
@@ -90,6 +95,10 @@ export class Rectangle extends Shape<RectangleDefinition> {
    */
   public set angle(angle: Angle) {
     this._definition.angle = angle;
+  }
+
+  public set style(style: RectangleStyle) {
+    this._definition.style = style;
   }
 
   /**
@@ -150,6 +159,29 @@ export class Rectangle extends Shape<RectangleDefinition> {
     context.translate(-this.position.x, -this.position.y);
 
     // Draw the rectangle with the current position, width, and height
+    /*if (this.style.color) {
+      context.fillStyle = this.style.color;
+    }*/
+
+    console.log(context.fillStyle);
+
+    // TODO render border only if at leas color or width is set
+    if (this.style.border) {
+      if (this.style.border.color) {
+        context.strokeStyle = this.style.border.color;
+      }
+      if (this.style.border.width) {
+        context.lineWidth = this.style.border.width;
+      }
+
+      context.strokeRect(
+        this._definition.position.x,
+        this._definition.position.y,
+        this._definition.width,
+        this._definition.height
+      );
+    }
+
     context.fillRect(
       this._definition.position.x,
       this._definition.position.y,

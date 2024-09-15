@@ -1,5 +1,6 @@
 import { CanvasOptions } from "./options/CanvasOptions.js";
 import { IShape } from "./shapes/IShape.js";
+import { CanvasStyle } from "./styles/CanvasStyle.js";
 
 /**
  * Class representing a Canvas element that can manage and render shapes.
@@ -23,6 +24,14 @@ export class Canvas {
     height: 150
   };
 
+  private _defaultStyle: CanvasStyle = {
+    color: 'rgba(0, 0, 0, 0)',
+    border: {
+      color: 'rgba(0, 0, 0, 0)',
+      width: 0
+    }
+  };
+
   /**
    * Constructs a new Canvas instance.
    *
@@ -41,6 +50,12 @@ export class Canvas {
       ...options
     };
 
+    // Set styles
+    this._options.style = {
+      ...this._defaultStyle,
+      ...this._options.style
+    };
+
     // Set canvas dimensions if provided
     if (this._options.width != null) {
       this._canvas.width = this._options.width;
@@ -48,6 +63,8 @@ export class Canvas {
     if (this._options.height != null) {
       this._canvas.height = this._options.height;
     }
+
+    this.setStyle(this._options.style);
   }
 
   /**
@@ -74,6 +91,10 @@ export class Canvas {
     }
 
     return new Canvas(canvas, context, options);
+  }
+
+  private setStyle(style: CanvasStyle) {
+    this._context.fillStyle = style.color;
   }
 
   /**
