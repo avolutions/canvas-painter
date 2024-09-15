@@ -8,15 +8,15 @@ export abstract class Shape<T extends IShapeDefinition> implements IShape {
   public abstract render(context: CanvasRenderingContext2D): void;
 
   constructor(definition: T) {
-     // Proxy to automatically notify observers on any property change
-     this._definition = new Proxy(definition, {
+    // Proxy to automatically notify observers on any property change
+    this._definition = new Proxy(definition, {
       set: (obj, prop, value) => {
-        if (obj[prop as keyof T] !== value) {
-          obj[prop as keyof T] = value;
+        if (Reflect.get(obj, prop as keyof T) !== value) {
+          Reflect.set(obj, prop, value);
           this.notifyObservers();  // Automatically notify on any property change
         }
         return true;
-      },
+      }
     });
   }
 

@@ -6,7 +6,7 @@ import { Shape } from "./Shape.js";
 export class Rectangle extends Shape<RectangleDefinition> {
 
   constructor(x: number, y: number, width: number, height: number, rotation: number = 0) {
-    const rectangleDefinition = new RectangleDefinition( { x: x, y: y }, width, height, Angle.fromDegrees(rotation) );
+    const rectangleDefinition = new RectangleDefinition( new Point(x, y), width, height, Angle.fromDegrees(rotation) );
     super(rectangleDefinition);
   }
 
