@@ -1,0 +1,7 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "exclude": ["node_modules", "dist", "tests"],
+  "includeVersion": true,
+  "categorizeByGroup": true,
+  "groupOrder": ["Modules", "Classes", "Interfaces", "Enums"],
+}
