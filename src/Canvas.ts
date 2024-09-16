@@ -85,8 +85,8 @@ export class Canvas {
       throw new Error(`Element with id '${id}' is not a canvas`);
     }
 
-    const context = canvas.getContext('2d', options);
-    if (!(context instanceof CanvasRenderingContext2D)) {
+    const context = canvas.getContext('2d');
+    if (!context) {
       throw new Error(`Failed to get '2d' context from canvas`);
     }
 
@@ -103,6 +103,10 @@ export class Canvas {
    * @param {IShape} shape - The shape to watch and render on the canvas.
    */
   watch(shape: IShape): void {
+    if(this.watchedShapes.includes(shape)) {
+      return;
+    }
+
     // Add an observer to redraw the canvas when the shape changes
     shape.addObserver(() => this.draw());
     this.watchedShapes.push(shape);
