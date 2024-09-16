@@ -8,6 +8,13 @@ The core idea behind **CanvasPainter** is to provide a simple way to work with s
 
 This approach simplifies drawing and keeps your code clean, but if you want full control or need advanced features, you can still access the standard Canvas 2D Context API through `Canvas.context` and use all of its methods directly.
 
+### Further Documentation and Guides
+
+This README provides basic usage examples to help you get started quickly with **CanvasPainter**. For more detailed instructions, advanced features, and custom use cases, refer to the following resources:
+
+- **Full User Guide**: Explore the complete guide with in-depth explanations and examples [here](https://avolutions.github.io/canvas-painter/).
+- **API Documentation**: For detailed API information, visit the full API documentation [here](https://avolutions.github.io/canvas-painter/api).
+
 ## Installation
 
 To install the **CanvasPainter** package, run the following command via [npm](https://npmjs.com/package/@avolutions/canvas-painter):
@@ -79,7 +86,7 @@ rect.width = 250;  // The canvas will automatically update with the new width
 
 By using `Canvas.watch(rect)`, you ensure that any updates to the rectangle’s properties (such as position, size, or color) are automatically applied to the canvas, without needing to call `Canvas.draw()` manually.
 
-### Access the Official Canvas API
+### Access the JavaScript Canvas API
 
 In addition to using **CanvasPainter** built-in drawing methods, you have full access to the official Canvas 2D API through `Canvas.context`. This allows you to use any method from the standard Canvas/Context API directly:
 
