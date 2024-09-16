@@ -2,5 +2,6 @@
   "entryPoints": ["src/index.ts"],
   "exclude": ["node_modules", "dist", "tests"],
   "includeVersion": true,
-  "readme": "none"
+  "readme": "none",
+  "out": "./docs/api"
 }
