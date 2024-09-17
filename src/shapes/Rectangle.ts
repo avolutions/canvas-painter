@@ -63,6 +63,10 @@ export class Rectangle extends Shape<RectangleDefinition> {
     return this._definition.angle;
   }
 
+  public get rotation(): number {
+    return this._definition.angle.degrees;
+  }
+
   public get style(): RectangleStyle {
     return this._definition.style;
   }
@@ -94,11 +98,11 @@ export class Rectangle extends Shape<RectangleDefinition> {
   }
 
   /**
-   * Sets the angle (rotation) of the rectangle.
-   * @param {Angle} angle - The new angle of the rectangle.
+   * Sets the rotation of the rectangle.
+   * @param {number} rotation - The new rotation of the rectangle.
    */
-  public set angle(angle: Angle) {
-    this._definition.angle = angle;
+  public set rotation(rotation: number) {
+    this._definition.angle.degrees = rotation;
   }
 
   public set style(style: RectangleStyle) {

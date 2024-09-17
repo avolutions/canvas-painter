@@ -29,18 +29,19 @@ describe('Rectangle class', () => {
 
   test("should set new values via setters", () => {
     const newPosition = new Point(5, 5);
-    const newAngle = new Angle(90);
+    const newAngle = new Angle(85);
     const rectangle = new Rectangle(0, 0, 0, 0, 0);
 
     rectangle.width = 300;
     rectangle.height = 400;
     rectangle.position = newPosition;
-    rectangle.angle = newAngle;
+    rectangle.rotation = 85;
 
     expect(rectangle.width).toBe(300);
     expect(rectangle.height).toBe(400);
     expect(rectangle.position).toEqual(newPosition);
-    expect(rectangle.angle).toBe(newAngle);
+    expect(rectangle.angle.degrees).toBe(newAngle.degrees);
+    expect(rectangle.rotation).toBe(85);
   });
 
   test("should set new width and height using setSize", () => {
