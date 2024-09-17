@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ page.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>{{ site.title }}</h1>
+    </header>
+    <div class="content">
+      <nav>
+        <ul>
+          <li><a href="/docs/rectangle.md">File 1</a></li>
+          <li><a href="/docs/file2.md">File 2</a></li>
+          <li><a href="/docs/file3.md">File 3</a></li>
+          <!-- Add more files as needed -->
+        </ul>
+      </nav>
+      <main>
+        {{ content }}
+      </main>
+    </div>
+  </div>
+</body>
+</html>
