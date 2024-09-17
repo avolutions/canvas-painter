@@ -3,12 +3,15 @@ import { Point } from "../types/Point.js";
 import { RectangleDefinition } from "../definitions/RectangleDefinition.js";
 import { Shape } from "./Shape.js";
 import { RectangleStyle } from "../styles/RectangleStyle.js";
+import { RectangleOptions } from "../options/RectangleOptions.js";
 
 /**
  * Class representing a Rectangle, extending the Shape class with a RectangleDefinition.
  * Provides functionality for rendering, resizing, moving, and rotating the rectangle.
  */
 export class Rectangle extends Shape<RectangleDefinition> {
+
+  protected _options: RectangleOptions;
 
   /**
    * Constructs a new Rectangle instance.
@@ -17,12 +20,13 @@ export class Rectangle extends Shape<RectangleDefinition> {
    * @param {number} y - The y-coordinate of the rectangle's position.
    * @param {number} width - The width of the rectangle.
    * @param {number} height - The height of the rectangle.
-   * @param {number} [rotation=0] - The initial rotation of the rectangle in degrees.
+   * @param {number} [rotation=0] - The initial rotation of the rectangle in degrees clockwise.
    */
-  constructor(x: number, y: number, width: number, height: number, rotation: number = 0, style: RectangleStyle = {}) {
+  constructor(x: number, y: number, width: number, height: number, rotation: number = 0, style: RectangleStyle = {}, options: RectangleOptions = {}) {
     // Create a RectangleDefinition using the provided parameters
     const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, Angle.fromDegrees(rotation), style);
     super(rectangleDefinition);
+    this._options = options;
   }
 
   // Getters
@@ -130,8 +134,8 @@ export class Rectangle extends Shape<RectangleDefinition> {
    * @param {number} [deltaY=0] - The change in the y-coordinate.
    */
   move(deltaX: number = 0, deltaY: number = 0): void {
-    this._definition.position.x += deltaX;
-    this._definition.position.y += deltaY;
+    this.position.x += deltaX;
+    this.position.y += deltaY;
   }
 
   /**
@@ -143,6 +147,18 @@ export class Rectangle extends Shape<RectangleDefinition> {
     this.angle.adjustBy(deltaRotation);
   }
 
+  private getRenderDefinition(): RectangleDefinition {
+    const renderDefinition = this._definition;
+
+    if(this._options.centered) {
+      // Translate definition to center
+      renderDefinition.position.x = renderDefinition.position.x - renderDefinition.width / 2;
+      renderDefinition.position.y = renderDefinition.position.y - renderDefinition.height / 2;
+    }
+
+    return renderDefinition;
+  }
+
   /**
    * Renders the rectangle on the canvas using the provided 2D rendering context.
    *
@@ -151,42 +167,24 @@ export class Rectangle extends Shape<RectangleDefinition> {
    * @param {CanvasRenderingContext2D} context - The 2D rendering context of the canvas where the rectangle will be drawn.
    */
   render(context: CanvasRenderingContext2D): void {
+    const definition = this.getRenderDefinition();
+
     context.save(); // Save the current canvas state
 
-    // Translate to the rectangle's position and apply rotation
-    context.translate(this.position.x, this.position.y);
-    context.rotate(this.angle.radians);
-    context.translate(-this.position.x, -this.position.y);
-
-    // Draw the rectangle with the current position, width, and height
-    /*if (this.style.color) {
-      context.fillStyle = this.style.color;
-    }*/
-
-    console.log(context.fillStyle);
-
-    // TODO render border only if at leas color or width is set
-    if (this.style.border) {
-      if (this.style.border.color) {
-        context.strokeStyle = this.style.border.color;
-      }
-      if (this.style.border.width) {
-        context.lineWidth = this.style.border.width;
-      }
-
-      context.strokeRect(
-        this._definition.position.x,
-        this._definition.position.y,
-        this._definition.width,
-        this._definition.height
-      );
+    // Rotate
+    // TODO centered rectangle
+    if(this.angle.degrees != 0) {
+      // Translate to the rectangle's position and apply rotation
+      context.translate(definition.position.x, definition.position.y);
+      context.rotate(definition.angle.radians);
+      context.translate(-definition.position.x, -definition.position.y);
     }
 
     context.fillRect(
-      this._definition.position.x,
-      this._definition.position.y,
-      this._definition.width,
-      this._definition.height
+      definition.position.x,
+      definition.position.y,
+      definition.width,
+      definition.height
     );
 
     context.restore(); // Restore the canvas state to before the transformations

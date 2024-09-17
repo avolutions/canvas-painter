@@ -101,6 +101,8 @@ describe('Canvas class', () => {
     const rect = new Rectangle(0, 0, 0, 0);
 
     canvas.watch(rect);
+
+    rect.height = 5;
     canvas.watch(rect);
 
     expect((canvas as any).watchedShapes).toHaveLength(1);

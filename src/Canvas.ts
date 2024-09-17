@@ -25,7 +25,6 @@ export class Canvas {
   };
 
   private _defaultStyle: CanvasStyle = {
-    color: 'rgba(0, 0, 0, 0)',
     border: {
       color: 'rgba(0, 0, 0, 0)',
       width: 0
@@ -94,7 +93,9 @@ export class Canvas {
   }
 
   private setStyle(style: CanvasStyle) {
-    this._context.fillStyle = style.color;
+    if(style.color) {
+      this._context.fillStyle = style.color;
+    }
   }
 
   /**
