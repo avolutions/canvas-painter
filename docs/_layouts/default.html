@@ -90,16 +90,11 @@
         </nav>
         <h1>{{ page.title }}</h1>
         <div class="content">
-          <!-- We will extract and remove the TOC from the content -->
-          {% assign toc_start = content | split: '<ul>' | first %}
-          {% assign toc_end = content | split: '</ul>' | first %}
-          {% assign toc = toc_start | append: toc_end %}
-          
-          <!-- Remove the TOC from the content -->
-          {% assign clean_content = content | remove: toc %}
-          
-          <!-- Display the cleaned content (without TOC) -->
-          {{ clean_content }}
+          {% assign parts = content | split: "<!-- toc-end -->" %}
+          {% assign toc = parts[0] %}
+          {% assign main_content = parts[1] %}
+
+          {{ main_content }}
         </div>
       </div>
 
