@@ -90,9 +90,9 @@
         </nav>
         <h1>{{ page.title }}</h1>
         <div class="content">
-          {% assign parts = content | split: "<h2>" %}
+          {% assign parts = content | split: "<!-- toc-end -->" %}
           {% assign toc = parts[0] %}
-          {% assign main_content = parts | slice: 1, parts.size | join: "<h2>" %}
+          {% assign main_content = parts[1] %}
 
           {{ main_content }}
         </div>
