@@ -90,13 +90,16 @@
         </nav>
         <h1>{{ page.title }}</h1>
         <div class="content">
-          {{ content }}
+          <!-- Save and remove the TOC from content -->
+        {% assign toc = content | split: '</ul>' | first | prepend: '<ul>' | append: '</ul>' %}
+        <!-- Display the content without the TOC -->
+        {{ content | remove_first: toc }}
         </div>
       </div>
 
       <aside class="col-2">
         <div class="sticky-top">
-
+          {{ toc }}
         </div>
       </aside>
     </div>
