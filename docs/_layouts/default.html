@@ -67,22 +67,21 @@
   </header>
   <main class="container py-4">
     <div class="row">
-      <div class="col-2">
-        <nav class="main-menu">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ '/' | relative_url }}">Getting started</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ '/shapes' | relative_url }}">Shapes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ '/rectangle' | relative_url }}">Rectangle</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div class="col-10">
+      <nav class="col-2 main-menu">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ '/' | relative_url }}">Getting started</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ '/shapes' | relative_url }}">Shapes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ '/rectangle' | relative_url }}">Rectangle</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="col-8">
         <nav class="breadcrumb" aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">User Guide</a></li>
@@ -91,9 +90,18 @@
         </nav>
         <h1>{{ page.title }}</h1>
         <div class="content">
-          {{ content }}
+          {{ content | remove_first: '<ul>' | remove_first: '</ul>' }}
         </div>
       </div>
+
+      <aside class="col-2"></aside>
+        <div class="sticky-top">
+          <!-- Extract and display the first <ul> -->
+          <ul>
+            {{ content | split: '</ul>' | first | split: '<ul>' | last | strip_html | newline_to_br }}
+          </ul>
+        </div>
+      </aside>
     </div>
   </main>
 
