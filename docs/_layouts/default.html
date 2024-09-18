@@ -90,24 +90,16 @@
         </nav>
         <h1>{{ page.title }}</h1>
         <div class="content">
-          <!-- Extract the first <ul> and everything nested within it -->
-          {% capture toc_start %}
-            {% assign content_start = content | split: '<ul>' | last %}
-            <ul>
-          {% endcapture %}
-  
-          {% capture toc_end %}
-            {% assign content_end = content_start | split: '</ul>' | first %}
-          {% endcapture %}
+          <!-- We will extract and remove the TOC from the content -->
+          {% assign toc_start = content | split: '<ul>' | first %}
+          {% assign toc_end = content | split: '</ul>' | first %}
+          {% assign toc = toc_start | append: toc_end %}
           
-          <!-- Combine TOC start and end -->
-          {% capture toc %}{{ toc_start }}{{ content_end }}</ul>{% endcapture %}
-  
-          <!-- Remove TOC from content -->
-          {% assign main_content = content | remove_first: toc %}
-  
-          <!-- Display the main content without TOC -->
-          {{ main_content }}
+          <!-- Remove the TOC from the content -->
+          {% assign clean_content = content | remove: toc %}
+          
+          <!-- Display the cleaned content (without TOC) -->
+          {{ clean_content }}
         </div>
       </div>
 
