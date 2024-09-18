@@ -90,15 +90,15 @@
         </nav>
         <h1>{{ page.title }}</h1>
         <div class="content">
-          {{ content | remove_first: '<ul>' | split: '</ul>' | last }}
+          {{ content | remove_first: content | split: '</ul>' | first | append: '</ul>' }}
         </div>
       </div>
 
-      <aside class="col-2"></aside>
+      <aside class="col-2">
         <div class="sticky-top">
           <!-- Extract and display the first <ul> -->
           <ul>
-            {{ content | split: '</ul>' | first | prepend: '<ul>' }}
+            {{ content | split: '</ul>' | first | prepend: '<ul>' | append: '</ul>' }}
           </ul>
         </div>
       </aside>
