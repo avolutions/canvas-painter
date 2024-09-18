@@ -105,7 +105,7 @@ canvas.draw(rectangle);
 ```
 
 ### Rendered Output:
-![Centered Rectangle](./assets/images/rectangle/draw_centered_rectangle.png)
+![Rotated Rectangle](./assets/images/rectangle/draw_rotated_rectangle.png)
 
 In this example, the rectangle is rotated 45 degrees clockwise around its top-left corner.
 
