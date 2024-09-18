@@ -16,13 +16,20 @@ header {
   padding: 5pt 0;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
 th, td {
   padding: 1pt;
 }
 
 th {
-  background-color: #333;
-  color: white;
+  color: black;
+  font-weight: bold;
 }
 
 td {
