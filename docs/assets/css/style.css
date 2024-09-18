@@ -80,13 +80,13 @@ main h2 {
   font-size: 11pt;
 }
 
-.on-this-page ul {
-  margin-top: 10px;
+.on-this-page {
   list-style-type: none;
 }
 
-.on-this-page ul:first-of-type {
+.on-this-page > ul {
   padding-left: 0;
+  margin-top: 10px;
 }
 
 .on-this-page li {
