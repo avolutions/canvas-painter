@@ -1,3 +1,7 @@
+---
+title: Rectangle
+---
+
 - [Introduction](#introduction)
 - [Usage](#usage)
 - [Draw a basic rectangle](#draw-a-basic-rectangle)
