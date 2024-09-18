@@ -130,7 +130,7 @@ rectangle.setSize(50, 25); // Set width to 50px and height to 25px
 
 Property | Description | Example
 --- | --- | ---
-`width` | Sets the width of the rectangle. | ```typescript rectangle.width = 50;```
+`width` | Sets the width of the rectangle. | `rectangle.width = 50;`
 `height` | Sets the height of the rectangle. | `rectangle.height = 50;`
 `position` | Sets the position (x and/or y) of the rectangle. | `rectangle.position = { x: 50, y: 50 };`<br />`rectangle.position.x = 50`
 `rotation` | Sets the rotation of the rectangle in degrees clockwise. | `rectangle.rotation = 45;`
