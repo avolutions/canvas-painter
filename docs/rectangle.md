@@ -23,7 +23,7 @@ The rectangle is one of the most fundamental shapes in the **CanvasPainter** lib
 A new rectangle shape is created using the `Rectangle` constructor.
 
 ```javascript
-import { Rectangle } from 'canvas-painter';
+import { Rectangle } from '@avolutions/canvas-painter';
 
 const rectangle = new Rectangle(
   x,        // The x-coordinate of the rectangle's position.
@@ -43,7 +43,7 @@ The detailed API documentation for `Rectangle` can be found here: https://avolut
 The simplest use case is drawing a rectangle by specifying the `x`, `y`, `width` and `height`. By default `x` and `y` specify the top-left corner of the rectangle.
 
 ```javascript
-import { Canvas, Rectangle } from 'canvas-painter';
+import { Canvas, Rectangle } from '@avolutions/canvas-painter';
 
 const canvas = Canvas.init('myCanvas');
 
@@ -64,7 +64,7 @@ In this example we draw a rectangle with a size of 100 x 50 pixels where the top
 In some cases, you might want to center the rectangle on a specific point. The Rectangle class supports this by allowing the center to be passed instead of the top-left corner.
 
 ```javascript
-import { Canvas, Rectangle } from 'canvas-painter';
+import { Canvas, Rectangle } from '@avolutions/canvas-painter';
 
 const canvas = Canvas.init('myCanvas');
 
@@ -85,7 +85,7 @@ In this example we draw a rectangle with a size of 100 x 50 pixels where the cen
 In some cases, you may need to draw rectangles at angles other than the default 0 degrees. This can easily be archived by setting the `rotation` via constructor. The `rotation` is defined as degrees in clockwise direction. To rotate counter clockwise just pass a negative value. If `centered` option is specified the rectangle is rotated around the center and not top-left corner.
 
 ```javascript
-import { Canvas, Rectangle } from 'canvas-painter';
+import { Canvas, Rectangle } from '@avolutions/canvas-painter';
 
 const canvas = Canvas.init('myCanvas');
 
@@ -110,7 +110,7 @@ There are two different ways to modify the rectangle definition:
 2. Using helper methods to modify the properties by a given delta
 
 ```javascript
-import { Canvas, Rectangle } from 'canvas-painter';
+import { Canvas, Rectangle } from '@avolutions/canvas-painter';
 
 const canvas = Canvas.init('myCanvas');
 
@@ -149,7 +149,7 @@ Method | Description | Example
 In addition to manipulating a rectangle's properties, **CanvasPainter** allows you to retrieve the current values of its attributes such as `width`, `height`, `position`, `rotation` and `style`.
 
 ```javascript
-import { Canvas, Rectangle } from 'canvas-painter';
+import { Canvas, Rectangle } from '@avolutions/canvas-painter';
 
 const canvas = Canvas.init('myCanvas');
 

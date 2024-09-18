@@ -82,12 +82,12 @@ main h2 {
 
 .on-this-page ul {
   list-style-type: none;
+  margin-top: 5px;
 }
 
 .on-this-page > ul {
   padding-left: 0;
   margin-top: 10px;
-  margin-bottom: 5px;
 }
 
 .on-this-page li {
