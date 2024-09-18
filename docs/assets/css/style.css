@@ -76,12 +76,9 @@ main h2 {
   margin-top: 1pt;
 }
 
-.on-this-page div {
-  padding-left: 2em;
-}
-
 .on-this-page ul {
   list-style-type: none;
+  padding-left: 0;
 }
 
 .on-this-page a {
