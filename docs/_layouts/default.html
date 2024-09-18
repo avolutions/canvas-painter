@@ -22,6 +22,12 @@
       padding: 5pt 0;
     }
 
+    .sticky-column {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 60px;
+    }
+
     .logo a{
       text-decoration: none;
       font-weight: bold;
@@ -43,14 +49,20 @@
       text-decoration: none;
     }
 
+    main h1 {
+      font-weight: bold;
+    }
+
     main h2 {
       border-bottom: 1px solid #e6e6e6;
     }
 
-    .sticky-column {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 60px;
+    .on-this-page ul {
+      list-style-type: none;
+    }
+
+    .on-this-page a {
+      text-decoration: none;
     }
   </style>
 </head>
@@ -79,7 +91,7 @@
 
       <div class="col-2">
         <div class="sticky-column">
-          <nav class="main-menu pt-2"></nav>
+          <nav class="main-menu"></nav>
             <ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link" href="{{ '/' | relative_url }}">Getting started</a>
@@ -115,7 +127,7 @@
       </div>
 
       <div class="col-2">
-        <aside class="sticky-column bg-light pt-2">
+        <aside class="on-this-page sticky-column bg-light pt-1">
           <div><b>On this page</b></div>
           {{ toc }}
         </aside>
@@ -123,8 +135,6 @@
 
     </div>
   </div>
-
-
 
   <script src="{{ '/assets/js/bootstrap.bundle.min.js' | relative_url }}"></script>
 </body>

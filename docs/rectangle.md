@@ -2,7 +2,6 @@
 title: Rectangle
 ---
 
-- [Introduction](#introduction)
 - [Usage](#usage)
 - [Draw a basic rectangle](#draw-a-basic-rectangle)
   - [Example code:](#example-code)
@@ -24,8 +23,6 @@ title: Rectangle
 - [Options for rectangle](#options-for-rectangle)
 
 <!-- toc-end -->
-
-## Introduction
 
 The rectangle is one of the most fundamental shapes in the **CanvasPainter** library. It can be drawn in different ways depending on the use case, such as using the top-left corner as a reference point or using the center. This chapter will guide you through setting up and drawing rectangles using **CanvasPainter**, showcasing different configurations and illustrating the rendered output.
 
