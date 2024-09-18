@@ -5,17 +5,13 @@ title: Rectangle
 - [Usage](#usage)
 - [Draw a basic rectangle](#draw-a-basic-rectangle)
 - [Draw a centered rectangle](#draw-a-centered-rectangle)
-  - [Example Code:](#example-code)
-  - [Rendered Output:](#rendered-output)
 - [Draw a rotated rectangle](#draw-a-rotated-rectangle)
-  - [Example Code:](#example-code-1)
-  - [Rendered Output:](#rendered-output-1)
 - [Modify a rectangle](#modify-a-rectangle)
-  - [Example Code:](#example-code-2)
+  - [Example Code:](#example-code)
   - [Available properties](#available-properties)
   - [Available methods](#available-methods)
 - [Get properties of a rectangle](#get-properties-of-a-rectangle)
-  - [Example Code:](#example-code-3)
+  - [Example Code:](#example-code-1)
   - [Available properties](#available-properties-1)
 - [Styles for rectangle](#styles-for-rectangle)
 - [Options for rectangle](#options-for-rectangle)
@@ -59,16 +55,15 @@ const rectangle = new Rectangle(150, 75, 100, 50)
 canvas.draw(rectangle);
 ```
 
-**Rendered Output**
+**Rendered Output:**
+
 ![Rectangle](./assets/images/rectangle/draw_basis_rectangle.png)
 
-In this example we draw a rectangle with a size of 100 x 50 pixels where the top-left corner is at x = 150 and y = 75.
+In this example we draw a rectangle with a size of _100 x 50_ pixels where the top-left corner is at _x = 150_ and _y = 75_.
 
 ## Draw a centered rectangle
 
 In some cases, you might want to center the rectangle on a specific point. The Rectangle class supports this by allowing the center to be passed instead of the top-left corner.
-
-### Example Code:
 
 ```typescript
 import { Canvas, Rectangle } from 'canvas-painter';
@@ -81,16 +76,15 @@ const rectangle = new Rectangle(150, 75, 100, 50, 0, null, { centered: true });
 canvas.draw(rectangle);
 ```
 
-### Rendered Output:
+**Rendered Output:**
+
 ![Centered Rectangle](./assets/images/rectangle/draw_centered_rectangle.png)
 
-In this example we draw a rectangle with a size of 100 x 50 pixels where the center is at `x` = 150 and `y` = 75 by setting the option `centered`.
+In this example we draw a rectangle with a size of _100 x 50_ pixels where the center is at _x = 150_ and _y = 75_ by setting the option `centered`.
 
 ## Draw a rotated rectangle
 
 In some cases, you may need to draw rectangles at angles other than the default 0 degrees. This can easily be archived by setting the `rotation` via constructor. The `rotation` is defined as degrees in clockwise direction. To rotate counter clockwise just pass a negative value. If `centered` option is specified the rectangle is rotated around the center and not top-left corner.
-
-### Example Code:
 
 ```typescript
 import { Canvas, Rectangle } from 'canvas-painter';
@@ -103,10 +97,11 @@ const rectangle = new Rectangle(150, 30, 100, 50, 45);
 canvas.draw(rectangle);
 ```
 
-### Rendered Output:
+**Rendered Output:**
+
 ![Rotated Rectangle](./assets/images/rectangle/draw_rotated_rectangle.png)
 
-In this example, the rectangle is rotated 45 degrees clockwise around its top-left corner.
+In this example, the rectangle is rotated _45 degrees_ clockwise around its top-left corner.
 
 ## Modify a rectangle
 

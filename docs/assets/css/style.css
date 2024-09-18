@@ -1,0 +1,82 @@
+
+body {
+  background-color: #fafafa;
+  color: #334455;
+  font-family: sans-serif;
+  font-size: 12pt;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: black;
+}
+
+header {
+  background-color: #fafafa;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 5pt 0;
+}
+
+th, td {
+  padding: 1pt;
+}
+
+th {
+  background-color: #333;
+  color: white;
+}
+
+td {
+  border: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.sticky-column {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+}
+
+.logo a{
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+  font-size: large;
+}
+
+nav.main-menu a {
+  padding-left: 0;
+}
+
+nav.breadcrumb {
+  --bs-breadcrumb-divider: '>';
+  margin: 15px 0 0 0;
+  padding: 0;
+}
+
+.breadcrumb-item a {
+  text-decoration: none;
+}
+
+main h1 {
+  font-weight: bold;
+}
+
+main h2 {
+  border-bottom: 1px solid #e6e6e6;
+  margin-top: 1pt;
+}
+
+.on-this-page div {
+  padding-left: 2em;
+}
+
+.on-this-page ul {
+  list-style-type: none;
+}
+
+.on-this-page a {
+  text-decoration: none;
+}
