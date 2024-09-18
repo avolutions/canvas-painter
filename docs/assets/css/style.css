@@ -19,21 +19,18 @@ header {
 table {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 8px;
-  overflow: hidden;
+  border: 1px solid #ddd;
 }
 
 th, td {
-  padding: 1pt;
+  padding: 5pt;
+  border: 1px solid #ddd;
+  vertical-align: top;
 }
 
 th {
   color: black;
   font-weight: bold;
-}
-
-td {
-  border: 1px solid #ddd;
 }
 
 tbody tr:nth-child(even) {
@@ -71,9 +68,12 @@ main h1 {
   font-weight: bold;
 }
 
+main h2, h3 {
+  margin-top: 5pt;
+}
+
 main h2 {
   border-bottom: 1px solid #e6e6e6;
-  margin-top: 1pt;
 }
 
 .on-this-page ul {

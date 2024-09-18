@@ -7,11 +7,10 @@ title: Rectangle
 - [Draw a centered rectangle](#draw-a-centered-rectangle)
 - [Draw a rotated rectangle](#draw-a-rotated-rectangle)
 - [Modify a rectangle](#modify-a-rectangle)
-  - [Example Code:](#example-code)
   - [Available properties](#available-properties)
   - [Available methods](#available-methods)
 - [Get properties of a rectangle](#get-properties-of-a-rectangle)
-  - [Example Code:](#example-code-1)
+  - [Example Code:](#example-code)
   - [Available properties](#available-properties-1)
 - [Styles for rectangle](#styles-for-rectangle)
 - [Options for rectangle](#options-for-rectangle)
@@ -59,7 +58,7 @@ canvas.draw(rectangle);
 
 ![Rectangle](./assets/images/rectangle/draw_basis_rectangle.png)
 
-In this example we draw a rectangle with a size of _100 x 50_ pixels where the top-left corner is at _x = 150_ and _y = 75_.
+In this example we draw a rectangle with a size of 100 x 50 pixels where the top-left corner is at _x = 150_ and _y = 75_.
 
 ## Draw a centered rectangle
 
@@ -80,7 +79,7 @@ canvas.draw(rectangle);
 
 ![Centered Rectangle](./assets/images/rectangle/draw_centered_rectangle.png)
 
-In this example we draw a rectangle with a size of _100 x 50_ pixels where the center is at _x = 150_ and _y = 75_ by setting the option `centered`.
+In this example we draw a rectangle with a size of 100 x 50 pixels where the center is at _x = 150_ and _y = 75_ by setting the option `centered`.
 
 ## Draw a rotated rectangle
 
@@ -101,7 +100,7 @@ canvas.draw(rectangle);
 
 ![Rotated Rectangle](./assets/images/rectangle/draw_rotated_rectangle.png)
 
-In this example, the rectangle is rotated _45 degrees_ clockwise around its top-left corner.
+In this example, the rectangle is rotated 45 degrees clockwise around its top-left corner.
 
 ## Modify a rectangle
 
@@ -110,8 +109,6 @@ In this chapter, you'll learn how to update a rectangle's properties such as its
 There are two different ways to modify the rectangle definition:
 1. Set the properties directly to a new value
 2. Using helper methods to modify the properties by a given delta
-
-### Example Code:
 
 ```typescript
 import { Canvas, Rectangle } from 'canvas-painter';
@@ -133,7 +130,7 @@ rectangle.setSize(50, 25); // Set width to 50px and height to 25px
 
 Property | Description | Example
 --- | --- | ---
-`width` | Sets the width of the rectangle. | `rectangle.width = 50;`
+`width` | Sets the width of the rectangle. | ```typescript rectangle.width = 50;```
 `height` | Sets the height of the rectangle. | `rectangle.height = 50;`
 `position` | Sets the position (x and/or y) of the rectangle. | `rectangle.position = { x: 50, y: 50 };`<br />`rectangle.position.x = 50`
 `rotation` | Sets the rotation of the rectangle in degrees clockwise. | `rectangle.rotation = 45;`
