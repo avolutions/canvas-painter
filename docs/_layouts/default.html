@@ -90,7 +90,7 @@
         </nav>
         <h1>{{ page.title }}</h1>
         <div class="content">
-          {{ content | remove_first: '<ul>' | remove_first: '</ul>' }}
+          {{ content | remove_first: '<ul>' | split: '</ul>' | last }}
         </div>
       </div>
 
@@ -98,7 +98,7 @@
         <div class="sticky-top">
           <!-- Extract and display the first <ul> -->
           <ul>
-            {{ content | split: '</ul>' | first | split: '<ul>' | last | strip_html | newline_to_br }}
+            {{ content | split: '</ul>' | first | prepend: '<ul>' }}
           </ul>
         </div>
       </aside>
