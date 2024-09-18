@@ -4,20 +4,18 @@ title: Rectangle
 
 - [Usage](#usage)
 - [Draw a basic rectangle](#draw-a-basic-rectangle)
-  - [Example code:](#example-code)
-  - [Rendered Output:](#rendered-output)
 - [Draw a centered rectangle](#draw-a-centered-rectangle)
+  - [Example Code:](#example-code)
+  - [Rendered Output:](#rendered-output)
+- [Draw a rotated rectangle](#draw-a-rotated-rectangle)
   - [Example Code:](#example-code-1)
   - [Rendered Output:](#rendered-output-1)
-- [Draw a rotated rectangle](#draw-a-rotated-rectangle)
-  - [Example Code:](#example-code-2)
-  - [Rendered Output:](#rendered-output-2)
 - [Modify a rectangle](#modify-a-rectangle)
-  - [Example Code:](#example-code-3)
+  - [Example Code:](#example-code-2)
   - [Available properties](#available-properties)
   - [Available methods](#available-methods)
 - [Get properties of a rectangle](#get-properties-of-a-rectangle)
-  - [Example Code:](#example-code-4)
+  - [Example Code:](#example-code-3)
   - [Available properties](#available-properties-1)
 - [Styles for rectangle](#styles-for-rectangle)
 - [Options for rectangle](#options-for-rectangle)
@@ -50,8 +48,6 @@ The detailed API documentation for `Rectangle` can be found here: https://avolut
 
 The simplest use case is drawing a rectangle by specifying the `x`, `y`, `width` and `height`. By default `x` and `y` specify the top-left corner of the rectangle.
 
-### Example code:
-
 ```typescript
 import { Canvas, Rectangle } from 'canvas-painter';
 
@@ -63,7 +59,7 @@ const rectangle = new Rectangle(150, 75, 100, 50)
 canvas.draw(rectangle);
 ```
 
-### Rendered Output:
+**Rendered Output**
 ![Rectangle](./assets/images/rectangle/draw_basis_rectangle.png)
 
 In this example we draw a rectangle with a size of 100 x 50 pixels where the top-left corner is at x = 150 and y = 75.
