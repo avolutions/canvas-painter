@@ -76,8 +76,16 @@ main h2 {
   border-bottom: 1px solid #e6e6e6;
 }
 
+.on-this-page {
+  font-size: 11pt;
+}
+
 .on-this-page ul {
+  margin-top: 10px;
   list-style-type: none;
+}
+
+.on-this-page ul:first-of-type {
   padding-left: 0;
 }
 

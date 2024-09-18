@@ -10,7 +10,6 @@ title: Rectangle
   - [Available properties](#available-properties)
   - [Available methods](#available-methods)
 - [Get properties of a rectangle](#get-properties-of-a-rectangle)
-  - [Example Code:](#example-code)
   - [Available properties](#available-properties-1)
 - [Styles for rectangle](#styles-for-rectangle)
 - [Options for rectangle](#options-for-rectangle)
@@ -148,8 +147,6 @@ Method | Description | Example
 ## Get properties of a rectangle
 
 In addition to manipulating a rectangle's properties, **CanvasPainter** allows you to retrieve the current values of its attributes such as `width`, `height`, `position`, `rotation` and `style`.
-
-### Example Code:
 
 ```javascript
 import { Canvas, Rectangle } from 'canvas-painter';
