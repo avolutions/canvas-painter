@@ -5,29 +5,92 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{{ page.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+  <style>
+    body {
+      background-color: #fafafa;
+      font-family: sans-serif;
+      font-size: 12pt;
+    }
+
+    header {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 5pt 0;
+    }
+
+    .logo a{
+      text-decoration: none;
+      font-weight: bold;
+      color: black;
+      font-size: large;
+    }
+
+    nav.main-menu a {
+      padding-left: 0;
+    }
+
+    nav.breadcrumb {
+      --bs-breadcrumb-divider: '>';
+      margin: 9px 0 0 0;
+      padding: 0;
+    }
+
+    .breadcrumb-item a {
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>{{ site.title }}</h1>
-    </header>
-    <div class="content">
-      <nav>
-        <ul>
-          <li><a href="{{ '/' | relative_url }}">Getting started</a></li>
-          <li><a href="{{ '/shapes' | relative_url }}">Shapes</a></li>
-          <li>
-            <ul>
-              <li><a href="{{ '/rectangle' | relative_url }}">Rectangle</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-      <main>
-        {{ content }}
-      </main>
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col d-flex align-items-center">
+          <div class="logo">
+            <a href="{{ '/' | relative_url }}">CanvasPainter</a>
+          </div>
+        </div>
+        <div class="col d-flex align-items-center justify-content-end">
+          <nav class="nav">
+            <a class="nav-link" href="{{ '/' | relative_url }}">User Guide</a>
+            <a class="nav-link" href="{{ '/api' | relative_url }}">API</a>
+          </nav>
+        </div>
+      </div>
     </div>
-  </div>
+  </header>
+  <main class="container py-4">
+    <div class="row">
+      <div class="col-2">
+        <nav class="main-menu">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ '/' | relative_url }}">Getting started</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ '/shapes' | relative_url }}">Shapes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ '/rectangle' | relative_url }}">Rectangle</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-10">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">User Guide</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Data</li>
+          </ol>
+        </nav>
+        <h1>{{ page.title }}</h1>
+        {{ content }}
+      </div>
+    </div>
+  </main>
+
+  <script src="{{ '/assets/js/bootstrap.bundle.min.js' | relative_url }}"></script>
 </body>
 </html>
