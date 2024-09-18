@@ -74,12 +74,12 @@
     </div>
   </header>
 
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
 
       <div class="col-2">
         <div class="sticky-column">
-          <nav class="main-menu"></nav>
+          <nav class="main-menu pt-2"></nav>
             <ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link" href="{{ '/' | relative_url }}">Getting started</a>
@@ -105,13 +105,17 @@
           </nav>
           <h1>{{ page.title }}</h1>
           <div class="content">
-            {{ toc }}
+            {% assign parts = content | split: "<!-- toc-end -->" %}
+            {% assign toc = parts[0] %}
+            {% assign main_content = parts[1] %}
+
+            {{ main_content }}
           </div>
         </main>
       </div>
 
       <div class="col-2">
-        <aside class="sticky-column bg-light p-3">
+        <aside class="sticky-column bg-light pt-2">
           <div><b>On this page</b></div>
           {{ toc }}
         </aside>
