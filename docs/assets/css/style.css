@@ -81,6 +81,10 @@ main h2 {
   padding-left: 0;
 }
 
+.on-this-page li {
+  margin-bottom: 5px;
+}
+
 .on-this-page a {
   text-decoration: none;
 }
