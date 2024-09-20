@@ -9,3 +9,7 @@ dist/
 
 # Code coverage
 coverage/
+
+# Local docs
+docs/_site
+docs/Gemfile*
