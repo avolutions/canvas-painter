@@ -151,16 +151,28 @@ export class Rectangle extends Shape<RectangleDefinition> {
     this.angle.adjustBy(deltaRotation);
   }
 
-  private getRenderDefinition(): RectangleDefinition {
-    const renderDefinition = this._definition;
-
-    if(this._options.centered) {
-      // Translate definition to center
-      renderDefinition.position.x = renderDefinition.position.x - renderDefinition.width / 2;
-      renderDefinition.position.y = renderDefinition.position.y - renderDefinition.height / 2;
+  /*private getRenderDefinition(): any {
+    if(!this._options.centered) {
+      return this._definition;
     }
 
-    return renderDefinition;
+
+
+    // Translate definition to center
+    renderDefinition.position.x = renderDefinition.position.x - renderDefinition.width / 2;
+    renderDefinition.position.y = renderDefinition.position.y - renderDefinition.height / 2;
+
+  }*/
+
+  private getTopLeftPosition(): Point {
+    if(this._options.centered) {
+      return new Point(
+        this._definition.position.x - this._definition.width / 2,
+        this._definition.position.y - this._definition.height / 2
+      );
+    }
+
+    return this._definition.position;
   }
 
   /**
@@ -171,24 +183,27 @@ export class Rectangle extends Shape<RectangleDefinition> {
    * @param {CanvasRenderingContext2D} context - The 2D rendering context of the canvas where the rectangle will be drawn.
    */
   render(context: CanvasRenderingContext2D): void {
-    const definition = this.getRenderDefinition();
-
     context.save(); // Save the current canvas state
+
+    // Set rectangle style
+    if(this.style.color) {
+      context.fillStyle = this.style.color;
+    }
 
     // Rotate
     // TODO centered rectangle
     if(this.angle.degrees != 0) {
       // Translate to the rectangle's position and apply rotation
-      context.translate(definition.position.x, definition.position.y);
+      /*context.translate(definition.position.x, definition.position.y);
       context.rotate(definition.angle.radians);
-      context.translate(-definition.position.x, -definition.position.y);
+      context.translate(-definition.position.x, -definition.position.y);*/
     }
 
     context.fillRect(
-      definition.position.x,
-      definition.position.y,
-      definition.width,
-      definition.height
+      this.getTopLeftPosition().x,
+      this.getTopLeftPosition().y,
+      this._definition.width,
+      this._definition.height
     );
 
     context.restore(); // Restore the canvas state to before the transformations

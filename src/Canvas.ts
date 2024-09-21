@@ -98,6 +98,14 @@ export class Canvas {
     if(style.color) {
       this._context.fillStyle = style.color;
     }
+    if(style.border) {
+      if(style.border.color) {
+        this._context.strokeStyle = style.border.color;
+      }
+      if(style.border.width) {
+        this._context.lineWidth = style.border.width;
+      }
+    }
   }
 
   watch(shape: IShape, redraw?: boolean): void;
