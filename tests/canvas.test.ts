@@ -12,16 +12,6 @@ global.CanvasRenderingContext2D = class {
   // Add any other methods you need
 } as any;
 
-// Mock for IShape
-class MockShape implements IShape {
-  render(context: CanvasRenderingContext2D): void {
-    // Mock implementation
-  }
-  addObserver(observer: () => void): void {
-    // Mock implementation
-  }
-}
-
 describe('Canvas class', () => {
   let canvasElement: HTMLCanvasElement;
   let context: CanvasRenderingContext2D;

@@ -1,5 +1,3 @@
-import { CanvasStyle } from "../styles/CanvasStyle";
-
 /**
  * Interface representing the options for configuring a canvas.
  *
