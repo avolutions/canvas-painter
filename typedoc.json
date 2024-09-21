@@ -1,7 +1,13 @@
 {
   "entryPoints": ["src/index.ts"],
   "out": "./docs/api",
+  "plugin": ["typedoc-plugin-markdown"],
   "exclude": ["node_modules", "dist", "tests"],
   "excludeExternals": true,
-  "excludePrivate": true
+  "excludePrivate": true,
+  "readme": "none",
+  "entryFileName": "index.md",
+  "hideBreadcrumbs": true,
+  "hidePageTitle": true,
+  "hidePageHeader": true
 }
