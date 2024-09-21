@@ -17,4 +17,6 @@ export interface IShape {
    * @param {() => void} observer - A callback function to be invoked when the shape's state changes.
    */
   addObserver(observer: () => void): void;
+
+  removeObserver(observer: () => void): void;
 }

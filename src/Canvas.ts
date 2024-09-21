@@ -15,6 +15,8 @@ export class Canvas {
   /** Configuration options for the canvas, including dimensions. */
   private _options: CanvasOptions;
 
+  private _style: CanvasStyle;
+
   /** List of shapes being watched for changes and re-rendered. */
   private watchedShapes: IShape[] = [];
 
@@ -39,7 +41,7 @@ export class Canvas {
    * @param {CanvasOptions} [options] - Optional configuration options for the canvas.
    * @private
    */
-  private constructor(canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, options?: CanvasOptions) {
+  private constructor(canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, options?: CanvasOptions, style?: CanvasStyle) {
     this._canvas = canvas;
     this._context = context;
 
@@ -50,9 +52,9 @@ export class Canvas {
     };
 
     // Set styles
-    this._options.style = {
+    this._style = {
       ...this._defaultStyle,
-      ...this._options.style
+      ...style
     };
 
     // Set canvas dimensions if provided
@@ -63,7 +65,7 @@ export class Canvas {
       this._canvas.height = this._options.height;
     }
 
-    this.setStyle(this._options.style);
+    this.setContextStyle(this._style);
   }
 
   /**
@@ -74,7 +76,7 @@ export class Canvas {
    * @returns {Canvas} A new Canvas instance.
    * @throws {Error} If the canvas element is not found or is not a valid canvas.
    */
-  static init(id: string, options?: CanvasOptions): Canvas {
+  static init(id: string, options?: CanvasOptions, style?: CanvasStyle): Canvas {
     const canvas = document.getElementById(id);
     if (!canvas) {
       throw new Error(`Element with id '${id}' not found`);
@@ -89,29 +91,75 @@ export class Canvas {
       throw new Error(`Failed to get '2d' context from canvas`);
     }
 
-    return new Canvas(canvas, context, options);
+    return new Canvas(canvas, context, options, style);
   }
 
-  private setStyle(style: CanvasStyle) {
+  private setContextStyle(style: CanvasStyle) {
     if(style.color) {
       this._context.fillStyle = style.color;
     }
   }
+
+  watch(shape: IShape, redraw?: boolean): void;
+  watch(shapes: IShape[], redraw?: boolean): void;
 
   /**
    * Registers a shape to be watched for changes and renders it.
    *
    * @param {IShape} shape - The shape to watch and render on the canvas.
    */
-  watch(shape: IShape): void {
-    if(this.watchedShapes.includes(shape)) {
-      return;
-    }
+  watch(shapeOrShapes: IShape | IShape[], redraw: boolean = true): void {
+    // If passed parameter was a single shape we convert it to array
+    const shapes = Array.isArray(shapeOrShapes) ? shapeOrShapes : [shapeOrShapes];
 
-    // Add an observer to redraw the canvas when the shape changes
-    shape.addObserver(() => this.draw());
-    this.watchedShapes.push(shape);
-    this.draw(); // Initial draw after adding the shape
+    // Flag to track if at least one shape was added
+    let shapeAdded = false;
+
+    shapes.forEach(shape => {
+      if(!this.watchedShapes.includes(shape)) {
+        // Add an observer to redraw the canvas when the shape changes
+        shape.addObserver(this.observerRedraw);
+
+        // Add to watched shapes
+        this.watchedShapes.push(shape);
+
+        shapeAdded = true;
+      }
+    });
+
+    if(shapeAdded && redraw) {
+      // Initial draw after at least on shape was added
+      this.redraw();
+    }
+  }
+
+  unwatch(shape: IShape, redraw?: boolean): void;
+  unwatch(shapes: IShape[], redraw?: boolean): void;
+
+  unwatch(shapeOrShapes: IShape | IShape[], redraw: boolean = true): void {
+    // If passed parameter was a single shape we convert it to array
+    const shapes = Array.isArray(shapeOrShapes) ? shapeOrShapes : [shapeOrShapes];
+
+    // Flag to track if at least one shape was removed
+    let shapeRemoved = false;
+
+    shapes.forEach(shape => {
+      const index = this.watchedShapes.indexOf(shape);
+      if (index !== -1) {
+        // Remove observer to not redraw anymore on changes of shape
+        shape.removeObserver(this.observerRedraw);
+
+        // Add to watched shapes
+        this.watchedShapes.splice(index, 1);
+
+        shapeRemoved = true;
+      }
+    });
+
+    if(shapeRemoved && redraw) {
+      // Initial draw after at least on shape was added
+      this.redraw();
+    }
   }
 
   /**
@@ -123,13 +171,21 @@ export class Canvas {
     return this._context;
   }
 
+  public clear(): void {
+    // Clear the entire canvas
+    this.context.clearRect(0, 0, this._canvas.width, this._canvas.height);
+  }
+
+  private observerRedraw = (): void => {
+    this.redraw();
+  }
+
   /**
    * Clears the canvas and re-renders all watched shapes.
    * @private
    */
-  private draw(): void {
-    // Clear the entire canvas
-    this.context.clearRect(0, 0, this._canvas.width, this._canvas.height);
+  public redraw(): void {
+    this.clear();
 
     // Render each watched shape
     this.watchedShapes.forEach(shape => shape.render(this.context));

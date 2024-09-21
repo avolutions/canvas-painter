@@ -47,6 +47,16 @@ export abstract class Shape<T extends IShapeDefinition> implements IShape {
     this.observers.push(observer);
   }
 
+  removeObserver(observer: () => void): void {
+    const index = this.observers.indexOf(observer);
+
+    console.log('removeObserver' + index);
+    if (index !== -1) {
+      this.observers.splice(index, 1);
+      console.log('removed');
+    }
+  }
+
   /**
    * Notifies all registered observers of a change in the shape's state.
    * This method is triggered when a property of the shape definition is changed.

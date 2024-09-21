@@ -17,6 +17,4 @@ export interface CanvasOptions {
    * If not provided, the default height will be used.
    */
   height?: number;
-
-  style?: CanvasStyle;
 }
