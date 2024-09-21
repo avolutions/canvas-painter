@@ -1,0 +1,12 @@
+{% assign path_parts = page.path | split: "/" %}
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="{{ '/api' | relative_url }}">API</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+    {{ path_parts[1] | capitalize }}
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+    {{ page.name | replace: ".md", "" | capitalize }}
+  </li>
+</ol>

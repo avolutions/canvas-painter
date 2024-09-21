@@ -35,18 +35,12 @@
 
       <div class="col-2">
         <div class="sticky-column">
-          <nav class="main-menu"></nav>
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link" href="{{ '/' | relative_url }}">Getting started</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ '/shapes' | relative_url }}">Shapes</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ '/rectangle' | relative_url }}">Rectangle</a>
-              </li>
-            </ul>
+          <nav class="main-menu">
+            {% if page.url contains "/api" %}
+              {% include api/menu.html %}
+            {% else %}
+              {% include user_guide/menu.html %}
+            {% endif %}
           </nav>
         </div>
       </div>
@@ -54,14 +48,15 @@
       <div class="col-8">
         <main>
           <nav class="breadcrumb" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">User Guide</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Data</li>
-            </ol>
+            {% if page.url contains "/api" %}
+              {% include api/breadcrumb.html %}
+            {% else %}
+              {% include user_guide/breadcrumb.html %}
+            {% endif %}
           </nav>
-          <h1>{{ page.title }}</h1>
+          <h1>{{ page.name | replace: ".md", "" | capitalize }}</h1>
           <div class="content">
-            {% assign parts = content | split: "<!-- toc-end -->" %}
+            {% assign parts = content | split: "<!-- END doctoc generated TOC please keep comment here to allow auto update -->" %}
             {% assign toc = parts[0] %}
             {% assign main_content = parts[1] %}
 
