@@ -151,19 +151,6 @@ export class Rectangle extends Shape<RectangleDefinition> {
     this.angle.adjustBy(deltaRotation);
   }
 
-  /*private getRenderDefinition(): any {
-    if(!this._options.centered) {
-      return this._definition;
-    }
-
-
-
-    // Translate definition to center
-    renderDefinition.position.x = renderDefinition.position.x - renderDefinition.width / 2;
-    renderDefinition.position.y = renderDefinition.position.y - renderDefinition.height / 2;
-
-  }*/
-
   private getTopLeftPosition(): Point {
     if(this._options.centered) {
       return new Point(
@@ -190,18 +177,26 @@ export class Rectangle extends Shape<RectangleDefinition> {
       context.fillStyle = this.style.color;
     }
 
+    let topLeft = this.getTopLeftPosition();
+
     // Rotate
-    // TODO centered rectangle
-    if(this.angle.degrees != 0) {
+    if(this.angle.degrees !== 0) {
       // Translate to the rectangle's position and apply rotation
-      /*context.translate(definition.position.x, definition.position.y);
-      context.rotate(definition.angle.radians);
-      context.translate(-definition.position.x, -definition.position.y);*/
+      context.translate(this._definition.position.x, this._definition.position.y);
+      context.rotate(this._definition.angle.radians);
+
+      // Translate back if centered
+      if(this._options.centered) {
+        context.translate(-this._definition.width / 2, -this._definition.height / 2);
+      }
+
+      // Because we are in translated context
+      topLeft = { x: 0, y: 0 };
     }
 
     context.fillRect(
-      this.getTopLeftPosition().x,
-      this.getTopLeftPosition().y,
+      topLeft.x,
+      topLeft.y,
       this._definition.width,
       this._definition.height
     );
