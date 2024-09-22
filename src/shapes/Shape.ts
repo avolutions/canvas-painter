@@ -44,7 +44,9 @@ export abstract class Shape<T extends IShapeDefinition> implements IShape {
    * @param {() => void} observer - The observer callback function.
    */
   addObserver(observer: () => void): void {
-    this.observers.push(observer);
+    if(!this.observers.includes(observer)) {
+      this.observers.push(observer);
+    }
   }
 
   removeObserver(observer: () => void): void {
