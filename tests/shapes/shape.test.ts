@@ -1,23 +1,49 @@
 import { IShapeDefinition } from "../../src/definitions/IShapeDefinition";
 import { Shape } from "../../src/shapes/Shape";
+import { Point } from "../../src/types/Point";
 
 class MockShapeDefinition implements IShapeDefinition {
   width: number;
+  name: string;
+  isFoo: boolean;
+  list: Array<number>;
+  position: Point;
 
-  constructor(width: number) {
+  constructor(width: number = 0, name: string = '', isFoo: boolean = true, list: Array<number> = [], position: Point = { x: 0, y:0 }) {
     this.width = width;
+    this.name = name;
+    this.isFoo = isFoo;
+    this.list = list;
+    this.position = position;
   }
 }
 
 // Concrete class extending Shape
 class MockShape extends Shape<MockShapeDefinition> {
-  constructor(width: number) {
-    const definition = new MockShapeDefinition(width);
+  constructor(width: number = 0, name: string = '', isFoo: boolean = true, list: Array<number> = [], position: Point = { x: 0, y:0 }) {
+    const definition = new MockShapeDefinition(width, name, isFoo, list, position);
     super(definition);
   }
 
   public set width(width: number) {
     this._definition.width = width;
+  }
+
+  public set name(name: string) {
+    this._definition.name = name;
+  }
+
+  public set isFoo(isFoo: boolean) {
+    this._definition.isFoo = isFoo;
+  }
+
+  public set list(list: Array<number>) {
+    this._definition.list = list;
+  }
+
+  public set position(position: Point) {
+    this._definition.position.x = position.x;
+    this._definition.position.y = position.y;
   }
 
   public render(context: CanvasRenderingContext2D): void {
@@ -34,7 +60,7 @@ describe('Shape class', () => {
 
   test("should add and remove observer", () => {
     const observer = jest.fn();
-    const shape = new MockShape(0);
+    const shape = new MockShape();
 
     shape.addObserver(observer);
 
@@ -48,7 +74,7 @@ describe('Shape class', () => {
 
   test("should not add the same observer twice", () => {
     const observer = jest.fn();
-    const shape = new MockShape(0);
+    const shape = new MockShape();
 
     shape.addObserver(observer);
 
@@ -63,7 +89,7 @@ describe('Shape class', () => {
   test("should only remove given observer", () => {
     const observer = jest.fn();
     const observer1 = jest.fn();
-    const shape = new MockShape(0);
+    const shape = new MockShape();
 
     shape.addObserver(observer);
     shape.addObserver(observer1);
@@ -80,26 +106,30 @@ describe('Shape class', () => {
 
   test("should not fail when removing a non added observer", () => {
     const observer = jest.fn();
-    const shape = new MockShape(0);
+    const shape = new MockShape();
 
     expect(() => shape.removeObserver(observer)).not.toThrow();
   });
 
   test("should notify observer when definition changes", () => {
     const observer = jest.fn();
-    const shape = new MockShape(0);
+    const shape = new MockShape();
 
     shape.addObserver(observer);
 
     shape.width = 10;
+    shape.name = 'foo';
+    shape.isFoo = false;
+    shape.list = [1,2,3];
+    shape.position = { x: 10, y: 10}
 
-    expect(observer).toHaveBeenCalledTimes(1);
+    expect(observer).toHaveBeenCalledTimes(5);
   });
 
   test("should not notify removed observer when definition changes", () => {
     const observer = jest.fn();
     const observer1 = jest.fn();
-    const shape = new MockShape(0);
+    const shape = new MockShape();
 
     shape.addObserver(observer);
     shape.addObserver(observer1);
