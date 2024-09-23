@@ -44,7 +44,13 @@ describe('Rectangle class', () => {
     expect(rectangle.position).toEqual(newPosition);
     expect(rectangle.angle.degrees).toBe(newAngle.degrees);
     expect(rectangle.rotation).toBe(85);
-    expect(rectangle.style).toBe(newStyle);
+    expect(rectangle.style).toStrictEqual(newStyle);
+
+    rectangle.style.color = 'blue';
+    rectangle.position.x = 25;
+
+    expect(rectangle.style.color).toBe('blue');
+    expect(rectangle.position.x).toBe(25);
   });
 
   test("should set new width and height using setSize", () => {
@@ -135,22 +141,24 @@ describe('Rectangle class', () => {
     rectangle.width = 10;
     rectangle.height = 10;
     rectangle.position = { x: 10, y: 10 };
-    rectangle.rotation = 10;
+    rectangle.rotation = 10; // currently notify twice
     rectangle.style = { color: 'red' };
+    rectangle.style.color = 'blue';
+    rectangle.position.x = 25;
 
-    expect(observer).toHaveBeenCalledTimes(5);
+    expect(observer).toHaveBeenCalledTimes(8);
   });
 
   test("should notify observer when definition changed by methods", () => {
     const observer = jest.fn();
-    const rectangle = new Rectangle(0, 0, 0, 0, 0, {}, {});
+    const rectangle = new Rectangle(0, 0, 0, 0);
 
     rectangle.addObserver(observer);
 
     rectangle.setSize(10, 10);
     rectangle.resize(10, 10);
     rectangle.move(10, 10);
-    rectangle.rotate(10);
+    rectangle.rotate(10); // currently notify twice
 
     expect(observer).toHaveBeenCalledTimes(7);
   });

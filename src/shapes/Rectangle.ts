@@ -24,7 +24,7 @@ export class Rectangle extends Shape<RectangleDefinition> {
    */
   constructor(x: number, y: number, width: number, height: number, rotation: number = 0, style: RectangleStyle = {}, options: RectangleOptions = {}) {
     // Create a RectangleDefinition using the provided parameters
-    const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, Angle.fromDegrees(rotation), style);
+    const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, new Angle(rotation), style);
     super(rectangleDefinition);
     this._options = options;
   }
@@ -138,8 +138,10 @@ export class Rectangle extends Shape<RectangleDefinition> {
    * @param {number} [deltaY=0] - The change in the y-coordinate.
    */
   move(deltaX: number = 0, deltaY: number = 0): void {
-    this.position.x += deltaX;
-    this.position.y += deltaY;
+    const x = this.position.x + deltaX;
+    const y = this.position.y + deltaY;
+
+    this.position = { x: x, y: y };
   }
 
   /**

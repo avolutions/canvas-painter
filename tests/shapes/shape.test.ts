@@ -25,6 +25,10 @@ class MockShape extends Shape<MockShapeDefinition> {
     super(definition);
   }
 
+  public get position(): Point {
+    return this._definition.position;
+  }
+
   public set width(width: number) {
     this._definition.width = width;
   }
@@ -42,8 +46,7 @@ class MockShape extends Shape<MockShapeDefinition> {
   }
 
   public set position(position: Point) {
-    this._definition.position.x = position.x;
-    this._definition.position.y = position.y;
+    this._definition.position = position;
   }
 
   public render(context: CanvasRenderingContext2D): void {
@@ -121,9 +124,10 @@ describe('Shape class', () => {
     shape.name = 'foo';
     shape.isFoo = false;
     shape.list = [1,2,3];
-    shape.position = { x: 10, y: 10}
+    shape.position = { x: 10, y: 10 }
+    shape.position.x = 25;
 
-    expect(observer).toHaveBeenCalledTimes(5);
+    expect(observer).toHaveBeenCalledTimes(6);
   });
 
   test("should not notify removed observer when definition changes", () => {
