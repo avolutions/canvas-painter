@@ -17,6 +17,7 @@ const config: Config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'avolutions', // Usually your GitHub org/user name.
   projectName: 'canvas-painter', // Usually your repo name.
+  trailingSlash: false, // optional, but often recommended for GitHub Pages
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

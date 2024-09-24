@@ -1,0 +1,37 @@
+name: Deploy Docusaurus site
+
+on:
+  push:
+    branches:
+      - docs
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Change directory to Docusaurus folder
+      run: cd website
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./website
+
+    - name: Build the site
+      run: npm run build
+      working-directory: ./website
+
+    - name: Deploy to GitHub Pages
+      run: npm run deploy
+      working-directory: ./website
+      env:
+        GIT_USER: ${{ secrets.GITHUB_ACTOR }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is automatically provided by GitHub for Actions
