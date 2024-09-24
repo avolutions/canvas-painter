@@ -33,5 +33,4 @@ jobs:
       run: npm run deploy
       working-directory: ./website
       env:
-        GIT_USER: ${{ secrets.GITHUB_ACTOR }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is automatically provided by GitHub for Actions
+        USE_SSH: true
