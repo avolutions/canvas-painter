@@ -56,6 +56,7 @@ const config: Config = {
   ],
 
   themeConfig: {
+    deployBranch: 'gh-pages',
     // Replace with your project's social card
     navbar: {
       title: 'Canvas Painter',
