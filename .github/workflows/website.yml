@@ -34,4 +34,6 @@ jobs:
       run: npm run deploy
       working-directory: ./website
       env:
-        USE_SSH: true
+        GIT_USER: ${{ secrets.GITHUB_ACTOR }}  # GitHub user triggering the action
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
+        GIT_REMOTE_URL: https://github.com/avolutions/canvas-painter.git
