@@ -13,7 +13,7 @@ const FeatureList: FeatureItem[] = [
     title: 'Easy to Use',
     description: (
       <>
-        With <b>CanvasPainter</b>, you just create shapes and draw them on a canvas with a few lines of code.
+        With <b>CanvasPainter.js</b>, you just create shapes and draw them on a canvas with a few lines of code.
         It's quick, straightforward, and hassle-free. Perfect for both beginners and pros.
         <CodeBlock language="javascript">
 {`const canvas = new Canvas('myCanvas');
@@ -26,7 +26,7 @@ const rectangle = new Rectangle(50, 50, 100, 50);`}
     title: 'Automatic Updates',
     description: (
       <>
-        <b>CanvasPainter</b> takes care of redrawing for you. When you make changes to shapes,
+        <b>CanvasPainter.js</b> takes care of redrawing for you. When you make changes to shapes,
         the canvas detects them and updates automatically - no need for manual redraws.
         <CodeBlock language="javascript">
 {`canvas.watch(rectangle);`}
@@ -38,7 +38,7 @@ const rectangle = new Rectangle(50, 50, 100, 50);`}
     title: 'Shape Manipulation',
     description: (
       <>
-        With <b>CanvasPainter</b>, resizing, rotating, and moving shapes is a breeze.
+        With <b>CanvasPainter.js</b>, resizing, rotating, and moving shapes is a breeze.
         You can easily adjust your shapes with intuitive controls, making it simple to create dynamic and interactive designs.
         <CodeBlock language="javascript">
 {`rectangle.move(10, 10);

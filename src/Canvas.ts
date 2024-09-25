@@ -109,9 +109,9 @@ export class Canvas {
     }
 
     // Add an observer to redraw the canvas when the shape changes
-    shape.addObserver(() => this.draw());
+    shape.addObserver(() => this.redraw());
     this.watchedShapes.push(shape);
-    this.draw(); // Initial draw after adding the shape
+    this.redraw(); // Initial draw after adding the shape
   }
 
   /**
@@ -127,11 +127,15 @@ export class Canvas {
    * Clears the canvas and re-renders all watched shapes.
    * @private
    */
-  private draw(): void {
+  private redraw(): void {
     // Clear the entire canvas
     this.context.clearRect(0, 0, this._canvas.width, this._canvas.height);
 
     // Render each watched shape
-    this.watchedShapes.forEach(shape => shape.render(this.context));
+    this.watchedShapes.forEach(shape => this.draw(shape));
+  }
+
+  private draw(shape: IShape): void {
+    shape.render(this.context);
   }
 }

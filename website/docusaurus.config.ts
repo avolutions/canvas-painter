@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'CanvasPainter.js',
-  tagline: 'Drawing basic shapes on HTML5 Canvas with ease.',
+  tagline: 'Using JavaScript to draw basic shapes on HTML5 Canvas with ease.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here

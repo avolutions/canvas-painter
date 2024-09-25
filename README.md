@@ -43,9 +43,9 @@ For **ES Modules**:
 import { Color } from '@avolutions/canvas-painter';
 ```
 
-## Usage
+## Getting started
 
-Getting started with **CanvasPainter.js** is simple. After setting up an HTML `<canvas>` element, you can initialize it with a single method call. From there, you can start adding shapes to the canvas, which will automatically render and update as their properties change or you render shapes manually. Below are the steps to set up and use the package effectively.
+Getting started with **CanvasPainter.js** is simple. After setting up an HTML `<canvas>` element, you can initialize it with a single method call. From there, you can start adding shapes to the canvas, which will automatically render and update as their properties change or you render shapes manually.
 
 ### Initialize the canvas
 
@@ -58,59 +58,57 @@ First, ensure that you have a `<canvas>` element in your HTML with an id:
 After you've added the canvas element to your HTML, you can initialize it using the `init()` method:
 
 ```js
-import { Color } from '@avolutions/colorado';
+import { Canvas } from '@avolutions/canvas-painter';
 
 const canvas = Canvas.init('myCanvas');
 ```
 
-### Drawing a shape manually
+### Create a shape
 
-You can create a new shape, such as a rectangle, and draw it manually using the `Canvas.draw()` method. The shape will automatically render on the canvas.
+Next you create shapes and draw them on the canvas. You can either use the [built-in](TODO) shapes or create your [own](TODO).
 
-```javascript
-import { Canvas, Rectangle } from 'canvas-painter';
+A shape is created by simple create a new object instance of it, e.g. `Rectangle`:
+```js
+import { Rectangle } from '@avolutions/canvas-painter';
 
-// Initialize the canvas
-const canvas = Canvas.init('myCanvas');
-
-// Create a rectangle (x, y, width, height)
-const rect = new Rectangle(100, 100, 200, 150);
-
-// Draw the rectangle on the canvas
-canvas.draw(rect);
+const rectangle = new Rectangle(50, 50, 25, 75); // x, y, width, height
 ```
 
-The `Canvas.draw()` method takes care of rendering the shape to the canvas. Any changes made to the rectangle's properties (like position, size, or color) will **not** have an effect to the shape on the canvas. You need to call `Canvas.draw(rect)` again to update the canvas.
+### Draw shape manually
 
-### Automatically re-rendering a shape on property change
+You can manually draw the rectangle to the canvas using `Canvas.draw()` method. This is useful when you only want to render the canvas once or on-demand.
 
-If you want a shape to automatically re-render every time one of its properties changes, you can add the shape to `Canvas.watch()`. Once added, any changes to the shape’s properties will be automatically reflected on the canvas without the need to manually call `Canvas.draw()`.
+```js
+import { Canvas, Rectangle } from '@avolutions/canvas-painter';
 
-Here’s an example of how to watch a rectangle and ensure it updates automatically when modified:
-
-```javascript
-import { Canvas, Rectangle } from 'canvas-painter';
-
-// Initialize the canvas
 const canvas = Canvas.init('myCanvas');
+const rectangle = new Rectangle(50, 50, 25, 75); // x, y, width, height
 
-// Create a rectangle (x, y, width, height)
-const rect = new Rectangle(100, 100, 200, 150);
-
-// Add the rectangle to Canvas.watch() to automatically rerender on property change
-canvas.watch(rect);
-
-// Change rectangle properties dynamically
-rect.width = 250;  // The canvas will automatically update with the new width
+canvas.draw(rectangle);
 ```
 
-By using `Canvas.watch(rect)`, you ensure that any updates to the rectangle’s properties (such as position, size, or color) are automatically applied to the canvas, without needing to call `Canvas.draw()` manually.
+### Watch shapes
 
-### Access the JavaScript Canvas API
+A more advanced way to draw the shape is to let the canvas watch it and (re-)draws it every time the shape changes. This allows you to simply modify the shape object without caring about rerendering of the canvas. To do so, use the `Canvas.watch()` method.
+
+```js
+import { Canvas, Rectangle } from '@avolutions/canvas-painter';
+
+const canvas = Canvas.init('myCanvas');
+const rectangle = new Rectangle(50, 50, 25, 75); // x, y, width, height
+
+canvas.watch(rectangle); // this will draw the rectangle
+
+rectangle.width = 100; // this will redraw the rectangle with the new width
+```
+
+### Using the JavaScript Canvas API
 
 In addition to using **CanvasPainter.js** built-in drawing methods, you have full access to the official Canvas 2D API through `Canvas.context`. This allows you to use any method from the standard Canvas/Context API directly:
 
 ```js
+import { Canvas } from '@avolutions/canvas-painter';
+
 // Access the 2D rendering context
 const canvas = Canvas.init('myCanvas');
 const ctx = canvas.context;
