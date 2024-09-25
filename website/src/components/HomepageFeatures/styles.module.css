@@ -10,6 +10,10 @@
   width: 200px;
 }
 
+.features pre {
+  margin-top: 20px;
+}
+
 .features pre code {
   text-align: left;
 }

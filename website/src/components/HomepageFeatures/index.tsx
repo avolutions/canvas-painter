@@ -5,14 +5,12 @@ import CodeBlock from '@theme/CodeBlock';
 
 type FeatureItem = {
   title: string;
-  imgSrc: string;
   description: JSX.Element;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: 'Easy to Use',
-    imgSrc: require('@site/static/img/canvas1.gif').default,
     description: (
       <>
         With <b>CanvasPainter</b>, you just create shapes and draw them on a canvas with a few lines of code.
@@ -26,7 +24,6 @@ const rectangle = new Rectangle(50, 50, 100, 50);`}
   },
   {
     title: 'Automatic Updates',
-    imgSrc: require('@site/static/img/canvas2.gif').default,
     description: (
       <>
         <b>CanvasPainter</b> takes care of redrawing for you. When you make changes to shapes,
@@ -39,7 +36,6 @@ const rectangle = new Rectangle(50, 50, 100, 50);`}
   },
   {
     title: 'Shape Manipulation',
-    imgSrc: require('@site/static/img/canvas3.gif').default,
     description: (
       <>
         With <b>CanvasPainter</b>, resizing, rotating, and moving shapes is a breeze.
@@ -53,12 +49,9 @@ rectangle.rotate(45);`}
   },
 ];
 
-function Feature({title, imgSrc, description}: FeatureItem) {
+function Feature({title, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <img src={imgSrc} className={styles.featureImg} alt={title} />
-      </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>

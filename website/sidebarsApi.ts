@@ -4,7 +4,7 @@ const sidebars: SidebarsConfig = {
   apiSidebar: [
     {
       type: 'doc',
-      id: 'index', // Points to 'api-docs/index.md'
+      id: 'Index', // Points to 'api-docs/index.md'
       label: 'Table of Contents',
     },
     {

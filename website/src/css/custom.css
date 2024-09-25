@@ -28,3 +28,32 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.navbar__logo {
+  height: 2.5rem !important;
+}
+
+.hero {
+  background-color: transparent; /* Set background to transparent */
+}
+
+.hero h1, .hero p {
+  color: #000000; /* Dark text */
+}
+
+.button.button--secondary {
+  background-color: var(--ifm-color-primary); /* Primary color */
+  color: var(--ifm-color-primary-contrast);  /* Contrast color for text */
+}
+
+/* Button hover effect - Use the primary hover color */
+.button.button--secondary:hover {
+  background-color: var(--ifm-color-primary-dark); /* Darker primary color on hover */
+  color: var(--ifm-color-primary-contrast); /* Keep the contrast color for text */
+}
+
+/* Dark mode */
+html[data-theme='dark'] .hero h1,
+html[data-theme='dark'] .hero p {
+  color: #ffffff; /* Light text */
+}

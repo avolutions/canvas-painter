@@ -3,7 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'CanvasPainter',
+  title: 'CanvasPainter.js',
   tagline: 'Drawing basic shapes on HTML5 Canvas with ease.',
   favicon: 'img/favicon.ico',
 
@@ -59,10 +59,10 @@ const config: Config = {
     deployBranch: 'gh-pages',
     // Replace with your project's social card
     navbar: {
-      title: 'Canvas Painter',
+      title: 'CanvasPainter.js',
       logo: {
         alt: 'CanvasPainter Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
       },
       items: [
         {
