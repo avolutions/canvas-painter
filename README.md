@@ -3,18 +3,10 @@
 <h1 align="center">CanvasPainter.js</h1>
 
 <p align="center">
-  <a href="https://github.com/avolutions/canvas-painter/actions">
-    <img src="https://github.com/avolutions/canvas-painter/actions/workflows/tests.yml/badge.svg" alt="Tests">
-  </a>
-  <a href="https://www.npmjs.com/package/@avolutions/canvas-painter">
-    <img src="https://img.shields.io/npm/dw/@avolutions%2Fcanvas-painter" alt="Downloads">
-  </a>
-  <a href="https://www.npmjs.com/package/@avolutions/canvas-painter">
-    <img src="https://img.shields.io/npm/v/@avolutions%2Fcanvas-painter" alt="Version">
-  </a>
-  <a href="https://github.com/avolutions/canvas-painter/blob/main/LICENSE">
-    <img src="https://img.shields.io/npm/l/@avolutions%2Fcanvas-painter" alt="License">
-  </a>
+  <a href="https://github.com/avolutions/canvas-painter/actions"><img src="https://github.com/avolutions/canvas-painter/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
+  <a href="https://www.npmjs.com/package/@avolutions/canvas-painter"><img src="https://img.shields.io/npm/dw/@avolutions%2Fcanvas-painter" alt="Downloads"></a>
+  <a href="https://www.npmjs.com/package/@avolutions/canvas-painter"><img src="https://img.shields.io/npm/v/@avolutions%2Fcanvas-painter" alt="Version"></a>
+  <a href="https://github.com/avolutions/canvas-painter/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@avolutions%2Fcanvas-painter" alt="License"></a>
 </p>
 
 <p align="center">
