@@ -8,7 +8,16 @@ on:
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+  
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
 
     steps:
     - name: Checkout repository
@@ -22,6 +31,9 @@ jobs:
     - name: Change directory to Docusaurus folder
       run: cd website
 
+    - name: Setup Pages
+      uses: actions/configure-pages@v5
+
     - name: Install dependencies
       run: npm install
       working-directory: ./website
@@ -30,10 +42,12 @@ jobs:
       run: npm run build
       working-directory: ./website
 
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: './website/build'
+
     - name: Deploy to GitHub Pages
-      run: npm run deploy
-      working-directory: ./website
-      env:
-        GIT_USER: ${{ secrets.GITHUB_ACTOR }}  # GitHub user triggering the action
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
-        GIT_REMOTE_URL: https://github.com/avolutions/canvas-painter.git
+      id: deployment
+      uses: actions/deploy-pages@v4
+
