@@ -26,17 +26,41 @@ export abstract class Shape<T extends IShapeDefinition> implements IShape {
    * @param {T} definition - The shape definition instance to be wrapped in a Proxy.
    */
   constructor(definition: T) {
-    // Proxy to automatically notify observers on any property change
-    this._definition = new Proxy(definition, {
-      set: (obj, prop, value) => {
-        if (Reflect.get(obj, prop as keyof T) !== value) {
-          Reflect.set(obj, prop, value);
-          this.notifyObservers();  // Automatically notify on any property change
-        }
-        return true;
-      }
-    });
+    // Recursively wrap the definition object with Proxy
+    this._definition = this._createProxy(definition);
   }
+
+  private _createProxy(obj: any): any {
+    if (typeof obj === 'object' && obj !== null) {
+      // Recursively apply proxy to all nested objects
+      Object.keys(obj).forEach(key => {
+        obj[key] = this._createProxy(obj[key]);
+      });
+
+      return new Proxy(obj, {
+        set: (target, prop, value) => {
+          const oldValue = target[prop];
+          // Only notify if the value actually changes
+          if (oldValue !== value) {
+            target[prop] = value;
+            this.notifyObservers();
+            return true;
+          }
+          return true;
+        },
+        get: (target, prop) => {
+          const value = target[prop];
+          // Ensure nested properties are also proxied
+          if (typeof value === 'object' && value !== null) {
+            return this._createProxy(value);  // Return the proxy for nested objects
+          }
+          return value;
+        }
+      });
+    }
+    return obj;  // If it's not an object, just return the value as is
+  }
+
 
   /**
    * Adds an observer function that will be called when the shape's state changes.
@@ -44,7 +68,16 @@ export abstract class Shape<T extends IShapeDefinition> implements IShape {
    * @param {() => void} observer - The observer callback function.
    */
   addObserver(observer: () => void): void {
-    this.observers.push(observer);
+    if(!this.observers.includes(observer)) {
+      this.observers.push(observer);
+    }
+  }
+
+  removeObserver(observer: () => void): void {
+    const index = this.observers.indexOf(observer);
+    if (index !== -1) {
+      this.observers.splice(index, 1);
+    }
   }
 
   /**

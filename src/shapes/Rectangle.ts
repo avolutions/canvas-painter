@@ -24,7 +24,7 @@ export class Rectangle extends Shape<RectangleDefinition> {
    */
   constructor(x: number, y: number, width: number, height: number, rotation: number = 0, style: RectangleStyle = {}, options: RectangleOptions = {}) {
     // Create a RectangleDefinition using the provided parameters
-    const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, Angle.fromDegrees(rotation), style);
+    const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, new Angle(rotation), style);
     super(rectangleDefinition);
     this._options = options;
   }
@@ -138,8 +138,10 @@ export class Rectangle extends Shape<RectangleDefinition> {
    * @param {number} [deltaY=0] - The change in the y-coordinate.
    */
   move(deltaX: number = 0, deltaY: number = 0): void {
-    this.position.x += deltaX;
-    this.position.y += deltaY;
+    const x = this.position.x + deltaX;
+    const y = this.position.y + deltaY;
+
+    this.position = { x: x, y: y };
   }
 
   /**
@@ -151,16 +153,15 @@ export class Rectangle extends Shape<RectangleDefinition> {
     this.angle.adjustBy(deltaRotation);
   }
 
-  private getRenderDefinition(): RectangleDefinition {
-    const renderDefinition = this._definition;
-
+  private getTopLeftPosition(): Point {
     if(this._options.centered) {
-      // Translate definition to center
-      renderDefinition.position.x = renderDefinition.position.x - renderDefinition.width / 2;
-      renderDefinition.position.y = renderDefinition.position.y - renderDefinition.height / 2;
+      return new Point(
+        this._definition.position.x - this._definition.width / 2,
+        this._definition.position.y - this._definition.height / 2
+      );
     }
 
-    return renderDefinition;
+    return this._definition.position;
   }
 
   /**
@@ -171,24 +172,35 @@ export class Rectangle extends Shape<RectangleDefinition> {
    * @param {CanvasRenderingContext2D} context - The 2D rendering context of the canvas where the rectangle will be drawn.
    */
   render(context: CanvasRenderingContext2D): void {
-    const definition = this.getRenderDefinition();
-
     context.save(); // Save the current canvas state
 
+    // Set rectangle style
+    if(this.style.color) {
+      context.fillStyle = this.style.color;
+    }
+
+    let topLeft = this.getTopLeftPosition();
+
     // Rotate
-    // TODO centered rectangle
-    if(this.angle.degrees != 0) {
+    if(this.angle.degrees !== 0) {
       // Translate to the rectangle's position and apply rotation
-      context.translate(definition.position.x, definition.position.y);
-      context.rotate(definition.angle.radians);
-      context.translate(-definition.position.x, -definition.position.y);
+      context.translate(this._definition.position.x, this._definition.position.y);
+      context.rotate(this._definition.angle.radians);
+
+      // Translate back if centered
+      if(this._options.centered) {
+        context.translate(-this._definition.width / 2, -this._definition.height / 2);
+      }
+
+      // Because we are in translated context
+      topLeft = { x: 0, y: 0 };
     }
 
     context.fillRect(
-      definition.position.x,
-      definition.position.y,
-      definition.width,
-      definition.height
+      topLeft.x,
+      topLeft.y,
+      this._definition.width,
+      this._definition.height
     );
 
     context.restore(); // Restore the canvas state to before the transformations
