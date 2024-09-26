@@ -22,7 +22,7 @@ export default [
     ignores: [
       "coverage/",
       "dist/",
-      "docs/",
+      "website/",
       "node_modules/",
       "tests/",
     ]

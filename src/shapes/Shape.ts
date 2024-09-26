@@ -30,6 +30,7 @@ export abstract class Shape<T extends IShapeDefinition> implements IShape {
     this._definition = this._createProxy(definition);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _createProxy(obj: any): any {
     if (typeof obj === 'object' && obj !== null) {
       // Recursively apply proxy to all nested objects
