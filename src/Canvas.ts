@@ -196,6 +196,10 @@ export class Canvas {
     this.clear();
 
     // Render each watched shape
-    this.watchedShapes.forEach(shape => shape.render(this.context));
+    this.watchedShapes.forEach(shape => this.draw(shape));
+  }
+
+  public draw(shape: IShape): void {
+    shape.render(this.context);
   }
 }

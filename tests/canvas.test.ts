@@ -3,7 +3,6 @@
  */
 
 import { Canvas } from '../src/Canvas';
-import { IShape } from '../src/shapes/IShape';
 import { Rectangle } from '../src/shapes/Rectangle';
 
 global.CanvasRenderingContext2D = class {
@@ -315,6 +314,35 @@ describe('Canvas class', () => {
     expect((canvas as any).watchedShapes).toHaveLength(0);
 
     expect(redrawSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test('should render shape when drawing', () => {
+    const canvas = Canvas.init('canvas-id');
+
+    const rect = new Rectangle(0, 0, 0, 0);
+    const renderSpy = jest.spyOn(rect, 'render');
+
+    canvas.draw(rect);
+
+    expect(renderSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test('should redraw the canvas', () => {
+    const canvas = Canvas.init('canvas-id');
+    const clearSpy = jest.spyOn(canvas, 'clear');
+    const drawSpy = jest.spyOn(canvas, 'draw');
+
+    const rect = new Rectangle(0, 0, 0, 0);
+    const rect2 = new Rectangle(0, 0, 0, 0);
+
+    canvas.watch(rect, false);
+    canvas.watch(rect2, false);
+
+    canvas.redraw();
+
+    /* Clear canvas once, draw every watched shape */
+    expect(clearSpy).toHaveBeenCalledTimes(1);
+    expect(drawSpy).toHaveBeenCalledTimes(2);
   });
 
   test('should clear the entire canvas', () => {
