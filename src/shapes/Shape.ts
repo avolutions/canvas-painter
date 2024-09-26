@@ -10,6 +10,8 @@ export abstract class Shape<T extends IShapeDefinition> implements IShape {
   /** The shape definition, proxied to trigger observer notifications on change. */
   protected _definition: T;
 
+  protected _style: any;
+
   /** List of observer functions to be notified on shape changes. */
   protected observers: (() => void)[] = [];
 
@@ -25,9 +27,10 @@ export abstract class Shape<T extends IShapeDefinition> implements IShape {
    *
    * @param {T} definition - The shape definition instance to be wrapped in a Proxy.
    */
-  constructor(definition: T) {
+  constructor(definition: T, style: any) {
     // Recursively wrap the definition object with Proxy
     this._definition = this._createProxy(definition);
+    this._style = this._createProxy(style);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -61,7 +64,6 @@ export abstract class Shape<T extends IShapeDefinition> implements IShape {
     }
     return obj;  // If it's not an object, just return the value as is
   }
-
 
   /**
    * Adds an observer function that will be called when the shape's state changes.

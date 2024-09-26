@@ -10,6 +10,10 @@ export { Rectangle } from './shapes/Rectangle.js';
 export { Angle } from './types/Angle.js';
 export { Point } from './types/Point.js';
 
+/* Definitions */
+export { IShapeDefinition } from './definitions/IShapeDefinition.js';
+export { RectangleDefinition } from './definitions/RectangleDefinition.js';
+
 /* Options */
 export { CanvasOptions } from './options/CanvasOptions.js';
 export { RectangleOptions } from './options/RectangleOptions.js';

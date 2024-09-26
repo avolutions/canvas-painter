@@ -24,8 +24,8 @@ export class Rectangle extends Shape<RectangleDefinition> {
    */
   constructor(x: number, y: number, width: number, height: number, rotation: number = 0, style: RectangleStyle = {}, options: RectangleOptions = {}) {
     // Create a RectangleDefinition using the provided parameters
-    const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, new Angle(rotation), style);
-    super(rectangleDefinition);
+    const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, new Angle(rotation), {});
+    super(rectangleDefinition, style);
     this._options = options;
   }
 
@@ -68,7 +68,7 @@ export class Rectangle extends Shape<RectangleDefinition> {
   }
 
   public get style(): RectangleStyle {
-    return this._definition.style;
+    return this._style;
   }
 
   // Setters
@@ -174,10 +174,8 @@ export class Rectangle extends Shape<RectangleDefinition> {
   render(context: CanvasRenderingContext2D): void {
     context.save(); // Save the current canvas state
 
-    // Set rectangle style
-    if(this.style.color) {
-      context.fillStyle = this.style.color;
-    }
+    // Set rectangle specific styles
+    context.fillStyle = this.style.color ?? context.fillStyle;
 
     let topLeft = this.getTopLeftPosition();
 
@@ -202,6 +200,19 @@ export class Rectangle extends Shape<RectangleDefinition> {
       this._definition.width,
       this._definition.height
     );
+
+    // Draw border for rect if style is set
+    if (this.style.border) {
+      context.lineWidth = this.style.border.width ?? context.lineWidth;
+      context.strokeStyle = this.style.border.color ?? context.strokeStyle;
+
+      context.strokeRect(
+        topLeft.x,
+        topLeft.y,
+        this._definition.width,
+        this._definition.height
+      );
+    }
 
     context.restore(); // Restore the canvas state to before the transformations
   }

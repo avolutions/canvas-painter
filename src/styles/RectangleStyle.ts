@@ -1,6 +1,6 @@
 import { BorderStyle } from "./BorderStyle.js";
 
-export class RectangleStyle {
+export interface RectangleStyle {
   color?: string;
   border?: BorderStyle;
 }
