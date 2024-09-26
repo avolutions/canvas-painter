@@ -65,7 +65,7 @@ const canvas = Canvas.init('myCanvas');
 
 ### Create a shape
 
-Next you create shapes and draw them on the canvas. You can either use the [built-in](TODO) shapes or create your [own](TODO).
+Next you create shapes and draw them on the canvas. You can either use the [built-in](https://avolutions.github.io/canvas-painter/docs/shapes) shapes or create your [own](https://avolutions.github.io/canvas-painter/docs/custom-shapes).
 
 A shape is created by simple create a new object instance of it, e.g. `Rectangle`:
 ```js
