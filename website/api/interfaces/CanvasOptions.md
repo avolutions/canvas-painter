@@ -13,17 +13,7 @@ If not provided, the default height will be used.
 
 #### Defined in
 
-[options/CanvasOptions.ts:19](https://github.com/avolutions/canvas-painter/blob/56aac324567e77d4cae245ef30e1d3386af5f8f9/src/options/CanvasOptions.ts#L19)
-
-***
-
-### style?
-
-> `optional` **style**: `CanvasStyle`
-
-#### Defined in
-
-[options/CanvasOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/56aac324567e77d4cae245ef30e1d3386af5f8f9/src/options/CanvasOptions.ts#L21)
+[options/CanvasOptions.ts:17](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/options/CanvasOptions.ts#L17)
 
 ***
 
@@ -36,4 +26,4 @@ If not provided, the default width will be used.
 
 #### Defined in
 
-[options/CanvasOptions.ts:13](https://github.com/avolutions/canvas-painter/blob/56aac324567e77d4cae245ef30e1d3386af5f8f9/src/options/CanvasOptions.ts#L13)
+[options/CanvasOptions.ts:11](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/options/CanvasOptions.ts#L11)

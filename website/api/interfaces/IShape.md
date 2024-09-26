@@ -22,7 +22,25 @@ A callback function to be invoked when the shape's state changes.
 
 #### Defined in
 
-[shapes/IShape.ts:19](https://github.com/avolutions/canvas-painter/blob/56aac324567e77d4cae245ef30e1d3386af5f8f9/src/shapes/IShape.ts#L19)
+[shapes/IShape.ts:19](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/IShape.ts#L19)
+
+***
+
+### removeObserver()
+
+> **removeObserver**(`observer`): `void`
+
+#### Parameters
+
+• **observer**
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[shapes/IShape.ts:21](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/IShape.ts#L21)
 
 ***
 
@@ -44,4 +62,4 @@ The 2D rendering context of the canvas where the shape will be drawn.
 
 #### Defined in
 
-[shapes/IShape.ts:12](https://github.com/avolutions/canvas-painter/blob/56aac324567e77d4cae245ef30e1d3386af5f8f9/src/shapes/IShape.ts#L12)
+[shapes/IShape.ts:12](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/IShape.ts#L12)
