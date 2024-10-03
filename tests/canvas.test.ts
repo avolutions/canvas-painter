@@ -3,13 +3,9 @@
  */
 
 import { Canvas } from '../src/Canvas';
-import { Rectangle } from '../src/shapes/Rectangle';
-
-global.CanvasRenderingContext2D = class {
-  clearRect = jest.fn();
-  fillRect = jest.fn();
-  // Add any other methods you need
-} as any;
+import { CanvasOptions } from '../src/options/CanvasOptions';
+import { CanvasStyle } from '../src/styles/CanvasStyle';
+import { MockShape } from './mocks/MockShape';
 
 describe('Canvas class', () => {
   let canvasElement: HTMLCanvasElement;
@@ -22,12 +18,7 @@ describe('Canvas class', () => {
     context = {
       canvas: canvasElement,
       clearRect: jest.fn(),
-      fillRect: jest.fn(),
-      restore: jest.fn(),
-      rotate: jest.fn(),
-      save: jest.fn(),
-      translate: jest.fn(),
-      // Add any other CanvasRenderingContext2D methods you need here
+      // Add any other needed CanvasRenderingContext2D methods here
     } as unknown as CanvasRenderingContext2D;
 
     // Mock getContext to return our mock context
@@ -80,9 +71,9 @@ describe('Canvas class', () => {
 
   test('should set default options', () => {
     const canvas = Canvas.init('canvas-id');
+    const defaultOptions = CanvasOptions.DefaultOptions;
 
-    expect((canvas as any)._options.width).toBe(300);
-    expect((canvas as any)._options.height).toBe(150);
+    expect((canvas as any)._options).toStrictEqual(defaultOptions);
   });
 
   test('should set passed options', () => {
@@ -98,9 +89,9 @@ describe('Canvas class', () => {
 
   test('should set default style', () => {
     const canvas = Canvas.init('canvas-id');
+    const defaultStyle = CanvasStyle.DefaultStyle;
 
-    expect((canvas as any)._style.color).toBe('black');
-    expect(canvas.context.fillStyle).toBe('black');
+    expect((canvas as any)._style).toStrictEqual(defaultStyle);
   });
 
   test('should set passed style', () => {
@@ -129,12 +120,12 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
     const redrawSpy = jest.spyOn(canvas, 'redraw');
 
-    const rect = new Rectangle(0, 0, 0, 0);
+    const shape = new MockShape();
 
-    canvas.watch(rect);
+    canvas.watch(shape);
 
     expect((canvas as any).watchedShapes).toHaveLength(1);
-    expect((canvas as any).watchedShapes[0]).toBe(rect);
+    expect((canvas as any).watchedShapes[0]).toBe(shape);
 
     expect(redrawSpy).toHaveBeenCalledTimes(1);
   });
@@ -143,17 +134,17 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
     const redrawSpy = jest.spyOn(canvas, 'redraw');
 
-    const rect = new Rectangle(0, 0, 0, 0);
-    const rect2 = new Rectangle(0, 0, 0, 0);
-    const rect3 = new Rectangle(0, 0, 0, 0);
+    const shape = new MockShape();
+    const shape2 = new MockShape();
+    const shape3 = new MockShape();
 
-    canvas.watch(rect, false);
-    canvas.watch([rect2, rect3], false);
+    canvas.watch(shape, false);
+    canvas.watch([shape2, shape3], false);
 
     expect((canvas as any).watchedShapes).toHaveLength(3);
-    expect((canvas as any).watchedShapes[0]).toBe(rect);
-    expect((canvas as any).watchedShapes[1]).toBe(rect2);
-    expect((canvas as any).watchedShapes[2]).toBe(rect3);
+    expect((canvas as any).watchedShapes[0]).toBe(shape);
+    expect((canvas as any).watchedShapes[1]).toBe(shape2);
+    expect((canvas as any).watchedShapes[2]).toBe(shape3);
 
     expect(redrawSpy).toHaveBeenCalledTimes(0);
   });
@@ -162,14 +153,14 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
     const redrawSpy = jest.spyOn(canvas, 'redraw');
 
-    const rect = new Rectangle(0, 0, 0, 0);
-    const rect2 = new Rectangle(0, 0, 0, 0);
+    const shape = new MockShape();
+    const shape2 = new MockShape();
 
-    canvas.watch([rect, rect2]);
+    canvas.watch([shape, shape2]);
 
     expect((canvas as any).watchedShapes).toHaveLength(2);
-    expect((canvas as any).watchedShapes[0]).toBe(rect);
-    expect((canvas as any).watchedShapes[1]).toBe(rect2);
+    expect((canvas as any).watchedShapes[0]).toBe(shape);
+    expect((canvas as any).watchedShapes[1]).toBe(shape2);
 
     expect(redrawSpy).toHaveBeenCalledTimes(1);
   });
@@ -178,12 +169,12 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
     const redrawSpy = jest.spyOn(canvas, 'redraw');
 
-    const rect = new Rectangle(0, 0, 0, 0);
+    const shape = new MockShape();
 
-    canvas.watch([rect]);
+    canvas.watch([shape]);
 
     expect((canvas as any).watchedShapes).toHaveLength(1);
-    expect((canvas as any).watchedShapes[0]).toBe(rect);
+    expect((canvas as any).watchedShapes[0]).toBe(shape);
 
     expect(redrawSpy).toHaveBeenCalledTimes(1);
   });
@@ -192,12 +183,12 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
     const redrawSpy = jest.spyOn(canvas, 'redraw');
 
-    const rect = new Rectangle(0, 0, 0, 0);
+    const shape = new MockShape();
 
-    canvas.watch(rect);
+    canvas.watch(shape);
 
-    rect.height = 5;
-    canvas.watch(rect);
+    shape.width = 5;
+    canvas.watch(shape);
 
     expect((canvas as any).watchedShapes).toHaveLength(1);
 
@@ -208,12 +199,12 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
     const redrawSpy = jest.spyOn(canvas, 'redraw');
 
-    const rect = new Rectangle(0, 0, 0, 0);
+    const shape = new MockShape();
 
-    canvas.watch([rect, rect]);
+    canvas.watch([shape, shape]);
 
     expect((canvas as any).watchedShapes).toHaveLength(1);
-    expect((canvas as any).watchedShapes[0]).toBe(rect);
+    expect((canvas as any).watchedShapes[0]).toBe(shape);
 
     expect(redrawSpy).toHaveBeenCalledTimes(1);
   });
@@ -222,15 +213,15 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
     const redrawSpy = jest.spyOn(canvas, 'redraw');
 
-    const rect = new Rectangle(0, 0, 0, 0);
-    const rect2 = new Rectangle(0, 0, 0, 0);
+    const shape = new MockShape();
+    const shape2 = new MockShape();
 
-    canvas.watch(rect);
-    canvas.watch([rect, rect2]);
+    canvas.watch(shape);
+    canvas.watch([shape, shape2]);
 
     expect((canvas as any).watchedShapes).toHaveLength(2);
-    expect((canvas as any).watchedShapes[0]).toBe(rect);
-    expect((canvas as any).watchedShapes[1]).toBe(rect2);
+    expect((canvas as any).watchedShapes[0]).toBe(shape);
+    expect((canvas as any).watchedShapes[1]).toBe(shape2);
 
     expect(redrawSpy).toHaveBeenCalledTimes(2);
   });
@@ -239,15 +230,15 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
     const redrawSpy = jest.spyOn(canvas, 'redraw');
 
-    const rect1 = new Rectangle(0, 0, 0, 0);
-    const rect2 = new Rectangle(0, 0, 0, 0);
+    const shape1 = new MockShape();
+    const shape2 = new MockShape();
 
-    canvas.watch(rect1);
-    canvas.watch(rect2);
+    canvas.watch(shape1);
+    canvas.watch(shape2);
 
     expect((canvas as any).watchedShapes).toHaveLength(2);
-    expect((canvas as any).watchedShapes[0]).toBe(rect1);
-    expect((canvas as any).watchedShapes[1]).toBe(rect2);
+    expect((canvas as any).watchedShapes[0]).toBe(shape1);
+    expect((canvas as any).watchedShapes[1]).toBe(shape2);
 
     expect(redrawSpy).toHaveBeenCalledTimes(2);
   });
@@ -256,19 +247,19 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
     const redrawSpy = jest.spyOn(canvas, 'redraw');
 
-    const rect = new Rectangle(0, 0, 0, 0);
-    const rect2 = new Rectangle(0, 0, 0, 0);
+    const shape = new MockShape();
+    const shape2 = new MockShape();
 
-    canvas.watch([rect, rect2]);
+    canvas.watch([shape, shape2]);
 
     expect((canvas as any).watchedShapes).toHaveLength(2);
-    expect((canvas as any).watchedShapes[0]).toBe(rect);
-    expect((canvas as any).watchedShapes[1]).toBe(rect2);
+    expect((canvas as any).watchedShapes[0]).toBe(shape);
+    expect((canvas as any).watchedShapes[1]).toBe(shape2);
 
-    canvas.unwatch(rect);
+    canvas.unwatch(shape);
 
     expect((canvas as any).watchedShapes).toHaveLength(1);
-    expect((canvas as any).watchedShapes[0]).toBe(rect2);
+    expect((canvas as any).watchedShapes[0]).toBe(shape2);
 
     expect(redrawSpy).toHaveBeenCalledTimes(2);
   });
@@ -277,17 +268,17 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
     const redrawSpy = jest.spyOn(canvas, 'redraw');
 
-    const rect = new Rectangle(0, 0, 0, 0);
-    const rect2 = new Rectangle(0, 0, 0, 0);
-    const rect3 = new Rectangle(0, 0, 0, 0);
+    const shape = new MockShape();
+    const shape2 = new MockShape();
+    const shape3 = new MockShape();
 
-    canvas.watch([rect, rect2]);
+    canvas.watch([shape, shape2]);
 
     expect((canvas as any).watchedShapes).toHaveLength(2);
-    expect((canvas as any).watchedShapes[0]).toBe(rect);
-    expect((canvas as any).watchedShapes[1]).toBe(rect2);
+    expect((canvas as any).watchedShapes[0]).toBe(shape);
+    expect((canvas as any).watchedShapes[1]).toBe(shape2);
 
-    canvas.unwatch([rect, rect2, rect3]);
+    canvas.unwatch([shape, shape2, shape3]);
 
     expect((canvas as any).watchedShapes).toHaveLength(0);
 
@@ -298,11 +289,11 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
     const redrawSpy = jest.spyOn(canvas, 'redraw');
 
-    const rect = new Rectangle(0, 0, 0, 0);
+    const shape = new MockShape();
 
-    canvas.watch(rect);
+    canvas.watch(shape);
 
-    canvas.unwatch(rect, false);
+    canvas.unwatch(shape, false);
 
     expect((canvas as any).watchedShapes).toHaveLength(0);
 
@@ -312,10 +303,10 @@ describe('Canvas class', () => {
   test('should render shape when drawing', () => {
     const canvas = Canvas.init('canvas-id');
 
-    const rect = new Rectangle(0, 0, 0, 0);
-    const renderSpy = jest.spyOn(rect, 'render');
+    const shape = new MockShape();
+    const renderSpy = jest.spyOn(shape, 'render');
 
-    canvas.draw(rect);
+    canvas.draw(shape);
 
     expect(renderSpy).toHaveBeenCalledTimes(1);
   });
@@ -325,11 +316,11 @@ describe('Canvas class', () => {
     const clearSpy = jest.spyOn(canvas, 'clear');
     const drawSpy = jest.spyOn(canvas, 'draw');
 
-    const rect = new Rectangle(0, 0, 0, 0);
-    const rect2 = new Rectangle(0, 0, 0, 0);
+    const shape = new MockShape();
+    const shape2 = new MockShape();
 
-    canvas.watch(rect, false);
-    canvas.watch(rect2, false);
+    canvas.watch(shape, false);
+    canvas.watch(shape2, false);
 
     canvas.redraw();
 

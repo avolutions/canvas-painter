@@ -1,70 +1,51 @@
-import { IShapeDefinition } from "../../src/definitions/IShapeDefinition";
-import { IShapeOptions } from "../../src/options/IShapeOptions";
-import { Shape } from "../../src/shapes/Shape";
-import { IShapeStyle } from "../../src/styles/IShapeStyle";
-import { Point } from "../../src/types/Point";
-
-class MockShapeDefinition implements IShapeDefinition {
-  width: number;
-  name: string;
-  isFoo: boolean;
-  list: Array<number>;
-  position: Point;
-
-  constructor(width: number = 0, name: string = '', isFoo: boolean = true, list: Array<number> = [], position: Point = { x: 0, y:0 }) {
-    this.width = width;
-    this.name = name;
-    this.isFoo = isFoo;
-    this.list = list;
-    this.position = position;
-  }
-}
-
-class MockShapeStyle implements IShapeStyle {}
-
-class MockShapeOptions implements IShapeOptions {}
-
-// Concrete class extending Shape
-class MockShape extends Shape<MockShapeDefinition, MockShapeStyle, IShapeOptions> {
-  constructor(width: number = 0, name: string = '', isFoo: boolean = true, list: Array<number> = [], position: Point = { x: 0, y:0 }) {
-    const definition = new MockShapeDefinition(width, name, isFoo, list, position);
-    super(definition);
-  }
-
-  public get position(): Point {
-    return this._definition.position;
-  }
-
-  public set width(width: number) {
-    this._definition.width = width;
-  }
-
-  public set name(name: string) {
-    this._definition.name = name;
-  }
-
-  public set isFoo(isFoo: boolean) {
-    this._definition.isFoo = isFoo;
-  }
-
-  public set list(list: Array<number>) {
-    this._definition.list = list;
-  }
-
-  public set position(position: Point) {
-    this._definition.position = position;
-  }
-
-  public render(context: CanvasRenderingContext2D): void {
-    throw new Error("Method not implemented.");
-  }
-}
+import { MockShape, MockShapeOptions, MockShapeStyle } from "../mocks/MockShape";
 
 describe('Shape class', () => {
   test("should set definition from constructor", () => {
     const shape = new MockShape(10);
 
     expect((shape as any)._definition.width).toBe(10);
+  });
+
+  test("should set empty style and options from constructor", () => {
+    const shape = new MockShape(10, false);
+
+    expect(shape.style).toEqual({});
+    expect(shape.options).toEqual({});
+  });
+
+  test("should get style through getter", () => {
+    const shape = new MockShape();
+
+    expect(shape.style).toBeInstanceOf(MockShapeStyle);
+    expect(shape.style.color).toBe('#000000');
+  });
+
+  test("should set style through setter", () => {
+    const shape = new MockShape();
+
+    shape.style = { color: 'red' };
+    expect(shape.style.color).toBe('red');
+
+    shape.style.color = 'yellow';
+    expect(shape.style.color).toBe('yellow');
+  });
+
+  test("should get options through getter", () => {
+    const shape = new MockShape();
+
+    expect(shape.options).toBeInstanceOf(MockShapeOptions);
+    expect(shape.options.isVisible).toBe(true);
+  });
+
+  test("should set options through setter", () => {
+    const shape = new MockShape();
+
+    shape.options = { isVisible: false };
+    expect(shape.options.isVisible).toBe(false);
+
+    shape.options.isVisible = true;
+    expect(shape.options.isVisible).toBe(true);
   });
 
   test("should add and remove observer", () => {
@@ -136,6 +117,43 @@ describe('Shape class', () => {
     expect(observer).toHaveBeenCalledTimes(6);
   });
 
+  test("should notify observer when style changes", () => {
+    const observer = jest.fn();
+    const shape = new MockShape();
+
+    shape.addObserver(observer);
+
+    shape.style = { color: 'blue' }
+    shape.style.color = 'green';
+
+    expect(observer).toHaveBeenCalledTimes(2);
+  });
+
+  test("should notify observer when options changes", () => {
+    const observer = jest.fn();
+    const shape = new MockShape();
+
+    shape.addObserver(observer);
+
+    shape.options = { isVisible: false }
+    shape.options.isVisible = true;
+
+    expect(observer).toHaveBeenCalledTimes(2);
+  });
+
+  test("should not notify observer when nothing changes", () => {
+    const observer = jest.fn();
+    const shape = new MockShape(10);
+
+    shape.addObserver(observer);
+
+    shape.width = 10;
+    shape.style.color = '#000000';
+    shape.options.isVisible = true;
+
+    expect(observer).toHaveBeenCalledTimes(0);
+  });
+
   test("should not notify removed observer when definition changes", () => {
     const observer = jest.fn();
     const observer1 = jest.fn();
@@ -146,6 +164,36 @@ describe('Shape class', () => {
     shape.removeObserver(observer);
 
     shape.width = 10;
+
+    expect(observer).toHaveBeenCalledTimes(0);
+    expect(observer1).toHaveBeenCalledTimes(1);
+  });
+
+  test("should not notify removed observer when style changes", () => {
+    const observer = jest.fn();
+    const observer1 = jest.fn();
+    const shape = new MockShape();
+
+    shape.addObserver(observer);
+    shape.addObserver(observer1);
+    shape.removeObserver(observer);
+
+    shape.style.color = 'green';
+
+    expect(observer).toHaveBeenCalledTimes(0);
+    expect(observer1).toHaveBeenCalledTimes(1);
+  });
+
+  test("should not notify removed observer when options changes", () => {
+    const observer = jest.fn();
+    const observer1 = jest.fn();
+    const shape = new MockShape();
+
+    shape.addObserver(observer);
+    shape.addObserver(observer1);
+    shape.removeObserver(observer);
+
+    shape.options = { isVisible: false }
 
     expect(observer).toHaveBeenCalledTimes(0);
     expect(observer1).toHaveBeenCalledTimes(1);
