@@ -35,12 +35,12 @@ npm install @avolutions/canvas-painter
 
 For **CommonJS**:
 ```js
-const { Color } = require('@avolutions/canvas-painter');
+const { Canvas } = require('@avolutions/canvas-painter');
 ```
 
 For **ES Modules**:
 ```js
-import { Color } from '@avolutions/canvas-painter';
+import { Canvas } from '@avolutions/canvas-painter';
 ```
 
 ## Getting started

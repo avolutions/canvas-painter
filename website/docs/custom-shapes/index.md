@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # Custom shapes
 
-## Customizing Shapes in **CanvasPainter.js**
+## Customizing Shapes in CanvasPainter.js
 
 **CanvasPainter.js** offers great flexibility when it comes to creating visual elements on your canvas. While the library comes with built-in shapes such as rectangles or circles, you are not limited to these. You have the freedom to either create entirely new shapes or extend existing ones to suit your needs.
 

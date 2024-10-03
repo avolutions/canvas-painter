@@ -19,7 +19,7 @@ npm install @avolutions/canvas-painter
 Include **CanvasPainter.js** in your CommonJS project by using `require`:
 
 ```js
-const { Color } = require('@avolutions/canvas-painter');
+const { Canvas } = require('@avolutions/canvas-painter');
 ```
 
 ## ES Modules
@@ -27,5 +27,5 @@ const { Color } = require('@avolutions/canvas-painter');
 Include **CanvasPainter.js** in your ES Modules project by using `import`:
 
 ```js
-import { Color } from '@avolutions/canvas-painter';
+import { Canvas } from '@avolutions/canvas-painter';
 ```
