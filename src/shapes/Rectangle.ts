@@ -22,6 +22,13 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
   constructor(x: number, y: number, width: number, height: number, rotation: number = 0, style: RectangleStyle = {}, options: RectangleOptions = {}) {
     // Create a RectangleDefinition using the provided parameters
     const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, new Angle(rotation));
+
+    // Merge default options with the provided options
+    options = {
+      ...RectangleOptions.DefaultOptions,
+      ...options
+    };
+
     super(rectangleDefinition, style, options);
   }
 

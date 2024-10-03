@@ -2,6 +2,11 @@
  * Options for configuring the behavior of a canvas.
  */
 export class CanvasOptions {
+  public static readonly DefaultOptions: CanvasOptions = {
+    width: 300,
+    height: 150,
+  };
+
   /**
    * Creates a new instance of CanvasOptions.
    *

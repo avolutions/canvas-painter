@@ -6,6 +6,13 @@ describe('CanvasOptions', () => {
     expect(options).toBeInstanceOf(CanvasOptions);
   });
 
+  test('should have default options', () => {
+    const defaults = CanvasOptions.DefaultOptions;
+
+    expect(defaults.width).toBe(300);
+    expect(defaults.height).toBe(150);
+  });
+
   it('should set width and height correctly when provided', () => {
     const width = 800;
     const height = 600;

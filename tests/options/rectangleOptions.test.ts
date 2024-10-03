@@ -7,6 +7,12 @@ describe('RectangleOptions', () => {
     expect(options).toBeInstanceOf(RectangleOptions);
   });
 
+  test('should have default options', () => {
+    const defaults = RectangleOptions.DefaultOptions;
+
+    expect(defaults.centered).toBe(false);
+  });
+
   it('should set the centered property correctly when provided', () => {
     const options = new RectangleOptions(true);
     expect(options.centered).toBe(true);

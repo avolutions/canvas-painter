@@ -21,12 +21,6 @@ export class Canvas {
   /** List of shapes being watched for changes and re-rendered. */
   private watchedShapes: IShape[] = [];
 
-  /** Default options for the canvas dimensions. */
-  private _defaultOptions: CanvasOptions = {
-    width: 300,
-    height: 150
-  };
-
   /** Default styles for the canvas, including border settings. */
   private _defaultStyle: CanvasStyle = {
     color: 'black'
@@ -52,7 +46,7 @@ export class Canvas {
 
     // Merge default options with the provided options
     this._options = {
-      ...this._defaultOptions,
+      ...CanvasOptions.DefaultOptions,
       ...options
     };
 

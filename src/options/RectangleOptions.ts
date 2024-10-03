@@ -4,6 +4,10 @@ import { IShapeOptions } from "./IShapeOptions.js";
  * Options for configuring the behavior of a rectangle shape.
  */
 export class RectangleOptions implements IShapeOptions {
+  public static readonly DefaultOptions: RectangleOptions = {
+    centered: false
+  };
+
   /**
    * Creates a new instance of RectangleOptions.
    *
