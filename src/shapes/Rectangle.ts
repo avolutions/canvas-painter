@@ -103,7 +103,7 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
    * @param {number} width - The new width of the rectangle.
    * @param {number} height - The new height of the rectangle.
    */
-  setSize(width: number, height: number): void {
+  public setSize(width: number, height: number): void {
     this.width = width;
     this.height = height;
   }
@@ -114,7 +114,7 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
    * @param {number} [deltaWidth=0] - The change in width.
    * @param {number} [deltaHeight=0] - The change in height.
    */
-  resize(deltaWidth: number = 0, deltaHeight: number = 0): void {
+  public resize(deltaWidth: number = 0, deltaHeight: number = 0): void {
     this.width += deltaWidth;
     this.height += deltaHeight;
   }
@@ -125,7 +125,7 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
    * @param {number} [deltaX=0] - The change in the x-coordinate.
    * @param {number} [deltaY=0] - The change in the y-coordinate.
    */
-  move(deltaX: number = 0, deltaY: number = 0): void {
+  public move(deltaX: number = 0, deltaY: number = 0): void {
     const x = this.position.x + deltaX;
     const y = this.position.y + deltaY;
 
@@ -137,7 +137,7 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
    *
    * @param {number} deltaRotation - The amount to adjust the rectangle's rotation, in degrees.
    */
-  rotate(deltaRotation: number): void {
+  public rotate(deltaRotation: number): void {
     this.angle.adjustBy(deltaRotation);
   }
 
@@ -159,7 +159,7 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
    *
    * @param {CanvasRenderingContext2D} context - The 2D rendering context of the canvas where the rectangle will be drawn.
    */
-  render(context: CanvasRenderingContext2D): void {
+  public render(context: CanvasRenderingContext2D): void {
     context.save(); // Save the current canvas state
 
     // Set rectangle specific styles

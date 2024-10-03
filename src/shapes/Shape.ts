@@ -78,13 +78,13 @@ export abstract class Shape<
    *
    * @param {() => void} observer - The observer callback function.
    */
-  addObserver(observer: () => void): void {
+  public addObserver(observer: () => void): void {
     if(!this.observers.includes(observer)) {
       this.observers.push(observer);
     }
   }
 
-  removeObserver(observer: () => void): void {
+  public removeObserver(observer: () => void): void {
     const index = this.observers.indexOf(observer);
     if (index !== -1) {
       this.observers.splice(index, 1);

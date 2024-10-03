@@ -82,7 +82,7 @@ export class Canvas {
    * @returns {Canvas} A new Canvas instance.
    * @throws {Error} If the canvas element is not found or is not a valid canvas.
    */
-  static init(id: string, options?: CanvasOptions, style?: CanvasStyle): Canvas {
+  public static init(id: string, options?: CanvasOptions, style?: CanvasStyle): Canvas {
     const canvas = document.getElementById(id);
     if (!canvas) {
       throw new Error(`Element with id '${id}' not found`);
@@ -118,7 +118,7 @@ export class Canvas {
    * @param {IShape | IShape[]} shapeOrShapes - The shape(s) to watch and render on the canvas.
    * @param {boolean} [redraw=true] - Whether to immediately redraw the canvas after registering the shape(s).
    */
-  watch(shapeOrShapes: IShape | IShape[], redraw: boolean = true): void {
+  public watch(shapeOrShapes: IShape | IShape[], redraw: boolean = true): void {
     // If passed parameter was a single shape we convert it to array
     const shapes = Array.isArray(shapeOrShapes) ? shapeOrShapes : [shapeOrShapes];
 
@@ -149,7 +149,7 @@ export class Canvas {
    * @param {IShape | IShape[]} shapeOrShapes - The shape(s) to stop watching.
    * @param {boolean} [redraw=true] - Whether to immediately redraw the canvas after unregistering the shape(s).
    */
-  unwatch(shapeOrShapes: IShape | IShape[], redraw: boolean = true): void {
+  public unwatch(shapeOrShapes: IShape | IShape[], redraw: boolean = true): void {
     // If passed parameter was a single shape we convert it to array
     const shapes = Array.isArray(shapeOrShapes) ? shapeOrShapes : [shapeOrShapes];
 
@@ -180,7 +180,7 @@ export class Canvas {
    *
    * @returns {CanvasRenderingContext2D} The 2D context of the canvas.
    */
-  get context(): CanvasRenderingContext2D {
+  public get context(): CanvasRenderingContext2D {
     return this._context;
   }
 

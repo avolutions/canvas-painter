@@ -6,13 +6,13 @@ export class Point {
    * The x-coordinate of the point.
    * @type {number}
    */
-  x: number;
+  public x: number;
 
   /**
    * The y-coordinate of the point.
    * @type {number}
    */
-  y: number;
+  public y: number;
 
   /**
    * Creates an instance of Point.

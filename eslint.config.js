@@ -15,7 +15,15 @@ export default [
   ...ts.configs.recommended,
   {
     rules: {
-
+      '@typescript-eslint/explicit-member-accessibility': [
+        'error',
+        {
+          accessibility: 'explicit',
+          overrides: {
+            constructors: 'no-public'
+          },
+        }
+      ],
     }
   },
   {

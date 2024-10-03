@@ -24,7 +24,7 @@ export class Angle {
    * Gets the current angle in degrees.
    * @returns {number} The angle in degrees.
    */
-  get degrees(): number {
+  public get degrees(): number {
     return this._degrees;
   }
 
@@ -32,7 +32,7 @@ export class Angle {
    * Gets the current angle in radians.
    * @returns {number} The angle in radians.
    */
-  get radians(): number {
+  public get radians(): number {
     return Angle.degreesToRadians(this.degrees);
   }
 
@@ -40,7 +40,7 @@ export class Angle {
    * Sets the angle in degrees, optionally normalizing it if required.
    * @param {number} degrees - The new angle in degrees.
    */
-  set degrees(degrees: number) {
+  public set degrees(degrees: number) {
     this._degrees = this.isNormalized() ? Angle.normalize(degrees) : degrees;
   }
 
@@ -48,7 +48,7 @@ export class Angle {
    * Sets the angle in radians by converting it to degrees.
    * @param {number} radians - The new angle in radians.
    */
-  set radians(radians: number) {
+  public set radians(radians: number) {
     this.degrees = Angle.radiansToDegrees(radians);
   }
 
@@ -58,7 +58,7 @@ export class Angle {
    * @param {boolean} [normalized=false] - Whether the angle should be normalized.
    * @returns {Angle} A new Angle instance.
    */
-  static fromDegrees(degrees: number, normalized: boolean = false): Angle {
+  public static fromDegrees(degrees: number, normalized: boolean = false): Angle {
     return new Angle(degrees, normalized);
   }
 
@@ -68,7 +68,7 @@ export class Angle {
    * @param {boolean} [normalized=false] - Whether the angle should be normalized.
    * @returns {Angle} A new Angle instance.
    */
-  static fromRadians(radians: number, normalized: boolean = false): Angle {
+  public static fromRadians(radians: number, normalized: boolean = false): Angle {
     const degrees = Angle.radiansToDegrees(radians);
     return new Angle(degrees, normalized);
   }
@@ -76,7 +76,7 @@ export class Angle {
   /**
    * Normalizes the angle to the range [0, 360).
    */
-  normalize(): void {
+  public normalize(): void {
     this._normalized = true;
     this.degrees = this._degrees; // Reapply normalization logic
   }
@@ -85,7 +85,7 @@ export class Angle {
    * Checks if the angle is normalized.
    * @returns {boolean} True if the angle is normalized, false otherwise.
    */
-  isNormalized(): boolean {
+  public isNormalized(): boolean {
     return this._normalized;
   }
 
@@ -93,7 +93,7 @@ export class Angle {
    * Gets the normalized value of the angle in degrees.
    * @returns {number} The normalized angle in degrees.
    */
-  getNormalized(): number {
+  public getNormalized(): number {
     return Angle.normalize(this._degrees);
   }
 
@@ -101,7 +101,7 @@ export class Angle {
    * Adjusts the angle by a given number of degrees.
    * @param {number} degrees - The amount to adjust the angle by, in degrees.
    */
-  adjustBy(degrees: number): void {
+  public adjustBy(degrees: number): void {
     this.degrees += degrees;
   }
 
@@ -109,7 +109,7 @@ export class Angle {
    * Adjusts the angle by a given number of radians.
    * @param {number} radians - The amount to adjust the angle by, in radians.
    */
-  adjustByRadians(radians: number): void {
+  public adjustByRadians(radians: number): void {
     this.radians += radians;
   }
 
@@ -118,7 +118,7 @@ export class Angle {
    * @param {number} degrees - The angle in degrees.
    * @returns {number} The angle in radians.
    */
-  static degreesToRadians(degrees: number): number {
+  public static degreesToRadians(degrees: number): number {
     return degrees * (Math.PI / 180);
   }
 
@@ -127,7 +127,7 @@ export class Angle {
    * @param {number} radians - The angle in radians.
    * @returns {number} The angle in degrees.
    */
-  static radiansToDegrees(radians: number): number {
+  public static radiansToDegrees(radians: number): number {
     return radians * (180 / Math.PI);
   }
 
@@ -136,7 +136,7 @@ export class Angle {
    * @param {number} degrees - The angle in degrees.
    * @returns {number} The normalized angle in degrees.
    */
-  static normalize(degrees: number): number {
+  public static normalize(degrees: number): number {
     let normalized = degrees % 360;
     if (normalized < 0) {
       normalized += 360;

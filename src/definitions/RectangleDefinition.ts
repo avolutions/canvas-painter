@@ -8,16 +8,16 @@ import { IShapeDefinition } from "./IShapeDefinition.js";
  */
 export class RectangleDefinition implements IShapeDefinition {
   /** The position of the rectangle. */
-  position: Point;
+  public position: Point;
 
   /** The width of the rectangle. */
-  width: number;
+  public width: number;
 
   /** The height of the rectangle. */
-  height: number;
+  public height: number;
 
   /** The angle of the rectangle in degrees, represented by an Angle instance. */
-  angle: Angle;
+  public angle: Angle;
 
   /**
    * Creates a new instance of RectangleDefinition.
