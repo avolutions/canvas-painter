@@ -1,18 +1,15 @@
 /**
- * Interface representing the options for configuring a canvas.
- *
- * This interface allows for optional configuration of the canvas width and height.
+ * Options for configuring the behavior of a canvas.
  */
-export interface CanvasOptions {
+export class CanvasOptions {
   /**
-   * Optional width of the canvas in pixels.
-   * If not provided, the default width will be used.
+   * Creates a new instance of CanvasOptions.
+   *
+   * @param width - The width of the canvas in pixels. If undefined, a default value may be used.
+   * @param height - The height of the canvas in pixels. If undefined, a default value may be used.
    */
-  width?: number;
-
-  /**
-   * Optional height of the canvas in pixels.
-   * If not provided, the default height will be used.
-   */
-  height?: number;
+  constructor(
+    public width?: number,
+    public height?: number
+  ) {}
 }
