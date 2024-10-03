@@ -21,11 +21,6 @@ export class Canvas {
   /** List of shapes being watched for changes and re-rendered. */
   private watchedShapes: IShape[] = [];
 
-  /** Default styles for the canvas, including border settings. */
-  private _defaultStyle: CanvasStyle = {
-    color: 'black'
-  };
-
   /**
    * Constructs a new Canvas instance.
    *
@@ -52,7 +47,7 @@ export class Canvas {
 
     // Set styles
     this._style = {
-      ...this._defaultStyle,
+      ...CanvasStyle.DefaultStyle,
       ...style
     };
 

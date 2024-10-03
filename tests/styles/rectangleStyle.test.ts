@@ -20,7 +20,7 @@ describe('RectangleStyle', () => {
     expect(rectangleStyle.border?.width).toBe(3);
   });
 
-  it('should allow update of properties', () => {
+  test('should allow update of properties', () => {
     const borderStyle = new BorderStyle('blue', 3);
     const rectangleStyle = new RectangleStyle();
 

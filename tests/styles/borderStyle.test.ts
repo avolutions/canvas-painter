@@ -15,7 +15,7 @@ describe('BorderStyle', () => {
     expect(borderStyle.width).toBe(5);
   });
 
-  it('should allow update of properties', () => {
+  test('should allow update of properties', () => {
     const options = new BorderStyle();
 
     options.color = 'red';

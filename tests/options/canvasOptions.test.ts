@@ -1,7 +1,7 @@
 import { CanvasOptions } from '../../src/options/CanvasOptions';
 
 describe('CanvasOptions', () => {
-  it('should create an instance of CanvasOptions', () => {
+  test('should create an instance of CanvasOptions', () => {
     const options = new CanvasOptions();
     expect(options).toBeInstanceOf(CanvasOptions);
   });
@@ -13,7 +13,7 @@ describe('CanvasOptions', () => {
     expect(defaults.height).toBe(150);
   });
 
-  it('should set width and height correctly when provided', () => {
+  test('should set width and height correctly when provided', () => {
     const width = 800;
     const height = 600;
     const options = new CanvasOptions(width, height);
@@ -22,14 +22,14 @@ describe('CanvasOptions', () => {
     expect(options.height).toBe(600);
   });
 
-  it('should allow width and height to be undefined', () => {
+  test('should allow width and height to be undefined', () => {
     const options = new CanvasOptions();
 
     expect(options.width).toBeUndefined();
     expect(options.height).toBeUndefined();
   });
 
-  it('should allow width to be defined and height undefined', () => {
+  test('should allow width to be defined and height undefined', () => {
     const width = 1024;
     const options = new CanvasOptions(width);
 
@@ -37,7 +37,7 @@ describe('CanvasOptions', () => {
     expect(options.height).toBeUndefined();
   });
 
-  it('should allow height to be defined and width undefined', () => {
+  test('should allow height to be defined and width undefined', () => {
     const height = 768;
     const options = new CanvasOptions(undefined, height);
 
@@ -45,7 +45,7 @@ describe('CanvasOptions', () => {
     expect(options.height).toBe(768);
   });
 
-  it('should allow update of properties', () => {
+  test('should allow update of properties', () => {
     const options = new CanvasOptions();
 
     options.width = 123;

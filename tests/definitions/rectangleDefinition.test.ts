@@ -1,5 +1,4 @@
 import { RectangleDefinition } from '../../src/definitions/RectangleDefinition';
-import { RectangleStyle } from '../../src/styles/RectangleStyle';
 import { Angle } from '../../src/types/Angle';
 import { Point } from '../../src/types/Point';
 

@@ -19,7 +19,7 @@ describe('CanvasStyle', () => {
     expect(canvasStyle.color).toBe('#FFFFFF');
   });
 
-  it('should allow update of properties', () => {
+  test('should allow update of properties', () => {
     const options = new CanvasStyle();
 
     options.color = 'red';
