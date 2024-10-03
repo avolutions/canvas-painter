@@ -44,4 +44,14 @@ describe('CanvasOptions', () => {
     expect(options.width).toBeUndefined();
     expect(options.height).toBe(768);
   });
+
+  it('should allow update of properties', () => {
+    const options = new CanvasOptions();
+
+    options.width = 123;
+    options.height = 456;
+
+    expect(options.width).toBe(123);
+    expect(options.height).toBe(456);
+  });
 });

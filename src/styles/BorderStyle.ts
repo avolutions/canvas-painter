@@ -1,4 +1,3 @@
-export interface BorderStyle {
-  color?: string;
-  width?: number;
+export class BorderStyle {
+  constructor(public color?: string, public width?: number) {}
 }
