@@ -5,7 +5,7 @@ Provides functionality for normalization and angle adjustments.
 
 ### new Angle()
 
-> **new Angle**(`degrees`, `normalized`?): [`Angle`](Angle.md)
+> **new Angle**(`degrees`, `normalized`): [`Angle`](Angle.md)
 
 Constructs an Angle instance.
 
@@ -15,7 +15,7 @@ Constructs an Angle instance.
 
 The initial angle in degrees.
 
-• **normalized?**: `boolean` = `false`
+• **normalized**: `boolean` = `false`
 
 Whether the angle should be normalized to the range [0, 360).
 
@@ -25,7 +25,7 @@ Whether the angle should be normalized to the range [0, 360).
 
 #### Defined in
 
-[types/Angle.ts:18](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Angle.ts#L18)
+[types/Angle.ts:18](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L18)
 
 ## Accessors
 
@@ -53,7 +53,7 @@ The angle in degrees.
 
 #### Defined in
 
-[types/Angle.ts:27](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Angle.ts#L27)
+[types/Angle.ts:27](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L27)
 
 ***
 
@@ -81,7 +81,7 @@ The angle in radians.
 
 #### Defined in
 
-[types/Angle.ts:35](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Angle.ts#L35)
+[types/Angle.ts:35](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L35)
 
 ## Methods
 
@@ -103,7 +103,7 @@ The amount to adjust the angle by, in degrees.
 
 #### Defined in
 
-[types/Angle.ts:104](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Angle.ts#L104)
+[types/Angle.ts:104](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L104)
 
 ***
 
@@ -125,7 +125,7 @@ The amount to adjust the angle by, in radians.
 
 #### Defined in
 
-[types/Angle.ts:112](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Angle.ts#L112)
+[types/Angle.ts:112](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L112)
 
 ***
 
@@ -143,7 +143,7 @@ The normalized angle in degrees.
 
 #### Defined in
 
-[types/Angle.ts:96](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Angle.ts#L96)
+[types/Angle.ts:96](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L96)
 
 ***
 
@@ -161,7 +161,7 @@ True if the angle is normalized, false otherwise.
 
 #### Defined in
 
-[types/Angle.ts:88](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Angle.ts#L88)
+[types/Angle.ts:88](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L88)
 
 ***
 
@@ -177,7 +177,7 @@ Normalizes the angle to the range [0, 360).
 
 #### Defined in
 
-[types/Angle.ts:79](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Angle.ts#L79)
+[types/Angle.ts:79](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L79)
 
 ***
 
@@ -201,13 +201,13 @@ The angle in radians.
 
 #### Defined in
 
-[types/Angle.ts:121](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Angle.ts#L121)
+[types/Angle.ts:121](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L121)
 
 ***
 
 ### fromDegrees()
 
-> `static` **fromDegrees**(`degrees`, `normalized`?): [`Angle`](Angle.md)
+> `static` **fromDegrees**(`degrees`, `normalized`): [`Angle`](Angle.md)
 
 Creates a new Angle instance from degrees.
 
@@ -217,7 +217,7 @@ Creates a new Angle instance from degrees.
 
 The angle in degrees.
 
-• **normalized?**: `boolean` = `false`
+• **normalized**: `boolean` = `false`
 
 Whether the angle should be normalized.
 
@@ -229,13 +229,13 @@ A new Angle instance.
 
 #### Defined in
 
-[types/Angle.ts:61](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Angle.ts#L61)
+[types/Angle.ts:61](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L61)
 
 ***
 
 ### fromRadians()
 
-> `static` **fromRadians**(`radians`, `normalized`?): [`Angle`](Angle.md)
+> `static` **fromRadians**(`radians`, `normalized`): [`Angle`](Angle.md)
 
 Creates a new Angle instance from radians.
 
@@ -245,7 +245,7 @@ Creates a new Angle instance from radians.
 
 The angle in radians.
 
-• **normalized?**: `boolean` = `false`
+• **normalized**: `boolean` = `false`
 
 Whether the angle should be normalized.
 
@@ -257,7 +257,7 @@ A new Angle instance.
 
 #### Defined in
 
-[types/Angle.ts:71](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Angle.ts#L71)
+[types/Angle.ts:71](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L71)
 
 ***
 
@@ -281,7 +281,7 @@ The normalized angle in degrees.
 
 #### Defined in
 
-[types/Angle.ts:139](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Angle.ts#L139)
+[types/Angle.ts:139](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L139)
 
 ***
 
@@ -305,4 +305,4 @@ The angle in degrees.
 
 #### Defined in
 
-[types/Angle.ts:130](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Angle.ts#L130)
+[types/Angle.ts:130](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L130)

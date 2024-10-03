@@ -24,7 +24,7 @@ The y-coordinate of the point.
 
 #### Defined in
 
-[types/Point.ts:23](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Point.ts#L23)
+[types/Point.ts:21](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Point.ts#L21)
 
 ## Properties
 
@@ -36,7 +36,7 @@ The x-coordinate of the point.
 
 #### Defined in
 
-[types/Point.ts:9](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Point.ts#L9)
+[types/Point.ts:8](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Point.ts#L8)
 
 ***
 
@@ -48,4 +48,4 @@ The y-coordinate of the point.
 
 #### Defined in
 
-[types/Point.ts:15](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/types/Point.ts#L15)
+[types/Point.ts:13](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Point.ts#L13)

@@ -3,13 +3,13 @@ Provides functionality for rendering, resizing, moving, and rotating the rectang
 
 ## Extends
 
-- `Shape`\<`RectangleDefinition`\>
+- [`Shape`](Shape.md)\<[`RectangleDefinition`](RectangleDefinition.md), [`RectangleStyle`](RectangleStyle.md), [`RectangleOptions`](RectangleOptions.md)\>
 
 ## Constructors
 
 ### new Rectangle()
 
-> **new Rectangle**(`x`, `y`, `width`, `height`, `rotation`?, `style`?, `options`?): [`Rectangle`](Rectangle.md)
+> **new Rectangle**(`x`, `y`, `width`, `height`, `rotation`, `style`, `options`): [`Rectangle`](Rectangle.md)
 
 Constructs a new Rectangle instance.
 
@@ -31,13 +31,17 @@ The width of the rectangle.
 
 The height of the rectangle.
 
-• **rotation?**: `number` = `0`
+• **rotation**: `number` = `0`
 
 The initial rotation of the rectangle in degrees clockwise.
 
-• **style?**: [`RectangleStyle`](RectangleStyle.md) = `{}`
+• **style**: [`RectangleStyle`](RectangleStyle.md) = `{}`
 
-• **options?**: [`RectangleOptions`](../interfaces/RectangleOptions.md) = `{}`
+The style options for the rectangle.
+
+• **options**: [`RectangleOptions`](RectangleOptions.md) = `{}`
+
+The configuration options for the rectangle.
 
 #### Returns
 
@@ -45,37 +49,59 @@ The initial rotation of the rectangle in degrees clockwise.
 
 #### Overrides
 
-`Shape<RectangleDefinition>.constructor`
+[`Shape`](Shape.md).[`constructor`](Shape.md#constructors)
 
 #### Defined in
 
-[shapes/Rectangle.ts:25](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Rectangle.ts#L25)
+[shapes/Rectangle.ts:24](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Rectangle.ts#L24)
 
 ## Properties
 
 ### \_definition
 
-> `protected` **\_definition**: `RectangleDefinition`
+> `protected` **\_definition**: [`RectangleDefinition`](RectangleDefinition.md)
 
 The shape definition, proxied to trigger observer notifications on change.
 
 #### Inherited from
 
-`Shape._definition`
+[`Shape`](Shape.md).[`_definition`](Shape.md#_definition)
 
 #### Defined in
 
-[shapes/Shape.ts:11](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Shape.ts#L11)
+[shapes/Shape.ts:19](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L19)
 
 ***
 
 ### \_options
 
-> `protected` **\_options**: [`RectangleOptions`](../interfaces/RectangleOptions.md)
+> `protected` **\_options**: [`RectangleOptions`](RectangleOptions.md)
+
+The options for configuring the shape, proxied to trigger observer notifications on change.
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`_options`](Shape.md#_options)
 
 #### Defined in
 
-[shapes/Rectangle.ts:14](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Rectangle.ts#L14)
+[shapes/Shape.ts:25](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L25)
+
+***
+
+### \_style
+
+> `protected` **\_style**: [`RectangleStyle`](RectangleStyle.md)
+
+The style settings for the shape, proxied to trigger observer notifications on change.
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`_style`](Shape.md#_style)
+
+#### Defined in
+
+[shapes/Shape.ts:22](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L22)
 
 ***
 
@@ -87,11 +113,11 @@ List of observer functions to be notified on shape changes.
 
 #### Inherited from
 
-`Shape.observers`
+[`Shape`](Shape.md).[`observers`](Shape.md#observers)
 
 #### Defined in
 
-[shapes/Shape.ts:14](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Shape.ts#L14)
+[shapes/Shape.ts:28](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L28)
 
 ## Accessors
 
@@ -109,7 +135,7 @@ The angle (rotation) of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:62](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Rectangle.ts#L62)
+[shapes/Rectangle.ts:75](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Rectangle.ts#L75)
 
 ***
 
@@ -137,7 +163,39 @@ The height of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:46](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Rectangle.ts#L46)
+[shapes/Rectangle.ts:59](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Rectangle.ts#L59)
+
+***
+
+### options
+
+> `get` **options**(): `TOptions`
+
+Gets the configuration options of the shape.
+
+> `set` **options**(`options`): `void`
+
+Updates the configuration options of the shape and notifies observers.
+
+#### Parameters
+
+• **options**: `TOptions`
+
+The new options to apply.
+
+#### Returns
+
+`TOptions`
+
+The current options.
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`options`](Shape.md#options)
+
+#### Defined in
+
+[shapes/Shape.ts:145](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L145)
 
 ***
 
@@ -165,13 +223,15 @@ The position of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:54](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Rectangle.ts#L54)
+[shapes/Rectangle.ts:67](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Rectangle.ts#L67)
 
 ***
 
 ### rotation
 
 > `get` **rotation**(): `number`
+
+Gets the rotation of the rectangle in degrees.
 
 > `set` **rotation**(`rotation`): `void`
 
@@ -187,29 +247,43 @@ The new rotation of the rectangle.
 
 `number`
 
+The rotation of the rectangle.
+
 #### Defined in
 
-[shapes/Rectangle.ts:66](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Rectangle.ts#L66)
+[shapes/Rectangle.ts:83](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Rectangle.ts#L83)
 
 ***
 
 ### style
 
-> `get` **style**(): [`RectangleStyle`](RectangleStyle.md)
+> `get` **style**(): `TStyle`
+
+Gets the style settings of the shape.
 
 > `set` **style**(`style`): `void`
 
+Updates the style settings of the shape and notifies observers.
+
 #### Parameters
 
-• **style**: [`RectangleStyle`](RectangleStyle.md)
+• **style**: `TStyle`
+
+The new style settings to apply.
 
 #### Returns
 
-[`RectangleStyle`](RectangleStyle.md)
+`TStyle`
+
+The current style settings.
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`style`](Shape.md#style)
 
 #### Defined in
 
-[shapes/Rectangle.ts:70](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Rectangle.ts#L70)
+[shapes/Shape.ts:127](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L127)
 
 ***
 
@@ -237,7 +311,7 @@ The width of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:38](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Rectangle.ts#L38)
+[shapes/Rectangle.ts:51](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Rectangle.ts#L51)
 
 ## Methods
 
@@ -259,27 +333,27 @@ The observer callback function.
 
 #### Inherited from
 
-`Shape.addObserver`
+[`Shape`](Shape.md).[`addObserver`](Shape.md#addobserver)
 
 #### Defined in
 
-[shapes/Shape.ts:70](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Shape.ts#L70)
+[shapes/Shape.ts:94](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L94)
 
 ***
 
 ### move()
 
-> **move**(`deltaX`?, `deltaY`?): `void`
+> **move**(`deltaX`, `deltaY`): `void`
 
 Moves the rectangle by adjusting the current position by delta values.
 
 #### Parameters
 
-• **deltaX?**: `number` = `0`
+• **deltaX**: `number` = `0`
 
 The change in the x-coordinate.
 
-• **deltaY?**: `number` = `0`
+• **deltaY**: `number` = `0`
 
 The change in the y-coordinate.
 
@@ -289,7 +363,7 @@ The change in the y-coordinate.
 
 #### Defined in
 
-[shapes/Rectangle.ts:140](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Rectangle.ts#L140)
+[shapes/Rectangle.ts:149](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Rectangle.ts#L149)
 
 ***
 
@@ -297,9 +371,13 @@ The change in the y-coordinate.
 
 > **removeObserver**(`observer`): `void`
 
+Removes a previously added observer function.
+
 #### Parameters
 
 • **observer**
+
+The observer callback function to be removed.
 
 #### Returns
 
@@ -307,11 +385,11 @@ The change in the y-coordinate.
 
 #### Inherited from
 
-`Shape.removeObserver`
+[`Shape`](Shape.md).[`removeObserver`](Shape.md#removeobserver)
 
 #### Defined in
 
-[shapes/Shape.ts:76](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Shape.ts#L76)
+[shapes/Shape.ts:105](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L105)
 
 ***
 
@@ -335,27 +413,27 @@ The 2D rendering context of the canvas where the rectangle will be drawn.
 
 #### Overrides
 
-`Shape.render`
+[`Shape`](Shape.md).[`render`](Shape.md#render)
 
 #### Defined in
 
-[shapes/Rectangle.ts:174](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Rectangle.ts#L174)
+[shapes/Rectangle.ts:188](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Rectangle.ts#L188)
 
 ***
 
 ### resize()
 
-> **resize**(`deltaWidth`?, `deltaHeight`?): `void`
+> **resize**(`deltaWidth`, `deltaHeight`): `void`
 
 Resizes the rectangle by adjusting the current width and height by delta values.
 
 #### Parameters
 
-• **deltaWidth?**: `number` = `0`
+• **deltaWidth**: `number` = `0`
 
 The change in width.
 
-• **deltaHeight?**: `number` = `0`
+• **deltaHeight**: `number` = `0`
 
 The change in height.
 
@@ -365,7 +443,7 @@ The change in height.
 
 #### Defined in
 
-[shapes/Rectangle.ts:129](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Rectangle.ts#L129)
+[shapes/Rectangle.ts:138](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Rectangle.ts#L138)
 
 ***
 
@@ -387,7 +465,7 @@ The amount to adjust the rectangle's rotation, in degrees.
 
 #### Defined in
 
-[shapes/Rectangle.ts:152](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Rectangle.ts#L152)
+[shapes/Rectangle.ts:161](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Rectangle.ts#L161)
 
 ***
 
@@ -413,4 +491,4 @@ The new height of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:118](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/shapes/Rectangle.ts#L118)
+[shapes/Rectangle.ts:127](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Rectangle.ts#L127)

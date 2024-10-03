@@ -1,22 +1,46 @@
+Class representing the style of a rectangle.
+
+## Implements
+
+- [`IShapeStyle`](../interfaces/IShapeStyle.md)
+
 ## Constructors
 
 ### new RectangleStyle()
 
-> **new RectangleStyle**(): [`RectangleStyle`](RectangleStyle.md)
+> **new RectangleStyle**(`color`?, `border`?): [`RectangleStyle`](RectangleStyle.md)
+
+Creates a new instance of RectangleStyle.
+
+#### Parameters
+
+• **color?**: `string`
+
+The fill color of the rectangle. If undefined, a default color may be used.
+
+• **border?**: [`BorderStyle`](BorderStyle.md)
+
+The border style of the rectangle. If undefined, no border may be applied.
 
 #### Returns
 
 [`RectangleStyle`](RectangleStyle.md)
 
+#### Defined in
+
+[styles/RectangleStyle.ts:14](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/styles/RectangleStyle.ts#L14)
+
 ## Properties
 
 ### border?
 
-> `optional` **border**: `BorderStyle`
+> `optional` **border**: [`BorderStyle`](BorderStyle.md)
+
+The border style of the rectangle. If undefined, no border may be applied.
 
 #### Defined in
 
-[styles/RectangleStyle.ts:5](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/styles/RectangleStyle.ts#L5)
+[styles/RectangleStyle.ts:16](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/styles/RectangleStyle.ts#L16)
 
 ***
 
@@ -24,6 +48,8 @@
 
 > `optional` **color**: `string`
 
+The fill color of the rectangle. If undefined, a default color may be used.
+
 #### Defined in
 
-[styles/RectangleStyle.ts:4](https://github.com/avolutions/canvas-painter/blob/082fa322f0a26565340ac3eb4f104d110cca3cf1/src/styles/RectangleStyle.ts#L4)
+[styles/RectangleStyle.ts:15](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/styles/RectangleStyle.ts#L15)
