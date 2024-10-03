@@ -1,6 +1,6 @@
 import { BorderStyle } from "./BorderStyle.js";
+import { IShapeStyle } from "./IShapeStyle.js";
 
-export interface RectangleStyle {
-  color?: string;
-  border?: BorderStyle;
+export class RectangleStyle implements IShapeStyle {
+  constructor(public color?: string, public border?: BorderStyle) {}
 }

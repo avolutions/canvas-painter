@@ -134,7 +134,7 @@ describe('Rectangle class', () => {
 
   test("should notify observer when definition changed by setters", () => {
     const observer = jest.fn();
-    const rectangle = new Rectangle(0, 0, 0, 0, 0, {}, {});
+    const rectangle = new Rectangle(0, 0, 0, 0, 0, { color: 'red' });
 
     rectangle.addObserver(observer);
 
@@ -142,7 +142,7 @@ describe('Rectangle class', () => {
     rectangle.height = 10;
     rectangle.position = { x: 10, y: 10 };
     rectangle.rotation = 10; // currently notify twice
-    rectangle.style = { color: 'red' };
+    rectangle.style = { color: 'yellow' };
     rectangle.style.color = 'blue';
     rectangle.position.x = 25;
 

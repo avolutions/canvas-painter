@@ -9,10 +9,7 @@ import { RectangleOptions } from "../options/RectangleOptions.js";
  * Class representing a Rectangle, extending the Shape class with a RectangleDefinition.
  * Provides functionality for rendering, resizing, moving, and rotating the rectangle.
  */
-export class Rectangle extends Shape<RectangleDefinition> {
-
-  protected _options: RectangleOptions;
-
+export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, RectangleOptions> {
   /**
    * Constructs a new Rectangle instance.
    *
@@ -24,9 +21,8 @@ export class Rectangle extends Shape<RectangleDefinition> {
    */
   constructor(x: number, y: number, width: number, height: number, rotation: number = 0, style: RectangleStyle = {}, options: RectangleOptions = {}) {
     // Create a RectangleDefinition using the provided parameters
-    const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, new Angle(rotation), {});
-    super(rectangleDefinition, style);
-    this._options = options;
+    const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, new Angle(rotation));
+    super(rectangleDefinition, style, options);
   }
 
   // Getters
@@ -67,10 +63,6 @@ export class Rectangle extends Shape<RectangleDefinition> {
     return this._definition.angle.degrees;
   }
 
-  public get style(): RectangleStyle {
-    return this._style;
-  }
-
   // Setters
 
   /**
@@ -103,10 +95,6 @@ export class Rectangle extends Shape<RectangleDefinition> {
    */
   public set rotation(rotation: number) {
     this._definition.angle.degrees = rotation;
-  }
-
-  public set style(style: RectangleStyle) {
-    this._definition.style = style;
   }
 
   /**
@@ -154,7 +142,7 @@ export class Rectangle extends Shape<RectangleDefinition> {
   }
 
   private getTopLeftPosition(): Point {
-    if(this._options.centered) {
+    if(this.options.centered) {
       return new Point(
         this._definition.position.x - this._definition.width / 2,
         this._definition.position.y - this._definition.height / 2
@@ -186,7 +174,7 @@ export class Rectangle extends Shape<RectangleDefinition> {
       context.rotate(this._definition.angle.radians);
 
       // Translate back if centered
-      if(this._options.centered) {
+      if(this.options.centered) {
         context.translate(-this._definition.width / 2, -this._definition.height / 2);
       }
 

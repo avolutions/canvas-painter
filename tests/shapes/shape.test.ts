@@ -1,5 +1,7 @@
 import { IShapeDefinition } from "../../src/definitions/IShapeDefinition";
+import { IShapeOptions } from "../../src/options/IShapeOptions";
 import { Shape } from "../../src/shapes/Shape";
+import { IShapeStyle } from "../../src/styles/IShapeStyle";
 import { Point } from "../../src/types/Point";
 
 class MockShapeDefinition implements IShapeDefinition {
@@ -18,8 +20,12 @@ class MockShapeDefinition implements IShapeDefinition {
   }
 }
 
+class MockShapeStyle implements IShapeStyle {}
+
+class MockShapeOptions implements IShapeOptions {}
+
 // Concrete class extending Shape
-class MockShape extends Shape<MockShapeDefinition> {
+class MockShape extends Shape<MockShapeDefinition, MockShapeStyle, IShapeOptions> {
   constructor(width: number = 0, name: string = '', isFoo: boolean = true, list: Array<number> = [], position: Point = { x: 0, y:0 }) {
     const definition = new MockShapeDefinition(width, name, isFoo, list, position);
     super(definition);

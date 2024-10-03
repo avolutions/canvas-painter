@@ -99,26 +99,19 @@ describe('Canvas class', () => {
   test('should set default style', () => {
     const canvas = Canvas.init('canvas-id');
 
-    expect((canvas as any)._style.color).toBeUndefined();
-    expect((canvas as any)._style.border).not.toBeNull();
-    expect((canvas as any)._style.border.color).toBe('rgba(0, 0, 0, 0)');
-    expect((canvas as any)._style.border.width).toBe(0);
+    expect((canvas as any)._style.color).toBe('black');
+    expect(canvas.context.fillStyle).toBe('black');
   });
 
   test('should set passed style', () => {
+    const color = 'red';
     const style = {
-      color: 'red',
-      border: {
-        color: 'blue',
-        width: 2.5
-      }
+      color: color
     };
     const canvas = Canvas.init('canvas-id', {}, style);
 
-    expect((canvas as any)._style.color).toBe('red');
-    expect((canvas as any)._style.border).not.toBeNull();
-    expect((canvas as any)._style.border.color).toBe('blue');
-    expect((canvas as any)._style.border.width).toBe(2.5);
+    expect((canvas as any)._style.color).toBe(color);
+    expect(canvas.context.fillStyle).toBe(color);
   });
 
   test('should watch an empty array without error', () => {

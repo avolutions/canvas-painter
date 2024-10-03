@@ -1,3 +1,5 @@
-export interface RectangleOptions {
-  centered?: boolean;
+import { IShapeOptions } from "./IShapeOptions";
+
+export class RectangleOptions implements IShapeOptions {
+  constructor(public centered?: boolean) {}
 }

@@ -1,16 +1,24 @@
 import { IShapeDefinition } from "../definitions/IShapeDefinition.js";
+import { IShapeOptions } from "../options/IShapeOptions.js";
+import { IShapeStyle } from "../styles/IShapeStyle.js";
 import { IShape } from "./IShape.js";
 
 /**
  * Abstract class representing a generic shape with observer functionality.
  *
- * @template T - The type of shape definition implementing IShapeDefinition.
+ * @template TDefinition - The type of shape definition implementing IShapeDefinition.
  */
-export abstract class Shape<T extends IShapeDefinition> implements IShape {
+export abstract class Shape<
+  TDefinition extends IShapeDefinition,
+  TStyle extends IShapeStyle,
+  TOptions extends IShapeOptions
+> implements IShape {
   /** The shape definition, proxied to trigger observer notifications on change. */
-  protected _definition: T;
+  protected _definition: TDefinition;
 
-  protected _style: any;
+  protected _style: TStyle;
+
+  protected _options: TOptions;
 
   /** List of observer functions to be notified on shape changes. */
   protected observers: (() => void)[] = [];
@@ -25,12 +33,12 @@ export abstract class Shape<T extends IShapeDefinition> implements IShape {
   /**
    * Constructs a Shape instance and wraps the definition in a Proxy to handle change notifications.
    *
-   * @param {T} definition - The shape definition instance to be wrapped in a Proxy.
+   * @param {TDefinition} definition - The shape definition instance to be wrapped in a Proxy.
    */
-  constructor(definition: T, style: any) {
-    // Recursively wrap the definition object with Proxy
+  constructor(definition: TDefinition, style?: TStyle, options?: TOptions) {
     this._definition = this._createProxy(definition);
-    this._style = this._createProxy(style);
+    this._style = this._createProxy(style || {});
+    this._options = this._createProxy(options || {});
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -91,5 +99,21 @@ export abstract class Shape<T extends IShapeDefinition> implements IShape {
    */
   private notifyObservers() {
     this.observers.forEach(observer => observer());
+  }
+
+  public get style(): TStyle {
+    return this._style;
+  }
+
+  public set style(style: TStyle) {
+    Object.assign(this._style, style);
+  }
+
+  public get options(): TOptions {
+    return this._options;
+  }
+
+  public set options(options: TOptions) {
+    Object.assign(this._options, options);
   }
 }
