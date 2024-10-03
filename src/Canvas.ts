@@ -24,10 +24,10 @@ export class Canvas {
   /**
    * Constructs a new Canvas instance.
    *
-   * @param {HTMLCanvasElement} canvas - The HTML canvas element.
-   * @param {CanvasRenderingContext2D} context - The 2D rendering context of the canvas.
-   * @param {CanvasOptions} [options] - Optional configuration options for the canvas.
-   * @param {CanvasStyle} [style] - Optional styling options for the canvas.
+   * @param canvas - The HTML canvas element.
+   * @param context - The 2D rendering context of the canvas.
+   * @param options - Optional configuration options for the canvas.
+   * @param style - Optional styling options for the canvas.
    * @private
    */
   private constructor(
@@ -65,10 +65,10 @@ export class Canvas {
   /**
    * Initializes a Canvas instance by retrieving the canvas element by ID and its context.
    *
-   * @param {string} id - The ID of the HTML canvas element.
-   * @param {CanvasOptions} [options] - Optional configuration options for the canvas.
-   * @param {CanvasStyle} [style] - Optional styling options for the canvas.
-   * @returns {Canvas} A new Canvas instance.
+   * @param id - The ID of the HTML canvas element.
+   * @param options - Optional configuration options for the canvas.
+   * @param style - Optional styling options for the canvas.
+   * @returns A new Canvas instance.
    * @throws {Error} If the canvas element is not found or is not a valid canvas.
    */
   public static init(id: string, options?: CanvasOptions, style?: CanvasStyle): Canvas {
@@ -92,7 +92,7 @@ export class Canvas {
   /**
    * Sets the canvas rendering context's styles based on the provided CanvasStyle.
    *
-   * @param {CanvasStyle} style - The style settings to apply to the canvas context.
+   * @param style - The style settings to apply to the canvas context.
    * @private
    */
   private setContextStyle(style: CanvasStyle): void {
@@ -104,8 +104,8 @@ export class Canvas {
   /**
    * Registers a shape or an array of shapes to be watched for changes and renders them.
    *
-   * @param {IShape | IShape[]} shapeOrShapes - The shape(s) to watch and render on the canvas.
-   * @param {boolean} [redraw=true] - Whether to immediately redraw the canvas after registering the shape(s).
+   * @param shapeOrShapes - The shape(s) to watch and render on the canvas.
+   * @param redraw - Whether to immediately redraw the canvas after registering the shape(s).
    */
   public watch(shapeOrShapes: IShape | IShape[], redraw: boolean = true): void {
     // If passed parameter was a single shape we convert it to array
@@ -135,8 +135,8 @@ export class Canvas {
   /**
    * Unregisters a shape or an array of shapes from being watched and re-renders the canvas.
    *
-   * @param {IShape | IShape[]} shapeOrShapes - The shape(s) to stop watching.
-   * @param {boolean} [redraw=true] - Whether to immediately redraw the canvas after unregistering the shape(s).
+   * @param shapeOrShapes - The shape(s) to stop watching.
+   * @param redraw - Whether to immediately redraw the canvas after unregistering the shape(s).
    */
   public unwatch(shapeOrShapes: IShape | IShape[], redraw: boolean = true): void {
     // If passed parameter was a single shape we convert it to array
@@ -167,7 +167,7 @@ export class Canvas {
   /**
    * Gets the 2D rendering context of the canvas.
    *
-   * @returns {CanvasRenderingContext2D} The 2D context of the canvas.
+   * @returns The 2D context of the canvas.
    */
   public get context(): CanvasRenderingContext2D {
     return this._context;
@@ -202,7 +202,7 @@ export class Canvas {
   /**
    * Renders the specified shape on the canvas.
    *
-   * @param {IShape} shape - The shape to render.
+   * @param shape - The shape to render.
    */
   public draw(shape: IShape): void {
     shape.render(this.context);

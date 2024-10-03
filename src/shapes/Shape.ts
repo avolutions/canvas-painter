@@ -7,6 +7,8 @@ import { IShape } from "./IShape.js";
  * Abstract class representing a generic shape with observer functionality.
  *
  * @template TDefinition - The type of shape definition implementing IShapeDefinition.
+ * @template TStyle - The type of shape style implementing IShapeStyle.
+ * @template TOptions - The type of shape options implementing IShapeOptions.
  */
 export abstract class Shape<
   TDefinition extends IShapeDefinition,
@@ -16,8 +18,10 @@ export abstract class Shape<
   /** The shape definition, proxied to trigger observer notifications on change. */
   protected _definition: TDefinition;
 
+  /** The style settings for the shape, proxied to trigger observer notifications on change. */
   protected _style: TStyle;
 
+  /** The options for configuring the shape, proxied to trigger observer notifications on change. */
   protected _options: TOptions;
 
   /** List of observer functions to be notified on shape changes. */
@@ -26,21 +30,30 @@ export abstract class Shape<
   /**
    * Abstract method to render the shape on the canvas.
    *
-   * @param {CanvasRenderingContext2D} context - The 2D rendering context for the canvas.
+   * @param context - The 2D rendering context for the canvas.
    */
   public abstract render(context: CanvasRenderingContext2D): void;
 
   /**
-   * Constructs a Shape instance and wraps the definition in a Proxy to handle change notifications.
+   * Constructs a Shape instance and wraps the definition, style, and options in a Proxy to handle change notifications.
    *
-   * @param {TDefinition} definition - The shape definition instance to be wrapped in a Proxy.
+   * @param definition - The shape definition instance to be wrapped in a Proxy.
+   * @param style - Optional style settings for the shape.
+   * @param options - Optional configuration options for the shape.
    */
   constructor(definition: TDefinition, style?: TStyle, options?: TOptions) {
     this._definition = this._createProxy(definition);
-    this._style = this._createProxy(style || {});
-    this._options = this._createProxy(options || {});
+    this._style = this._createProxy(style || {}); // Default to an empty object if no style is provided
+    this._options = this._createProxy(options || {}); // Default to an empty object if no options are provided
   }
 
+  /**
+   * Creates a proxy for the given object to track changes and notify observers.
+   *
+   * @param obj - The object to be proxied.
+   * @returns A proxied object that triggers observer notifications on change.
+   * @private
+   */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _createProxy(obj: any): any {
     if (typeof obj === 'object' && obj !== null) {
@@ -76,7 +89,7 @@ export abstract class Shape<
   /**
    * Adds an observer function that will be called when the shape's state changes.
    *
-   * @param {() => void} observer - The observer callback function.
+   * @param observer - The observer callback function.
    */
   public addObserver(observer: () => void): void {
     if (!this.observers.includes(observer)) {
@@ -84,6 +97,11 @@ export abstract class Shape<
     }
   }
 
+  /**
+   * Removes a previously added observer function.
+   *
+   * @param observer - The observer callback function to be removed.
+   */
   public removeObserver(observer: () => void): void {
     const index = this.observers.indexOf(observer);
     if (index !== -1) {
@@ -93,7 +111,7 @@ export abstract class Shape<
 
   /**
    * Notifies all registered observers of a change in the shape's state.
-   * This method is triggered when a property of the shape definition is changed.
+   * This method is triggered when a property of the shape definition, style, or options is changed.
    *
    * @private
    */
@@ -101,18 +119,38 @@ export abstract class Shape<
     this.observers.forEach(observer => observer());
   }
 
+  /**
+   * Gets the style settings of the shape.
+   *
+   * @returns The current style settings.
+   */
   public get style(): TStyle {
     return this._style;
   }
 
+  /**
+   * Updates the style settings of the shape and notifies observers.
+   *
+   * @param style - The new style settings to apply.
+   */
   public set style(style: TStyle) {
     Object.assign(this._style, style);
   }
 
+  /**
+   * Gets the configuration options of the shape.
+   *
+   * @returns The current options.
+   */
   public get options(): TOptions {
     return this._options;
   }
 
+  /**
+   * Updates the configuration options of the shape and notifies observers.
+   *
+   * @param options - The new options to apply.
+   */
   public set options(options: TOptions) {
     Object.assign(this._options, options);
   }

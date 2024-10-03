@@ -12,8 +12,8 @@ export class Angle {
   /**
    * Constructs an Angle instance.
    *
-   * @param {number} degrees - The initial angle in degrees.
-   * @param {boolean} [normalized=false] - Whether the angle should be normalized to the range [0, 360).
+   * @param degrees - The initial angle in degrees.
+   * @param normalized - Whether the angle should be normalized to the range [0, 360).
    */
   constructor(degrees: number, normalized: boolean = false) {
     this._normalized = normalized;
@@ -22,7 +22,7 @@ export class Angle {
 
   /**
    * Gets the current angle in degrees.
-   * @returns {number} The angle in degrees.
+   * @returns The angle in degrees.
    */
   public get degrees(): number {
     return this._degrees;
@@ -30,7 +30,7 @@ export class Angle {
 
   /**
    * Gets the current angle in radians.
-   * @returns {number} The angle in radians.
+   * @returns The angle in radians.
    */
   public get radians(): number {
     return Angle.degreesToRadians(this.degrees);
@@ -38,7 +38,7 @@ export class Angle {
 
   /**
    * Sets the angle in degrees, optionally normalizing it if required.
-   * @param {number} degrees - The new angle in degrees.
+   * @param degrees - The new angle in degrees.
    */
   public set degrees(degrees: number) {
     this._degrees = this.isNormalized() ? Angle.normalize(degrees) : degrees;
@@ -46,7 +46,7 @@ export class Angle {
 
   /**
    * Sets the angle in radians by converting it to degrees.
-   * @param {number} radians - The new angle in radians.
+   * @param radians - The new angle in radians.
    */
   public set radians(radians: number) {
     this.degrees = Angle.radiansToDegrees(radians);
@@ -54,9 +54,9 @@ export class Angle {
 
   /**
    * Creates a new Angle instance from degrees.
-   * @param {number} degrees - The angle in degrees.
-   * @param {boolean} [normalized=false] - Whether the angle should be normalized.
-   * @returns {Angle} A new Angle instance.
+   * @param degrees - The angle in degrees.
+   * @param normalized - Whether the angle should be normalized.
+   * @returns A new Angle instance.
    */
   public static fromDegrees(degrees: number, normalized: boolean = false): Angle {
     return new Angle(degrees, normalized);
@@ -64,9 +64,9 @@ export class Angle {
 
   /**
    * Creates a new Angle instance from radians.
-   * @param {number} radians - The angle in radians.
-   * @param {boolean} [normalized=false] - Whether the angle should be normalized.
-   * @returns {Angle} A new Angle instance.
+   * @param radians - The angle in radians.
+   * @param normalized - Whether the angle should be normalized.
+   * @returns A new Angle instance.
    */
   public static fromRadians(radians: number, normalized: boolean = false): Angle {
     const degrees = Angle.radiansToDegrees(radians);
@@ -83,7 +83,7 @@ export class Angle {
 
   /**
    * Checks if the angle is normalized.
-   * @returns {boolean} True if the angle is normalized, false otherwise.
+   * @returns True if the angle is normalized, false otherwise.
    */
   public isNormalized(): boolean {
     return this._normalized;
@@ -91,7 +91,7 @@ export class Angle {
 
   /**
    * Gets the normalized value of the angle in degrees.
-   * @returns {number} The normalized angle in degrees.
+   * @returns The normalized angle in degrees.
    */
   public getNormalized(): number {
     return Angle.normalize(this._degrees);
@@ -99,7 +99,7 @@ export class Angle {
 
   /**
    * Adjusts the angle by a given number of degrees.
-   * @param {number} degrees - The amount to adjust the angle by, in degrees.
+   * @param degrees - The amount to adjust the angle by, in degrees.
    */
   public adjustBy(degrees: number): void {
     this.degrees += degrees;
@@ -107,7 +107,7 @@ export class Angle {
 
   /**
    * Adjusts the angle by a given number of radians.
-   * @param {number} radians - The amount to adjust the angle by, in radians.
+   * @param radians - The amount to adjust the angle by, in radians.
    */
   public adjustByRadians(radians: number): void {
     this.radians += radians;
@@ -115,8 +115,8 @@ export class Angle {
 
   /**
    * Converts degrees to radians.
-   * @param {number} degrees - The angle in degrees.
-   * @returns {number} The angle in radians.
+   * @param degrees - The angle in degrees.
+   * @returns The angle in radians.
    */
   public static degreesToRadians(degrees: number): number {
     return degrees * (Math.PI / 180);
@@ -124,8 +124,8 @@ export class Angle {
 
   /**
    * Converts radians to degrees.
-   * @param {number} radians - The angle in radians.
-   * @returns {number} The angle in degrees.
+   * @param radians - The angle in radians.
+   * @returns The angle in degrees.
    */
   public static radiansToDegrees(radians: number): number {
     return radians * (180 / Math.PI);
@@ -133,8 +133,8 @@ export class Angle {
 
   /**
    * Normalizes an angle to the range [0, 360).
-   * @param {number} degrees - The angle in degrees.
-   * @returns {number} The normalized angle in degrees.
+   * @param degrees - The angle in degrees.
+   * @returns The normalized angle in degrees.
    */
   public static normalize(degrees: number): number {
     let normalized = degrees % 360;
