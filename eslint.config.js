@@ -15,6 +15,7 @@ export default [
   ...ts.configs.recommended,
   {
     rules: {
+      "keyword-spacing": ["error", { "before": true, "after": true }],
       '@typescript-eslint/explicit-member-accessibility': [
         'error',
         {
@@ -23,7 +24,7 @@ export default [
             constructors: 'no-public'
           },
         }
-      ],
+      ]
     }
   },
   {

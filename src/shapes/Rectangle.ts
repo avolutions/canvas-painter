@@ -142,7 +142,7 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
   }
 
   private getTopLeftPosition(): Point {
-    if(this.options.centered) {
+    if (this.options.centered) {
       return new Point(
         this._definition.position.x - this._definition.width / 2,
         this._definition.position.y - this._definition.height / 2
@@ -168,13 +168,13 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
     let topLeft = this.getTopLeftPosition();
 
     // Rotate
-    if(this.angle.degrees !== 0) {
+    if (this.angle.degrees !== 0) {
       // Translate to the rectangle's position and apply rotation
       context.translate(this._definition.position.x, this._definition.position.y);
       context.rotate(this._definition.angle.radians);
 
       // Translate back if centered
-      if(this.options.centered) {
+      if (this.options.centered) {
         context.translate(-this._definition.width / 2, -this._definition.height / 2);
       }
 

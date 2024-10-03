@@ -79,7 +79,7 @@ export abstract class Shape<
    * @param {() => void} observer - The observer callback function.
    */
   public addObserver(observer: () => void): void {
-    if(!this.observers.includes(observer)) {
+    if (!this.observers.includes(observer)) {
       this.observers.push(observer);
     }
   }
