@@ -5,4 +5,8 @@ export default {
   moduleNameMapper: {
     "(.+)\\.js": "$1",
   },
+  collectCoverageFrom: [
+    "src/**/*.{js,ts,tsx}",
+    "!src/index.ts"
+  ]
 };
