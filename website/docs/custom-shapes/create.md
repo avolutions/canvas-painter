@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Create new shapes
 
 **CanvasPainter.js** is designed to be flexible and easy to extend. Besides the built-in shapes like rectangles or circles, you can also create your own custom shapes by extending the `Shape` class. In this example, we will create a simple custom shape called `Cross`.
