@@ -24,7 +24,7 @@ const rectangle = new Rectangle(
 );
 ```
 
-The detailed API documentation for `Rectangle` can be found here: https://avolutions.github.io/canvas-painter/api/classes/Rectangle.html
+The detailed API documentation for `Rectangle` can be found [here](../../api/classes/Rectangle).
 
 ## Draw a basic rectangle
 
@@ -122,6 +122,7 @@ Property | Description | Example
 `position` | Sets the position (x and/or y) of the rectangle. | `rectangle.position = { x: 50, y: 50 };`<br />`rectangle.position.x = 50`
 `rotation` | Sets the rotation of the rectangle in degrees clockwise. | `rectangle.rotation = 45;`
 `style` | Sets the style attributes of the rectangle. | `rectangle.style = { color: "red" };`<br />`rectangle.style.color = "red";`
+`options` | Sets the options attributes of the rectangle. | `rectangle.options = { centered: false };`<br />`rectangle.options.centered = false;`
 
 ### Available methods
 
@@ -153,11 +154,26 @@ Property | Description | Example
 --- | --- | ---
 `width` | Gets the width of the rectangle as number. | `const width = rectangle.width;`
 `height` | Gets the height of the rectangle as number. | `const height = rectangle.height;`
-`position` | Gets an [Point](https://avolutions.github.io/canvas-painter/api/classes/Point.html) object representing the position of the rectangle. | `const position = rectangle.position;`<br />`const x = position.x;`
-`angle` | Gets an [Angle](https://avolutions.github.io/canvas-painter/api/classes/Angle.html) object representing the rotation angle of the rectangle. | `const angle = rectangle.angle;`<br />`const radians = angle.radians;`
+`position` | Gets an [Point](../../api/classes/Point) object representing the position of the rectangle. | `const position = rectangle.position;`<br />`const x = position.x;`
+`angle` | Gets an [Angle](../../api/classes/Angle) object representing the rotation angle of the rectangle. | `const angle = rectangle.angle;`<br />`const radians = angle.radians;`
 `rotation` | Gets the rotation of the rectangle as number indication degrees in clockwise direction. | `const rotation = rectangle.rotation;`
-`style` | Gets a [RectangleStyle](https://avolutions.github.io/canvas-painter/api/classes/RectangleStyle.html) object representing the style of the rectangle. | `const rotation = rectangle.rotation;`
+`style` | Gets a [RectangleStyle](../../api/classes/RectangleStyle) object representing the style of the rectangle. | `const style = rectangle.style;`<br />`const color = rectangle.style.color;`
+`options` | Gets a [RectangleOptions](../../api/classes/RectangleOptions) object representing the options of the rectangle. | `const options = rectangle.options;`<br />`const centered = rectangle.options.centered;`
 
-## Styles for rectangle
+## Style
 
-## Options for rectangle
+The following table is showing all available rectangle styles and there default values if no value was provided explicit.
+
+Style | Default | Explanation
+--- | --- | ---
+`color` | '#000000' (black) | Sets the default fill color for the rectangle.
+`border.color` | '#000000' (black) | Defines the color of rectangles border. Border is only shown if `border.color` or `border.width` is provided.
+`border.width` | 1.0 | Defines the width of rectangles border. Border is only shown if `border.color` or `border.width` is provided.
+
+## Options
+
+The following table is showing all available rectangle options and there default values if no value was provided explicit.
+
+Option | Default | Explanation
+--- | --- | ---
+`centered` | false | If true, the rectangle will be centered at the provided position.<br />If false or undefined, the rectangle will be positioned from the top-left corner.

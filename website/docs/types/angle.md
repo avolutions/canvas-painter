@@ -11,6 +11,8 @@ The `Angle` class in **CanvasPainter.js** provides a flexible and powerful way t
 To create an `Angle`, you can pass the value in degrees to the constructor. If needed, you can also specify whether the angle should be normalized to a range of `[0, 360)`.
 
 ```js
+import { Angle } from '@avolutions/canvas-painter';
+
 // Define a 45-degree angle
 const angle = new Angle(45);
 
