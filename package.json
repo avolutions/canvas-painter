@@ -29,8 +29,9 @@
     "type": "git",
     "url": "git+https://github.com/avolutions/canvas-painter.git"
   },
+  "homepage": "https://avolutions.github.io/canvas-painter/",
   "keywords": [
-    "canvas"
+    "javascript", "drawing", "typescript", "canvas", "shapes", "html5-canvas"
   ],
   "author": "Alexander Vogt <alexander.vogt@avolutions.de>",
   "license": "MIT",
