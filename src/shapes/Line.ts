@@ -10,20 +10,46 @@ import { Shape } from "./Shape.js";
  * LineStyle for styling, and LineOptions for additional options.
  */
 export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
-
   /**
-   * Creates an instance of the Line class.
+   * Creates an instance of the `Line` class.
    *
-   * @param start - The starting point of the line.
-   * @param end - The ending point of the line.
-   * @param style - The style of the line. Optional.
+   * The `Line` can be created either by passing two `Point` objects representing the start and end of the line,
+   * or by providing the individual coordinates for the start and end points.
+   *   *
+   * @param start - The starting `Point` of the line.
+   * @param end - The ending `Point` of the line.
+   * @param style - Optional. Defines the styling of the line.
+   *
+   * @overload
+   * @param startX - The X-coordinate of the starting point.
+   * @param startY - The Y-coordinate of the starting point.
+   * @param endX - The X-coordinate of the ending point.
+   * @param endY - The Y-coordinate of the ending point.
+   * @param style - Optional. Defines the styling of the line.
+   *
+   * @throws {Error} Throws if invalid arguments are passed.
    */
-  constructor(
-    start: Point,
-    end: Point,
-    style: LineStyle = {}
-  ) {
-    const lineDefinition = new LineDefinition(start, end);
+  constructor(start: Point, end: Point, style?: LineStyle);
+  constructor(startX: number, startY: number, endX: number, endY: number, style?: LineStyle);
+  constructor(arg1: Point | number, arg2: Point | number, arg3?: LineStyle | number, arg4?: number, arg5?: LineStyle) {
+    let style;
+    let lineDefinition;
+
+    if (typeof arg1 === 'number' && typeof arg2 === 'number' && typeof arg3 === 'number' && typeof arg4 === 'number') {
+      // Constructor with coordinates
+      const start = new Point(arg1, arg2);
+      const end = new Point(arg3, arg4);
+
+      lineDefinition = new LineDefinition(start, end);
+      style = arg5 as LineStyle;
+    } else if (arg1 instanceof Point && arg2 instanceof Point) {
+      // Constructor with Point objects
+      lineDefinition = new LineDefinition(arg1, arg2);
+      style = arg3 as LineStyle;
+    } else {
+      throw new Error('Invalid constructor arguments');
+    }
+
     super(lineDefinition, style, {});
   }
 
