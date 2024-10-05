@@ -20,7 +20,7 @@ The background color of the canvas. If undefined, a default color may be used.
 
 #### Defined in
 
-[styles/CanvasStyle.ts:17](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/styles/CanvasStyle.ts#L17)
+[styles/CanvasStyle.ts:17](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CanvasStyle.ts#L17)
 
 ## Properties
 
@@ -32,7 +32,7 @@ The background color of the canvas. If undefined, a default color may be used.
 
 #### Defined in
 
-[styles/CanvasStyle.ts:18](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/styles/CanvasStyle.ts#L18)
+[styles/CanvasStyle.ts:18](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CanvasStyle.ts#L18)
 
 ***
 
@@ -44,4 +44,4 @@ Default style for the canvas.
 
 #### Defined in
 
-[styles/CanvasStyle.ts:8](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/styles/CanvasStyle.ts#L8)
+[styles/CanvasStyle.ts:8](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CanvasStyle.ts#L8)

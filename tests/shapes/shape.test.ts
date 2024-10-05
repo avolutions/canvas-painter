@@ -1,3 +1,4 @@
+import { Point } from "../../src/types/Point";
 import { MockShape, MockShapeOptions, MockShapeStyle } from "../mocks/MockShape";
 
 describe('Shape class', () => {
@@ -111,7 +112,7 @@ describe('Shape class', () => {
     shape.name = 'foo';
     shape.isFoo = false;
     shape.list = [1,2,3];
-    shape.position = { x: 10, y: 10 }
+    shape.position = new Point(10, 10);
     shape.position.x = 25;
 
     expect(observer).toHaveBeenCalledTimes(6);
