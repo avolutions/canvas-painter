@@ -184,7 +184,7 @@ The ending point of the line.
 
 #### Defined in
 
-[shapes/Line.ts:77](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L77)
+[shapes/Line.ts:83](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L83)
 
 ***
 
@@ -244,7 +244,7 @@ The starting point of the line.
 
 #### Defined in
 
-[shapes/Line.ts:68](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L68)
+[shapes/Line.ts:74](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L74)
 
 ***
 
@@ -328,7 +328,7 @@ The amount to move the end point along the y-axis.
 
 #### Defined in
 
-[shapes/Line.ts:117](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L117)
+[shapes/Line.ts:123](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L123)
 
 ***
 
@@ -354,7 +354,7 @@ The amount to move the start point along the y-axis.
 
 #### Defined in
 
-[shapes/Line.ts:107](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L107)
+[shapes/Line.ts:113](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L113)
 
 ***
 
@@ -406,4 +406,4 @@ The canvas rendering context to draw the line.
 
 #### Defined in
 
-[shapes/Line.ts:126](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L126)
+[shapes/Line.ts:132](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L132)

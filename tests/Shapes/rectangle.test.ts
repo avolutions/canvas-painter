@@ -270,7 +270,7 @@ describe('Rectangle class', () => {
     const rectangle = new Rectangle(10, 15, 20, 25, 0, { border: { width: 1, color: 'red'} });
     rectangle.render(context);
 
-    expect(context.fillRect).toHaveBeenCalledWith(10, 15, 20, 25);
+    expect(context.strokeRect).toHaveBeenCalledWith(10, 15, 20, 25);
   });
 
   test('should apply border width', () => {

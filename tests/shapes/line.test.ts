@@ -51,6 +51,7 @@ describe('Line class', () => {
     expect(line.start.y).toBe(start.y);
     expect(line.end.x).toBe(end.x);
     expect(line.end.y).toBe(end.y);
+    expect(line.style).toStrictEqual(style);
     expect(line.style.color).toBe(style.color);
     expect(line.style.width).toBe(style.width);
   });
@@ -83,6 +84,7 @@ describe('Line class', () => {
     expect(line.start.y).toBe(startY);
     expect(line.end.x).toBe(endX);
     expect(line.end.y).toBe(endY);
+    expect(line.style).toStrictEqual(style);
     expect(line.style.color).toBe(style.color);
     expect(line.style.width).toBe(style.width);
   });

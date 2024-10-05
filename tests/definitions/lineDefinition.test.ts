@@ -2,7 +2,7 @@ import { LineDefinition } from '../../src/definitions/LineDefinition';
 import { Point } from '../../src/types/Point';
 
 describe('LineDefinition', () => {
-  it('should create a LineDefinition with correct start and end points', () => {
+  test('should create a LineDefinition with correct start and end points', () => {
     const start = new Point(0, 0);
     const end = new Point(10, 10);
     const line = new LineDefinition(start, end);
@@ -11,7 +11,7 @@ describe('LineDefinition', () => {
     expect(line.end).toBe(end);
   });
 
-  it('should allow creating a LineDefinition with different points', () => {
+  test('should allow creating a LineDefinition with different points', () => {
     const line = new LineDefinition(new Point(5, 10), new Point(15, 20));
 
     expect(line.start.x).toBe(5);
@@ -20,7 +20,7 @@ describe('LineDefinition', () => {
     expect(line.end.y).toBe(20);
   });
 
-  it('should allow updating the start and end points', () => {
+  test('should allow updating the start and end points', () => {
     const start = new Point(0, 0);
     const end = new Point(10, 10);
     const line = new LineDefinition(start, end);
