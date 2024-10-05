@@ -44,8 +44,8 @@ import { Canvas, Line, Point } from '@avolutions/canvas-painter';
 const canvas = Canvas.init('myCanvas');
 
 // Define the start and end points of the line
-const startPoint = new Point(75, 10);
-const endPoint = new Point(75, 290);
+const startPoint = new Point(10, 75);
+const endPoint = new Point(290, 75);
 
 // Create the line
 const line = new Line(startPoint, endPoint);
@@ -54,6 +54,8 @@ canvas.draw(line);
 ```
 
 **Rendered Output:**
+
+![Line](./img/draw_line.png)
 
 In this example we draw a line from start (75, 10) to end (75, 290) using the default style (width = 1, color = black).
 
@@ -73,6 +75,8 @@ canvas.draw(line);
 ```
 
 **Rendered Output:**
+
+![Line](./img/draw_line.png)
 
 This example will give you the exact same output as the example where we use points as start and end.
 
