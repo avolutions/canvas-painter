@@ -99,8 +99,8 @@ describe('Line class', () => {
 
     const line = new Line(start, end);
 
-    line.start = { x: 50, y: 100 };
-    line.end = { x: 150, y: 200 };
+    line.start = new Point(50, 100);
+    line.end = new Point(150, 200);
 
     expect(line.start.x).toBe(50);
     expect(line.start.y).toBe(100);
@@ -129,8 +129,8 @@ describe('Line class', () => {
 
     line.addObserver(observer);
 
-    line.start = { x: 50, y: 100 };
-    line.end = { x: 150, y: 200 };
+    line.start = new Point(50, 100);
+    line.end = new Point(150, 200);
     line.style = { color: 'blue', width: 3 }
     line.start.x = 51;
     line.start.x = 101;

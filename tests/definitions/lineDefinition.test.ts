@@ -12,7 +12,7 @@ describe('LineDefinition', () => {
   });
 
   it('should allow creating a LineDefinition with different points', () => {
-    const line = new LineDefinition({ x: 5, y: 10 }, { x: 15, y: 20 });
+    const line = new LineDefinition(new Point(5, 10), new Point(15, 20));
 
     expect(line.start.x).toBe(5);
     expect(line.start.y).toBe(10);
