@@ -36,26 +36,32 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
    *
    * @throws {Error} Throws if invalid arguments are passed.
    */
-  constructor(arg1: Point | number, arg2: Point | number, arg3?: LineStyle | number, arg4?: number, arg5?: LineStyle) {
+  constructor(
+    arg1: Point | number,
+    arg2: Point | number,
+    arg3?: LineStyle | number,
+    arg4?: number,
+    arg5?: LineStyle
+  ) {
     let style;
-    let lineDefinition;
+    let definition;
 
     if (typeof arg1 === 'number' && typeof arg2 === 'number' && typeof arg3 === 'number' && typeof arg4 === 'number') {
       // Constructor with coordinates
       const start = new Point(arg1, arg2);
       const end = new Point(arg3, arg4);
 
-      lineDefinition = new LineDefinition(start, end);
+      definition = new LineDefinition(start, end);
       style = arg5 as LineStyle;
     } else if (arg1 instanceof Point && arg2 instanceof Point) {
       // Constructor with Point objects
-      lineDefinition = new LineDefinition(arg1, arg2);
+      definition = new LineDefinition(arg1, arg2);
       style = arg3 as LineStyle;
     } else {
       throw new Error('Invalid constructor arguments');
     }
 
-    super(lineDefinition, style, {});
+    super(definition, style, {});
   }
 
   // Getters
