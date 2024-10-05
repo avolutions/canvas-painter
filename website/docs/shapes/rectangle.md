@@ -162,7 +162,7 @@ Property | Description | Example
 
 ## Style
 
-The following table is showing all available rectangle styles and there default values if no value was provided explicit.
+The following table is showing all available rectangle styles and the default values if no value was provided explicit.
 
 Style | Default | Explanation
 --- | --- | ---
@@ -172,7 +172,7 @@ Style | Default | Explanation
 
 ## Options
 
-The following table is showing all available rectangle options and there default values if no value was provided explicit.
+The following table is showing all available rectangle options and the default values if no value was provided explicit.
 
 Option | Default | Explanation
 --- | --- | ---

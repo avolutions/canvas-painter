@@ -310,11 +310,17 @@ The observer callback function.
 
 > **moveEnd**(`deltaX`, `deltaY`): `void`
 
+Moves the end point of the line by the specified deltas along the x and y axes.
+
 #### Parameters
 
 • **deltaX**: `number` = `0`
 
+The amount to move the end point along the x-axis.
+
 • **deltaY**: `number` = `0`
+
+The amount to move the end point along the y-axis.
 
 #### Returns
 
@@ -322,7 +328,7 @@ The observer callback function.
 
 #### Defined in
 
-[shapes/Line.ts:105](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L105)
+[shapes/Line.ts:117](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L117)
 
 ***
 
@@ -330,11 +336,17 @@ The observer callback function.
 
 > **moveStart**(`deltaX`, `deltaY`): `void`
 
+Moves the start point of the line by the specified deltas along the x and y axes.
+
 #### Parameters
 
 • **deltaX**: `number` = `0`
 
+The amount to move the start point along the x-axis.
+
 • **deltaY**: `number` = `0`
+
+The amount to move the start point along the y-axis.
 
 #### Returns
 
@@ -342,7 +354,7 @@ The observer callback function.
 
 #### Defined in
 
-[shapes/Line.ts:101](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L101)
+[shapes/Line.ts:107](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L107)
 
 ***
 
@@ -394,4 +406,4 @@ The canvas rendering context to draw the line.
 
 #### Defined in
 
-[shapes/Line.ts:114](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L114)
+[shapes/Line.ts:126](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L126)

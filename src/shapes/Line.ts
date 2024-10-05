@@ -98,10 +98,22 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
     this._definition.end = end;
   }
 
+  /**
+   * Moves the start point of the line by the specified deltas along the x and y axes.
+   *
+   * @param deltaX - The amount to move the start point along the x-axis.
+   * @param deltaY - The amount to move the start point along the y-axis.
+   */
   public moveStart(deltaX: number = 0, deltaY: number = 0): void {
     this.start.move(deltaX, deltaY);
   }
 
+  /**
+   * Moves the end point of the line by the specified deltas along the x and y axes.
+   *
+   * @param deltaX - The amount to move the end point along the x-axis.
+   * @param deltaY - The amount to move the end point along the y-axis.
+   */
   public moveEnd(deltaX: number = 0, deltaY: number = 0): void {
     this.end.move(deltaX, deltaY);
   }
