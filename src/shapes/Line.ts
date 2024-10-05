@@ -98,6 +98,14 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
     this._definition.end = end;
   }
 
+  public moveStart(deltaX: number = 0, deltaY: number = 0): void {
+    this.start.move(deltaX, deltaY);
+  }
+
+  public moveEnd(deltaX: number = 0, deltaY: number = 0): void {
+    this.end.move(deltaX, deltaY);
+  }
+
   /**
    * Renders the line on a canvas context.
    *

@@ -142,6 +142,92 @@ describe('Line class', () => {
     expect(observer).toHaveBeenCalledTimes(10);
   });
 
+  test('should move start on x- and y-axis', () => {
+    const start = new Point(5, 10);
+    const end = new Point(15, 20);
+
+    const line = new Line(start, end);
+
+    line.moveStart(2.5, -13);
+
+    expect(line.start.x).toBe(7.5);
+    expect(line.start.y).toBe(-3);
+    expect(line.end.x).toBe(15);
+    expect(line.end.y).toBe(20);
+  });
+
+  test('should move end on x- or y-axis', () => {
+    const start = new Point(5, 10);
+    const end = new Point(15, 20);
+
+    const line = new Line(start, end);
+
+    line.moveStart(2.5, 0);
+
+    expect(line.start.x).toBe(7.5);
+    expect(line.start.y).toBe(10);
+    expect(line.end.x).toBe(15);
+    expect(line.end.y).toBe(20);
+
+    line.moveStart(0, -7);
+
+    expect(line.start.x).toBe(7.5);
+    expect(line.start.y).toBe(3);
+    expect(line.end.x).toBe(15);
+    expect(line.end.y).toBe(20);
+  });
+
+  test('should move end on x- and y-axis', () => {
+    const start = new Point(5, 10);
+    const end = new Point(15, 20);
+
+    const line = new Line(start, end);
+
+    line.moveEnd(2.5, -23);
+
+    expect(line.start.x).toBe(5);
+    expect(line.start.y).toBe(10);
+    expect(line.end.x).toBe(17.5);
+    expect(line.end.y).toBe(-3);
+  });
+
+  test('should move end on x- or y-axis', () => {
+    const start = new Point(5, 10);
+    const end = new Point(15, 20);
+
+    const line = new Line(start, end);
+
+    line.moveEnd(2.5, 0);
+
+    expect(line.start.x).toBe(5);
+    expect(line.start.y).toBe(10);
+    expect(line.end.x).toBe(17.5);
+    expect(line.end.y).toBe(20);
+
+    line.moveEnd(0, -7);
+
+    expect(line.start.x).toBe(5);
+    expect(line.start.y).toBe(10);
+    expect(line.end.x).toBe(17.5);
+    expect(line.end.y).toBe(13);
+  });
+
+  test("should notify observer when definition changed by methods", () => {
+    const observer = jest.fn();
+
+    const start = new Point(5, 10);
+    const end = new Point(15, 20);
+
+    const line = new Line(start, end);
+
+    line.addObserver(observer);
+
+    line.moveStart(1, 1); // Currently notify 4 times
+    line.moveEnd(1, 1); // Currently notify 4 times
+
+    expect(observer).toHaveBeenCalledTimes(8);
+  });
+
   test('should apply given style', () => {
     const start = new Point(5, 10);
     const end = new Point(15, 20);
