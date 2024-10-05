@@ -9,5 +9,6 @@
   "entryFileName": "Index.md",
   "hideBreadcrumbs": true,
   "hidePageTitle": true,
-  "hidePageHeader": true
+  "hidePageHeader": true,
+  "gitRevision": "main"
 }

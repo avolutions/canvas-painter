@@ -24,7 +24,7 @@ The y-coordinate of the point.
 
 #### Defined in
 
-[types/Point.ts:21](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Point.ts#L21)
+[types/Point.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L21)
 
 ## Properties
 
@@ -36,7 +36,7 @@ The x-coordinate of the point.
 
 #### Defined in
 
-[types/Point.ts:8](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Point.ts#L8)
+[types/Point.ts:8](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L8)
 
 ***
 
@@ -48,7 +48,7 @@ The y-coordinate of the point.
 
 #### Defined in
 
-[types/Point.ts:13](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Point.ts#L13)
+[types/Point.ts:13](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L13)
 
 ## Methods
 
@@ -74,7 +74,7 @@ The amount to move the point along the y-axis (default is 0).
 
 #### Defined in
 
-[types/Point.ts:50](https://github.com/avolutions/canvas-painter/blob/984649316f6083bd9b5b3a43b32a65b9a8e0353e/src/types/Point.ts#L50)
+[types/Point.ts:50](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L50)
 
 ***
 
@@ -96,7 +96,7 @@ The amount to move the point along the x-axis.
 
 #### Defined in
 
-[types/Point.ts:31](https://github.com/avolutions/canvas-painter/blob/984649316f6083bd9b5b3a43b32a65b9a8e0353e/src/types/Point.ts#L31)
+[types/Point.ts:31](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L31)
 
 ***
 
@@ -118,4 +118,4 @@ The amount to move the point along the y-axis.
 
 #### Defined in
 
-[types/Point.ts:40](https://github.com/avolutions/canvas-painter/blob/984649316f6083bd9b5b3a43b32a65b9a8e0353e/src/types/Point.ts#L40)
+[types/Point.ts:40](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L40)

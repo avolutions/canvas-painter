@@ -36,7 +36,7 @@ The angle of the rectangle in degrees.
 
 #### Defined in
 
-[definitions/RectangleDefinition.ts:29](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/definitions/RectangleDefinition.ts#L29)
+[definitions/RectangleDefinition.ts:29](https://github.com/avolutions/canvas-painter/blob/main/src/definitions/RectangleDefinition.ts#L29)
 
 ## Properties
 
@@ -48,7 +48,7 @@ The angle of the rectangle.
 
 #### Defined in
 
-[definitions/RectangleDefinition.ts:19](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/definitions/RectangleDefinition.ts#L19)
+[definitions/RectangleDefinition.ts:19](https://github.com/avolutions/canvas-painter/blob/main/src/definitions/RectangleDefinition.ts#L19)
 
 ***
 
@@ -60,7 +60,7 @@ The height of the rectangle.
 
 #### Defined in
 
-[definitions/RectangleDefinition.ts:16](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/definitions/RectangleDefinition.ts#L16)
+[definitions/RectangleDefinition.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/definitions/RectangleDefinition.ts#L16)
 
 ***
 
@@ -72,7 +72,7 @@ The position of the rectangle.
 
 #### Defined in
 
-[definitions/RectangleDefinition.ts:10](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/definitions/RectangleDefinition.ts#L10)
+[definitions/RectangleDefinition.ts:10](https://github.com/avolutions/canvas-painter/blob/main/src/definitions/RectangleDefinition.ts#L10)
 
 ***
 
@@ -84,4 +84,4 @@ The width of the rectangle.
 
 #### Defined in
 
-[definitions/RectangleDefinition.ts:13](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/definitions/RectangleDefinition.ts#L13)
+[definitions/RectangleDefinition.ts:13](https://github.com/avolutions/canvas-painter/blob/main/src/definitions/RectangleDefinition.ts#L13)

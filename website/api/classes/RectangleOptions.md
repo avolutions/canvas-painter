@@ -25,7 +25,7 @@ If true, the rectangle will be centered at the provided position.
 
 #### Defined in
 
-[options/RectangleOptions.ts:20](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/options/RectangleOptions.ts#L20)
+[options/RectangleOptions.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L20)
 
 ## Properties
 
@@ -38,7 +38,7 @@ If true, the rectangle will be centered at the provided position.
 
 #### Defined in
 
-[options/RectangleOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/options/RectangleOptions.ts#L21)
+[options/RectangleOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L21)
 
 ***
 
@@ -50,4 +50,4 @@ Default options for the rectangle.
 
 #### Defined in
 
-[options/RectangleOptions.ts:10](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/options/RectangleOptions.ts#L10)
+[options/RectangleOptions.ts:10](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L10)

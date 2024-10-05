@@ -50,7 +50,7 @@ Optional configuration options for the shape.
 
 #### Defined in
 
-[shapes/Shape.ts:44](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L44)
+[shapes/Shape.ts:44](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L44)
 
 ## Properties
 
@@ -62,7 +62,7 @@ The shape definition, proxied to trigger observer notifications on change.
 
 #### Defined in
 
-[shapes/Shape.ts:19](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L19)
+[shapes/Shape.ts:19](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L19)
 
 ***
 
@@ -74,7 +74,7 @@ The options for configuring the shape, proxied to trigger observer notifications
 
 #### Defined in
 
-[shapes/Shape.ts:25](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L25)
+[shapes/Shape.ts:25](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L25)
 
 ***
 
@@ -86,7 +86,7 @@ The style settings for the shape, proxied to trigger observer notifications on c
 
 #### Defined in
 
-[shapes/Shape.ts:22](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L22)
+[shapes/Shape.ts:22](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L22)
 
 ***
 
@@ -98,7 +98,7 @@ List of observer functions to be notified on shape changes.
 
 #### Defined in
 
-[shapes/Shape.ts:28](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L28)
+[shapes/Shape.ts:28](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L28)
 
 ## Accessors
 
@@ -126,7 +126,7 @@ The current options.
 
 #### Defined in
 
-[shapes/Shape.ts:145](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L145)
+[shapes/Shape.ts:145](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L145)
 
 ***
 
@@ -154,7 +154,7 @@ The current style settings.
 
 #### Defined in
 
-[shapes/Shape.ts:127](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L127)
+[shapes/Shape.ts:127](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L127)
 
 ## Methods
 
@@ -180,7 +180,7 @@ The observer callback function.
 
 #### Defined in
 
-[shapes/Shape.ts:94](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L94)
+[shapes/Shape.ts:94](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L94)
 
 ***
 
@@ -206,7 +206,7 @@ The observer callback function to be removed.
 
 #### Defined in
 
-[shapes/Shape.ts:105](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L105)
+[shapes/Shape.ts:105](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L105)
 
 ***
 
@@ -232,4 +232,4 @@ The 2D rendering context for the canvas.
 
 #### Defined in
 
-[shapes/Shape.ts:35](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/Shape.ts#L35)
+[shapes/Shape.ts:35](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L35)

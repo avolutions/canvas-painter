@@ -24,7 +24,7 @@ The height of the canvas in pixels. If undefined, a default value may be used.
 
 #### Defined in
 
-[options/CanvasOptions.ts:19](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/options/CanvasOptions.ts#L19)
+[options/CanvasOptions.ts:19](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L19)
 
 ## Properties
 
@@ -36,7 +36,7 @@ The height of the canvas in pixels. If undefined, a default value may be used.
 
 #### Defined in
 
-[options/CanvasOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/options/CanvasOptions.ts#L21)
+[options/CanvasOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L21)
 
 ***
 
@@ -48,7 +48,7 @@ The width of the canvas in pixels. If undefined, a default value may be used.
 
 #### Defined in
 
-[options/CanvasOptions.ts:20](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/options/CanvasOptions.ts#L20)
+[options/CanvasOptions.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L20)
 
 ***
 
@@ -60,4 +60,4 @@ Default canvas options.
 
 #### Defined in
 
-[options/CanvasOptions.ts:8](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/options/CanvasOptions.ts#L8)
+[options/CanvasOptions.ts:8](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L8)

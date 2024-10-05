@@ -16,7 +16,7 @@ The 2D context of the canvas.
 
 #### Defined in
 
-[Canvas.ts:172](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/Canvas.ts#L172)
+[Canvas.ts:172](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L172)
 
 ## Methods
 
@@ -32,7 +32,7 @@ Clears the canvas by removing all content.
 
 #### Defined in
 
-[Canvas.ts:179](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/Canvas.ts#L179)
+[Canvas.ts:179](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L179)
 
 ***
 
@@ -54,7 +54,7 @@ The shape to render.
 
 #### Defined in
 
-[Canvas.ts:207](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/Canvas.ts#L207)
+[Canvas.ts:207](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L207)
 
 ***
 
@@ -70,7 +70,7 @@ Clears the canvas and re-renders all watched shapes.
 
 #### Defined in
 
-[Canvas.ts:195](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/Canvas.ts#L195)
+[Canvas.ts:195](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L195)
 
 ***
 
@@ -96,7 +96,7 @@ Whether to immediately redraw the canvas after unregistering the shape(s).
 
 #### Defined in
 
-[Canvas.ts:141](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/Canvas.ts#L141)
+[Canvas.ts:141](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L141)
 
 ***
 
@@ -122,7 +122,7 @@ Whether to immediately redraw the canvas after registering the shape(s).
 
 #### Defined in
 
-[Canvas.ts:110](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/Canvas.ts#L110)
+[Canvas.ts:110](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L110)
 
 ***
 
@@ -158,4 +158,4 @@ If the canvas element is not found or is not a valid canvas.
 
 #### Defined in
 
-[Canvas.ts:74](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/Canvas.ts#L74)
+[Canvas.ts:74](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L74)
