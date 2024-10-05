@@ -11,7 +11,7 @@ export class MockShapeDefinition implements IShapeDefinition {
   list: Array<number>;
   position: Point;
 
-  constructor(width: number = 0, name: string = '', isFoo: boolean = true, list: Array<number> = [], position: Point = { x: 0, y:0 }) {
+  constructor(width: number = 0, name: string = '', isFoo: boolean = true, list: Array<number> = [], position: Point = new Point(0,0)) {
     this.width = width;
     this.name = name;
     this.isFoo = isFoo;
