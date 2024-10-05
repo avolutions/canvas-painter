@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Line
@@ -61,7 +61,7 @@ In this example we draw a line from start (75, 10) to end (75, 290) using the de
 
 ## Draw a line using individual coordinates
 
-You can also specify a line by providing individual coordinates (`x` and `y` values) for both the start and end positions.
+You can also specify a line by providing individual coordinates (`x` and `y`) for both the start and end positions.
 
 ```js
 import { Canvas, Line, Point } from '@avolutions/canvas-painter';
@@ -69,7 +69,7 @@ import { Canvas, Line, Point } from '@avolutions/canvas-painter';
 const canvas = Canvas.init('myCanvas');
 
 // Create the same line using coordinates
-const line2 = new Line(75, 10, 75, 290) // start.x, start.y, end.x, end.y
+const line = new Line(75, 10, 75, 290) // start.x, start.y, end.x, end.y
 
 canvas.draw(line);
 ```
