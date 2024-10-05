@@ -188,7 +188,7 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
     // Set rectangle specific styles
     context.fillStyle = this.style.color ?? context.fillStyle;
 
-    let topLeft = this.getTopLeftPosition();
+    const topLeft = this.getTopLeftPosition();
 
     // Rotate
     if (this.angle.degrees !== 0) {
