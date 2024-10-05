@@ -2,6 +2,7 @@ Abstract class representing a generic shape with observer functionality.
 
 ## Extended by
 
+- [`Line`](Line.md)
 - [`Rectangle`](Rectangle.md)
 
 ## Type Parameters
