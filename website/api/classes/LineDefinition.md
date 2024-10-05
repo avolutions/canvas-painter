@@ -28,7 +28,7 @@ The ending point of the line.
 
 #### Defined in
 
-[definitions/LineDefinition.ts:20](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/definitions/LineDefinition.ts#L20)
+[definitions/LineDefinition.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/definitions/LineDefinition.ts#L20)
 
 ## Properties
 
@@ -40,7 +40,7 @@ The ending point of the line.
 
 #### Defined in
 
-[definitions/LineDefinition.ts:12](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/definitions/LineDefinition.ts#L12)
+[definitions/LineDefinition.ts:12](https://github.com/avolutions/canvas-painter/blob/main/src/definitions/LineDefinition.ts#L12)
 
 ***
 
@@ -52,4 +52,4 @@ The starting point of the line.
 
 #### Defined in
 
-[definitions/LineDefinition.ts:9](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/definitions/LineDefinition.ts#L9)
+[definitions/LineDefinition.ts:9](https://github.com/avolutions/canvas-painter/blob/main/src/definitions/LineDefinition.ts#L9)

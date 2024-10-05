@@ -45,7 +45,7 @@ Throws if invalid arguments are passed.
 
 #### Defined in
 
-[shapes/Line.ts:19](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/shapes/Line.ts#L19)
+[shapes/Line.ts:19](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L19)
 
 ### new Line()
 
@@ -92,7 +92,7 @@ Throws if invalid arguments are passed.
 
 #### Defined in
 
-[shapes/Line.ts:29](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/shapes/Line.ts#L29)
+[shapes/Line.ts:29](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L29)
 
 ## Properties
 
@@ -108,7 +108,7 @@ The shape definition, proxied to trigger observer notifications on change.
 
 #### Defined in
 
-[shapes/Shape.ts:19](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/shapes/Shape.ts#L19)
+[shapes/Shape.ts:19](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L19)
 
 ***
 
@@ -124,7 +124,7 @@ The options for configuring the shape, proxied to trigger observer notifications
 
 #### Defined in
 
-[shapes/Shape.ts:25](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/shapes/Shape.ts#L25)
+[shapes/Shape.ts:25](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L25)
 
 ***
 
@@ -140,7 +140,7 @@ The style settings for the shape, proxied to trigger observer notifications on c
 
 #### Defined in
 
-[shapes/Shape.ts:22](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/shapes/Shape.ts#L22)
+[shapes/Shape.ts:22](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L22)
 
 ***
 
@@ -156,7 +156,7 @@ List of observer functions to be notified on shape changes.
 
 #### Defined in
 
-[shapes/Shape.ts:28](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/shapes/Shape.ts#L28)
+[shapes/Shape.ts:28](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L28)
 
 ## Accessors
 
@@ -184,7 +184,7 @@ The ending point of the line.
 
 #### Defined in
 
-[shapes/Line.ts:77](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/shapes/Line.ts#L77)
+[shapes/Line.ts:77](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L77)
 
 ***
 
@@ -216,7 +216,7 @@ The current options.
 
 #### Defined in
 
-[shapes/Shape.ts:145](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/shapes/Shape.ts#L145)
+[shapes/Shape.ts:145](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L145)
 
 ***
 
@@ -244,7 +244,7 @@ The starting point of the line.
 
 #### Defined in
 
-[shapes/Line.ts:68](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/shapes/Line.ts#L68)
+[shapes/Line.ts:68](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L68)
 
 ***
 
@@ -276,7 +276,7 @@ The current style settings.
 
 #### Defined in
 
-[shapes/Shape.ts:127](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/shapes/Shape.ts#L127)
+[shapes/Shape.ts:127](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L127)
 
 ## Methods
 
@@ -302,7 +302,47 @@ The observer callback function.
 
 #### Defined in
 
-[shapes/Shape.ts:94](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/shapes/Shape.ts#L94)
+[shapes/Shape.ts:94](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L94)
+
+***
+
+### moveEnd()
+
+> **moveEnd**(`deltaX`, `deltaY`): `void`
+
+#### Parameters
+
+• **deltaX**: `number` = `0`
+
+• **deltaY**: `number` = `0`
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[shapes/Line.ts:105](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L105)
+
+***
+
+### moveStart()
+
+> **moveStart**(`deltaX`, `deltaY`): `void`
+
+#### Parameters
+
+• **deltaX**: `number` = `0`
+
+• **deltaY**: `number` = `0`
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[shapes/Line.ts:101](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L101)
 
 ***
 
@@ -328,7 +368,7 @@ The observer callback function to be removed.
 
 #### Defined in
 
-[shapes/Shape.ts:105](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/shapes/Shape.ts#L105)
+[shapes/Shape.ts:105](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L105)
 
 ***
 
@@ -354,4 +394,4 @@ The canvas rendering context to draw the line.
 
 #### Defined in
 
-[shapes/Line.ts:106](https://github.com/avolutions/canvas-painter/blob/2991c601ad31bcf71f9ac4bd7da3736137b5eb60/src/shapes/Line.ts#L106)
+[shapes/Line.ts:114](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L114)
