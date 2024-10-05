@@ -29,7 +29,45 @@ console.log(`Point coordinates: (${point.x}, ${point.y})`);
 
 Points are particularly useful when defining the position of shapes, calculating distances between elements, or working with transformations.
 
-### Use cases
+## Moving a Point
+
+There are several methods available to move a point either horizontally, vertically, or in both directions.
+
+The `move()` method allows you to move the point by specified amounts along both the x-axis and the y-axis. If no values are provided, the point remains in the same position.
+
+```typescript
+const point = new Point(5, 10);
+point.move(2, 3); // Moves the point 2 units to the right and 3 units up
+
+console.log(point.x); // Outputs: 7
+console.log(point.y); // Outputs: 13
+```
+
+### Moving horizontally
+
+The `moveX()` method allows you to move the point along the x-axis by a specified amount. The point’s y-coordinate remains unchanged.
+
+```js
+const point = new Point(5, 10);
+point.moveX(3); // Same as point.move(3, 0);
+
+console.log(point.x); // Outputs: 8
+console.log(point.y); // Outputs: 10
+```
+
+### Moving vertically
+
+The `moveY()` method allows you to move the point along the y-axis by a specified amount. The point’s x-coordinate remains unchanged.
+
+```js
+const point = new Point(5, 10);
+point.moveY(-4); // Same as point.move(0, -4);
+
+console.log(point.x); // Outputs: 5
+console.log(point.y); // Outputs: 6
+```
+
+## Use cases
 
 - **Shape Positioning**: Points can be used to specify the starting position of shapes like rectangles, circles, or lines.
 - **Mouse Interaction**: Points can capture the coordinates of mouse events, such as when a user clicks or drags an element on the canvas.

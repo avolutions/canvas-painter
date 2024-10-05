@@ -166,7 +166,7 @@ describe('Rectangle class', () => {
 
     rectangle.width = 10;
     rectangle.height = 10;
-    rectangle.position = { x: 10, y: 10 };
+    rectangle.position = new Point(10, 10);
     rectangle.rotation = 10; // currently notify twice
     rectangle.style = { color: 'yellow' };
     rectangle.style.color = 'blue';
@@ -183,10 +183,10 @@ describe('Rectangle class', () => {
 
     rectangle.setSize(10, 10);
     rectangle.resize(10, 10);
-    rectangle.move(10, 10);
+    rectangle.move(10, 10); // currently notify twice per parameter
     rectangle.rotate(10); // currently notify twice
 
-    expect(observer).toHaveBeenCalledTimes(7);
+    expect(observer).toHaveBeenCalledTimes(10);
   });
 
   test('should call fillRect with correct position when not centered', () => {
