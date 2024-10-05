@@ -11,26 +11,31 @@ import { Shape } from "./Shape.js";
  */
 export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
   /**
-   * Creates an instance of the `Line` class.
-   *
-   * The `Line` can be created either by passing two `Point` objects representing the start and end of the line,
-   * or by providing the individual coordinates for the start and end points.
-   *   *
+   * @overload
    * @param start - The starting `Point` of the line.
    * @param end - The ending `Point` of the line.
    * @param style - Optional. Defines the styling of the line.
-   *
+   */
+  constructor(start: Point, end: Point, style?: LineStyle);
+
+  /**
    * @overload
    * @param startX - The X-coordinate of the starting point.
    * @param startY - The Y-coordinate of the starting point.
    * @param endX - The X-coordinate of the ending point.
    * @param endY - The Y-coordinate of the ending point.
    * @param style - Optional. Defines the styling of the line.
+   */
+  constructor(startX: number, startY: number, endX: number, endY: number, style?: LineStyle);
+
+  /**
+   * Creates an instance of the `Line` class.
+   *
+   * The `Line` can be created either by passing two `Point` objects representing the start and end of the line,
+   * or by providing the individual coordinates for the start and end points.
    *
    * @throws {Error} Throws if invalid arguments are passed.
    */
-  constructor(start: Point, end: Point, style?: LineStyle);
-  constructor(startX: number, startY: number, endX: number, endY: number, style?: LineStyle);
   constructor(arg1: Point | number, arg2: Point | number, arg3?: LineStyle | number, arg4?: number, arg5?: LineStyle) {
     let style;
     let lineDefinition;
