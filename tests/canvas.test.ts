@@ -85,6 +85,88 @@ describe('Canvas class', () => {
 
     expect((canvas as any)._options.width).toBe(123);
     expect((canvas as any)._options.height).toBe(456);
+
+    expect(canvasElement.width).toBe(123);
+    expect(canvasElement.height).toBe(456);
+  });
+
+  test('should use the canvas element attributes if no options are provided', () => {
+    // Mock getComputedStyle to simulate CSS dimensions
+    jest.spyOn(window, 'getComputedStyle').mockReturnValueOnce({
+      width: '600px',
+      height: '450px',
+    } as CSSStyleDeclaration);
+
+    canvasElement.width = 400;
+    canvasElement.height = 200;
+
+    const canvas = Canvas.init('canvas-id');
+
+    expect((canvas as any)._options.width).toBe(400);
+    expect((canvas as any)._options.height).toBe(200);
+
+    expect(canvasElement.width).toBe(400);
+    expect(canvasElement.height).toBe(200);
+  });
+
+  test('should use the computed CSS width and height if no options or attributes are provided', () => {
+    // Mock getComputedStyle to simulate CSS dimensions
+    jest.spyOn(window, 'getComputedStyle').mockReturnValueOnce({
+      width: '600px'
+    } as CSSStyleDeclaration);
+
+    jest.spyOn(window, 'getComputedStyle').mockReturnValueOnce({
+      height: '450px'
+    } as CSSStyleDeclaration);
+
+    const canvas = Canvas.init('canvas-id');
+
+    expect((canvas as any)._options.width).toBe(600);
+    expect((canvas as any)._options.height).toBe(450);
+
+    expect(canvasElement.width).toBe(600);
+    expect(canvasElement.height).toBe(450);
+  });
+
+  test('should use the passed options width and height even there are canvas element attributes and css', () => {
+    // Mock getComputedStyle to simulate CSS dimensions
+    jest.spyOn(window, 'getComputedStyle').mockReturnValueOnce({
+      width: '600px',
+      height: '450px',
+    } as CSSStyleDeclaration);
+
+    canvasElement.width = 300;
+    canvasElement.height = 200;
+
+    const options = {
+      width: 123,
+      height: 456
+    };
+
+    const canvas = Canvas.init('canvas-id', options);
+
+    expect((canvas as any)._options.width).toBe(123);
+    expect((canvas as any)._options.height).toBe(456);
+
+    expect(canvasElement.width).toBe(123);
+    expect(canvasElement.height).toBe(456);
+  });
+
+  test('should handle width and height independently', () => {
+    // Mock getComputedStyle to simulate CSS dimensions
+    jest.spyOn(window, 'getComputedStyle').mockReturnValueOnce({
+      width: '600px',
+    } as CSSStyleDeclaration);
+
+    canvasElement.height = 200;
+
+    const canvas = Canvas.init('canvas-id');
+
+    expect((canvas as any)._options.width).toBe(600);
+    expect((canvas as any)._options.height).toBe(200);
+
+    expect(canvasElement.width).toBe(600);
+    expect(canvasElement.height).toBe(200);
   });
 
   test('should set default style', () => {
