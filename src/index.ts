@@ -1,8 +1,13 @@
 /* Canvas */
 export { Canvas } from './Canvas.js';
 
+/* Common */
+export { ISerializable } from './common/ISerializable.js';
+export { Serializable } from './common/Serializable.js';
+
 /* Definitions */
 export { IShapeDefinition } from './definitions/IShapeDefinition.js';
+export { ShapeDefinition } from './definitions/ShapeDefinition.js';
 export { CircleDefinition } from './definitions/CircleDefinition.js';
 export { LineDefinition } from './definitions/LineDefinition.js';
 export { RectangleDefinition } from './definitions/RectangleDefinition.js';

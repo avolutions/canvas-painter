@@ -124,6 +124,49 @@ Property | Description | Example
 `radius` | Gets the current radius of the circle. | `const radius = circle.radius;`
 `style` | Gets a [CircleStyle](../../api/classes/CircleStyle) object representing the style of the circle. | `const style = circle.style;`<br />`const color = circle.style.color;`
 
+## Serialize a circle
+
+The `Circle` shape in **CanvasPainter.js** can be serialized into both array and JSON formats using the `toArray()` and `toJson()` methods. These methods allow you to easily convert the circle's definition into standard formats for saving, exporting, or transmitting data.
+
+### Serialize to array
+
+The `toArray` method converts the circle's definition into an array. This can be useful when you need a lightweight representation of the point, or when you need to work with libraries or functions that expect data in array format.
+
+```js
+const circle = new Circle(10, 10, 20);
+circle.toArray();
+```
+
+This will give you an array in this format:
+
+```js
+[
+  [x, y], // center
+  radius  // radius
+]
+```
+
+### Serialize to JSON
+
+The `toJson()` method for a circle returns a structured JSON string that includes the circles definition. This format is ideal for working with APIs or saving to structured data formats.
+
+```js
+const circle = new Circle(10, 10, 20);
+circle.toJson();
+```
+
+This will give you a JSON string in this format:
+
+```js
+{
+  center: {
+    x: number,
+    y: number
+  },
+  radius: number
+}
+```
+
 ## Style
 
 The following table is showing all available circle styles and the default values if no value was provided explicit.

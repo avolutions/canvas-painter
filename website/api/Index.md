@@ -18,10 +18,13 @@
 - [RectangleDefinition](classes/RectangleDefinition.md)
 - [RectangleOptions](classes/RectangleOptions.md)
 - [RectangleStyle](classes/RectangleStyle.md)
+- [Serializable](classes/Serializable.md)
 - [Shape](classes/Shape.md)
+- [ShapeDefinition](classes/ShapeDefinition.md)
 
 ## Interfaces
 
+- [ISerializable](interfaces/ISerializable.md)
 - [IShape](interfaces/IShape.md)
 - [IShapeDefinition](interfaces/IShapeDefinition.md)
 - [IShapeOptions](interfaces/IShapeOptions.md)

@@ -1,16 +1,10 @@
-Interface for defining the basic structure of a shape.
+Interface that defines the structure for serializable objects.
+Classes implementing this interface should provide functionality
+to serialize their properties into an array and a JSON string.
 
-This interface can be extended by various shape definitions
-(e.g., rectangles, circles) to ensure a consistent structure
-across different shape types.
+## Extended by
 
-## Remarks
-
-This is an empty object type and serves as a base or marker for shape definition types.
-
-## Extends
-
-- [`ISerializable`](ISerializable.md)
+- [`IShapeDefinition`](IShapeDefinition.md)
 
 ## Methods
 
@@ -25,10 +19,6 @@ Serializes the object’s properties into an array.
 `any`[]
 
 An array representation of the object's properties.
-
-#### Inherited from
-
-[`ISerializable`](ISerializable.md).[`toArray`](ISerializable.md#toarray)
 
 #### Defined in
 
@@ -47,10 +37,6 @@ Serializes the object’s properties into a JSON string.
 `string`
 
 A JSON string representation of the object.
-
-#### Inherited from
-
-[`ISerializable`](ISerializable.md).[`toJson`](ISerializable.md#tojson)
 
 #### Defined in
 

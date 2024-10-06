@@ -16,6 +16,58 @@ test('RectangleDefinition constructs properly', () => {
   expect(rectangle.angle).toEqual(angle);
 });
 
+it('should serialize into an array', () => {
+  const position = new Point(1, 2);
+  const width = 100;
+  const height = 50;
+  const angle = new Angle(45);
+
+  const definition = new RectangleDefinition(position, width, height, angle);
+  const result = definition.toArray();
+
+  const expectedResult = [
+    100,
+    50,
+    [
+      1,
+      2
+    ],
+    [
+      45,
+      45 * Math.PI / 180,
+      false
+    ]
+  ];
+
+  expect(result).toEqual(expectedResult);
+});
+
+it('should serialize into json', () => {
+  const position = new Point(1, 2);
+  const width = 100;
+  const height = 50;
+  const angle = new Angle(45);
+
+  const definition = new RectangleDefinition(position, width, height, angle);
+  const result = definition.toJson();
+
+  const expectedResult = {
+    width: 100,
+    height: 50,
+    position: {
+      x: 1,
+      y: 2
+    },
+    angle: {
+      degrees: 45,
+      radians: 45 * Math.PI / 180,
+      isNormalized: false
+    }
+  }
+
+  expect(result).toEqual(JSON.stringify(expectedResult));
+});
+
 test('RectangleDefinition handles zero width and height', () => {
   const position = new Point(10, 10);
   const zeroWidth = 0;

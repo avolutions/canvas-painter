@@ -15,6 +15,20 @@ describe('Point class', () => {
     expect(point.y).toBe(-4);
   });
 
+  it('should serialize into an array', () => {
+    const point = new Point(5, 6);
+    const result = point.toArray();
+
+    expect(result).toEqual([5, 6]);
+  });
+
+  it('should serialize into json', () => {
+    const point = new Point(5, 6);
+    const result = point.toJson();
+
+    expect(result).toEqual(JSON.stringify({x: 5, y: 6}));
+  });
+
   test('should update x and y coordinates', () => {
     const point = new Point(0, 0);
 

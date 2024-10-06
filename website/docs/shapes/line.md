@@ -126,6 +126,52 @@ Property | Description | Example
 `end` | Gets an [Point](../../api/classes/Point) object representing the end position of the line. | `const end = line.end;`<br />`const x = end.x;`
 `style` | Gets a [LineStyle](../../api/classes/LineStyle) object representing the style of the line. | `const style = line.style;`<br />`const color = line.style.color;`
 
+## Serialize a line
+
+The `Line` shape in **CanvasPainter.js** can be serialized into both array and JSON formats using the `toArray()` and `toJson()` methods. These methods allow you to easily convert the line's definition into standard formats for saving, exporting, or transmitting data.
+
+### Serialize to array
+
+The `toArray` method converts the line's definition into an array. This can be useful when you need a lightweight representation of the point, or when you need to work with libraries or functions that expect data in array format.
+
+```js
+const line = new Line(10, 10, 20, 20);
+line.toArray();
+```
+
+This will give you an array in this format:
+
+```js
+[
+  [x, y], // start
+  [x, y]  // end
+]
+```
+
+### Serialize to JSON
+
+The `toJson()` method for a line returns a structured JSON string that includes the lines definition. This format is ideal for working with APIs or saving to structured data formats.
+
+```js
+const line = new Line(10, 10, 20, 20);
+line.toJson();
+```
+
+This will give you a JSON string in this format:
+
+```js
+{
+  start: {
+    x: number,
+    y: number
+  },
+  end: {
+    x: number,
+    y: number
+  }
+}
+```
+
 ## Style
 
 The following table is showing all available line styles and the default values if no value was provided explicit.
