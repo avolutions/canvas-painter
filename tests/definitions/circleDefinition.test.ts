@@ -24,6 +24,28 @@ describe('CircleDefinition', () => {
     }).toThrow("Radius must be a positive number");
   });
 
+  it('should serialize into an array', () => {
+    const definition = new CircleDefinition(new Point(1, 2), 3);
+    const result = definition.toArray();
+
+    expect(result).toEqual([[1, 2], 3]);
+  });
+
+  it('should serialize into json', () => {
+    const definition = new CircleDefinition(new Point(1, 2), 3);
+    const result = definition.toJson();
+
+    const expectedResult = {
+      center: {
+        x: 1,
+        y: 2
+      },
+      radius: 3
+    }
+
+    expect(result).toEqual(JSON.stringify(expectedResult));
+  });
+
   test('should allow updating the center and radius', () => {
     const center = new Point(0, 0);
     const circle = new CircleDefinition(center, 10);

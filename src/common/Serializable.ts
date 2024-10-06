@@ -25,6 +25,7 @@ export class Serializable implements ISerializable {
   /**
    * Converts the object to a JSON string. If any of the properties
    * are objects that implement ISerializable, their `toJson` method is called.
+   * Underscores e.g. of private members are trimmed when setting the serialized name.
    *
    * @returns {string} A JSON string representation of the object.
    */

@@ -2,6 +2,10 @@ Interface that defines the structure for serializable objects.
 Classes implementing this interface should provide functionality
 to serialize their properties into an array and a JSON string.
 
+## Extended by
+
+- [`IShapeDefinition`](IShapeDefinition.md)
+
 ## Methods
 
 ### toArray()

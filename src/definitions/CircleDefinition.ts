@@ -1,10 +1,10 @@
 import { Point } from "../types/Point.js";
-import { IShapeDefinition } from "./IShapeDefinition.js";
+import { ShapeDefinition } from "./ShapeDefinition.js";
 
 /**
  * Class representing a circle definition.
  */
-export class CircleDefinition implements IShapeDefinition {
+export class CircleDefinition extends ShapeDefinition {
   /** The center point of the circle. */
   public center: Point;
 
@@ -21,6 +21,8 @@ export class CircleDefinition implements IShapeDefinition {
     center: Point,
     radius: number,
   ) {
+    super();
+
     this.center = center;
     this.radius = radius;
   }

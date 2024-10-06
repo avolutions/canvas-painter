@@ -1,11 +1,11 @@
 import { Angle } from "../types/Angle.js";
 import { Point } from "../types/Point.js";
-import { IShapeDefinition } from "./IShapeDefinition.js";
+import { ShapeDefinition } from "./ShapeDefinition.js";
 
 /**
  * Class representing a Rectangle definition.
  */
-export class RectangleDefinition implements IShapeDefinition {
+export class RectangleDefinition extends ShapeDefinition {
   /** The position of the rectangle. */
   public position: Point;
 
@@ -32,6 +32,8 @@ export class RectangleDefinition implements IShapeDefinition {
     height: number,
     angle: Angle
   ) {
+    super();
+
     this.width = width;
     this.height = height;
     this.position = position;

@@ -23,6 +23,7 @@ The type of shape options implementing IShapeOptions.
 ## Implements
 
 - [`IShape`](../interfaces/IShape.md)
+- [`ISerializable`](../interfaces/ISerializable.md)
 
 ## Constructors
 
@@ -52,7 +53,7 @@ Optional configuration options for the shape.
 
 #### Defined in
 
-[shapes/Shape.ts:44](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L44)
+[shapes/Shape.ts:45](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L45)
 
 ## Properties
 
@@ -64,7 +65,7 @@ The shape definition, proxied to trigger observer notifications on change.
 
 #### Defined in
 
-[shapes/Shape.ts:19](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L19)
+[shapes/Shape.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L20)
 
 ***
 
@@ -76,7 +77,7 @@ The options for configuring the shape, proxied to trigger observer notifications
 
 #### Defined in
 
-[shapes/Shape.ts:25](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L25)
+[shapes/Shape.ts:26](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L26)
 
 ***
 
@@ -88,7 +89,7 @@ The style settings for the shape, proxied to trigger observer notifications on c
 
 #### Defined in
 
-[shapes/Shape.ts:22](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L22)
+[shapes/Shape.ts:23](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L23)
 
 ***
 
@@ -100,7 +101,7 @@ List of observer functions to be notified on shape changes.
 
 #### Defined in
 
-[shapes/Shape.ts:28](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L28)
+[shapes/Shape.ts:29](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L29)
 
 ## Accessors
 
@@ -128,7 +129,7 @@ The current options.
 
 #### Defined in
 
-[shapes/Shape.ts:145](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L145)
+[shapes/Shape.ts:165](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L165)
 
 ***
 
@@ -156,7 +157,7 @@ The current style settings.
 
 #### Defined in
 
-[shapes/Shape.ts:127](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L127)
+[shapes/Shape.ts:147](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L147)
 
 ## Methods
 
@@ -182,7 +183,7 @@ The observer callback function.
 
 #### Defined in
 
-[shapes/Shape.ts:94](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L94)
+[shapes/Shape.ts:114](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L114)
 
 ***
 
@@ -208,7 +209,7 @@ The observer callback function to be removed.
 
 #### Defined in
 
-[shapes/Shape.ts:105](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L105)
+[shapes/Shape.ts:125](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L125)
 
 ***
 
@@ -234,4 +235,48 @@ The 2D rendering context for the canvas.
 
 #### Defined in
 
-[shapes/Shape.ts:35](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L35)
+[shapes/Shape.ts:36](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L36)
+
+***
+
+### toArray()
+
+> **toArray**(): `any`[]
+
+Converts the shape's definition to an array.
+
+#### Returns
+
+`any`[]
+
+An array representation of the shape's definition.
+
+#### Implementation of
+
+[`ISerializable`](../interfaces/ISerializable.md).[`toArray`](../interfaces/ISerializable.md#toarray)
+
+#### Defined in
+
+[shapes/Shape.ts:96](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L96)
+
+***
+
+### toJson()
+
+> **toJson**(): `string`
+
+Converts the shape's definition to a JSON string.
+
+#### Returns
+
+`string`
+
+A JSON string  representation of the shape's definition.
+
+#### Implementation of
+
+[`ISerializable`](../interfaces/ISerializable.md).[`toJson`](../interfaces/ISerializable.md#tojson)
+
+#### Defined in
+
+[shapes/Shape.ts:105](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L105)

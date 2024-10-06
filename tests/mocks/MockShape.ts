@@ -1,10 +1,10 @@
-import { IShapeDefinition } from "../../src/definitions/IShapeDefinition";
+import { ShapeDefinition } from "../../src/definitions/ShapeDefinition";
 import { IShapeOptions } from "../../src/options/IShapeOptions";
 import { Shape } from "../../src/shapes/Shape";
 import { IShapeStyle } from "../../src/styles/IShapeStyle";
 import { Point } from "../../src/types/Point";
 
-export class MockShapeDefinition implements IShapeDefinition {
+export class MockShapeDefinition extends ShapeDefinition {
   width: number;
   name: string;
   isFoo: boolean;
@@ -12,6 +12,8 @@ export class MockShapeDefinition implements IShapeDefinition {
   position: Point;
 
   constructor(width: number = 0, name: string = '', isFoo: boolean = true, list: Array<number> = [], position: Point = new Point(0,0)) {
+    super();
+
     this.width = width;
     this.name = name;
     this.isFoo = isFoo;

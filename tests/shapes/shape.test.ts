@@ -2,6 +2,37 @@ import { Point } from "../../src/types/Point";
 import { MockShape, MockShapeOptions, MockShapeStyle } from "../mocks/MockShape";
 
 describe('Shape class', () => {
+  test("should serialize definition to array", () => {
+    const shape = new MockShape();
+
+    const expectedResult = [
+      0,
+      "",
+      true,
+      [],
+      [0,0]
+    ];
+
+    expect(shape.toArray()).toEqual(expectedResult);
+  });
+
+  test("should serialize definition to json", () => {
+    const shape = new MockShape();
+
+    const expectedResult = {
+      width: 0,
+      name: "",
+      isFoo: true,
+      list: [],
+      position: {
+        x: 0,
+        y: 0
+      }
+    };
+
+    expect(shape.toJson()).toEqual(JSON.stringify(expectedResult));
+  });
+
   test("should set definition from constructor", () => {
     const shape = new MockShape(10);
 

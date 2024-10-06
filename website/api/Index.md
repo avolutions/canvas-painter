@@ -20,6 +20,7 @@
 - [RectangleStyle](classes/RectangleStyle.md)
 - [Serializable](classes/Serializable.md)
 - [Shape](classes/Shape.md)
+- [ShapeDefinition](classes/ShapeDefinition.md)
 
 ## Interfaces
 

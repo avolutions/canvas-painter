@@ -1,10 +1,10 @@
 import { Point } from "../types/Point.js";
-import { IShapeDefinition } from "./IShapeDefinition.js";
+import { ShapeDefinition } from "./ShapeDefinition.js";
 
 /**
  * Class representing a line definition.
  */
-export class LineDefinition implements IShapeDefinition {
+export class LineDefinition extends ShapeDefinition {
   /** The starting point of the line. */
   public start: Point;
 
@@ -21,6 +21,8 @@ export class LineDefinition implements IShapeDefinition {
     start: Point,
     end: Point,
   ) {
+    super();
+
     this.start = start;
     this.end = end;
   }

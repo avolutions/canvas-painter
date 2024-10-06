@@ -159,6 +159,7 @@ An array representation of the object's properties.
 
 Converts the object to a JSON string. If any of the properties
 are objects that implement ISerializable, their `toJson` method is called.
+Underscores e.g. of private members are trimmed when setting the serialized name.
 
 #### Returns
 
@@ -172,4 +173,4 @@ A JSON string representation of the object.
 
 #### Defined in
 
-[common/Serializable.ts:31](https://github.com/avolutions/canvas-painter/blob/main/src/common/Serializable.ts#L31)
+[common/Serializable.ts:32](https://github.com/avolutions/canvas-painter/blob/main/src/common/Serializable.ts#L32)
