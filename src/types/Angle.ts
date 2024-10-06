@@ -1,4 +1,4 @@
-import { ISerializable } from "../common/ISerializable";
+import { ISerializable } from "../common/ISerializable.js";
 
 /**
  * Class representing an angle, which can be defined in degrees or radians.
@@ -29,7 +29,7 @@ export class Angle implements ISerializable {
    * @returns {Array<number | boolean>} An array containing the degrees as a number,
    * the radians as a number, and the result of `isNormalized()` as a boolean.
    */
-  toArray(): Array<number | boolean> {
+  public toArray(): Array<number | boolean> {
     return [
       this.degrees,
       this.radians,
@@ -44,7 +44,7 @@ export class Angle implements ISerializable {
    * @returns {string} A JSON string representation of the object, including degrees,
    * radians, and whether it is normalized.
    */
-  toJson(): string {
+  public toJson(): string {
     const json = {
       "degrees": this.degrees,
       "radians": this.radians,
