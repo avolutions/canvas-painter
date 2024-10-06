@@ -1,8 +1,10 @@
+import { ISerializable } from "../common/ISerializable";
+
 /**
  * Class representing an angle, which can be defined in degrees or radians.
  * Provides functionality for normalization and angle adjustments.
  */
-export class Angle {
+export class Angle implements ISerializable {
   /** The internal degrees value of the angle. */
   private _degrees!: number;
 
@@ -18,6 +20,38 @@ export class Angle {
   constructor(degrees: number, normalized: boolean = false) {
     this._normalized = normalized;
     this.degrees = degrees;
+  }
+
+  /**
+   * Serializes the object’s properties into an array, consisting of
+   * the degrees, radians, and the result of the `isNormalized()` method.
+   *
+   * @returns {Array<number | boolean>} An array containing the degrees as a number,
+   * the radians as a number, and the result of `isNormalized()` as a boolean.
+   */
+  toArray(): Array<number | boolean> {
+    return [
+      this.degrees,
+      this.radians,
+      this.isNormalized()
+    ];
+  }
+
+  /**
+   * Serializes the object’s properties into a JSON string. The JSON object contains
+   * the degrees, radians, and the result of the `isNormalized()` method.
+   *
+   * @returns {string} A JSON string representation of the object, including degrees,
+   * radians, and whether it is normalized.
+   */
+  toJson(): string {
+    const json = {
+      "degrees": this.degrees,
+      "radians": this.radians,
+      "isNormalized": this.isNormalized()
+    }
+
+    return JSON.stringify(json);
   }
 
   /**

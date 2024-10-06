@@ -124,3 +124,25 @@ console.log(angle.degrees); // Output: -25
 angle.adjustByRadians(Math.PI / 4);
 console.log(angle.degrees); // Output: 20
 ```
+
+## Serialize angle
+
+When working with angles in **CanvasPainter.js**, you might need to serialize them into different formats for various purposes, such as saving state, sending data to a server, or exporting canvas elements. The `Angle` class provides two convenient methods for serializing its data: `toArray()` and `toJson()`.
+
+### Serialize to array
+
+The `toArray` method converts the angles's properties `degrees`, `radians` and `isNormalized` into an array. This can be useful when you need a lightweight representation of the angle, or when you need to work with libraries or functions that expect data in array format.
+
+```js
+const angle = new Angle(180);
+angle.toArray(); // [180, 3.14159, false]
+```
+
+### Serialize to JSON
+
+The `toJson` method converts the angle into a JSON object, which is useful when you need a more descriptive format or when interacting with APIs or data formats that require JSON.
+
+```js
+const angle = new Angle(-180, true);
+angle.toJson(); // { degrees: 180, radians: 3.14159, isNormalized: true }
+```
