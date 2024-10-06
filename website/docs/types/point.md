@@ -67,6 +67,28 @@ console.log(point.x); // Outputs: 5
 console.log(point.y); // Outputs: 6
 ```
 
+## Serialize point
+
+When working with points in **CanvasPainter.js**, you might need to serialize them into different formats for various purposes, such as saving state, sending data to a server, or exporting canvas elements. The `Point` class provides two convenient methods for serializing its data: `toArray()` and `toJson()`.
+
+### Serialize to array
+
+The `toArray` method converts the point's `x` and `y` coordinates into an array. This can be useful when you need a lightweight representation of the point, or when you need to work with libraries or functions that expect data in array format.
+
+```js
+const point = new Point(50, 100);
+point.toArray(); // [50, 100]
+```
+
+### Serialize to JSON
+
+The `toJson` method converts the point into a JSON object, which is useful when you need a more descriptive format or when interacting with APIs or data formats that require JSON.
+
+```js
+const point = new Point(50, 100);
+point.toJson(); // { x: 50, y: 100 }
+```
+
 ## Use cases
 
 - **Shape Positioning**: Points can be used to specify the starting position of shapes like rectangles, circles, or lines.

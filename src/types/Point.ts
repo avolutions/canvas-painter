@@ -1,7 +1,9 @@
+import { Serializable } from "../common/Serializable.js";
+
 /**
  * Class representing a 2D point with x and y coordinates.
  */
-export class Point {
+export class Point extends Serializable {
   /**
    * The x-coordinate of the point.
    */
@@ -19,6 +21,8 @@ export class Point {
    * @param y - The y-coordinate of the point.
    */
   constructor(x: number, y: number) {
+    super();
+
     this.x = x;
     this.y = y;
   }

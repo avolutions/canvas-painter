@@ -1,5 +1,9 @@
 Class representing a 2D point with x and y coordinates.
 
+## Extends
+
+- [`Serializable`](Serializable.md)
+
 ## Constructors
 
 ### new Point()
@@ -22,9 +26,13 @@ The y-coordinate of the point.
 
 [`Point`](Point.md)
 
+#### Overrides
+
+[`Serializable`](Serializable.md).[`constructor`](Serializable.md#constructors)
+
 #### Defined in
 
-[types/Point.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L21)
+[types/Point.ts:23](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L23)
 
 ## Properties
 
@@ -36,7 +44,7 @@ The x-coordinate of the point.
 
 #### Defined in
 
-[types/Point.ts:8](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L8)
+[types/Point.ts:10](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L10)
 
 ***
 
@@ -48,7 +56,7 @@ The y-coordinate of the point.
 
 #### Defined in
 
-[types/Point.ts:13](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L13)
+[types/Point.ts:15](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L15)
 
 ## Methods
 
@@ -74,7 +82,7 @@ The amount to move the point along the y-axis (default is 0).
 
 #### Defined in
 
-[types/Point.ts:50](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L50)
+[types/Point.ts:54](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L54)
 
 ***
 
@@ -96,7 +104,7 @@ The amount to move the point along the x-axis.
 
 #### Defined in
 
-[types/Point.ts:31](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L31)
+[types/Point.ts:35](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L35)
 
 ***
 
@@ -118,4 +126,50 @@ The amount to move the point along the y-axis.
 
 #### Defined in
 
-[types/Point.ts:40](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L40)
+[types/Point.ts:44](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L44)
+
+***
+
+### toArray()
+
+> **toArray**(): `any`[]
+
+Converts the object's properties to an array. If any of the properties
+are objects that implement ISerializable, their `toArray` method is called.
+
+#### Returns
+
+`any`[]
+
+An array representation of the object's properties.
+
+#### Inherited from
+
+[`Serializable`](Serializable.md).[`toArray`](Serializable.md#toarray)
+
+#### Defined in
+
+[common/Serializable.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/common/Serializable.ts#L16)
+
+***
+
+### toJson()
+
+> **toJson**(): `string`
+
+Converts the object to a JSON string. If any of the properties
+are objects that implement ISerializable, their `toJson` method is called.
+
+#### Returns
+
+`string`
+
+A JSON string representation of the object.
+
+#### Inherited from
+
+[`Serializable`](Serializable.md).[`toJson`](Serializable.md#tojson)
+
+#### Defined in
+
+[common/Serializable.ts:31](https://github.com/avolutions/canvas-painter/blob/main/src/common/Serializable.ts#L31)
