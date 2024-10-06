@@ -3,7 +3,7 @@ import { Point } from '../../src/types/Point';
 
 // Test class that extends Serializable
 class TestClass extends Serializable {
-  constructor(public name: string, public age: number, public isFoo: boolean | null, public hobbies: Array<any>, public point?: Point, private isPrivate: boolean = true) {
+  constructor(public name: string, public age: number, public isFoo: boolean | null, public hobbies: Array<any>, public point?: Point, private _isPrivate: boolean = true) {
     super();
   }
 }

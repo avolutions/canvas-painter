@@ -32,6 +32,8 @@ export class Serializable implements ISerializable {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const jsonObject: any = {};
     Object.entries(this).forEach(([key, value]) => {
+      // Trim leading underscore from private properties
+      key = key.split('_').join('');
       if (value && typeof value.toJson === 'function') {
         jsonObject[key] = JSON.parse(value.toJson()); // Call toJson for nested objects
       } else {
