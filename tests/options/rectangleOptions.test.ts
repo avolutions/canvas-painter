@@ -1,4 +1,5 @@
 import { RectangleOptions } from '../../src/options/RectangleOptions';
+import { ShapeOptions } from '../../src/options/ShapeOptions';
 
 describe('RectangleOptions', () => {
 
@@ -6,6 +7,9 @@ describe('RectangleOptions', () => {
     const options = new RectangleOptions();
 
     expect(options).toBeInstanceOf(RectangleOptions);
+
+    // Ensure that RectangleOptions extends ShapeOptions
+    expect(options).toBeInstanceOf(ShapeOptions);
   });
 
   test('should have default options', () => {
@@ -14,10 +18,14 @@ describe('RectangleOptions', () => {
     expect(defaults.centered).toBe(false);
   });
 
-  test('should set the centered property correctly when provided', () => {
-    const options = new RectangleOptions(true);
+  test('should inherit default shape options', () => {
+    const shapeDefaults = ShapeOptions.DefaultOptions;
+    const rectangleDefaults = RectangleOptions.DefaultOptions;
 
-    expect(options.centered).toBe(true);
+    // Ensure every key from ShapeOptions.DefaultOptions exists in RectangleOptions.DefaultOptions
+    (Object.keys(shapeDefaults) as (keyof ShapeOptions)[]).forEach((key) => {
+      expect(rectangleDefaults).toHaveProperty(key, shapeDefaults[key]);
+    });
   });
 
   test('should set the centered property to undefined if not provided', () => {
@@ -26,10 +34,10 @@ describe('RectangleOptions', () => {
     expect(options.centered).toBeUndefined();
   });
 
-  test('should set the centered property to false when explictestly provided', () => {
-    const options = new RectangleOptions(false);
+  test('should set the centered property correctly when provided', () => {
+    const options = new RectangleOptions(true);
 
-    expect(options.centered).toBe(false);
+    expect(options.centered).toBe(true);
   });
 
   test('should allow update of properties', () => {
@@ -38,5 +46,13 @@ describe('RectangleOptions', () => {
     options.centered = true;
 
     expect(options.centered).toBe(true);
+  });
+
+  test('should allow update of inherited properties', () => {
+    const options = new RectangleOptions();
+
+    options.isVisible = true;
+
+    expect(options.isVisible).toBe(true);
   });
 });

@@ -37,6 +37,9 @@ describe('Circle class', () => {
     expect(circle.center.y).toBe(center.y);
     expect(circle.radius).toBe(7);
     expect(circle.style).toStrictEqual({});
+
+    // Ensure default options applied correctly
+    expect(circle.isVisible()).toBe(true);
   });
 
   test('should create a Circle object using Point and style', () => {
@@ -72,6 +75,9 @@ describe('Circle class', () => {
     expect(circle.center.y).toBe(10);
     expect(circle.radius).toBe(7);
     expect(circle.style).toStrictEqual({});
+
+    // Ensure default options applied correctly
+    expect(circle.isVisible()).toBe(true);
   });
 
   test('should create a Circle object using coordinates and style', () => {

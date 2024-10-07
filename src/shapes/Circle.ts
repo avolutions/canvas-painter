@@ -58,7 +58,11 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
       throw new Error('Invalid constructor arguments');
     }
 
-    super(definition, style, {});
+    const options: CircleOptions = {
+      ...CircleOptions.DefaultOptions
+    };
+
+    super(definition, style, options);
   }
 
   // Getters

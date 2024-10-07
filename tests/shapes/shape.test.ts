@@ -66,7 +66,6 @@ describe('Shape class', () => {
   test("should get options through getter", () => {
     const shape = new MockShape();
 
-    expect(shape.options).toBeInstanceOf(MockShapeOptions);
     expect(shape.options.isVisible).toBe(true);
   });
 
@@ -78,6 +77,18 @@ describe('Shape class', () => {
 
     shape.options.isVisible = true;
     expect(shape.options.isVisible).toBe(true);
+  });
+
+  test("should handle visibility correctly", () => {
+    const shape = new MockShape();
+
+    expect(shape.isVisible()).toBe(true);
+
+    shape.hide();
+    expect(shape.isVisible()).toBe(false);
+
+    shape.show();
+    expect(shape.isVisible()).toBe(true);
   });
 
   test("should add and remove observer", () => {

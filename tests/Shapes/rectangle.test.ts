@@ -39,6 +39,9 @@ describe('Rectangle class', () => {
     expect(rectangle.position.y).toEqual(15);
     expect(rectangle.angle).toBeInstanceOf(Angle);
     expect(rectangle.angle.degrees).toEqual(15);
+
+    // Ensure default options applied correctly
+    expect(rectangle.isVisible()).toBe(true);
   });
 
   test("should initialize optional rotation correctly via constructor", () => {

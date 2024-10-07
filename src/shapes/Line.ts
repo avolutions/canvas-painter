@@ -61,7 +61,11 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
       throw new Error('Invalid constructor arguments');
     }
 
-    super(definition, style, {});
+    const options: LineOptions = {
+      ...LineOptions.DefaultOptions
+    };
+
+    super(definition, style, options);
   }
 
   // Getters

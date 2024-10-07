@@ -38,6 +38,9 @@ describe('Line class', () => {
     expect(line.end.x).toBe(end.x);
     expect(line.end.y).toBe(end.y);
     expect(line.style).toStrictEqual({});
+
+    // Ensure default options applied correctly
+    expect(line.isVisible()).toBe(true);
   });
 
   test('should create a Line object using Points and style', () => {
@@ -69,6 +72,9 @@ describe('Line class', () => {
     expect(line.end.x).toBe(endX);
     expect(line.end.y).toBe(endY);
     expect(line.style).toStrictEqual({});
+
+    // Ensure default options applied correctly
+    expect(line.isVisible()).toBe(true);
   });
 
   test('should create a Line object using coordinates and style', () => {
