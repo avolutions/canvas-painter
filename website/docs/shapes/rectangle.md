@@ -221,4 +221,5 @@ The following table is showing all available rectangle options and the default v
 
 Option | Default | Explanation
 --- | --- | ---
-`centered` | false | If true, the rectangle will be centered at the provided position.<br />If false or undefined, the rectangle will be positioned from the top-left corner.
+`centered` | false | If `true`, the rectangle will be centered at the provided position.<br />If `false` or `undefined`, the rectangle will be positioned from the top-left corner.
+`visible` | true | If `true`, the rectangle will be visible.<br />If `false` or `undefined`, the rectangle will be hidden.

@@ -120,6 +120,55 @@ Typically in this method, the shape is rendered by using official JavaScript Can
 
 When working with `Canvas` class, the `render()` method gets the context of the `Canvas` class. But it is also possible to use shapes without `Canvas` class and provide your own context.
 
+## Show and hide shapes
+
+In **CanvasPainter.js**, shapes can be dynamically shown or hidden on the canvas based on user interactions or other events. This is especially useful when creating interactive applications where certain elements need to be temporarily hidden or displayed, such as in games, dashboards, or drawing tools. The ability to control the visibility of shapes allows you to create more responsive and dynamic visual experiences.
+
+By default each shape is visible. You can check the visibility of a shape by checking the `visible` option or just call `isVisible()`.
+
+```js
+const circle = new Circle(10, 10, 10);
+
+// Get visibility by isVisible();
+circle.isVisible(); // true
+
+// Get visibility from options
+circle.options.visible; // visible;
+```
+
+### Hide a shape
+
+To hide a shape, you can either use the `options` property of the shape and set its `visible` option to `false` or call the `hide()` method of the shape. When a shape is hidden, it will not be rendered on the canvas, but it still exists in memory and can be shown again at any time. Also all changes on the shape still triggers an redraw of the canvas.
+
+```js
+// Creates a hidden circle
+const circle = new Circle(10, 10, 10, { visible: false });
+
+// Hide the circle by calling hide()
+circle.hide();
+
+// Hide the circle by setting the visible option
+circle.options.visible = false;
+
+// This will not draw the circle on the canvas
+canvas.draw(circle);
+```
+
+### Show a shape
+
+To show a hidden shape, simply set its `visible` option back to `true` or call `show()`. Once the visibility is restored, the shape will be rendered on the canvas during the next render cycle.
+
+```js
+// Show the circle by calling show()
+circle.show();
+
+// Show the circle by setting the visible option
+circle.options.visible = true;
+
+// This will draw the circle on the canvas
+canvas.draw(circle);
+```
+
 ## Serialize shapes
 
 In **CanvasPainter.js**, every shape can be serialized into different formats for storage, transmission, or integration with other systems. Each shape provides two key methods, `toArray()` and `toJson()`, which allow you to convert the shape’s definition into standard formats.
