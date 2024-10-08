@@ -160,9 +160,54 @@ Property | Description | Example
 `style` | Gets a [RectangleStyle](../../api/classes/RectangleStyle) object representing the style of the rectangle. | `const style = rectangle.style;`<br />`const color = rectangle.style.color;`
 `options` | Gets a [RectangleOptions](../../api/classes/RectangleOptions) object representing the options of the rectangle. | `const options = rectangle.options;`<br />`const centered = rectangle.options.centered;`
 
+## Serialize a rectangle
+
+The `Rectangle` shape in **CanvasPainter.js** can be serialized into both array and JSON formats using the `toArray()` and `toJson()` methods. These methods allow you to easily convert the rectangle’s definition into standard formats for saving, exporting, or transmitting data.
+
+### Serialize to array
+
+The `toArray` method converts the rectangle's definition into an array. This can be useful when you need a lightweight representation of the point, or when you need to work with libraries or functions that expect data in array format.
+
+```js
+const rectangle = new Rectangle(10, 10, 20, 20);
+rectangle.toArray();
+```
+
+This will give you an array in this format:
+
+```js
+[
+  [x, y], // position
+  width,  // width
+  height  // height
+]
+```
+
+### Serialize to JSON
+
+The `toJson()` method for a rectangle returns a structured JSON string that includes the rectangle’s definition. This format is ideal for working with APIs or saving to structured data formats.
+
+```js
+const rectangle = new Rectangle(10, 10, 20, 20);
+rectangle.toJson();
+```
+
+This will give you a JSON string in this format:
+
+```js
+{
+  position: {
+    x: number,
+    y: number
+  },
+  width: number,
+  height: number
+}
+```
+
 ## Style
 
-The following table is showing all available rectangle styles and there default values if no value was provided explicit.
+The following table is showing all available rectangle styles and the default values if no value was provided explicit.
 
 Style | Default | Explanation
 --- | --- | ---
@@ -172,8 +217,9 @@ Style | Default | Explanation
 
 ## Options
 
-The following table is showing all available rectangle options and there default values if no value was provided explicit.
+The following table is showing all available rectangle options and the default values if no value was provided explicit.
 
 Option | Default | Explanation
 --- | --- | ---
-`centered` | false | If true, the rectangle will be centered at the provided position.<br />If false or undefined, the rectangle will be positioned from the top-left corner.
+`centered` | false | If `true`, the rectangle will be centered at the provided position.<br />If `false` or `undefined`, the rectangle will be positioned from the top-left corner.
+`visible` | true | If `true`, the rectangle will be visible.<br />If `false` or `undefined`, the rectangle will be hidden.

@@ -22,7 +22,44 @@ A callback function to be invoked when the shape's state changes.
 
 #### Defined in
 
-[shapes/IShape.ts:19](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/IShape.ts#L19)
+[shapes/IShape.ts:19](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L19)
+
+***
+
+### hide()
+
+> **hide**(): `void`
+
+Hides the shape, preventing it from being rendered on the canvas.
+The shape will still exist and retain its properties, but it will not
+appear during rendering until `show()` is called.
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[shapes/IShape.ts:40](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L40)
+
+***
+
+### isVisible()
+
+> **isVisible**(): `boolean`
+
+Checks whether the shape is currently visible.
+
+#### Returns
+
+`boolean`
+
+- Returns true if the shape is visible and will be rendered on the canvas.
+                     Returns false if the shape is hidden and will not be rendered.
+
+#### Defined in
+
+[shapes/IShape.ts:48](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L48)
 
 ***
 
@@ -44,7 +81,7 @@ The observer callback function to be removed.
 
 #### Defined in
 
-[shapes/IShape.ts:26](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/IShape.ts#L26)
+[shapes/IShape.ts:26](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L26)
 
 ***
 
@@ -66,4 +103,22 @@ The 2D rendering context of the canvas where the shape will be drawn.
 
 #### Defined in
 
-[shapes/IShape.ts:12](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/shapes/IShape.ts#L12)
+[shapes/IShape.ts:12](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L12)
+
+***
+
+### show()
+
+> **show**(): `void`
+
+Makes the shape visible, allowing it to be rendered on the canvas.
+If the shape was previously hidden, calling this method will make it appear
+during the next rendering cycle.
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[shapes/IShape.ts:33](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L33)

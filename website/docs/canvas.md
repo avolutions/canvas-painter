@@ -48,6 +48,46 @@ const canvas = Canvas.init('myCanvas', {}, { color: 'red' });
 
 See [Styles](#styles) for a list of all available canvas options.
 
+### Set width and height
+
+There are multiple ways to set the `width` and `height` of a canvas. They are listed from highest to lowest priority.
+
+#### 1. Options
+
+If you provide `width` or `height` in the canvas options, these values are used, no matter what is specified in the HTML canvas element or CSS.
+
+```js
+const canvas = Canvas.init('myCanvas', { width: 500, height: 250 });
+```
+
+#### 2. HTML attributes
+
+If no `width` or `height` is provided through canvas options, the HTML attributes `width` and `height` of the canvas element are used.
+
+```html
+<canvas id="myCanvas" width="500" height="250">
+```
+
+#### 3. CSS
+
+If no options or HTML attributes are provided for `width` or `height`, the canvas class will determine the [computed CSS style](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle) of the canvas element and use this as `width` and `height`.
+
+```html
+<canvas id="myCanvas" style="width: 500px; height: 250px">
+```
+
+#### 4. Default options
+
+If no options, HTML attributes or CSS provided to set the `width` or `height` of the canvas, we use the default values for `width` (300) and `height` (150) [options](#options).
+
+```html
+<canvas id="myCanvas">
+```
+
+```js
+const canvas = Canvas.init('myCanvas');
+```
+
 ## Using canvas
 
 There are different ways to use the created `Canvas` object. The most basic way is to get the `Canvas.context` and use the official [JavaScript Canvas API](#using-the-javascript-canvas-api).
@@ -57,6 +97,8 @@ But **CanvasPainter.js** provides also a convenient way to work with basic shape
 ## Draw shapes on canvas manually
 
 In manual rendering, you control when and how the shapes are drawn onto the canvas. This gives you more flexibility to define the exact moments when the canvas should be updated. To manually render shapes, you use the `draw()` method to explicitly draw shapes whenever needed.
+
+**Note**: [hidden shapes](./shapes/index.md#hide-a-shape) will not be drawing to canvas.
 
 ```js
 import { Canvas, Rectangle } from '@avolutions/canvas-painter';
@@ -88,6 +130,8 @@ canvas.clear(); // This will remove the rectangle from canvas
 ## Draw shapes automatically
 
 Automatic rendering provides a more hands-off approach, where the canvas takes care of redrawing shapes whenever they change. With automatic rendering, you can "watch" a shape, and the canvas will automatically update whenever any of the shape’s properties change. This is particularly useful when you are frequently updating shape properties, such as when dragging shapes or resizing them.
+
+**Note**: [hidden shapes](./shapes/index.md#hide-a-shape) will not be drawing to canvas.
 
 ### Watch shapes
 

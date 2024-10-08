@@ -1,3 +1,4 @@
+import { ISerializable } from "../common/ISerializable.js";
 import { IShapeDefinition } from "../definitions/IShapeDefinition.js";
 import { IShapeOptions } from "../options/IShapeOptions.js";
 import { IShapeStyle } from "../styles/IShapeStyle.js";
@@ -14,7 +15,7 @@ export abstract class Shape<
   TDefinition extends IShapeDefinition,
   TStyle extends IShapeStyle,
   TOptions extends IShapeOptions
-> implements IShape {
+> implements IShape, ISerializable {
   /** The shape definition, proxied to trigger observer notifications on change. */
   protected _definition: TDefinition;
 
@@ -84,6 +85,53 @@ export abstract class Shape<
       });
     }
     return obj;  // If it's not an object, just return the value as is
+  }
+
+  /**
+   * Converts the shape's definition to an array.
+   *
+   * @returns {Array<any>} An array representation of the shape's definition.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public toArray(): Array<any> {
+    return this._definition.toArray();
+  }
+
+  /**
+   * Converts the shape's definition to a JSON string.
+   *
+   * @returns {string} A JSON string  representation of the shape's definition.
+   */
+  public toJson(): string {
+    return this._definition.toJson();
+  }
+
+  /**
+   * Makes the shape visible, allowing it to be rendered on the canvas.
+   * If the shape was previously hidden, calling this method will make it appear
+   * during the next rendering cycle.
+   */
+  public show(): void {
+    this._options.visible = true;
+  }
+
+  /**
+   * Hides the shape, preventing it from being rendered on the canvas.
+   * The shape will still exist and retain its properties, but it will not
+   * appear during rendering until `show()` is called.
+   */
+  public hide(): void {
+    this._options.visible = false;
+  }
+
+  /**
+   * Checks whether the shape is currently visible.
+   *
+   * @returns {boolean} - Returns true if the shape is visible and will be rendered on the canvas.
+   *                      Returns false if the shape is hidden and will not be rendered.
+   */
+  public isVisible(): boolean {
+    return !!this._options.visible;
   }
 
   /**

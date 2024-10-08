@@ -1,6 +1,6 @@
 {
   "name": "@avolutions/canvas-painter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "CanvasPainter.js is a simple yet powerful JavaScript library for drawing basic shapes (rectangles, circles, etc.) on HTML5 Canvas with ease. Perfect for creating 2D graphics in your web projects.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -22,6 +22,7 @@
     "clean": "rimraf ./dist",
     "docs": "typedoc",
     "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "test:coverage": "jest --coverage",
     "test": "jest"
   },
@@ -31,7 +32,12 @@
   },
   "homepage": "https://avolutions.github.io/canvas-painter/",
   "keywords": [
-    "javascript", "drawing", "typescript", "canvas", "shapes", "html5-canvas"
+    "javascript",
+    "drawing",
+    "typescript",
+    "canvas",
+    "shapes",
+    "html5-canvas"
   ],
   "author": "Alexander Vogt <alexander.vogt@avolutions.de>",
   "license": "MIT",

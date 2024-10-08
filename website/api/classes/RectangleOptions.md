@@ -1,8 +1,8 @@
 Options for configuring the behavior of a rectangle shape.
 
-## Implements
+## Extends
 
-- [`IShapeOptions`](../interfaces/IShapeOptions.md)
+- [`ShapeOptions`](ShapeOptions.md)
 
 ## Constructors
 
@@ -23,9 +23,13 @@ If true, the rectangle will be centered at the provided position.
 
 [`RectangleOptions`](RectangleOptions.md)
 
+#### Overrides
+
+[`ShapeOptions`](ShapeOptions.md).[`constructor`](ShapeOptions.md#constructors)
+
 #### Defined in
 
-[options/RectangleOptions.ts:20](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/options/RectangleOptions.ts#L20)
+[options/RectangleOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L21)
 
 ## Properties
 
@@ -38,7 +42,24 @@ If true, the rectangle will be centered at the provided position.
 
 #### Defined in
 
-[options/RectangleOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/options/RectangleOptions.ts#L21)
+[options/RectangleOptions.ts:22](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L22)
+
+***
+
+### visible?
+
+> `optional` **visible**: `boolean`
+
+If true, the shape will be visible.
+                 If false or undefined, the shape will be hidden.
+
+#### Inherited from
+
+[`ShapeOptions`](ShapeOptions.md).[`visible`](ShapeOptions.md#visible)
+
+#### Defined in
+
+[options/ShapeOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L21)
 
 ***
 
@@ -48,6 +69,10 @@ If true, the rectangle will be centered at the provided position.
 
 Default options for the rectangle.
 
+#### Overrides
+
+[`ShapeOptions`](ShapeOptions.md).[`DefaultOptions`](ShapeOptions.md#defaultoptions)
+
 #### Defined in
 
-[options/RectangleOptions.ts:10](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/options/RectangleOptions.ts#L10)
+[options/RectangleOptions.ts:10](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L10)

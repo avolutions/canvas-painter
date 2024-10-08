@@ -24,7 +24,7 @@ The width of the border in pixels. If undefined, a default width may be used.
 
 #### Defined in
 
-[styles/BorderStyle.ts:11](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/styles/BorderStyle.ts#L11)
+[styles/BorderStyle.ts:11](https://github.com/avolutions/canvas-painter/blob/main/src/styles/BorderStyle.ts#L11)
 
 ## Properties
 
@@ -36,7 +36,7 @@ The color of the border. If undefined, a default color may be used.
 
 #### Defined in
 
-[styles/BorderStyle.ts:12](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/styles/BorderStyle.ts#L12)
+[styles/BorderStyle.ts:12](https://github.com/avolutions/canvas-painter/blob/main/src/styles/BorderStyle.ts#L12)
 
 ***
 
@@ -48,4 +48,4 @@ The width of the border in pixels. If undefined, a default width may be used.
 
 #### Defined in
 
-[styles/BorderStyle.ts:13](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/styles/BorderStyle.ts#L13)
+[styles/BorderStyle.ts:13](https://github.com/avolutions/canvas-painter/blob/main/src/styles/BorderStyle.ts#L13)
