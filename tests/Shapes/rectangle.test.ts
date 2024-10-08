@@ -41,7 +41,7 @@ describe('Rectangle class', () => {
     expect(rectangle.angle.degrees).toEqual(15);
 
     // Ensure default options applied correctly
-    expect(rectangle.isVisible()).toBe(true);
+    expect(rectangle.options.visible).toBe(true);
   });
 
   test("should initialize optional rotation correctly via constructor", () => {
@@ -54,6 +54,13 @@ describe('Rectangle class', () => {
     expect(rectangle.position.y).toEqual(15);
     expect(rectangle.angle).toBeInstanceOf(Angle);
     expect(rectangle.angle.degrees).toEqual(0);
+  });
+
+  test('should initialize options from constructor', () => {
+    const rectangle = new Rectangle(10, 15, 100, 50, 0, {}, { centered: true, visible: false });
+
+    expect(rectangle.options.centered).toStrictEqual(true);
+    expect(rectangle.options.visible).toStrictEqual(false);
   });
 
   test("should set new values via setters", () => {

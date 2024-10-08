@@ -14,8 +14,8 @@ export class ShapeOptions implements IShapeOptions {
   /**
    * Creates a new instance of ShapeOptions.
    *
-   * @param isVisible - If true, the shape will be visible.
-   *                    If false or undefined, the shape will be hidden.
+   * @param visible - If true, the shape will be visible.
+   *                  If false or undefined, the shape will be hidden.
    */
   constructor(
     public visible?: boolean

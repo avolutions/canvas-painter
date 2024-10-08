@@ -8,6 +8,8 @@
  * @remarks
  * This is an empty object type and serves as a base or marker for shape option types.
  *
+ * @property {boolean} [visible] - Determines if the shape should be visible.
+ *
  * @interface
  */
 export interface IShapeOptions {
