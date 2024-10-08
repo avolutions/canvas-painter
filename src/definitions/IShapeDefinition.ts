@@ -1,3 +1,5 @@
+import { ISerializable } from "../common/ISerializable.js";
+
 /**
  * Interface for defining the basic structure of a shape.
  *
@@ -11,4 +13,4 @@
  * @interface
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface IShapeDefinition {}
+export interface IShapeDefinition extends ISerializable {}

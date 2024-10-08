@@ -1,13 +1,14 @@
-import { IShapeOptions } from "./IShapeOptions.js";
+import { ShapeOptions } from "./ShapeOptions.js";
 
 /**
  * Options for configuring the behavior of a rectangle shape.
  */
-export class RectangleOptions implements IShapeOptions {
+export class RectangleOptions extends ShapeOptions {
   /**
    * Default options for the rectangle.
    */
   public static readonly DefaultOptions: RectangleOptions = {
+    ...ShapeOptions.DefaultOptions,
     centered: false,
   };
 
@@ -18,6 +19,8 @@ export class RectangleOptions implements IShapeOptions {
    *                   If false or undefined, the rectangle will be positioned from the top-left corner.
    */
   constructor(
-    public centered?: boolean // Optional flag to center the rectangle.
-  ) {}
+    public centered?: boolean
+  ) {
+    super();
+  }
 }

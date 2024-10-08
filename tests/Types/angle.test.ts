@@ -44,6 +44,26 @@ describe('Angle class', () => {
     expect(angle.isNormalized()).toBe(true);
   });
 
+  test('should serialize into an array', () => {
+    const angle = new Angle(5);
+    const result = angle.toArray();
+
+    expect(result).toEqual([5, 5 * Math.PI / 180, false]);
+  });
+
+  test('should serialize into json', () => {
+    const angle = new Angle(-90, true);
+    const result = angle.toJson();
+
+    const expectedResult = {
+      degrees: 270,
+      radians: 270 * Math.PI / 180,
+      isNormalized: true
+    }
+
+    expect(result).toEqual(JSON.stringify(expectedResult));
+  });
+
   test('should correctly convert between degrees and radians', () => {
     expect(Angle.degreesToRadians(90)).toBe(1.5707963267948966);
     expect(Angle.radiansToDegrees(3)).toBe(171.88733853924697);

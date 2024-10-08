@@ -1,6 +1,10 @@
 Class representing an angle, which can be defined in degrees or radians.
 Provides functionality for normalization and angle adjustments.
 
+## Implements
+
+- [`ISerializable`](../interfaces/ISerializable.md)
+
 ## Constructors
 
 ### new Angle()
@@ -25,7 +29,7 @@ Whether the angle should be normalized to the range [0, 360).
 
 #### Defined in
 
-[types/Angle.ts:18](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L18)
+[types/Angle.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L20)
 
 ## Accessors
 
@@ -53,7 +57,7 @@ The angle in degrees.
 
 #### Defined in
 
-[types/Angle.ts:27](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L27)
+[types/Angle.ts:61](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L61)
 
 ***
 
@@ -81,7 +85,7 @@ The angle in radians.
 
 #### Defined in
 
-[types/Angle.ts:35](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L35)
+[types/Angle.ts:69](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L69)
 
 ## Methods
 
@@ -103,7 +107,7 @@ The amount to adjust the angle by, in degrees.
 
 #### Defined in
 
-[types/Angle.ts:104](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L104)
+[types/Angle.ts:138](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L138)
 
 ***
 
@@ -125,7 +129,7 @@ The amount to adjust the angle by, in radians.
 
 #### Defined in
 
-[types/Angle.ts:112](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L112)
+[types/Angle.ts:146](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L146)
 
 ***
 
@@ -143,7 +147,7 @@ The normalized angle in degrees.
 
 #### Defined in
 
-[types/Angle.ts:96](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L96)
+[types/Angle.ts:130](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L130)
 
 ***
 
@@ -161,7 +165,7 @@ True if the angle is normalized, false otherwise.
 
 #### Defined in
 
-[types/Angle.ts:88](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L88)
+[types/Angle.ts:122](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L122)
 
 ***
 
@@ -177,7 +181,55 @@ Normalizes the angle to the range [0, 360).
 
 #### Defined in
 
-[types/Angle.ts:79](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L79)
+[types/Angle.ts:113](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L113)
+
+***
+
+### toArray()
+
+> **toArray**(): (`number` \| `boolean`)[]
+
+Serializes the object’s properties into an array, consisting of
+the degrees, radians, and the result of the `isNormalized()` method.
+
+#### Returns
+
+(`number` \| `boolean`)[]
+
+An array containing the degrees as a number,
+the radians as a number, and the result of `isNormalized()` as a boolean.
+
+#### Implementation of
+
+[`ISerializable`](../interfaces/ISerializable.md).[`toArray`](../interfaces/ISerializable.md#toarray)
+
+#### Defined in
+
+[types/Angle.ts:32](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L32)
+
+***
+
+### toJson()
+
+> **toJson**(): `string`
+
+Serializes the object’s properties into a JSON string. The JSON object contains
+the degrees, radians, and the result of the `isNormalized()` method.
+
+#### Returns
+
+`string`
+
+A JSON string representation of the object, including degrees,
+radians, and whether it is normalized.
+
+#### Implementation of
+
+[`ISerializable`](../interfaces/ISerializable.md).[`toJson`](../interfaces/ISerializable.md#tojson)
+
+#### Defined in
+
+[types/Angle.ts:47](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L47)
 
 ***
 
@@ -201,7 +253,7 @@ The angle in radians.
 
 #### Defined in
 
-[types/Angle.ts:121](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L121)
+[types/Angle.ts:155](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L155)
 
 ***
 
@@ -229,7 +281,7 @@ A new Angle instance.
 
 #### Defined in
 
-[types/Angle.ts:61](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L61)
+[types/Angle.ts:95](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L95)
 
 ***
 
@@ -257,7 +309,7 @@ A new Angle instance.
 
 #### Defined in
 
-[types/Angle.ts:71](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L71)
+[types/Angle.ts:105](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L105)
 
 ***
 
@@ -281,7 +333,7 @@ The normalized angle in degrees.
 
 #### Defined in
 
-[types/Angle.ts:139](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L139)
+[types/Angle.ts:173](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L173)
 
 ***
 
@@ -305,4 +357,4 @@ The angle in degrees.
 
 #### Defined in
 
-[types/Angle.ts:130](https://github.com/avolutions/canvas-painter/blob/00d8db8e44b2cee6c012969de9dc3ff816a38d9e/src/types/Angle.ts#L130)
+[types/Angle.ts:164](https://github.com/avolutions/canvas-painter/blob/main/src/types/Angle.ts#L164)

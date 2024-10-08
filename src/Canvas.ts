@@ -51,15 +51,96 @@ export class Canvas {
       ...style
     };
 
-    // Set canvas dimensions if provided
-    if (this._options.width != null) {
-      this._canvas.width = this._options.width;
-    }
-    if (this._options.height != null) {
-      this._canvas.height = this._options.height;
-    }
+    // Determine width, set canvas width and update options with new value
+    const width = this.getWidth(options);
+    this._canvas.width = width;
+    this._options.width = width;
+
+    // Determine height, set canvas width and update options with new value
+    const height = this.getHeight(options);
+    this._canvas.height = height;
+    this._options.height = height;
 
     this.setContextStyle(this._style);
+  }
+
+  /**
+   * Retrieves the height of the canvas element, prioritizing the provided options,
+   * then the HTML canvas element's height attribute, followed by CSS height, and finally
+   * falls back to the default height.
+   *
+   * @param options - Optional canvas options that may contain a height.
+   * @returns The height value based on the order of priority described.
+   */
+  private getHeight(options: CanvasOptions | undefined): number {
+    // If height was provided as option
+    if (options?.height) {
+      return options.height;
+    }
+
+    // If height is specified as attribute of HTML canvas element
+    const htmlHeight = this._canvas.getAttribute('height')
+    if (htmlHeight) {
+      return parseFloat(htmlHeight);
+    }
+
+    // If height is specified in any CSS of the element
+    const cssHeight = this.getCssDimensions().height;
+    if (cssHeight) {
+      return cssHeight;
+    }
+
+    // Use default options as ultimate fallback
+    return CanvasOptions.DefaultOptions.height as number;
+  }
+
+  /**
+   * Retrieves the width of the canvas element, prioritizing the provided options,
+   * then the HTML canvas element's width attribute, followed by CSS width, and finally
+   * falls back to the default width.
+   *
+   * @param options - Optional canvas options that may contain a width.
+   * @returns The width value based on the order of priority described.
+   */
+  private getWidth(options: CanvasOptions | undefined): number {
+    // If width was provided as option
+    if (options?.width) {
+      return options.width;
+    }
+
+    // If width is specified as attribute of HTML canvas element
+    const htmlWidth = this._canvas.getAttribute('width')
+    if (htmlWidth) {
+      return parseFloat(htmlWidth);
+    }
+
+    // If width is specified in any CSS of the element
+    const cssWidth = this.getCssDimensions().width;
+    if (cssWidth) {
+      return cssWidth;
+    }
+
+    // Use default options as ultimate fallback
+    return CanvasOptions.DefaultOptions.width as number;
+  }
+
+  /**
+   * Retrieves the CSS width and height dimensions of the canvas element by
+   * computing the styles applied to it. If the values are not present, it returns
+   * undefined for both width and height.
+   *
+   * @returns An object containing the CSS width and height, if available.
+   */
+  private getCssDimensions(): { width?: number, height?: number } {
+    const computedStyle = window.getComputedStyle(this._canvas);
+
+    const width = computedStyle.width ? parseFloat(computedStyle.width) : undefined;
+    const height = computedStyle.height ? parseFloat(computedStyle.height) : undefined;
+
+    return {
+      width: width,
+      height: height,
+    };
   }
 
   /**
@@ -190,7 +271,7 @@ export class Canvas {
   };
 
   /**
-   * Clears the canvas and re-renders all watched shapes.
+   * Clears the canvas and re-renders all watched and visible shapes.
    */
   public redraw(): void {
     this.clear();
@@ -200,11 +281,13 @@ export class Canvas {
   }
 
   /**
-   * Renders the specified shape on the canvas.
+   * Renders the specified shape on the canvas if shape is visible.
    *
    * @param shape - The shape to render.
    */
   public draw(shape: IShape): void {
-    shape.render(this.context);
+    if (shape.isVisible()) {
+      shape.render(this.context);
+    }
   }
 }

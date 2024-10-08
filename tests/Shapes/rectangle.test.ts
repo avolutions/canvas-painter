@@ -39,6 +39,9 @@ describe('Rectangle class', () => {
     expect(rectangle.position.y).toEqual(15);
     expect(rectangle.angle).toBeInstanceOf(Angle);
     expect(rectangle.angle.degrees).toEqual(15);
+
+    // Ensure default options applied correctly
+    expect(rectangle.options.visible).toBe(true);
   });
 
   test("should initialize optional rotation correctly via constructor", () => {
@@ -51,6 +54,13 @@ describe('Rectangle class', () => {
     expect(rectangle.position.y).toEqual(15);
     expect(rectangle.angle).toBeInstanceOf(Angle);
     expect(rectangle.angle.degrees).toEqual(0);
+  });
+
+  test('should initialize options from constructor', () => {
+    const rectangle = new Rectangle(10, 15, 100, 50, 0, {}, { centered: true, visible: false });
+
+    expect(rectangle.options.centered).toStrictEqual(true);
+    expect(rectangle.options.visible).toStrictEqual(false);
   });
 
   test("should set new values via setters", () => {
@@ -166,7 +176,7 @@ describe('Rectangle class', () => {
 
     rectangle.width = 10;
     rectangle.height = 10;
-    rectangle.position = { x: 10, y: 10 };
+    rectangle.position = new Point(10, 10);
     rectangle.rotation = 10; // currently notify twice
     rectangle.style = { color: 'yellow' };
     rectangle.style.color = 'blue';
@@ -183,10 +193,10 @@ describe('Rectangle class', () => {
 
     rectangle.setSize(10, 10);
     rectangle.resize(10, 10);
-    rectangle.move(10, 10);
+    rectangle.move(10, 10); // currently notify twice per parameter
     rectangle.rotate(10); // currently notify twice
 
-    expect(observer).toHaveBeenCalledTimes(7);
+    expect(observer).toHaveBeenCalledTimes(10);
   });
 
   test('should call fillRect with correct position when not centered', () => {
@@ -270,7 +280,7 @@ describe('Rectangle class', () => {
     const rectangle = new Rectangle(10, 15, 20, 25, 0, { border: { width: 1, color: 'red'} });
     rectangle.render(context);
 
-    expect(context.fillRect).toHaveBeenCalledWith(10, 15, 20, 25);
+    expect(context.strokeRect).toHaveBeenCalledWith(10, 15, 20, 25);
   });
 
   test('should apply border width', () => {

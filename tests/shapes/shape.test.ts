@@ -1,6 +1,38 @@
+import { Point } from "../../src/types/Point";
 import { MockShape, MockShapeOptions, MockShapeStyle } from "../mocks/MockShape";
 
 describe('Shape class', () => {
+  test("should serialize definition to array", () => {
+    const shape = new MockShape();
+
+    const expectedResult = [
+      0,
+      "",
+      true,
+      [],
+      [0,0]
+    ];
+
+    expect(shape.toArray()).toEqual(expectedResult);
+  });
+
+  test("should serialize definition to json", () => {
+    const shape = new MockShape();
+
+    const expectedResult = {
+      width: 0,
+      name: "",
+      isFoo: true,
+      list: [],
+      position: {
+        x: 0,
+        y: 0
+      }
+    };
+
+    expect(shape.toJson()).toEqual(JSON.stringify(expectedResult));
+  });
+
   test("should set definition from constructor", () => {
     const shape = new MockShape(10);
 
@@ -34,18 +66,32 @@ describe('Shape class', () => {
   test("should get options through getter", () => {
     const shape = new MockShape();
 
-    expect(shape.options).toBeInstanceOf(MockShapeOptions);
-    expect(shape.options.isVisible).toBe(true);
+    expect(shape.options.visible).toBe(true);
+    expect(shape.isVisible()).toBe(true);
   });
 
   test("should set options through setter", () => {
     const shape = new MockShape();
 
-    shape.options = { isVisible: false };
-    expect(shape.options.isVisible).toBe(false);
+    shape.options = { visible: false };
+    expect(shape.options.visible).toBe(false);
+    expect(shape.isVisible()).toBe(false);
 
-    shape.options.isVisible = true;
-    expect(shape.options.isVisible).toBe(true);
+    shape.options.visible = true;
+    expect(shape.options.visible).toBe(true);
+    expect(shape.isVisible()).toBe(true);
+  });
+
+  test("should handle visibility correctly", () => {
+    const shape = new MockShape();
+
+    expect(shape.isVisible()).toBe(true);
+
+    shape.hide();
+    expect(shape.isVisible()).toBe(false);
+
+    shape.show();
+    expect(shape.isVisible()).toBe(true);
   });
 
   test("should add and remove observer", () => {
@@ -111,7 +157,7 @@ describe('Shape class', () => {
     shape.name = 'foo';
     shape.isFoo = false;
     shape.list = [1,2,3];
-    shape.position = { x: 10, y: 10 }
+    shape.position = new Point(10, 10);
     shape.position.x = 25;
 
     expect(observer).toHaveBeenCalledTimes(6);
@@ -135,8 +181,8 @@ describe('Shape class', () => {
 
     shape.addObserver(observer);
 
-    shape.options = { isVisible: false }
-    shape.options.isVisible = true;
+    shape.options = { visible: false }
+    shape.options.visible = true;
 
     expect(observer).toHaveBeenCalledTimes(2);
   });
@@ -149,7 +195,7 @@ describe('Shape class', () => {
 
     shape.width = 10;
     shape.style.color = '#000000';
-    shape.options.isVisible = true;
+    shape.options.visible = true;
 
     expect(observer).toHaveBeenCalledTimes(0);
   });
@@ -193,7 +239,7 @@ describe('Shape class', () => {
     shape.addObserver(observer1);
     shape.removeObserver(observer);
 
-    shape.options = { isVisible: false }
+    shape.options = { visible: false }
 
     expect(observer).toHaveBeenCalledTimes(0);
     expect(observer1).toHaveBeenCalledTimes(1);

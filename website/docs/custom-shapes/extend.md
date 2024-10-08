@@ -58,16 +58,13 @@ class Japan extends Rectangle {
     super.render(context); // Call render method of Rectangle
 
     // Draw a red circle in the center of the rectangle
-    const radius = 25;
-    const center = {
-      x: this.position.x + this.width / 2,
-      y: this.position.y + this.height / 2,
-    }
+    const center = new Point(
+      this.position.x + this.width / 2,
+      this.position.y + this.height / 2,
+    );
 
-    context.beginPath();
-    context.arc(center.x, center.y, radius, 0, 2 * Math.PI); // Draw a full circle (0 to 2 * PI)
-    context.fillStyle = 'red';
-    context.fill();
+    const circle = new Circle(center, 25, { color: 'red' });
+    circle.render(context);
   }
 }
 ```

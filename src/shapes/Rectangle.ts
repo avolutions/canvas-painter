@@ -147,10 +147,7 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
    * @param deltaY - The change in the y-coordinate.
    */
   public move(deltaX: number = 0, deltaY: number = 0): void {
-    const x = this.position.x + deltaX;
-    const y = this.position.y + deltaY;
-
-    this.position = { x: x, y: y };
+    this.position.move(deltaX, deltaY);
   }
 
   /**
@@ -191,7 +188,7 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
     // Set rectangle specific styles
     context.fillStyle = this.style.color ?? context.fillStyle;
 
-    let topLeft = this.getTopLeftPosition();
+    const topLeft = this.getTopLeftPosition();
 
     // Rotate
     if (this.angle.degrees !== 0) {
@@ -205,7 +202,8 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
       }
 
       // Because we are in translated context
-      topLeft = { x: 0, y: 0 };
+      topLeft.x = 0;
+      topLeft.y = 0;
     }
 
     context.fillRect(
