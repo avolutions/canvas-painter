@@ -40,7 +40,7 @@ Clears the canvas by removing all content.
 
 > **draw**(`shape`): `void`
 
-Renders the specified shape on the canvas.
+Renders the specified shape on the canvas if shape is visible.
 
 #### Parameters
 
@@ -62,7 +62,7 @@ The shape to render.
 
 > **redraw**(): `void`
 
-Clears the canvas and re-renders all watched shapes.
+Clears the canvas and re-renders all watched and visible shapes.
 
 #### Returns
 

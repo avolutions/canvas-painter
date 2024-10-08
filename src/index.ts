@@ -14,6 +14,7 @@ export { RectangleDefinition } from './definitions/RectangleDefinition.js';
 
 /* Options */
 export { IShapeOptions } from './options/IShapeOptions.js';
+export { ShapeOptions } from './options/ShapeOptions.js';
 export { CanvasOptions } from './options/CanvasOptions.js';
 export { CircleOptions } from './options/CircleOptions.js';
 export { LineOptions } from './options/LineOptions.js';

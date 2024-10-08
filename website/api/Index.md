@@ -21,6 +21,7 @@
 - [Serializable](classes/Serializable.md)
 - [Shape](classes/Shape.md)
 - [ShapeDefinition](classes/ShapeDefinition.md)
+- [ShapeOptions](classes/ShapeOptions.md)
 
 ## Interfaces
 

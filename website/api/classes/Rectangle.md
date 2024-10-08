@@ -195,7 +195,7 @@ The current options.
 
 #### Defined in
 
-[shapes/Shape.ts:165](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L165)
+[shapes/Shape.ts:193](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L193)
 
 ***
 
@@ -283,7 +283,7 @@ The current style settings.
 
 #### Defined in
 
-[shapes/Shape.ts:147](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L147)
+[shapes/Shape.ts:175](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L175)
 
 ***
 
@@ -337,7 +337,52 @@ The observer callback function.
 
 #### Defined in
 
-[shapes/Shape.ts:114](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L114)
+[shapes/Shape.ts:142](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L142)
+
+***
+
+### hide()
+
+> **hide**(): `void`
+
+Hides the shape, preventing it from being rendered on the canvas.
+The shape will still exist and retain its properties, but it will not
+appear during rendering until `show()` is called.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`hide`](Shape.md#hide)
+
+#### Defined in
+
+[shapes/Shape.ts:123](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L123)
+
+***
+
+### isVisible()
+
+> **isVisible**(): `boolean`
+
+Checks whether the shape is currently visible.
+
+#### Returns
+
+`boolean`
+
+- Returns true if the shape is visible and will be rendered on the canvas.
+                     Returns false if the shape is hidden and will not be rendered.
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`isVisible`](Shape.md#isvisible)
+
+#### Defined in
+
+[shapes/Shape.ts:133](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L133)
 
 ***
 
@@ -389,7 +434,7 @@ The observer callback function to be removed.
 
 #### Defined in
 
-[shapes/Shape.ts:125](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L125)
+[shapes/Shape.ts:153](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L153)
 
 ***
 
@@ -492,6 +537,28 @@ The new height of the rectangle.
 #### Defined in
 
 [shapes/Rectangle.ts:127](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L127)
+
+***
+
+### show()
+
+> **show**(): `void`
+
+Makes the shape visible, allowing it to be rendered on the canvas.
+If the shape was previously hidden, calling this method will make it appear
+during the next rendering cycle.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`show`](Shape.md#show)
+
+#### Defined in
+
+[shapes/Shape.ts:114](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L114)
 
 ***
 
