@@ -51,8 +51,8 @@ describe('RectangleOptions', () => {
   test('should allow update of inherited properties', () => {
     const options = new RectangleOptions();
 
-    options.isVisible = true;
+    options.visible = true;
 
-    expect(options.isVisible).toBe(true);
+    expect(options.visible).toBe(true);
   });
 });

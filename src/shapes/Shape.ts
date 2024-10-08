@@ -112,7 +112,7 @@ export abstract class Shape<
    * during the next rendering cycle.
    */
   public show(): void {
-    this._options.isVisible = true;
+    this._options.visible = true;
   }
 
   /**
@@ -121,7 +121,7 @@ export abstract class Shape<
    * appear during rendering until `show()` is called.
    */
   public hide(): void {
-    this._options.isVisible = false;
+    this._options.visible = false;
   }
 
   /**
@@ -131,7 +131,7 @@ export abstract class Shape<
    *                      Returns false if the shape is hidden and will not be rendered.
    */
   public isVisible(): boolean {
-    return !!this._options.isVisible;
+    return !!this._options.visible;
   }
 
   /**

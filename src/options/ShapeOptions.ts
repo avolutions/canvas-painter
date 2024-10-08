@@ -8,7 +8,7 @@ export class ShapeOptions implements IShapeOptions {
    * Default options for all shapes.
    */
   public static readonly DefaultOptions: ShapeOptions = {
-    isVisible: true,
+    visible: true,
   };
 
   /**
@@ -18,6 +18,6 @@ export class ShapeOptions implements IShapeOptions {
    *                    If false or undefined, the shape will be hidden.
    */
   constructor(
-    public isVisible?: boolean
+    public visible?: boolean
   ) {}
 }

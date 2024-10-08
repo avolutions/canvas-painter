@@ -10,7 +10,6 @@
  *
  * @interface
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface IShapeOptions {
-  isVisible?: boolean;
+  visible?: boolean;
 }
