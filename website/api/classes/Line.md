@@ -10,7 +10,7 @@ LineStyle for styling, and LineOptions for additional options.
 
 ### new Line()
 
-> **new Line**(`start`, `end`, `style`?): [`Line`](Line.md)
+> **new Line**(`start`, `end`, `style`?, `options`?): [`Line`](Line.md)
 
 Creates an instance of the `Line` class.
 
@@ -29,7 +29,11 @@ The ending `Point` of the line.
 
 • **style?**: [`LineStyle`](LineStyle.md)
 
-Optional. Defines the styling of the line.
+Defines the styling of the line.
+
+• **options?**: [`LineOptions`](LineOptions.md)
+
+The configuration options for the line.
 
 #### Returns
 
@@ -45,11 +49,11 @@ Throws if invalid arguments are passed.
 
 #### Defined in
 
-[shapes/Line.ts:19](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L19)
+[shapes/Line.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L20)
 
 ### new Line()
 
-> **new Line**(`startX`, `startY`, `endX`, `endY`, `style`?): [`Line`](Line.md)
+> **new Line**(`startX`, `startY`, `endX`, `endY`, `style`?, `options`?): [`Line`](Line.md)
 
 Creates an instance of the `Line` class.
 
@@ -76,7 +80,11 @@ The Y-coordinate of the ending point.
 
 • **style?**: [`LineStyle`](LineStyle.md)
 
-Optional. Defines the styling of the line.
+Defines the styling of the line.
+
+• **options?**: [`LineOptions`](LineOptions.md)
+
+The configuration options for the line.
 
 #### Returns
 
@@ -92,7 +100,7 @@ Throws if invalid arguments are passed.
 
 #### Defined in
 
-[shapes/Line.ts:29](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L29)
+[shapes/Line.ts:31](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L31)
 
 ## Properties
 
@@ -184,7 +192,7 @@ The ending point of the line.
 
 #### Defined in
 
-[shapes/Line.ts:83](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L83)
+[shapes/Line.ts:94](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L94)
 
 ***
 
@@ -216,7 +224,7 @@ The current options.
 
 #### Defined in
 
-[shapes/Shape.ts:165](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L165)
+[shapes/Shape.ts:193](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L193)
 
 ***
 
@@ -244,7 +252,7 @@ The starting point of the line.
 
 #### Defined in
 
-[shapes/Line.ts:74](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L74)
+[shapes/Line.ts:85](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L85)
 
 ***
 
@@ -276,7 +284,7 @@ The current style settings.
 
 #### Defined in
 
-[shapes/Shape.ts:147](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L147)
+[shapes/Shape.ts:175](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L175)
 
 ## Methods
 
@@ -302,7 +310,52 @@ The observer callback function.
 
 #### Defined in
 
-[shapes/Shape.ts:114](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L114)
+[shapes/Shape.ts:142](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L142)
+
+***
+
+### hide()
+
+> **hide**(): `void`
+
+Hides the shape, preventing it from being rendered on the canvas.
+The shape will still exist and retain its properties, but it will not
+appear during rendering until `show()` is called.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`hide`](Shape.md#hide)
+
+#### Defined in
+
+[shapes/Shape.ts:123](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L123)
+
+***
+
+### isVisible()
+
+> **isVisible**(): `boolean`
+
+Checks whether the shape is currently visible.
+
+#### Returns
+
+`boolean`
+
+- Returns true if the shape is visible and will be rendered on the canvas.
+                     Returns false if the shape is hidden and will not be rendered.
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`isVisible`](Shape.md#isvisible)
+
+#### Defined in
+
+[shapes/Shape.ts:133](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L133)
 
 ***
 
@@ -328,7 +381,7 @@ The amount to move the end point along the y-axis.
 
 #### Defined in
 
-[shapes/Line.ts:123](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L123)
+[shapes/Line.ts:134](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L134)
 
 ***
 
@@ -354,7 +407,7 @@ The amount to move the start point along the y-axis.
 
 #### Defined in
 
-[shapes/Line.ts:113](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L113)
+[shapes/Line.ts:124](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L124)
 
 ***
 
@@ -380,7 +433,7 @@ The observer callback function to be removed.
 
 #### Defined in
 
-[shapes/Shape.ts:125](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L125)
+[shapes/Shape.ts:153](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L153)
 
 ***
 
@@ -406,7 +459,29 @@ The canvas rendering context to draw the line.
 
 #### Defined in
 
-[shapes/Line.ts:132](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L132)
+[shapes/Line.ts:143](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L143)
+
+***
+
+### show()
+
+> **show**(): `void`
+
+Makes the shape visible, allowing it to be rendered on the canvas.
+If the shape was previously hidden, calling this method will make it appear
+during the next rendering cycle.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`show`](Shape.md#show)
+
+#### Defined in
+
+[shapes/Shape.ts:114](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L114)
 
 ***
 

@@ -393,6 +393,18 @@ describe('Canvas class', () => {
     expect(renderSpy).toHaveBeenCalledTimes(1);
   });
 
+  test('should not render hidden shape when drawing', () => {
+    const canvas = Canvas.init('canvas-id');
+
+    const shape = new MockShape();
+    shape.hide();
+    const renderSpy = jest.spyOn(shape, 'render');
+
+    canvas.draw(shape);
+
+    expect(renderSpy).toHaveBeenCalledTimes(0);
+  });
+
   test('should redraw the canvas', () => {
     const canvas = Canvas.init('canvas-id');
     const clearSpy = jest.spyOn(canvas, 'clear');
@@ -409,6 +421,31 @@ describe('Canvas class', () => {
     /* Clear canvas once, draw every watched shape */
     expect(clearSpy).toHaveBeenCalledTimes(1);
     expect(drawSpy).toHaveBeenCalledTimes(2);
+  });
+
+  test('should not redraw hidden shape the canvas', () => {
+    const canvas = Canvas.init('canvas-id');
+    const clearSpy = jest.spyOn(canvas, 'clear');
+    const drawSpy = jest.spyOn(canvas, 'draw');
+
+    const shape = new MockShape();
+    const renderSpy = jest.spyOn(shape, 'render');
+    const shape2 = new MockShape();
+    const renderSpy2 = jest.spyOn(shape2, 'render');
+
+    shape.hide();
+
+    canvas.watch(shape, false);
+    canvas.watch(shape2, false);
+
+    canvas.redraw();
+
+    /* Clear canvas once, draw every watched shape */
+    expect(clearSpy).toHaveBeenCalledTimes(1);
+    expect(drawSpy).toHaveBeenCalledTimes(2);
+
+    expect(renderSpy).toHaveBeenCalledTimes(0);
+    expect(renderSpy2).toHaveBeenCalledTimes(1);
   });
 
   test('should clear the entire canvas', () => {

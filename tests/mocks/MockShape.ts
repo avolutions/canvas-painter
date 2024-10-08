@@ -1,5 +1,5 @@
 import { ShapeDefinition } from "../../src/definitions/ShapeDefinition";
-import { IShapeOptions } from "../../src/options/IShapeOptions";
+import { ShapeOptions } from "../../src/options/ShapeOptions";
 import { Shape } from "../../src/shapes/Shape";
 import { IShapeStyle } from "../../src/styles/IShapeStyle";
 import { Point } from "../../src/types/Point";
@@ -26,8 +26,14 @@ export class MockShapeStyle implements IShapeStyle {
   color = '#000000';
 }
 
-export class MockShapeOptions implements IShapeOptions {
-  isVisible = true;
+export class MockShapeOptions extends ShapeOptions {
+  public static readonly DefaultOptions: MockShapeOptions = {
+    ...ShapeOptions.DefaultOptions,
+  };
+
+  constructor() {
+    super();
+  }
 }
 
 // Concrete class extending Shape
@@ -35,7 +41,10 @@ export class MockShape extends Shape<MockShapeDefinition, MockShapeStyle, MockSh
   constructor(width: number = 0, withStyleAndOptions: boolean = true) {
     const definition = new MockShapeDefinition(width);
     if (withStyleAndOptions) {
-      super(definition, new MockShapeStyle(), new MockShapeOptions());
+      let options: MockShapeOptions = {
+        ...MockShapeOptions.DefaultOptions
+      };
+      super(definition, new MockShapeStyle(), options);
     } else {
       super(definition);
     }

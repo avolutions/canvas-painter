@@ -38,6 +38,9 @@ describe('Line class', () => {
     expect(line.end.x).toBe(end.x);
     expect(line.end.y).toBe(end.y);
     expect(line.style).toStrictEqual({});
+
+    // Ensure default options applied correctly
+    expect(line.options.visible).toBe(true);
   });
 
   test('should create a Line object using Points and style', () => {
@@ -56,6 +59,16 @@ describe('Line class', () => {
     expect(line.style.width).toBe(style.width);
   });
 
+  test('should initialize options from constructor using Points', () => {
+    const start = new Point(5, 10);
+    const end = new Point(15, 20);
+    const style = new LineStyle('red', 2.5);
+
+    const line = new Line(start, end, style, { visible: false });
+
+    expect(line.options.visible).toStrictEqual(false);
+  });
+
   test('should create a Line object using coordinates', () => {
     const startX = 5;
     const startY = 10;
@@ -69,6 +82,9 @@ describe('Line class', () => {
     expect(line.end.x).toBe(endX);
     expect(line.end.y).toBe(endY);
     expect(line.style).toStrictEqual({});
+
+    // Ensure default options applied correctly
+    expect(line.options.visible).toBe(true);
   });
 
   test('should create a Line object using coordinates and style', () => {
@@ -87,6 +103,18 @@ describe('Line class', () => {
     expect(line.style).toStrictEqual(style);
     expect(line.style.color).toBe(style.color);
     expect(line.style.width).toBe(style.width);
+  });
+
+  test('should initialize options from constructor using coordinates', () => {
+    const startX = 5;
+    const startY = 10;
+    const endX = 15;
+    const endY = 20;
+    const style = new LineStyle('red', 2.5);
+
+    const line = new Line(startX, startY, endX, endY, style, { visible: false });
+
+    expect(line.options.visible).toStrictEqual(false);
   });
 
   test('should throw an error if coordinates are partially provided', () => {

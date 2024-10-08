@@ -176,3 +176,11 @@ Style | Default | Explanation
 `color` | '#000000' (black) | Sets the default fill color for the circle.
 `border.color` | '#000000' (black) | Defines the color of circle border. Border is only shown if `border.color` or `border.width` is provided.
 `border.width` | 1.0 | Defines the width of circles border. Border is only shown if `border.color` or `border.width` is provided.
+
+## Options
+
+The following table is showing all available circle options and the default values if no value was provided explicit.
+
+Option | Default | Explanation
+--- | --- | ---
+`visible` | true | If `true`, the circle will be visible.<br />If `false` or `undefined`, the circle will be hidden.

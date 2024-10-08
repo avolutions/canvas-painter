@@ -98,6 +98,8 @@ But **CanvasPainter.js** provides also a convenient way to work with basic shape
 
 In manual rendering, you control when and how the shapes are drawn onto the canvas. This gives you more flexibility to define the exact moments when the canvas should be updated. To manually render shapes, you use the `draw()` method to explicitly draw shapes whenever needed.
 
+**Note**: [hidden shapes](./shapes/index.md#hide-a-shape) will not be drawing to canvas.
+
 ```js
 import { Canvas, Rectangle } from '@avolutions/canvas-painter';
 
@@ -128,6 +130,8 @@ canvas.clear(); // This will remove the rectangle from canvas
 ## Draw shapes automatically
 
 Automatic rendering provides a more hands-off approach, where the canvas takes care of redrawing shapes whenever they change. With automatic rendering, you can "watch" a shape, and the canvas will automatically update whenever any of the shape’s properties change. This is particularly useful when you are frequently updating shape properties, such as when dragging shapes or resizing them.
+
+**Note**: [hidden shapes](./shapes/index.md#hide-a-shape) will not be drawing to canvas.
 
 ### Watch shapes
 

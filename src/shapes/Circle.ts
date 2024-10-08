@@ -13,18 +13,20 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
    * @overload
    * @param center - The center `Point` of the circle.
    * @param radius - The radius of the circle.
-   * @param style - Optional. Defines the styling of the circle.
+   * @param style - Defines the styling of the circle.
+   * @param options - The configuration options for the circle.
    */
-  constructor(center: Point, radius: number, style?: CircleStyle);
+  constructor(center: Point, radius: number, style?: CircleStyle, options?: CircleOptions);
 
   /**
    * @overload
    * @param centerX - The X-coordinate of the starting point.
    * @param centerY - The Y-coordinate of the starting point.
    * @param radius - The radius of the circle.
-   * @param style - Optional. Defines the styling of the circle.
+   * @param style - Defines the styling of the circle.
+   * @param options - The configuration options for the circle.
    */
-  constructor(centerX: number, centerY: number, radius: number, style?: CircleStyle);
+  constructor(centerX: number, centerY: number, radius: number, style?: CircleStyle, options?: CircleOptions);
 
   /**
    * Creates an instance of the `Circle` class.
@@ -38,27 +40,36 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
     arg1: Point | number,
     arg2: number,
     arg3?: CircleStyle | number,
-    arg4?: CircleStyle
+    arg4?: CircleStyle | CircleOptions,
+    arg5?: CircleOptions
   ) {
     let style: CircleStyle;
     let definition: CircleDefinition;
+    let options: CircleOptions;
 
     if (typeof arg1 === 'number' && typeof arg3 === 'number' && ( arg4 instanceof CircleStyle || typeof arg4 === 'object' || arg4 === undefined )) {
       // Constructor with coordinates
       const center = new Point(arg1, arg2);
       definition = new CircleDefinition(center, arg3);
       style = arg4 as CircleStyle;
+      options = arg5 as CircleOptions;
 
-    } else if (arg1 instanceof Point && ( arg3 instanceof CircleStyle || typeof arg3 === 'object' || arg3 === undefined ) && arg4 === undefined) {
+    } else if (arg1 instanceof Point && ( arg3 instanceof CircleStyle || typeof arg3 === 'object' || arg3 === undefined ) && arg5 === undefined) {
       // Constructor with Point object
       definition = new CircleDefinition(arg1, arg2);
       style = arg3 as CircleStyle;
+      options = arg4 as CircleOptions;
 
     } else {
       throw new Error('Invalid constructor arguments');
     }
 
-    super(definition, style, {});
+    const circleOptions = {
+      ...CircleOptions.DefaultOptions,
+      ...options
+    };
+
+    super(definition, style, circleOptions);
   }
 
   // Getters

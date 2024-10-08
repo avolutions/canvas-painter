@@ -37,6 +37,9 @@ describe('Circle class', () => {
     expect(circle.center.y).toBe(center.y);
     expect(circle.radius).toBe(7);
     expect(circle.style).toStrictEqual({});
+
+    // Ensure default options applied correctly
+    expect(circle.options.visible).toBe(true);
   });
 
   test('should create a Circle object using Point and style', () => {
@@ -62,6 +65,15 @@ describe('Circle class', () => {
     expect(circle2.style.border).toBeUndefined();
   });
 
+  test('should initialize options from constructor using Point', () => {
+    const center = new Point(5, 10);
+    const style = new CircleStyle('red');
+
+    const circle = new Circle(center, 7, style, { visible: false });
+
+    expect(circle.options.visible).toStrictEqual(false);
+  });
+
   test('should create a Circle object using coordinates', () => {
     const centerX = 5;
     const centerY = 10;
@@ -72,6 +84,9 @@ describe('Circle class', () => {
     expect(circle.center.y).toBe(10);
     expect(circle.radius).toBe(7);
     expect(circle.style).toStrictEqual({});
+
+    // Ensure default options applied correctly
+    expect(circle.options.visible).toBe(true);
   });
 
   test('should create a Circle object using coordinates and style', () => {
@@ -94,6 +109,16 @@ describe('Circle class', () => {
     expect(circle2.radius).toBe(7);
     expect(circle2.style.color).toBe(style.color);
     expect(circle2.style.border).toBeUndefined();
+  });
+
+  test('should initialize options from constructor using Point', () => {
+    const centerX = 5;
+    const centerY = 10;
+    const style = new CircleStyle('red');
+
+    const circle = new Circle(centerX, centerY, 7, style, { visible: false });
+
+    expect(circle.options.visible).toStrictEqual(false);
   });
 
   test('should throw an error if coordinates are partially provided', () => {
