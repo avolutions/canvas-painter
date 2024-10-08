@@ -22,6 +22,7 @@
     "clean": "rimraf ./dist",
     "docs": "typedoc",
     "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "test:coverage": "jest --coverage",
     "test": "jest"
   },
