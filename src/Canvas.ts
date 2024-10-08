@@ -271,7 +271,7 @@ export class Canvas {
   };
 
   /**
-   * Clears the canvas and re-renders all watched shapes.
+   * Clears the canvas and re-renders all watched and visible shapes.
    */
   public redraw(): void {
     this.clear();
@@ -281,11 +281,13 @@ export class Canvas {
   }
 
   /**
-   * Renders the specified shape on the canvas.
+   * Renders the specified shape on the canvas if shape is visible.
    *
    * @param shape - The shape to render.
    */
   public draw(shape: IShape): void {
-    shape.render(this.context);
+    if (shape.isVisible()) {
+      shape.render(this.context);
+    }
   }
 }
