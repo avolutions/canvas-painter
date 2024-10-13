@@ -1,4 +1,5 @@
 import { CanvasOptions } from "./options/CanvasOptions.js";
+import { ICanvasOptions } from "./options/interfaces/ICanvasOptions.js";
 import { IShape } from "./shapes/IShape.js";
 import { CanvasStyle } from "./styles/CanvasStyle.js";
 
@@ -33,17 +34,14 @@ export class Canvas {
   private constructor(
     canvas: HTMLCanvasElement,
     context: CanvasRenderingContext2D,
-    options?: CanvasOptions,
+    options?: ICanvasOptions,
     style?: CanvasStyle
   ) {
     this._canvas = canvas;
     this._context = context;
 
     // Merge default options with the provided options
-    this._options = {
-      ...CanvasOptions.DefaultOptions,
-      ...options
-    };
+    this._options = new CanvasOptions(options);
 
     // Set styles
     this._style = {
@@ -72,7 +70,7 @@ export class Canvas {
    * @param options - Optional canvas options that may contain a height.
    * @returns The height value based on the order of priority described.
    */
-  private getHeight(options: CanvasOptions | undefined): number {
+  private getHeight(options: ICanvasOptions | undefined): number {
     // If height was provided as option
     if (options?.height) {
       return options.height;
@@ -102,7 +100,7 @@ export class Canvas {
    * @param options - Optional canvas options that may contain a width.
    * @returns The width value based on the order of priority described.
    */
-  private getWidth(options: CanvasOptions | undefined): number {
+  private getWidth(options: ICanvasOptions | undefined): number {
     // If width was provided as option
     if (options?.width) {
       return options.width;
@@ -152,7 +150,7 @@ export class Canvas {
    * @returns A new Canvas instance.
    * @throws {Error} If the canvas element is not found or is not a valid canvas.
    */
-  public static init(id: string, options?: CanvasOptions, style?: CanvasStyle): Canvas {
+  public static init(id: string, options?: ICanvasOptions, style?: CanvasStyle): Canvas {
     const canvas = document.getElementById(id);
     if (!canvas) {
       throw new Error(`Element with id '${id}' not found`);

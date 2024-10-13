@@ -1,11 +1,24 @@
+import { IZoomOptions } from "./interfaces/IZoomOptions.js";
+import { Options } from "./Options.js";
+
 /**
  * Options for configuring the zoom behavior of a canvas.
  */
-export class ZoomOptions {
+export class ZoomOptions extends Options<IZoomOptions> implements IZoomOptions {
+  /**
+   * The step value for zoom increments.
+   */
+  public step!: number;
+
+  /**
+   * Whether zooming with the mouse wheel is enabled.
+   */
+  public useWheel!: boolean;
+
   /**
    * Default zoom options.
    */
-  public static readonly DefaultOptions: ZoomOptions = {
+  public static readonly DefaultOptions: IZoomOptions = {
     step: 0.1,
     useWheel: true
   };
@@ -13,11 +26,9 @@ export class ZoomOptions {
   /**
    * Creates a new instance of ZoomOptions.
    *
-   * @param step - The zoom step increment or decrement.
-   * @param useWheel - Determines whether zooming is controlled via the mouse wheel.
+   * @param options The partial options provided by the user.
    */
-  constructor(
-    public step?: number,
-    public useWheel?: boolean
-  ) {}
+  constructor(options: Partial<IZoomOptions> = {}) {
+    super(options, ZoomOptions.DefaultOptions);
+  }
 }

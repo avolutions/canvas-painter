@@ -1,23 +1,56 @@
+import { ICanvasOptions } from "./interfaces/ICanvasOptions.js";
+import { Options } from "./Options.js";
+import { ZoomOptions } from "./ZoomOptions.js";
+
 /**
  * Options for configuring the behavior of a canvas.
  */
-export class CanvasOptions {
+export class CanvasOptions extends Options<ICanvasOptions> implements ICanvasOptions {
+  /**
+   * The width of the canvas in pixels.
+   */
+  public width!: number;
+
+  /**
+   * The height of the canvas in pixels.
+   */
+  public height!: number;
+
+  /**
+   * Whether zooming is enabled on the canvas.
+   */
+  public zoomable!: boolean;
+
+  /**
+   * The options for configuring the zoom behavior of the canvas.
+   */
+  public zoom!: ZoomOptions;
+
   /**
    * Default canvas options.
    */
-  public static readonly DefaultOptions: CanvasOptions = {
+  public static readonly DefaultOptions: ICanvasOptions = {
     width: 300,
     height: 150,
+    zoomable: false,
+    zoom: ZoomOptions.DefaultOptions
   };
 
   /**
    * Creates a new instance of CanvasOptions.
    *
-   * @param width - The width of the canvas in pixels. If undefined, a default value may be used.
-   * @param height - The height of the canvas in pixels. If undefined, a default value may be used.
+   * @param options The partial options provided by the user.
    */
-  constructor(
-    public width?: number, // Optional width in pixels.
-    public height?: number // Optional height in pixels.
-  ) {}
+  constructor(options: Partial<ICanvasOptions> = {}) {
+    // Handle partial ZoomOptions
+    const zoomOptions = new ZoomOptions(options.zoom || {});
+
+    // Create the merged options
+    const mergedOptions = {
+      ...options,
+      zoom: zoomOptions, // Ensure zoom is correctly merged
+    };
+
+    super(mergedOptions, CanvasOptions.DefaultOptions);
+  }
 }

@@ -4,6 +4,7 @@ import { RectangleDefinition } from "../definitions/RectangleDefinition.js";
 import { Shape } from "./Shape.js";
 import { RectangleStyle } from "../styles/RectangleStyle.js";
 import { RectangleOptions } from "../options/RectangleOptions.js";
+import { IRectangleOptions } from "../options/interfaces/IRectangleOptions.js";
 
 /**
  * Class representing a Rectangle, extending the Shape class with a RectangleDefinition.
@@ -28,18 +29,11 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
     height: number,
     rotation: number = 0,
     style: RectangleStyle = {},
-    options: RectangleOptions = {}
+    options?: IRectangleOptions
   ) {
     // Create a RectangleDefinition using the provided parameters
     const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, new Angle(rotation));
-
-    // Merge default options with the provided options
-    options = {
-      ...RectangleOptions.DefaultOptions,
-      ...options
-    };
-
-    super(rectangleDefinition, style, options);
+    super(rectangleDefinition, style, new RectangleOptions(options));
   }
 
   // Getters

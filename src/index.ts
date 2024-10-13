@@ -13,12 +13,20 @@ export { LineDefinition } from './definitions/LineDefinition.js';
 export { RectangleDefinition } from './definitions/RectangleDefinition.js';
 
 /* Options */
-export { IShapeOptions } from './options/IShapeOptions.js';
-export { ShapeOptions } from './options/ShapeOptions.js';
+export { ICanvasOptions } from './options/interfaces/ICanvasOptions.js';
+export { ICircleOptions } from './options/interfaces/ICircleOptions.js';
+export { ILineOptions } from './options/interfaces/ILineOptions.js';
+export { IRectangleOptions } from './options/interfaces/IRectangleOptions.js';
+export { IShapeOptions } from './options/interfaces/IShapeOptions.js';
+export { IZoomOptions } from './options/interfaces/IZoomOptions.js';
+
 export { CanvasOptions } from './options/CanvasOptions.js';
 export { CircleOptions } from './options/CircleOptions.js';
 export { LineOptions } from './options/LineOptions.js';
+export { Options } from './options/Options.js';
 export { RectangleOptions } from './options/RectangleOptions.js';
+export { ShapeOptions } from './options/ShapeOptions.js';
+export { ZoomOptions } from './options/ZoomOptions.js';
 
 /* Shapes */
 export { IShape } from './shapes/IShape.js'
