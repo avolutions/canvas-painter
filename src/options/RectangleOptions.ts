@@ -1,12 +1,11 @@
 
 import { IRectangleOptions } from "./interfaces/IRectangleOptions.js";
-import { Options } from "./Options.js";
 import { ShapeOptions } from "./ShapeOptions.js";
 
 /**
  * Options for configuring the behavior of a rectangle shape.
  */
-export class RectangleOptions extends Options<IRectangleOptions> implements IRectangleOptions {
+export class RectangleOptions implements IRectangleOptions {
   /**
    * Determines if the shape should be visible or not.
    */
@@ -32,6 +31,11 @@ export class RectangleOptions extends Options<IRectangleOptions> implements IRec
    * @param options The partial options provided by the user.
    */
   constructor(options: Partial<IRectangleOptions> = {}) {
-    super(options, RectangleOptions.DefaultOptions);
+    const optionsWithDefaults = {
+      ...RectangleOptions.DefaultOptions,
+      ...options
+    };
+
+    Object.assign(this, optionsWithDefaults);
   }
 }

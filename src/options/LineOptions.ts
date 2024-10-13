@@ -1,11 +1,10 @@
 import { ILineOptions } from "./interfaces/ILineOptions.js";
-import { Options } from "./Options.js";
 import { ShapeOptions } from "./ShapeOptions.js";
 
 /**
  * Options for configuring the behavior of a line shape.
  */
-export class LineOptions extends Options<ILineOptions> implements ILineOptions {
+export class LineOptions implements ILineOptions {
   /**
    * Determines if the shape should be visible or not.
    */
@@ -24,6 +23,11 @@ export class LineOptions extends Options<ILineOptions> implements ILineOptions {
    * @param options The partial options provided by the user.
    */
   constructor(options: Partial<ILineOptions> = {}) {
-    super(options, LineOptions.DefaultOptions);
+    const optionsWithDefaults = {
+      ...LineOptions.DefaultOptions,
+      ...options
+    };
+
+    Object.assign(this, optionsWithDefaults);
   }
 }

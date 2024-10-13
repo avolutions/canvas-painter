@@ -1,10 +1,9 @@
 import { IZoomOptions } from "./interfaces/IZoomOptions.js";
-import { Options } from "./Options.js";
 
 /**
  * Options for configuring the zoom behavior of a canvas.
  */
-export class ZoomOptions extends Options<IZoomOptions> implements IZoomOptions {
+export class ZoomOptions implements IZoomOptions {
   /**
    * The step value for zoom increments.
    */
@@ -29,6 +28,11 @@ export class ZoomOptions extends Options<IZoomOptions> implements IZoomOptions {
    * @param options The partial options provided by the user.
    */
   constructor(options: Partial<IZoomOptions> = {}) {
-    super(options, ZoomOptions.DefaultOptions);
+    const optionsWithDefaults = {
+      ...ZoomOptions.DefaultOptions,
+      ...options
+    };
+
+    Object.assign(this, optionsWithDefaults);
   }
 }

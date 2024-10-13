@@ -1,11 +1,10 @@
 import { ICircleOptions } from "./interfaces/ICircleOptions.js";
-import { Options } from "./Options.js";
 import { ShapeOptions } from "./ShapeOptions.js";
 
 /**
  * Options for configuring the behavior of a circle shape.
  */
-export class CircleOptions extends Options<ICircleOptions> implements ICircleOptions {
+export class CircleOptions implements ICircleOptions {
   /**
    * Determines if the shape should be visible or not.
    */
@@ -24,6 +23,11 @@ export class CircleOptions extends Options<ICircleOptions> implements ICircleOpt
    * @param options The partial options provided by the user.
    */
   constructor(options: Partial<ICircleOptions> = {}) {
-    super(options, CircleOptions.DefaultOptions);
+    const optionsWithDefaults = {
+      ...CircleOptions.DefaultOptions,
+      ...options
+    };
+
+    Object.assign(this, optionsWithDefaults);
   }
 }

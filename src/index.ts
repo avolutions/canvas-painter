@@ -23,7 +23,6 @@ export { IZoomOptions } from './options/interfaces/IZoomOptions.js';
 export { CanvasOptions } from './options/CanvasOptions.js';
 export { CircleOptions } from './options/CircleOptions.js';
 export { LineOptions } from './options/LineOptions.js';
-export { Options } from './options/Options.js';
 export { RectangleOptions } from './options/RectangleOptions.js';
 export { ShapeOptions } from './options/ShapeOptions.js';
 export { ZoomOptions } from './options/ZoomOptions.js';

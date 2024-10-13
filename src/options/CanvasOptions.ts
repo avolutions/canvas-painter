@@ -1,11 +1,10 @@
 import { ICanvasOptions } from "./interfaces/ICanvasOptions.js";
-import { Options } from "./Options.js";
 import { ZoomOptions } from "./ZoomOptions.js";
 
 /**
  * Options for configuring the behavior of a canvas.
  */
-export class CanvasOptions extends Options<ICanvasOptions> implements ICanvasOptions {
+export class CanvasOptions implements ICanvasOptions {
   /**
    * The width of the canvas in pixels.
    */
@@ -46,11 +45,12 @@ export class CanvasOptions extends Options<ICanvasOptions> implements ICanvasOpt
     const zoomOptions = new ZoomOptions(options.zoom || {});
 
     // Create the merged options
-    const mergedOptions = {
+    const optionsWithDefaults = {
+      ...CanvasOptions.DefaultOptions,
       ...options,
       zoom: zoomOptions, // Ensure zoom is correctly merged
     };
 
-    super(mergedOptions, CanvasOptions.DefaultOptions);
+    Object.assign(this, optionsWithDefaults);
   }
 }
