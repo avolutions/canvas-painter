@@ -5,6 +5,7 @@
 import { Canvas } from '../src/Canvas';
 import { CanvasOptions } from '../src/options/CanvasOptions';
 import { CanvasStyle } from '../src/styles/CanvasStyle';
+import { Point } from '../src/types/Point';
 import { MockShape } from './mocks/MockShape';
 
 describe('Canvas class', () => {
@@ -18,6 +19,8 @@ describe('Canvas class', () => {
     context = {
       canvas: canvasElement,
       clearRect: jest.fn(),
+      resetTransform: jest.fn(),
+      transform: jest.fn()
       // Add any other needed CanvasRenderingContext2D methods here
     } as unknown as CanvasRenderingContext2D;
 
@@ -67,13 +70,14 @@ describe('Canvas class', () => {
 
     expect(canvas).toBeInstanceOf(Canvas);
     expect(canvas.context).toBe(context);
+    expect(canvas.panOffset).toEqual(new Point(0, 0));
   });
 
   test('should set default options', () => {
     const canvas = Canvas.init('canvas-id');
     const defaultOptions = CanvasOptions.DefaultOptions;
 
-    expect((canvas as any)._options).toStrictEqual(defaultOptions);
+    expect((canvas as any)._options).toEqual(defaultOptions);
   });
 
   test('should set passed options', () => {
@@ -455,5 +459,122 @@ describe('Canvas class', () => {
     // Verify that clearRect was called with the correct arguments
     expect(context.clearRect).toHaveBeenCalledWith(0, 0, 300, 150);
     expect(context.clearRect).toHaveBeenCalledTimes(1);
+  });
+
+  test('should set and get zoomScale correctly', () => {
+    const canvas = Canvas.init('canvas-id');
+
+    expect(canvas.zoomScale).toBe(1.0);
+
+    canvas.zoomScale = 0.05;
+    expect(canvas.zoomScale).toBe(0.05);
+  });
+
+  test('should call applyZoom when setting zoomScale', () => {
+    const canvas = Canvas.init('canvas-id');
+
+    const applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
+
+    canvas.zoomScale = 0.47;
+    expect(applyZoomSpy).toHaveBeenCalled();
+  });
+
+  test('should set and get panOffset correctly', () => {
+    const canvas = Canvas.init('canvas-id');
+    const offset = new Point(47.11, -12.3);
+
+    expect(canvas.panOffset).toEqual(new Point(0, 0));
+
+    canvas.panOffset = offset;
+    expect(canvas.panOffset).toEqual(offset);
+    expect(canvas.panOffset.x).toBe(offset.x);
+    expect(canvas.panOffset.y).toBe(offset.y);
+
+    canvas.panOffset.x = -15.756;
+    canvas.panOffset.y = 42.1;
+    expect(canvas.panOffset).toEqual(new Point(-15.756, 42.1));
+  });
+
+  test('should call redraw when setting panOffset', () => {
+    const canvas = Canvas.init('canvas-id');
+
+    const redrawSpy = jest.spyOn(canvas as any, 'redraw');
+
+    canvas.panOffset = new Point(47.11, -12.3);
+    expect(redrawSpy).toHaveBeenCalled();
+  });
+
+  test('should reset panOffset', () => {
+    const canvas = Canvas.init('canvas-id');
+    const offset = new Point(23, 5);
+
+    canvas.panOffset = offset;
+    expect(canvas.panOffset).toEqual(offset);
+
+    canvas.resetPan();
+
+    expect(canvas.panOffset).toEqual(new Point(0, 0));
+    expect(canvas.panOffset.x).toBe(0);
+    expect(canvas.panOffset.x).toBe(0);
+  });
+
+  test('should reset zoomScale', () => {
+    const canvas = Canvas.init('canvas-id');
+
+    canvas.zoomScale = 2.5;
+    expect(canvas.zoomScale).toEqual(2.5);
+
+    canvas.resetZoom();
+
+    expect(canvas.zoomScale).toBe(1);
+  });
+
+  test('should zoomIn and zoomOut without position', () => {
+    const canvas = Canvas.init('canvas-id');
+
+    const applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
+
+    canvas.zoomIn();
+    expect(applyZoomSpy).toHaveBeenCalledWith(1.1, undefined);
+
+    canvas.zoomOut();
+    expect(applyZoomSpy).toHaveBeenCalledWith(0.9, undefined);
+  });
+
+  test('should zoomIn and zoomOut with position', () => {
+    const canvas = Canvas.init('canvas-id');
+    const position = new Point(47, 11);
+
+    const applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
+
+    canvas.zoomIn(position);
+    expect(applyZoomSpy).toHaveBeenCalledWith(1.1, position);
+
+    canvas.zoomOut(position);
+    expect(applyZoomSpy).toHaveBeenCalledWith(0.9, position);
+  });
+
+  test('should zoomIn and zoomOut with custom zoom step', () => {
+    const canvas = Canvas.init('canvas-id', { zoom: { step: 0.25 } });
+
+    const applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
+
+    canvas.zoomIn();
+    expect(applyZoomSpy).toHaveBeenCalledWith(1.25, undefined);
+
+    canvas.zoomOut();
+    expect(applyZoomSpy).toHaveBeenCalledWith(0.75, undefined);
+  });
+
+  test('should zoomIn and zoomOut with custom zoom step', () => {
+    const canvas = Canvas.init('canvas-id', { zoom: { step: 0.25 } });
+
+    const applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
+
+    canvas.zoomIn();
+    expect(applyZoomSpy).toHaveBeenCalledWith(1.25, undefined);
+
+    canvas.zoomOut();
+    expect(applyZoomSpy).toHaveBeenCalledWith(0.75, undefined);
   });
 });

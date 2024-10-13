@@ -318,11 +318,20 @@ canvas.zoomScale = 2;  // Set zoom scale to 200%
 
 #### Getting and setting pan offset
 
-The pan offset (the current offset of the canvas) can be accessed via the `panOffset` getter. You can also programmatically set a new pan offset using the `panOffset` setter to reposition the canvas.
+The pan offset (the current offset of the canvas) can be accessed via the `panOffset` getter. You can also programmatically set a new pan offset using the `panOffset` setter to reposition the canvas. In addition, you can manipulate the pan offset incrementally using the `moveX()`, `moveY()`, or `move()` methods from the `Point` class to shift the pan offset smoothly.
 
 ```js
 // Set a new pan offset
 canvas.panOffset = { x: 200, y: 100 }; // Pan to the specified offset
+
+// Move the pan offset 50 pixels to the right
+canvas.panOffset.moveX(50);
+
+// Move the pan offset 30 pixels down
+canvas.panOffset.moveY(30);
+
+// Move both horizontally and vertically at the same time
+canvas.panOffset.move(-50, -30);
 
 // Get the current pan offset
 const panOffset = canvas.panOffset;

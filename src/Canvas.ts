@@ -2,6 +2,8 @@ import { CanvasOptions } from "./options/CanvasOptions.js";
 import { ICanvasOptions } from "./options/interfaces/ICanvasOptions.js";
 import { IShape } from "./shapes/IShape.js";
 import { CanvasStyle } from "./styles/CanvasStyle.js";
+import { Mouse } from "./types/Mouse.js";
+import { Point } from "./types/Point.js";
 
 /**
  * Class representing a Canvas element that can manage and render shapes.
@@ -21,6 +23,9 @@ export class Canvas {
 
   /** List of shapes being watched for changes and re-rendered. */
   private watchedShapes: IShape[] = [];
+
+  private _zoomScale: number = 1.0;
+  private _panOffset: Point;
 
   /**
    * Constructs a new Canvas instance.
@@ -60,6 +65,30 @@ export class Canvas {
     this._options.height = height;
 
     this.setContextStyle(this._style);
+
+    this._panOffset = new Point(0, 0);
+
+    this.addEventListener();
+  }
+
+  private addEventListener(): void {
+    if (this._options.zoomable && this._options.zoom.useWheel) {
+      // Bind the method to make sure `this` refers to the instance of the class
+      this.handleWheel = this.handleWheel.bind(this);
+      this._canvas.addEventListener('wheel', this.handleWheel);
+    }
+  }
+
+  private handleWheel(event: WheelEvent): void {
+    event.preventDefault();
+
+    const mousePosition = Mouse.getEventPosition(event);
+
+    if (event.deltaY < 0) {
+      this.zoomIn(mousePosition);
+    } else {
+      this.zoomOut(mousePosition);
+    }
   }
 
   /**
@@ -120,6 +149,13 @@ export class Canvas {
 
     // Use default options as ultimate fallback
     return CanvasOptions.DefaultOptions.width as number;
+  }
+
+  public getCenter(): Point {
+    const x = this._options.width! / 2;
+    const y = this._options.height! / 2;
+
+    return new Point(x, y);
   }
 
   /**
@@ -274,6 +310,12 @@ export class Canvas {
   public redraw(): void {
     this.clear();
 
+     // Reset the transformation matrix to identity
+    this._context.resetTransform();
+
+    // Apply the new transformation
+    this._context.transform(this.zoomScale, 0, 0, this.zoomScale, this._panOffset.x, this._panOffset.y);
+
     // Render each watched shape
     this.watchedShapes.forEach((shape) => this.draw(shape));
   }
@@ -287,5 +329,65 @@ export class Canvas {
     if (shape.isVisible()) {
       shape.render(this.context);
     }
+  }
+
+  public zoomIn(position?: Point): void {
+    const zoomFactor = 1 + this._options.zoom.step;
+    this.applyZoom(zoomFactor, position);
+  }
+
+  public zoomOut(position?: Point): void {
+    const zoomFactor = 1 - this._options.zoom.step;
+    this.applyZoom(zoomFactor, position);
+  }
+
+  private applyZoom(zoomFactor: number = 1, position?: Point) {
+    // If not position was provided we zoom to center
+    if (!position) {
+      position = this.getCenter();
+    }
+
+    // Get mouse position in canvas space before zooming
+    const x = ( position.x - this._panOffset.x ) / this.zoomScale;
+    const y = ( position.y - this._panOffset.y ) / this.zoomScale;
+    const canvasMouse = new Point(x, y);
+
+    // Update the zoom scale
+    const newZoomScale = this.zoomScale * zoomFactor;
+
+    // Calculate the new pan values to keep the zoom centered on the mouse position
+    this._panOffset.x = position.x - canvasMouse.x * newZoomScale;
+    this._panOffset.y = position.y - canvasMouse.y * newZoomScale;
+
+    // Not using setter here to prevent loop
+    this._zoomScale = newZoomScale;
+
+    this.redraw();
+  }
+
+  public resetZoom() {
+    this._zoomScale = 1;
+  }
+
+  public resetPan() {
+    this._panOffset = new Point(0, 0);
+  }
+
+  public get zoomScale(): number {
+    return this._zoomScale;
+  }
+
+  public set zoomScale(value: number) {
+    this._zoomScale = value;
+    this.applyZoom();
+  }
+
+  public get panOffset(): Point {
+    return this._panOffset;
+  }
+
+  public set panOffset(value: Point) {
+    this._panOffset = value;
+    this.redraw();
   }
 }
