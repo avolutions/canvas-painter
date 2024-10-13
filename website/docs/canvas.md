@@ -210,6 +210,128 @@ This will clear the canvas and redraw all currently watched shapes.
 canvas.redraw();
 ```
 
+## Zooming and panning the Canvas
+
+In **CanvasPainter.js**, zooming and panning allow you to navigate and interact with a large canvas by adjusting the view, making it easier to focus on specific parts of the canvas or visualize intricate details. These two features are essential in applications like drawing tools, image editors, and data visualizations where users may need to zoom in or out and move around the canvas.
+
+### Enable zooming and panning
+
+Zooming and panning functionality can be easily enabled through configuration options. By setting `zoomable` and `pannable` in the canvas options, you allow users to zoom in and out or pan across the canvas.
+
+```js
+const canvas = Canvas.init('myCanvas', { zoomable: true, pannable: true} );
+```
+
+In this example, both zooming and panning are enabled by configuring the canvas options.
+
+### Default zoom and pan behavior
+
+In **CanvasPainter.js**, zooming and panning are designed to work out-of-the-box when the `zoomable` and `pannable` options are enabled. By default, the library uses the mouse wheel for zooming and drag & drop for panning, providing an intuitive and interactive user experience.
+
+#### Default zoom behavior
+
+When `zoomable` is enabled, users can zoom in and out of the canvas using the mouse wheel. Scrolling the wheel up (away from you) zooms in, making the elements on the canvas appear larger, while scrolling the wheel down (toward you) zooms out, making the elements smaller.
+
+The zoom is centered around the mouse pointer, meaning that when you zoom in or out, the canvas will scale with the pointer as the center of focus.
+
+#### Default Pan Behavior
+
+When `pannable` is enabled, users can pan the canvas by clicking and dragging it. This allows users to move the visible area of the canvas, which is particularly useful when zoomed in on a specific region and needing to navigate across the canvas.
+
+The panning behavior is intuitive: click anywhere on the canvas, hold down the mouse button, and move the mouse to drag the canvas view. This shifts the visible portion of the canvas in the direction you drag, making it easy to explore different areas when zoomed in.
+
+### Configure zoom behavior
+
+The `zoom` option allows you to customize how zooming behaves on the canvas. You can control two main properties:
+
+- `step`: Defines the zoom factor. A larger step results in more dramatic zooming.
+- `useWheel`: Enables or disables the ability to zoom using the mouse wheel.
+
+```js
+const options = {
+  zoomable: true,
+  zoom: {
+    step: 0.05, // 5%
+    useWheel: false // disable mouse wheel
+  }
+};
+
+const canvas = Canvas.init('myCanvas', options );
+```
+
+The `zoom` options are only active when the `zoomable` option is set to `true`. This means that even if you configure these zoom options, they will have no effect unless zooming is explicitly enabled.
+
+#### Zoom step
+
+The `zoom.step` option in **CanvasPainter.js** controls how much the canvas zooms in or out with each zoom event when using the mouse wheel or programmatic zoom. It determines the scaling factor applied to the canvas, and the default value is set to `0.1`, which means a **10%** zoom change with each scroll.
+
+### Programmatically control zoom and pan
+
+In **CanvasPainter.js**, you can not only rely on user interactions for zooming and panning but also control these behaviors programmatically using specific methods and properties. This allows you to zoom in, zoom out, reset zoom or pan, and control the zoom scale and pan center through code, offering more flexibility for your application.
+
+#### Zoom programmatically
+
+You can zoom in and out using the `zoomIn()` and `zoomOut()` methods. These methods adjust the zoom level by a factor based on the `zoom.step` option. By default, the zoom step is set to `0.1` (10%), but you can adjust this value to control how much the canvas zooms in or out with each method call.
+
+```js
+// Zoom in 10% centered at a specific point
+const zoomCenter = new Point(100, 150);
+canvas.zoomIn(zoomCenter);
+
+// Zoom out 10% centered at the canvas center (default)
+canvas.zoomOut();
+```
+
+- **`zoomIn(position?: Point)`**: Zooms in on the canvas. If a position (`Point`) is provided, the zoom will be centered around that point; otherwise, it will default to the center of the canvas.
+- **`zoomOut(position?: Point)`**: Similar to `zoomIn()`, but zooms out. It will also use the provided center point, or the canvas center if none is given.
+
+#### Resetting zoom and pan
+
+You can reset both the zoom level and the pan offset to their default states using the `resetZoom()` and `resetPan()` methods. This is particularly useful when you need to return to the original view after zooming or panning around the canvas.
+
+```js
+// Reset the zoom to its default scale
+canvas.resetZoom();
+
+// Reset the pan offset to the default (centered)
+canvas.resetPan();
+```
+
+- **`resetZoom()`**: Resets the zoom level back to the default scale (1).
+- **`resetPan()`**: Resets the pan offset to the default (center of canvas).
+
+#### Getting and setting zoom scale
+
+The current zoom level can be accessed via the `zoomScale` getter, allowing you to retrieve the current scale factor. You can also set a new zoom level programmatically using the `zoomScale` setter.
+
+```js
+// Get the current zoom scale
+const currentZoom = canvas.zoomScale;
+console.log(currentZoom); // Output: Current zoom level
+
+// Set a new zoom scale
+canvas.zoomScale = 2;  // Set zoom scale to 200%
+```
+
+- **`zoomScale (getter)`**: Returns the current zoom level. A value of `1` means no zoom (100%), `0.5` means 50%, `2` means 200%, and so on.
+- **`zoomScale (setter)`**: Allows you to set a new zoom scale programmatically. This directly adjusts the canvas zoom to the specified scale.
+
+#### Getting and setting pan offset
+
+The pan offset (the current offset of the canvas) can be accessed via the `panOffset` getter. You can also programmatically set a new pan offset using the `panOffset` setter to reposition the canvas.
+
+```js
+// Set a new pan offset
+canvas.panOffset = { x: 200, y: 100 }; // Pan to the specified offset
+
+// Get the current pan offset
+const panOffset = canvas.panOffset;
+console.log(panOffset); // Output: { x: 200, y: 100 }
+```
+
+- **`panOffset (getter)`**: Returns the current pan offset as an `Point` object, representing the canvas offset from its default position.
+- **`panOffset (setter)`**: Allows you to set a new pan offset programmatically. This adjusts the canvas to be panned to the specified position.
+
 ## Options
 
 The following table is showing all available canvas options and there default values if no value was provided explicit.
@@ -218,6 +340,10 @@ Option | Default | Explanation
 --- | --- | ---
 `height` | 150 | Sets the height of the HTML canvas element.
 `width` | 300 | Sets the width of the HTML canvas element.
+`zoomable` | false | Allows the user to zoom the canvas.
+`pannable` | false | Allows the user to pan the canvas.
+`zoom.step` | 0.1 | The zoom factor that is applied with each zoom event, 0.1 means 10%.
+`zoom.useWheel` | true | Enables (true) or disables (false) zooming with the mouse wheel.
 
 ## Styles
 
