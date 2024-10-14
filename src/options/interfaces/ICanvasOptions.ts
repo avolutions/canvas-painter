@@ -1,3 +1,4 @@
+import { IPanOptions } from "./IPanOptions.js";
 import { IZoomOptions } from "./IZoomOptions.js";
 
 /**
@@ -23,4 +24,14 @@ export interface ICanvasOptions {
    * The options for configuring the zoom behavior of the canvas.
    */
   zoom?: IZoomOptions;
+
+  /**
+   * Whether panning is enabled on the canvas.
+   */
+  pannable?: boolean;
+
+  /**
+   * The options for configuring the pan behavior of the canvas.
+   */
+  pan?: IPanOptions;
 }

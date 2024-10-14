@@ -1,4 +1,6 @@
 import { ICanvasOptions } from "./interfaces/ICanvasOptions.js";
+import { IPanOptions } from "./interfaces/IPanOptions.js";
+import { PanOptions } from "./PanOptions.js";
 import { ZoomOptions } from "./ZoomOptions.js";
 
 /**
@@ -26,13 +28,25 @@ export class CanvasOptions implements ICanvasOptions {
   public zoom!: ZoomOptions;
 
   /**
+   * Whether panning is enabled on the canvas.
+   */
+  public pannable!: boolean;
+
+  /**
+   * The options for configuring the pan behavior of the canvas.
+   */
+  public pan!: IPanOptions;
+
+  /**
    * Default canvas options.
    */
   public static readonly DefaultOptions: ICanvasOptions = {
     width: 300,
     height: 150,
     zoomable: false,
-    zoom: ZoomOptions.DefaultOptions
+    pannable: false,
+    zoom: ZoomOptions.DefaultOptions,
+    pan: PanOptions.DefaultOptions
   };
 
   /**
@@ -44,11 +58,15 @@ export class CanvasOptions implements ICanvasOptions {
     // Handle partial ZoomOptions
     const zoomOptions = new ZoomOptions(options.zoom || {});
 
+    // Handle partial PanOptions
+    const panOptions = new PanOptions(options.pan || {});
+
     // Create the merged options
     const optionsWithDefaults = {
       ...CanvasOptions.DefaultOptions,
       ...options,
       zoom: zoomOptions, // Ensure zoom is correctly merged
+      pan: panOptions, // Ensure pan is correctly merged
     };
 
     Object.assign(this, optionsWithDefaults);
