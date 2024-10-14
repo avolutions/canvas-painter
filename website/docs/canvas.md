@@ -216,7 +216,7 @@ In **CanvasPainter.js**, zooming and panning allow you to navigate and interact 
 
 ### Enable zooming and panning
 
-Zooming and panning functionality can be easily enabled through configuration options. By setting `zoomable` and `pannable` in the canvas options, you allow users to zoom in and out or pan across the canvas.
+Zooming and panning functionality can be easily enabled through configuration options. By setting `zoomable` and `pannable` in the canvas options, you allow users to zoom in and out and/or pan across the canvas.
 
 ```js
 const canvas = Canvas.init('myCanvas', { zoomable: true, pannable: true} );
@@ -226,19 +226,19 @@ In this example, both zooming and panning are enabled by configuring the canvas 
 
 ### Default zoom and pan behavior
 
-In **CanvasPainter.js**, zooming and panning are designed to work out-of-the-box when the `zoomable` and `pannable` options are enabled. By default, the library uses the mouse wheel for zooming and drag & drop for panning, providing an intuitive and interactive user experience.
+In **CanvasPainter.js**, zooming and panning are designed to work out-of-the-box when the `zoomable` and `pannable` options are enabled. By default, the library uses the mouse wheel for zooming and drag & drop with left mouse button for panning, providing an intuitive and interactive user experience.
 
 #### Default zoom behavior
 
 When `zoomable` is enabled, users can zoom in and out of the canvas using the mouse wheel. Scrolling the wheel up (away from you) zooms in, making the elements on the canvas appear larger, while scrolling the wheel down (toward you) zooms out, making the elements smaller.
 
-The zoom is centered around the mouse pointer, meaning that when you zoom in or out, the canvas will scale with the pointer as the center of focus.
+If canvas is also `pannable`, the zoom is centered around the current mouse position, meaning that when you zoom in or out, the canvas will scale with the pointer as the center of focus. if canvas is not `pannable`, the center for zooming is always the center of the canvas.
 
 #### Default Pan Behavior
 
-When `pannable` is enabled, users can pan the canvas by clicking and dragging it. This allows users to move the visible area of the canvas, which is particularly useful when zoomed in on a specific region and needing to navigate across the canvas.
+When `pannable` is enabled, users can pan the canvas by clicking and dragging it with left mouse button. This allows users to move the visible area of the canvas, which is particularly useful when zoomed in on a specific region and needing to navigate across the canvas.
 
-The panning behavior is intuitive: click anywhere on the canvas, hold down the mouse button, and move the mouse to drag the canvas view. This shifts the visible portion of the canvas in the direction you drag, making it easy to explore different areas when zoomed in.
+The panning behavior is intuitive: click anywhere on the canvas, hold down the left mouse button, and move the mouse to drag the canvas view. This shifts the visible portion of the canvas in the direction you drag, making it easy to explore different areas when zoomed in.
 
 ### Configure zoom behavior
 
@@ -265,6 +265,25 @@ The `zoom` options are only active when the `zoomable` option is set to `true`. 
 
 The `zoom.step` option in **CanvasPainter.js** controls how much the canvas zooms in or out with each zoom event when using the mouse wheel or programmatic zoom. It determines the scaling factor applied to the canvas, and the default value is set to `0.1`, which means a **10%** zoom change with each scroll.
 
+### Configure pan behavior
+
+The `pan` option allows you to customize how panning behaves on the canvas. You can control two main properties:
+
+- `mouseButtons`: Defines one or more mouse buttons that are used to pan the canvas.
+- `useMouse`: Enables or disables the ability to pan using the mouse.
+
+```js
+const options = {
+  pannable: true,
+  pan: {
+    mouseButtons: [ MouseButton.left, MouseButton.right ], // allow panning by using left or right mouse button
+    useMouse: false // disables mouse
+  }
+};
+
+const canvas = Canvas.init('myCanvas', options );
+```
+
 ### Programmatically control zoom and pan
 
 In **CanvasPainter.js**, you can not only rely on user interactions for zooming and panning but also control these behaviors programmatically using specific methods and properties. This allows you to zoom in, zoom out, reset zoom or pan, and control the zoom scale and pan center through code, offering more flexibility for your application.
@@ -287,7 +306,7 @@ canvas.zoomOut();
 
 #### Resetting zoom and pan
 
-You can reset both the zoom level and the pan offset to their default states using the `resetZoom()` and `resetPan()` methods. This is particularly useful when you need to return to the original view after zooming or panning around the canvas.
+You can reset both the zoom level and the pan offset to their default states using the `resetZoom()`, `resetPan()` or `resetZoomPan()` methods. This is particularly useful when you need to return to the original view after zooming or panning around the canvas.
 
 ```js
 // Reset the zoom to its default scale
@@ -295,10 +314,14 @@ canvas.resetZoom();
 
 // Reset the pan offset to the default (centered)
 canvas.resetPan();
+
+// Resets the zoom scale and pan offset
+canvas.resetZoomPan();
 ```
 
 - **`resetZoom()`**: Resets the zoom level back to the default scale (1).
 - **`resetPan()`**: Resets the pan offset to the default (center of canvas).
+- **`resetZoomPan()`**: Resets the zoom level and the pan offset to the defaults.
 
 #### Getting and setting zoom scale
 
@@ -353,6 +376,8 @@ Option | Default | Explanation
 `pannable` | false | Allows the user to pan the canvas.
 `zoom.step` | 0.1 | The zoom factor that is applied with each zoom event, 0.1 means 10%.
 `zoom.useWheel` | true | Enables (true) or disables (false) zooming with the mouse wheel.
+`pan.mouseButtons` | [ MouseButton.Left ] | A list of mouse buttons that can be used for panning the canvas.
+`pan.useMouse` | true | Enables (true) or disables (false) panning with the mouse.
 
 ## Styles
 
