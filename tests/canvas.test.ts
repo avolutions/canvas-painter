@@ -461,6 +461,71 @@ describe('Canvas class', () => {
     expect(context.clearRect).toHaveBeenCalledTimes(1);
   });
 
+  /* Zooming and panning */
+  test('should apply event handler for zooming', () => {
+    let canvas: Canvas;
+    const spy = jest.spyOn(canvasElement, 'addEventListener');
+
+    canvas = Canvas.init('canvas-id');
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockClear();
+
+    canvas = Canvas.init('canvas-id', { zoomable: false });
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockClear();
+
+    canvas = Canvas.init('canvas-id', { zoomable: true });
+    expect(spy).toHaveBeenCalledWith('wheel', expect.any(Function));
+    spy.mockClear();
+
+    canvas = Canvas.init('canvas-id', { zoomable: true, zoom: { useWheel: false } });
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockClear();
+
+    canvas = Canvas.init('canvas-id', { zoomable: true, zoom: { useWheel: true } });
+    expect(spy).toHaveBeenCalledWith('wheel', expect.any(Function));
+    spy.mockClear();
+
+    canvas = Canvas.init('canvas-id', { zoomable: false, zoom: { useWheel: true } });
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockClear();
+  });
+
+  test('should apply event handler for panning', () => {
+    let canvas: Canvas;
+    const spy = jest.spyOn(canvasElement, 'addEventListener');
+
+    canvas = Canvas.init('canvas-id');
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockClear();
+
+    canvas = Canvas.init('canvas-id', { pannable: false });
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockClear();
+
+    canvas = Canvas.init('canvas-id', { pannable: true });
+    expect(spy).toHaveBeenCalledWith('mousedown', expect.any(Function));
+    expect(spy).toHaveBeenCalledWith('mousemove', expect.any(Function));
+    expect(spy).toHaveBeenCalledWith('mouseup', expect.any(Function));
+    expect(spy).toHaveBeenCalledWith('mouseleave', expect.any(Function));
+    spy.mockClear();
+
+    canvas = Canvas.init('canvas-id', { pannable: true, pan: { useMouse: false } });
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockClear();
+
+    canvas = Canvas.init('canvas-id', { pannable: true, pan: { useMouse: true } });
+    expect(spy).toHaveBeenCalledWith('mousedown', expect.any(Function));
+    expect(spy).toHaveBeenCalledWith('mousemove', expect.any(Function));
+    expect(spy).toHaveBeenCalledWith('mouseup', expect.any(Function));
+    expect(spy).toHaveBeenCalledWith('mouseleave', expect.any(Function));
+    spy.mockClear();
+
+    canvas = Canvas.init('canvas-id', { pannable: false, pan: { useMouse: true } });
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockClear();
+  });
+
   test('should set and get zoomScale correctly', () => {
     const canvas = Canvas.init('canvas-id');
 
@@ -521,12 +586,17 @@ describe('Canvas class', () => {
   test('should reset zoomScale', () => {
     const canvas = Canvas.init('canvas-id');
 
+    // Spy on the setter using the property descriptor
+    const zoomScaleSpy = jest.spyOn(Canvas.prototype, 'zoomScale', 'set');;
+
     canvas.zoomScale = 2.5;
     expect(canvas.zoomScale).toEqual(2.5);
 
     canvas.resetZoom();
 
     expect(canvas.zoomScale).toBe(1);
+    // One time from setter and one time from resetZoom
+    expect(zoomScaleSpy).toHaveBeenCalledTimes(2);
   });
 
   test('should zoomIn and zoomOut without position', () => {

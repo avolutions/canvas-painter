@@ -26,6 +26,8 @@ export class Canvas {
 
   private _zoomScale: number = 1.0;
   private _panOffset: Point;
+  private isPanning: boolean = false;
+  private panStart: Point;
 
   /**
    * Constructs a new Canvas instance.
@@ -67,28 +69,69 @@ export class Canvas {
     this.setContextStyle(this._style);
 
     this._panOffset = new Point(0, 0);
+    this.panStart = new Point(0, 0);
 
     this.addEventListener();
   }
 
   private addEventListener(): void {
+    // Add event listener for zooming
     if (this._options.zoomable && this._options.zoom.useWheel) {
-      // Bind the method to make sure `this` refers to the instance of the class
-      this.handleWheel = this.handleWheel.bind(this);
-      this._canvas.addEventListener('wheel', this.handleWheel);
+      this._canvas.addEventListener('wheel', this.onWheel.bind(this));
+    }
+
+    // Add event listener for panning
+    if (this._options.pannable && this._options.pan.useMouse) {
+      this._canvas.addEventListener('mousedown', this.onMouseDown.bind(this));
+      this._canvas.addEventListener('mousemove', this.onMouseMove.bind(this));
+      this._canvas.addEventListener('mouseup', this.onMouseUp.bind(this));
+      // Handle the case when the mouse leaves the canvas during dragging
+      this._canvas.addEventListener('mouseleave', this.onMouseUp.bind(this));
     }
   }
 
-  private handleWheel(event: WheelEvent): void {
+  private onWheel(event: WheelEvent): void {
     event.preventDefault();
 
-    const mousePosition = Mouse.getEventPosition(event);
+    // If pannable is active, we use current mouse position as zoom center
+    let mousePosition;
+    if (this._options.pannable) {
+      mousePosition = Mouse.getEventOffsetPosition(event);
+    }
 
     if (event.deltaY < 0) {
       this.zoomIn(mousePosition);
     } else {
       this.zoomOut(mousePosition);
     }
+  }
+
+  private onMouseDown(event: MouseEvent): void {
+    this.isPanning = true;
+
+    const mousePosition = Mouse.getEventOffsetPosition(event);
+
+    this.panStart = new Point(
+      mousePosition.x - this.panOffset.x,
+      mousePosition.y - this.panOffset.y
+    );
+  }
+
+  private onMouseMove(event: MouseEvent): void {
+    if (!this.isPanning) {
+      return;
+    }
+
+    const mousePosition = Mouse.getEventOffsetPosition(event);
+
+    this.panOffset = new Point(
+      mousePosition.x - this.panStart.x,
+      mousePosition.y - this.panStart.y
+    );
+  }
+
+  private onMouseUp(event: MouseEvent): void {
+    this.isPanning = false;
   }
 
   /**
@@ -365,12 +408,16 @@ export class Canvas {
     this.redraw();
   }
 
-  public resetZoom() {
-    this._zoomScale = 1;
+  public resetZoom(): void {
+    this.zoomScale = 1;
   }
 
-  public resetPan() {
+  public resetPan(): void {
     this._panOffset = new Point(0, 0);
+  }
+
+  public resetZoomPan(): void {
+
   }
 
   public get zoomScale(): number {
