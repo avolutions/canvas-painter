@@ -6,14 +6,42 @@ import { Point } from "./Point.js";
 export class Mouse {
 
   /**
-   * Returns the position of the mouse pointer relative to the target element
-   * when a mouse event occurs.
+   * Gets the position of the mouse relative to the element that triggered the event.
    *
-   * @param event - The mouse event containing information about the mouse pointer position.
-   * @returns A `Point` object representing the position of the mouse pointer,
-   * where the `x` coordinate is the `offsetX` and the `y` coordinate is the `offsetY` from the event.
+   * @param event - The MouseEvent object that contains the mouse event data.
+   * @returns A Point object representing the X and Y coordinates relative to the event target.
    */
-  public static getEventPosition(event: MouseEvent): Point {
+  public static getOffsetPosition(event: MouseEvent): Point {
     return new Point(event.offsetX, event.offsetY);
+  }
+
+  /**
+   * Gets the position of the mouse relative to the viewport (visible area of the browser window).
+   *
+   * @param event - The MouseEvent object that contains the mouse event data.
+   * @returns A Point object representing the X and Y coordinates relative to the viewport.
+   */
+  public static getClientPosition(event: MouseEvent): Point {
+    return new Point(event.clientX, event.clientY);
+  }
+
+  /**
+   * Gets the position of the mouse relative to the entire document, including the scroll position.
+   *
+   * @param event - The MouseEvent object that contains the mouse event data.
+   * @returns A Point object representing the X and Y coordinates relative to the document.
+   */
+  public static getPagePosition(event: MouseEvent): Point {
+    return new Point(event.pageX, event.pageY);
+  }
+
+  /**
+   * Gets the position of the mouse relative to the entire screen (including monitor setup).
+   *
+   * @param event - The MouseEvent object that contains the mouse event data.
+   * @returns A Point object representing the X and Y coordinates relative to the screen.
+   */
+  public static getScreenPosition(event: MouseEvent): Point {
+    return new Point(event.screenX, event.screenY);
   }
 }

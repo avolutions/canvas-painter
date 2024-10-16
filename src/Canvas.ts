@@ -96,7 +96,7 @@ export class Canvas {
     // If pannable is active, we use current mouse position as zoom center
     let mousePosition;
     if (this._options.pannable) {
-      mousePosition = Mouse.getEventOffsetPosition(event);
+      mousePosition = Mouse.getOffsetPosition(event);
     }
 
     if (event.deltaY < 0) {
@@ -109,7 +109,7 @@ export class Canvas {
   private onMouseDown(event: MouseEvent): void {
     this.isPanning = true;
 
-    const mousePosition = Mouse.getEventOffsetPosition(event);
+    const mousePosition = Mouse.getOffsetPosition(event);
 
     this.panStart = new Point(
       mousePosition.x - this.panOffset.x,
@@ -122,7 +122,7 @@ export class Canvas {
       return;
     }
 
-    const mousePosition = Mouse.getEventOffsetPosition(event);
+    const mousePosition = Mouse.getOffsetPosition(event);
 
     this.panOffset = new Point(
       mousePosition.x - this.panStart.x,
