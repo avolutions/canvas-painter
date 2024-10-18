@@ -415,6 +415,11 @@ export class Canvas {
   }
 
   public resetZoom(): void {
+    if (this._options.pannable) {
+      this.resetZoomPan();
+      return;
+    }
+
     this.zoomScale = 1;
   }
 

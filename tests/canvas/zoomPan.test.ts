@@ -155,6 +155,20 @@ describe('Zoom and pan function of canvas class', () => {
     expect(applyZoomSpy).toHaveBeenCalledTimes(1);
   });
 
+  test('should reset zoomScale with active panning', () => {
+    const canvas = Canvas.init('canvas-id', { pannable: true });
+
+    canvas.zoomScale = 2.5;
+    expect(canvas.zoomScale).toEqual(2.5);
+
+    const applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
+    const resetZoomPanSpy = jest.spyOn(canvas as any, 'resetZoomPan');
+    canvas.resetZoom();
+
+    expect(canvas.zoomScale).toBe(1);
+    expect(resetZoomPanSpy).toHaveBeenCalledTimes(1);
+  });
+
   test('should reset zoomScale and panOffset', () => {
     const canvas = Canvas.init('canvas-id');
     const offset = new Point(23, 5);
@@ -268,6 +282,42 @@ describe('Zoom and pan function of canvas class', () => {
     expect((canvas as any).isPanning).toBe(false);
   });
 
+  test('should pan if panning was started', () => {
+    let canvas: Canvas;
+    const mockEventDown = {
+      offsetX: 47,
+      offsetY: 11,
+      button: 0, // left
+    } as MouseEvent;
+
+    const mockEventMove = {
+      offsetX: 53.5,
+      offsetY: 5.51
+    } as MouseEvent;
+
+    canvas = Canvas.init('canvas-id', { pannable: true });
+    canvas['onMouseDown'](mockEventDown);
+    canvas['onMouseMove'](mockEventMove);
+
+    expect(canvas.panOffset).toStrictEqual(new Point(6.5, -5.49));
+  });
+
+  test('should not pan if panning was not started', () => {
+    const offset = new Point(47, 11);
+    let canvas: Canvas;
+    const mockEvent = {
+      button: 0, // left
+      offsetX: 47,
+      offsetY: 11
+    } as MouseEvent;
+
+    canvas = Canvas.init('canvas-id', { pannable: true });
+    canvas.panOffset = offset;
+    canvas['onMouseMove'](mockEvent);
+
+    expect(canvas.panOffset).toStrictEqual(offset);
+  });
+
   test('should stop panning on mouse up', () => {
     let canvas: Canvas;
     const mockEvent = {
@@ -281,5 +331,68 @@ describe('Zoom and pan function of canvas class', () => {
 
     canvas['onMouseUp'](mockEvent);
     expect((canvas as any).isPanning).toBe(false);
+  });
+
+  test('should prevent default on wheel', () => {
+    const preventDefaultSpy = jest.fn();
+    const mockEvent = {
+      deltaY: 0,
+      preventDefault: preventDefaultSpy,
+    } as unknown as WheelEvent;
+
+    const canvas = Canvas.init('canvas-id');
+    canvas['onWheel'](mockEvent);
+
+    expect(preventDefaultSpy).toHaveBeenCalled();
+  });
+
+  test('should call zoomIn and zoomOut on wheel up and down', () => {
+    let canvas: Canvas;
+    const mockEventUp = {
+      deltaY: -100,
+      preventDefault: jest.fn()
+    } as unknown as WheelEvent;
+
+    const mockEventDown = {
+      deltaY: 100,
+      preventDefault: jest.fn()
+    } as unknown as WheelEvent;
+
+    canvas = Canvas.init('canvas-id');
+    const zoomInSpy = jest.spyOn(canvas, 'zoomIn');
+    const zoomOutSpy = jest.spyOn(canvas, 'zoomOut');
+
+    canvas['onWheel'](mockEventUp);
+    expect(zoomInSpy).toHaveBeenCalledWith(undefined);
+
+    canvas['onWheel'](mockEventDown);
+    expect(zoomOutSpy).toHaveBeenCalledWith(undefined);
+  });
+
+  test('should call zoomIn and zoomOut to mouse position if panning is active', () => {
+    let canvas: Canvas;
+    const mockEventUp = {
+      deltaY: -100,
+      offsetX: 42,
+      offsetY: 11,
+      preventDefault: jest.fn()
+    } as unknown as WheelEvent;
+
+    const mockEventDown = {
+      deltaY: 100,
+      offsetX: 42,
+      offsetY: 11,
+      preventDefault: jest.fn()
+    } as unknown as WheelEvent;
+
+    canvas = Canvas.init('canvas-id', { pannable: true });
+    const zoomInSpy = jest.spyOn(canvas, 'zoomIn');
+    const zoomOutSpy = jest.spyOn(canvas, 'zoomOut');
+
+    canvas['onWheel'](mockEventUp);
+    expect(zoomInSpy).toHaveBeenCalledWith(new Point(42, 11));
+
+    canvas['onWheel'](mockEventDown);
+    expect(zoomOutSpy).toHaveBeenCalledWith(new Point(42, 11));
   });
 });
