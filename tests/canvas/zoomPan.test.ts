@@ -197,23 +197,33 @@ describe('Zoom and pan function of canvas class', () => {
     const applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
 
     canvas.zoomIn();
-    expect(applyZoomSpy).toHaveBeenCalledWith(1.1, undefined);
+    expect(applyZoomSpy).toHaveBeenCalledWith(0.1, undefined);
+    expect(canvas.zoomScale).toBe(1.1);
+    expect(canvas.panOffset).toStrictEqual(new Point(-15, -7.5));
 
     canvas.zoomOut();
-    expect(applyZoomSpy).toHaveBeenCalledWith(0.9, undefined);
+    expect(applyZoomSpy).toHaveBeenCalledWith(-0.1, undefined);
+    expect(canvas.zoomScale).toBe(1);
+    expect(canvas.panOffset).toStrictEqual(new Point(0, 0));
   });
 
   test('should zoomIn and zoomOut with position', () => {
     const canvas = Canvas.init('canvas-id');
-    const position = new Point(47, 11);
+    const position = new Point(150, 75);
 
     const applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
 
     canvas.zoomIn(position);
-    expect(applyZoomSpy).toHaveBeenCalledWith(1.1, position);
+    expect(applyZoomSpy).toHaveBeenCalledWith(0.1, position);
+    expect(canvas.zoomScale).toBe(1.1);
+    expect(canvas.panOffset.x).toBe(-15);
+    expect(canvas.panOffset.y).toBe(-7.5);
 
     canvas.zoomOut(position);
-    expect(applyZoomSpy).toHaveBeenCalledWith(0.9, position);
+    expect(applyZoomSpy).toHaveBeenCalledWith(-0.1, position);
+    expect(canvas.zoomScale).toBe(1);
+    expect(canvas.panOffset.x).toBe(0);
+    expect(canvas.panOffset.y).toBe(0);
   });
 
   test('should zoomIn and zoomOut with custom zoom step', () => {
@@ -222,10 +232,14 @@ describe('Zoom and pan function of canvas class', () => {
     const applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
 
     canvas.zoomIn();
-    expect(applyZoomSpy).toHaveBeenCalledWith(1.25, undefined);
+    expect(applyZoomSpy).toHaveBeenCalledWith(0.25, undefined);
+    expect(canvas.zoomScale).toBe(1.25);
+    expect(canvas.panOffset).toStrictEqual(new Point(-37.5, -18.75));
 
     canvas.zoomOut();
-    expect(applyZoomSpy).toHaveBeenCalledWith(0.75, undefined);
+    expect(applyZoomSpy).toHaveBeenCalledWith(-0.25, undefined);
+    expect(canvas.zoomScale).toBe(1);
+    expect(canvas.panOffset).toStrictEqual(new Point(0, 0));
   });
 
   test('should start panning if mouse button is configured', () => {

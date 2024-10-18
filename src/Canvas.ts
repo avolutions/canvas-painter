@@ -136,6 +136,7 @@ export class Canvas {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private onMouseUp(event: MouseEvent): void {
     this.isPanning = false;
   }
@@ -201,8 +202,8 @@ export class Canvas {
   }
 
   public getCenter(): Point {
-    const x = this._options.width! / 2;
-    const y = this._options.height! / 2;
+    const x = this._options.width / 2;
+    const y = this._options.height / 2;
 
     return new Point(x, y);
   }
@@ -381,16 +382,14 @@ export class Canvas {
   }
 
   public zoomIn(position?: Point): void {
-    const zoomFactor = 1 + this._options.zoom.step;
-    this.applyZoom(zoomFactor, position);
+    this.applyZoom(this._options.zoom.step, position);
   }
 
   public zoomOut(position?: Point): void {
-    const zoomFactor = 1 - this._options.zoom.step;
-    this.applyZoom(zoomFactor, position);
+    this.applyZoom(-this._options.zoom.step, position);
   }
 
-  private applyZoom(zoomFactor: number = 1, position?: Point) {
+  private applyZoom(zoomStep: number = 0, position?: Point) {
     // If not position was provided we zoom to center
     if (!position) {
       position = this.getCenter();
@@ -402,7 +401,7 @@ export class Canvas {
     const canvasMouse = new Point(x, y);
 
     // Update the zoom scale
-    const newZoomScale = this.zoomScale * zoomFactor;
+    const newZoomScale = this.zoomScale + zoomStep;
 
     // Calculate the new pan values to keep the zoom centered on the mouse position
     this._panOffset.x = position.x - canvasMouse.x * newZoomScale;
