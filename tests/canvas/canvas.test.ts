@@ -423,12 +423,15 @@ describe('Canvas class', () => {
   });
 
   test('should apply transformation when redrawing the canvas', () => {
-    const canvas = Canvas.init('canvas-id');
+    let canvas: Canvas;
+
+    canvas = Canvas.init('canvas-id');
     canvas.redraw();
 
     expect(context.resetTransform).toHaveBeenCalledTimes(1);
     expect(context.transform).toHaveBeenCalledWith(1, 0, 0, 1, 0, 0);
 
+    canvas = Canvas.init('canvas-id', { zoomable: true, pannable: true });
     canvas.zoomScale = 1.23;
     canvas.panOffset = new Point(4.7, 1.1);
 

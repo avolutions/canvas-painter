@@ -84,33 +84,51 @@ describe('Zoom and pan function of canvas class', () => {
   });
 
   test('should set and get zoomScale correctly', () => {
-    const canvas = Canvas.init('canvas-id');
+    let canvas: Canvas;
 
+    canvas = Canvas.init('canvas-id');
     expect(canvas.zoomScale).toBe(1.0);
+
+    canvas.zoomScale = 0.05;
+    expect(canvas.zoomScale).toBe(1.0);
+
+    canvas = Canvas.init('canvas-id', { zoomable: true });
 
     canvas.zoomScale = 0.05;
     expect(canvas.zoomScale).toBe(0.05);
   });
 
   test('should call applyZoom when setting zoomScale', () => {
-    const canvas = Canvas.init('canvas-id');
+    let canvas: Canvas;
+    let applyZoomSpy;
 
-    const applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
+    canvas = Canvas.init('canvas-id');
+    applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
+
+    canvas.zoomScale = 0.47;
+    expect(applyZoomSpy).not.toHaveBeenCalled();
+
+    canvas = Canvas.init('canvas-id', { zoomable: true });
+    applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
 
     canvas.zoomScale = 0.47;
     expect(applyZoomSpy).toHaveBeenCalled();
   });
 
   test('should set and get panOffset correctly', () => {
-    const canvas = Canvas.init('canvas-id');
-    const offset = new Point(47.11, -12.3);
+    let canvas: Canvas;
 
+    canvas = Canvas.init('canvas-id');
+    const offset = new Point(47.11, -12.3);
     expect(canvas.panOffset).toEqual(new Point(0, 0));
 
     canvas.panOffset = offset;
+    expect(canvas.panOffset).toEqual(new Point(0, 0));
+
+    canvas = Canvas.init('canvas-id', { pannable: true });
+
+    canvas.panOffset = offset;
     expect(canvas.panOffset).toEqual(offset);
-    expect(canvas.panOffset.x).toBe(offset.x);
-    expect(canvas.panOffset.y).toBe(offset.y);
 
     canvas.panOffset.x = -15.756;
     canvas.panOffset.y = 42.1;
@@ -118,16 +136,24 @@ describe('Zoom and pan function of canvas class', () => {
   });
 
   test('should call redraw when setting panOffset', () => {
-    const canvas = Canvas.init('canvas-id');
+    let canvas: Canvas;
+    let redrawSpy;
 
-    const redrawSpy = jest.spyOn(canvas as any, 'redraw');
+    canvas = Canvas.init('canvas-id');
+    redrawSpy = jest.spyOn(canvas as any, 'redraw');
+
+    canvas.panOffset = new Point(47.11, -12.3);
+    expect(redrawSpy).not.toHaveBeenCalled();
+
+    canvas = Canvas.init('canvas-id', { pannable: true });
+    redrawSpy = jest.spyOn(canvas as any, 'redraw');
 
     canvas.panOffset = new Point(47.11, -12.3);
     expect(redrawSpy).toHaveBeenCalled();
   });
 
   test('should reset panOffset', () => {
-    const canvas = Canvas.init('canvas-id');
+    const canvas = Canvas.init('canvas-id', { pannable: true });
     const offset = new Point(23, 5);
 
     canvas.panOffset = offset;
@@ -143,7 +169,7 @@ describe('Zoom and pan function of canvas class', () => {
   });
 
   test('should reset zoomScale', () => {
-    const canvas = Canvas.init('canvas-id');
+    const canvas = Canvas.init('canvas-id', { zoomable: true });
 
     canvas.zoomScale = 2.5;
     expect(canvas.zoomScale).toEqual(2.5);
@@ -156,7 +182,7 @@ describe('Zoom and pan function of canvas class', () => {
   });
 
   test('should reset zoomScale with active panning', () => {
-    const canvas = Canvas.init('canvas-id', { pannable: true });
+    const canvas = Canvas.init('canvas-id', { zoomable: true, pannable: true });
 
     canvas.zoomScale = 2.5;
     expect(canvas.zoomScale).toEqual(2.5);
@@ -170,7 +196,7 @@ describe('Zoom and pan function of canvas class', () => {
   });
 
   test('should reset zoomScale and panOffset', () => {
-    const canvas = Canvas.init('canvas-id');
+    const canvas = Canvas.init('canvas-id', { zoomable: true, pannable: true });
     const offset = new Point(23, 5);
 
     canvas.zoomScale = 2.5;
@@ -191,8 +217,12 @@ describe('Zoom and pan function of canvas class', () => {
     expect(redrawSpy).toHaveBeenCalledTimes(1);
   });
 
+  test('should not zoomIn and zoomOut when canvas is not zoomable', () => {
+    // TODO
+  });
+
   test('should zoomIn and zoomOut without position', () => {
-    const canvas = Canvas.init('canvas-id');
+    const canvas = Canvas.init('canvas-id', { zoomable: true });
 
     const applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
 
@@ -208,7 +238,7 @@ describe('Zoom and pan function of canvas class', () => {
   });
 
   test('should zoomIn and zoomOut with position', () => {
-    const canvas = Canvas.init('canvas-id');
+    const canvas = Canvas.init('canvas-id', { zoomable: true });
     const position = new Point(150, 75);
 
     const applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
@@ -227,7 +257,7 @@ describe('Zoom and pan function of canvas class', () => {
   });
 
   test('should zoomIn and zoomOut with custom zoom step', () => {
-    const canvas = Canvas.init('canvas-id', { zoom: { step: 0.25 } });
+    const canvas = Canvas.init('canvas-id', { zoomable: true, zoom: { step: 0.25 } });
 
     const applyZoomSpy = jest.spyOn(canvas as any, 'applyZoom');
 

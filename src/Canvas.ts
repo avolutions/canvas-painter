@@ -382,14 +382,29 @@ export class Canvas {
   }
 
   public zoomIn(position?: Point): void {
+    // Do nothing if canvas is not zoomable
+    if (!this._options.zoomable) {
+      return;
+    }
+
     this.applyZoom(this._options.zoom.step, position);
   }
 
   public zoomOut(position?: Point): void {
+    // Do nothing if canvas is not zoomable
+    if (!this._options.zoomable) {
+      return;
+    }
+
     this.applyZoom(-this._options.zoom.step, position);
   }
 
   private applyZoom(zoomStep: number = 0, position?: Point) {
+    // Do nothing if canvas is not zoomable
+    if (!this._options.zoomable) {
+      return;
+    }
+
     // If not position was provided we zoom to center
     if (!position) {
       position = this.getCenter();
@@ -414,6 +429,11 @@ export class Canvas {
   }
 
   public resetZoom(): void {
+    // Do nothing if canvas is not zoomable
+    if (!this._options.zoomable) {
+      return;
+    }
+
     if (this._options.pannable) {
       this.resetZoomPan();
       return;
@@ -423,10 +443,20 @@ export class Canvas {
   }
 
   public resetPan(): void {
+    // Do nothing if canvas is not pannable
+    if (!this._options.pannable) {
+      return;
+    }
+
     this.panOffset = new Point(0, 0);
   }
 
   public resetZoomPan(): void {
+    // Do nothing if canvas is not zoomable and pannable
+    if (!this._options.zoomable && !this._options.pannable) {
+      return;
+    }
+
     this._panOffset = new Point(0, 0);
     this.zoomScale = 1;
   }
@@ -436,6 +466,11 @@ export class Canvas {
   }
 
   public set zoomScale(value: number) {
+    // Do nothing if canvas is not zoomable
+    if (!this._options.zoomable) {
+      return;
+    }
+
     this._zoomScale = value;
     this.applyZoom();
   }
@@ -445,6 +480,11 @@ export class Canvas {
   }
 
   public set panOffset(value: Point) {
+    // Do nothing if canvas is not pannable
+    if (!this._options.pannable) {
+      return;
+    }
+
     this._panOffset = value;
     this.redraw();
   }
