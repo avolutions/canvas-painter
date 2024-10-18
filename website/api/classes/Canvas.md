@@ -16,7 +16,65 @@ The 2D context of the canvas.
 
 #### Defined in
 
-[Canvas.ts:253](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L253)
+[Canvas.ts:378](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L378)
+
+***
+
+### panOffset
+
+> `get` **panOffset**(): [`Point`](Point.md)
+
+Gets the current pan offset of the canvas.
+
+> `set` **panOffset**(`value`): `void`
+
+Sets the pan offset of the canvas and triggers a redraw.
+
+#### Parameters
+
+• **value**: [`Point`](Point.md)
+
+The new pan offset to set.
+
+#### Returns
+
+[`Point`](Point.md)
+
+The current pan offset as a `Point` object.
+
+#### Defined in
+
+[Canvas.ts:569](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L569)
+
+***
+
+### zoomScale
+
+> `get` **zoomScale**(): `number`
+
+Gets the current zoom scale of the canvas.
+A value of `1` represents 100% zoom. Values below `1` indicate zooming out,
+and values above `1` indicate zooming in.
+
+> `set` **zoomScale**(`value`): `void`
+
+Sets the zoom scale of the canvas and applies the zoom.
+
+#### Parameters
+
+• **value**: `number`
+
+The new zoom scale to set.
+
+#### Returns
+
+`number`
+
+The current zoom scale.
+
+#### Defined in
+
+[Canvas.ts:545](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L545)
 
 ## Methods
 
@@ -32,7 +90,7 @@ Clears the canvas by removing all content.
 
 #### Defined in
 
-[Canvas.ts:260](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L260)
+[Canvas.ts:385](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L385)
 
 ***
 
@@ -54,7 +112,25 @@ The shape to render.
 
 #### Defined in
 
-[Canvas.ts:288](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L288)
+[Canvas.ts:419](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L419)
+
+***
+
+### getCenter()
+
+> **getCenter**(): [`Point`](Point.md)
+
+Returns the center point of the canvas based on its width and height.
+
+#### Returns
+
+[`Point`](Point.md)
+
+The center point of the canvas as a `Point` object.
+
+#### Defined in
+
+[Canvas.ts:245](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L245)
 
 ***
 
@@ -70,7 +146,56 @@ Clears the canvas and re-renders all watched and visible shapes.
 
 #### Defined in
 
-[Canvas.ts:276](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L276)
+[Canvas.ts:401](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L401)
+
+***
+
+### resetPan()
+
+> **resetPan**(): `void`
+
+Resets the pan offset to its default value (0, 0).
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[Canvas.ts:516](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L516)
+
+***
+
+### resetZoom()
+
+> **resetZoom**(): `void`
+
+Resets the zoom scale to its default value (1).
+If the canvas is both zoomable and pannable, it resets both zoom and pan.
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[Canvas.ts:499](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L499)
+
+***
+
+### resetZoomPan()
+
+> **resetZoomPan**(): `void`
+
+Resets both the zoom scale and pan offset to their default values (1 for zoom scale and (0, 0) for pan).
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[Canvas.ts:528](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L528)
 
 ***
 
@@ -96,7 +221,7 @@ Whether to immediately redraw the canvas after unregistering the shape(s).
 
 #### Defined in
 
-[Canvas.ts:222](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L222)
+[Canvas.ts:347](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L347)
 
 ***
 
@@ -122,7 +247,55 @@ Whether to immediately redraw the canvas after registering the shape(s).
 
 #### Defined in
 
-[Canvas.ts:191](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L191)
+[Canvas.ts:316](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L316)
+
+***
+
+### zoomIn()
+
+> **zoomIn**(`position`?): `void`
+
+Zooms in on the canvas by increasing the zoom scale.
+If a position is provided, the zoom will be centered around that point.
+Otherwise, it defaults to zooming in on the center of the canvas.
+
+#### Parameters
+
+• **position?**: [`Point`](Point.md)
+
+Optional position to center the zoom on.
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[Canvas.ts:432](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L432)
+
+***
+
+### zoomOut()
+
+> **zoomOut**(`position`?): `void`
+
+Zooms out on the canvas by decreasing the zoom scale.
+If a position is provided, the zoom will be centered around that point.
+Otherwise, it defaults to zooming out from the center of the canvas.
+
+#### Parameters
+
+• **position?**: [`Point`](Point.md)
+
+Optional position to center the zoom on.
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[Canvas.ts:448](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L448)
 
 ***
 
@@ -138,7 +311,7 @@ Initializes a Canvas instance by retrieving the canvas element by ID and its con
 
 The ID of the HTML canvas element.
 
-• **options?**: [`CanvasOptions`](CanvasOptions.md)
+• **options?**: [`ICanvasOptions`](../interfaces/ICanvasOptions.md)
 
 Optional configuration options for the canvas.
 
@@ -158,4 +331,4 @@ If the canvas element is not found or is not a valid canvas.
 
 #### Defined in
 
-[Canvas.ts:155](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L155)
+[Canvas.ts:280](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L280)

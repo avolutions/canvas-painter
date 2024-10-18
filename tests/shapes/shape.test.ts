@@ -1,5 +1,5 @@
 import { Point } from "../../src/types/Point";
-import { MockShape, MockShapeOptions, MockShapeStyle } from "../mocks/MockShape";
+import { MockShape, MockShapeStyle } from "../mocks/MockShape";
 
 describe('Shape class', () => {
   test("should serialize definition to array", () => {

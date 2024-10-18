@@ -1,10 +1,8 @@
-Represents options for configuring shapes.
+Represents options for configuring a circle shape.
 
-## Extended by
+## Extends
 
-- [`ICircleOptions`](ICircleOptions.md)
-- [`ILineOptions`](ILineOptions.md)
-- [`IRectangleOptions`](IRectangleOptions.md)
+- [`IShapeOptions`](IShapeOptions.md)
 
 ## Properties
 
@@ -13,6 +11,10 @@ Represents options for configuring shapes.
 > `optional` **visible**: `boolean`
 
 Determines if the shape should be visible or not.
+
+#### Inherited from
+
+[`IShapeOptions`](IShapeOptions.md).[`visible`](IShapeOptions.md#visible)
 
 #### Defined in
 

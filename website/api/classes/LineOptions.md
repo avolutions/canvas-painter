@@ -1,65 +1,55 @@
 Options for configuring the behavior of a line shape.
 
-## Extends
+## Implements
 
-- [`ShapeOptions`](ShapeOptions.md)
+- [`ILineOptions`](../interfaces/ILineOptions.md)
 
 ## Constructors
 
 ### new LineOptions()
 
-> **new LineOptions**(`visible`?): [`LineOptions`](LineOptions.md)
+> **new LineOptions**(`options`): [`LineOptions`](LineOptions.md)
 
-Creates a new instance of ShapeOptions.
+Creates a new instance of LineOptions.
 
 #### Parameters
 
-• **visible?**: `boolean`
+• **options**: `Partial`\<[`ILineOptions`](../interfaces/ILineOptions.md)\> = `{}`
 
-If true, the shape will be visible.
-                 If false or undefined, the shape will be hidden.
+The partial options provided by the user.
 
 #### Returns
 
 [`LineOptions`](LineOptions.md)
 
-#### Inherited from
-
-[`ShapeOptions`](ShapeOptions.md).[`constructor`](ShapeOptions.md#constructors)
-
 #### Defined in
 
-[options/ShapeOptions.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L20)
+[options/LineOptions.ts:25](https://github.com/avolutions/canvas-painter/blob/main/src/options/LineOptions.ts#L25)
 
 ## Properties
 
-### visible?
+### visible
 
-> `optional` **visible**: `boolean`
+> **visible**: `boolean`
 
-If true, the shape will be visible.
-                 If false or undefined, the shape will be hidden.
+Determines if the shape should be visible or not.
 
-#### Inherited from
+#### Implementation of
 
-[`ShapeOptions`](ShapeOptions.md).[`visible`](ShapeOptions.md#visible)
+[`ILineOptions`](../interfaces/ILineOptions.md).[`visible`](../interfaces/ILineOptions.md#visible)
 
 #### Defined in
 
-[options/ShapeOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L21)
+[options/LineOptions.ts:11](https://github.com/avolutions/canvas-painter/blob/main/src/options/LineOptions.ts#L11)
 
 ***
 
 ### DefaultOptions
 
-> `readonly` `static` **DefaultOptions**: [`LineOptions`](LineOptions.md)
+> `readonly` `static` **DefaultOptions**: [`ILineOptions`](../interfaces/ILineOptions.md)
 
 Default options for the line.
 
-#### Overrides
-
-[`ShapeOptions`](ShapeOptions.md).[`DefaultOptions`](ShapeOptions.md#defaultoptions)
-
 #### Defined in
 
-[options/LineOptions.ts:10](https://github.com/avolutions/canvas-painter/blob/main/src/options/LineOptions.ts#L10)
+[options/LineOptions.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/options/LineOptions.ts#L16)

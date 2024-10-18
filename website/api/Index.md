@@ -1,3 +1,7 @@
+## Enumerations
+
+- [MouseButton](enumerations/MouseButton.md)
+
 ## Classes
 
 - [Angle](classes/Angle.md)
@@ -13,6 +17,8 @@
 - [LineDefinition](classes/LineDefinition.md)
 - [LineOptions](classes/LineOptions.md)
 - [LineStyle](classes/LineStyle.md)
+- [Mouse](classes/Mouse.md)
+- [PanOptions](classes/PanOptions.md)
 - [Point](classes/Point.md)
 - [Rectangle](classes/Rectangle.md)
 - [RectangleDefinition](classes/RectangleDefinition.md)
@@ -22,11 +28,18 @@
 - [Shape](classes/Shape.md)
 - [ShapeDefinition](classes/ShapeDefinition.md)
 - [ShapeOptions](classes/ShapeOptions.md)
+- [ZoomOptions](classes/ZoomOptions.md)
 
 ## Interfaces
 
+- [ICanvasOptions](interfaces/ICanvasOptions.md)
+- [ICircleOptions](interfaces/ICircleOptions.md)
+- [ILineOptions](interfaces/ILineOptions.md)
+- [IPanOptions](interfaces/IPanOptions.md)
+- [IRectangleOptions](interfaces/IRectangleOptions.md)
 - [ISerializable](interfaces/ISerializable.md)
 - [IShape](interfaces/IShape.md)
 - [IShapeDefinition](interfaces/IShapeDefinition.md)
 - [IShapeOptions](interfaces/IShapeOptions.md)
 - [IShapeStyle](interfaces/IShapeStyle.md)
+- [IZoomOptions](interfaces/IZoomOptions.md)

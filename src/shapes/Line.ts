@@ -1,4 +1,5 @@
 import { LineDefinition } from "../definitions/LineDefinition.js";
+import { ILineOptions } from "../options/interfaces/ILineOptions.js";
 import { LineOptions } from "../options/LineOptions.js";
 import { LineStyle } from "../styles/LineStyle.js";
 import { Point } from "../types/Point.js";
@@ -9,7 +10,7 @@ import { Shape } from "./Shape.js";
  * It uses LineDefinition for defining the start and end points,
  * LineStyle for styling, and LineOptions for additional options.
  */
-export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
+export class Line extends Shape<LineDefinition, LineStyle, ILineOptions> {
   /**
    * @overload
    * @param start - The starting `Point` of the line.
@@ -17,7 +18,7 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
    * @param style - Defines the styling of the line.
    * @param options - The configuration options for the line.
    */
-  constructor(start: Point, end: Point, style?: LineStyle, options?: LineOptions);
+  constructor(start: Point, end: Point, style?: LineStyle, options?: ILineOptions);
 
   /**
    * @overload
@@ -28,7 +29,7 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
    * @param style - Defines the styling of the line.
    * @param options - The configuration options for the line.
    */
-  constructor(startX: number, startY: number, endX: number, endY: number, style?: LineStyle, options?: LineOptions);
+  constructor(startX: number, startY: number, endX: number, endY: number, style?: LineStyle, options?: ILineOptions);
 
   /**
    * Creates an instance of the `Line` class.
@@ -42,13 +43,13 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
     arg1: Point | number,
     arg2: Point | number,
     arg3?: LineStyle | number,
-    arg4?: number | LineOptions,
+    arg4?: number | ILineOptions,
     arg5?: LineStyle,
-    arg6?: LineOptions
+    arg6?: ILineOptions
   ) {
     let style: LineStyle;
     let definition: LineDefinition;
-    let options: LineOptions;
+    let options: ILineOptions;
 
     if (typeof arg1 === 'number' && typeof arg2 === 'number' && typeof arg3 === 'number' && typeof arg4 === 'number') {
       // Constructor with coordinates
@@ -57,22 +58,17 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
 
       definition = new LineDefinition(start, end);
       style = arg5 as LineStyle;
-      options = arg6 as LineOptions;
+      options = arg6 as ILineOptions;
     } else if (arg1 instanceof Point && arg2 instanceof Point) {
       // Constructor with Point objects
       definition = new LineDefinition(arg1, arg2);
       style = arg3 as LineStyle;
-      options = arg4 as LineOptions;
+      options = arg4 as ILineOptions;
     } else {
       throw new Error('Invalid constructor arguments');
     }
 
-    const lineOptions: LineOptions = {
-      ...LineOptions.DefaultOptions,
-      ...options
-    };
-
-    super(definition, style, lineOptions);
+    super(definition, style, new LineOptions(options));
   }
 
   // Getters

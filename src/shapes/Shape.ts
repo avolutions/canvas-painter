@@ -1,6 +1,6 @@
 import { ISerializable } from "../common/ISerializable.js";
 import { IShapeDefinition } from "../definitions/IShapeDefinition.js";
-import { IShapeOptions } from "../options/IShapeOptions.js";
+import { IShapeOptions } from "../options/interfaces/IShapeOptions.js";
 import { IShapeStyle } from "../styles/IShapeStyle.js";
 import { IShape } from "./IShape.js";
 

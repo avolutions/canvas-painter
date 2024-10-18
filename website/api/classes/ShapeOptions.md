@@ -1,11 +1,5 @@
 Base options for configuring the behavior of all shapes.
 
-## Extended by
-
-- [`CircleOptions`](CircleOptions.md)
-- [`LineOptions`](LineOptions.md)
-- [`RectangleOptions`](RectangleOptions.md)
-
 ## Implements
 
 - [`IShapeOptions`](../interfaces/IShapeOptions.md)
@@ -14,33 +8,19 @@ Base options for configuring the behavior of all shapes.
 
 ### new ShapeOptions()
 
-> **new ShapeOptions**(`visible`?): [`ShapeOptions`](ShapeOptions.md)
-
-Creates a new instance of ShapeOptions.
-
-#### Parameters
-
-• **visible?**: `boolean`
-
-If true, the shape will be visible.
-                 If false or undefined, the shape will be hidden.
+> **new ShapeOptions**(): [`ShapeOptions`](ShapeOptions.md)
 
 #### Returns
 
 [`ShapeOptions`](ShapeOptions.md)
 
-#### Defined in
-
-[options/ShapeOptions.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L20)
-
 ## Properties
 
-### visible?
+### visible
 
-> `optional` **visible**: `boolean`
+> **visible**: `boolean`
 
-If true, the shape will be visible.
-                 If false or undefined, the shape will be hidden.
+Determines if the shape should be visible or not.
 
 #### Implementation of
 
@@ -48,7 +28,7 @@ If true, the shape will be visible.
 
 #### Defined in
 
-[options/ShapeOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L21)
+[options/ShapeOptions.ts:10](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L10)
 
 ***
 
@@ -56,8 +36,8 @@ If true, the shape will be visible.
 
 > `readonly` `static` **DefaultOptions**: [`ShapeOptions`](ShapeOptions.md)
 
-Default options for all shapes.
+Default options for shapes.
 
 #### Defined in
 
-[options/ShapeOptions.ts:10](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L10)
+[options/ShapeOptions.ts:15](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L15)

@@ -2,34 +2,50 @@ import { CircleOptions } from '../../src/options/CircleOptions';
 import { ShapeOptions } from '../../src/options/ShapeOptions';
 
 describe('CircleOptions', () => {
-  test('should create an instance of CircleOptions', () => {
+
+  /*test('should have default options', () => {
+    const defaults = CircleOptions.DefaultOptions;
+
+  });*/
+
+  test('should have default options from ShapeOptions', () => {
+    // Iterate over all keys in ShapeOptions.DefaultOptions
+    Object.keys(ShapeOptions.DefaultOptions).forEach((key) => {
+      // Check if CircleOptions.DefaultOptions has the same key
+      expect(CircleOptions.DefaultOptions).toHaveProperty(key);
+
+      // Check if the value of the key is the same in both default options
+      expect(CircleOptions.DefaultOptions[key as keyof typeof ShapeOptions.DefaultOptions])
+        .toEqual(ShapeOptions.DefaultOptions[key as keyof typeof ShapeOptions.DefaultOptions]);
+    });
+  });
+
+  test('should create an instance of CircleOptions with default options', () => {
     const options = new CircleOptions();
 
     expect(options).toBeInstanceOf(CircleOptions);
 
-    // Ensure that CircleOptions extends ShapeOptions
-    expect(options).toBeInstanceOf(ShapeOptions);
-  });
+    // Check that all default options from ShapeOptions are applied
+    Object.keys(ShapeOptions.DefaultOptions).forEach((key) => {
+      expect(options).toHaveProperty(key);
 
-  test('should have default options', () => {
-    const defaults = CircleOptions.DefaultOptions;
-  });
-
-  test('should inherit default shape options', () => {
-    const shapeDefaults = ShapeOptions.DefaultOptions;
-    const rectangleDefaults = CircleOptions.DefaultOptions;
-
-    // Ensure every key from ShapeOptions.DefaultOptions exists in CircleOptions.DefaultOptions
-    (Object.keys(shapeDefaults) as (keyof ShapeOptions)[]).forEach((key) => {
-      expect(rectangleDefaults).toHaveProperty(key, shapeDefaults[key]);
+      // Check if the value of the key in rectangleOptions is the same as in ShapeOptions.DefaultOptions
+      expect(options[key as keyof typeof ShapeOptions.DefaultOptions])
+        .toEqual(ShapeOptions.DefaultOptions[key as keyof typeof ShapeOptions.DefaultOptions]);
     });
   });
 
-  test('should allow update of inherited properties', () => {
+  test('should set the values provided by constructor', () => {
+    const options = new CircleOptions({ visible: false });
+
+    expect(options.visible).toBe(false);
+  });
+
+  test('should allow update of properties', () => {
     const options = new CircleOptions();
 
-    options.visible = true;
+    options.visible = false;
 
-    expect(options.visible).toBe(true);
+    expect(options.visible).toBe(false);
   });
 });

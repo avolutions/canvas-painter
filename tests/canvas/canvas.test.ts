@@ -2,33 +2,21 @@
  * @jest-environment jsdom
  */
 
-import { Canvas } from '../src/Canvas';
-import { CanvasOptions } from '../src/options/CanvasOptions';
-import { CanvasStyle } from '../src/styles/CanvasStyle';
-import { MockShape } from './mocks/MockShape';
+import { Canvas } from '../../src/Canvas';
+import { CanvasOptions } from '../../src/options/CanvasOptions';
+import { CanvasStyle } from '../../src/styles/CanvasStyle';
+import { Point } from '../../src/types/Point';
+import { MockShape } from '../mocks/MockShape';
+import { setupCanvas } from './canvasTestUtils';
 
 describe('Canvas class', () => {
   let canvasElement: HTMLCanvasElement;
   let context: CanvasRenderingContext2D;
 
   beforeEach(() => {
-    // Create a mock canvas element
-    canvasElement = document.createElement('canvas');
-
-    context = {
-      canvas: canvasElement,
-      clearRect: jest.fn(),
-      // Add any other needed CanvasRenderingContext2D methods here
-    } as unknown as CanvasRenderingContext2D;
-
-    // Mock getContext to return our mock context
-    jest.spyOn(canvasElement, 'getContext').mockReturnValue(context);
-
-    // Mock getElementById to return our canvas element
-    jest.spyOn(document, 'getElementById').mockReturnValue(canvasElement);
-
-    // Spy on context methods
-    jest.spyOn(context, 'clearRect');
+    const setup = setupCanvas();
+    canvasElement = setup.canvasElement;
+    context = setup.context;
   });
 
   afterEach(() => {
@@ -67,13 +55,14 @@ describe('Canvas class', () => {
 
     expect(canvas).toBeInstanceOf(Canvas);
     expect(canvas.context).toBe(context);
+    expect(canvas.panOffset).toEqual(new Point(0, 0));
   });
 
   test('should set default options', () => {
     const canvas = Canvas.init('canvas-id');
     const defaultOptions = CanvasOptions.DefaultOptions;
 
-    expect((canvas as any)._options).toStrictEqual(defaultOptions);
+    expect((canvas as any)._options).toEqual(defaultOptions);
   });
 
   test('should set passed options', () => {
@@ -167,6 +156,16 @@ describe('Canvas class', () => {
 
     expect(canvasElement.width).toBe(600);
     expect(canvasElement.height).toBe(200);
+  });
+
+  test('should return center', () => {
+    let canvas: Canvas;
+
+    canvas = Canvas.init('canvas-id');
+    expect(canvas.getCenter()).toStrictEqual(new Point(150, 75));
+
+    canvas = Canvas.init('canvas-id', { width: 123, height: 456 });
+    expect(canvas.getCenter()).toStrictEqual(new Point(61.5, 228));
   });
 
   test('should set default style', () => {
@@ -421,6 +420,29 @@ describe('Canvas class', () => {
     /* Clear canvas once, draw every watched shape */
     expect(clearSpy).toHaveBeenCalledTimes(1);
     expect(drawSpy).toHaveBeenCalledTimes(2);
+  });
+
+  test('should apply transformation when redrawing the canvas', () => {
+    let canvas: Canvas;
+
+    canvas = Canvas.init('canvas-id');
+    canvas.redraw();
+
+    expect(context.resetTransform).toHaveBeenCalledTimes(1);
+    expect(context.transform).toHaveBeenCalledWith(1, 0, 0, 1, 0, 0);
+
+    canvas = Canvas.init('canvas-id', { zoomable: true, pannable: true });
+    canvas.zoomScale = 1.23;
+    canvas.panOffset = new Point(4.7, 1.1);
+
+    // Reset the mocks
+    (context.resetTransform as jest.Mock).mockClear();
+    (context.transform as jest.Mock).mockClear();
+
+    canvas.redraw();
+
+    expect(context.resetTransform).toHaveBeenCalledTimes(1);
+    expect(context.transform).toHaveBeenCalledWith(1.23, 0, 0, 1.23, 4.7, 1.1);
   });
 
   test('should not redraw hidden shape the canvas', () => {
