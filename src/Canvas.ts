@@ -527,7 +527,7 @@ export class Canvas {
    */
   public resetZoomPan(): void {
     // Do nothing if canvas is not zoomable and pannable
-    if (!this._options.zoomable && !this._options.pannable) {
+    if (!this._options.zoomable || !this._options.pannable) {
       return;
     }
 
