@@ -24,10 +24,17 @@ export class Canvas {
   /** List of shapes being watched for changes and re-rendered. */
   private watchedShapes: IShape[] = [];
 
+  /** Current zoom scale factor of the canvas. */
   private _zoomScale: number = 1.0;
+
+  /** Current offset for panning, representing how much the canvas has been moved along the x and y axes. */
   private _panOffset: Point;
-  private isPanning: boolean = false;
-  private panStart: Point;
+
+  /** Indicates whether panning is currently active. */
+  private _isPanning: boolean = false;
+
+  /** The starting point of the pan operation. This is the position where the user initiated the panning action. */
+  private _panStart: Point;
 
   /**
    * Constructs a new Canvas instance.
@@ -69,11 +76,16 @@ export class Canvas {
     this.setContextStyle(this._style);
 
     this._panOffset = new Point(0, 0);
-    this.panStart = new Point(0, 0);
+    this._panStart = new Point(0, 0);
 
     this.addEventListener();
   }
 
+  /**
+   * Adds event listeners for zooming and panning.
+   * Zooming is enabled when `zoomable` is `true` and `useWheel` is enabled in the options.
+   * Panning is enabled when `pannable` is `true` and `useMouse` is enabled in the options.
+   */
   private addEventListener(): void {
     // Add event listener for zooming
     if (this._options.zoomable && this._options.zoom.useWheel) {
@@ -90,6 +102,12 @@ export class Canvas {
     }
   }
 
+  /**
+   * Handles the `wheel` event for zooming in or out.
+   * When zooming, the current mouse position is used as the zoom center if panning is active.
+   *
+   * @param event The wheel event that triggers the zoom action.
+   */
   private onWheel(event: WheelEvent): void {
     event.preventDefault();
 
@@ -106,6 +124,12 @@ export class Canvas {
     }
   }
 
+  /**
+   * Handles the `mousedown` event to start the panning action.
+   * The panning will only start if the pressed mouse button is configured for panning.
+   *
+   * @param event The mouse event that triggers the panning action.
+   */
   private onMouseDown(event: MouseEvent): void {
     // If button is not configured for panning we do nothing
     if (!this._options.pan.mouseButtons?.includes(event.button)) {
@@ -116,29 +140,41 @@ export class Canvas {
     const mousePosition = Mouse.getOffsetPosition(event);
 
     // Start panning
-    this.isPanning = true;
-    this.panStart = new Point(
+    this._isPanning = true;
+    this._panStart = new Point(
       mousePosition.x - this.panOffset.x,
       mousePosition.y - this.panOffset.y
     );
   }
 
+  /**
+   * Handles the `mousemove` event to update the panning offset.
+   * This is triggered when the user drags the canvas while panning.
+   *
+   * @param event The mouse event that triggers the pan movement.
+   */
   private onMouseMove(event: MouseEvent): void {
-    if (!this.isPanning) {
+    if (!this._isPanning) {
       return;
     }
 
     const mousePosition = Mouse.getOffsetPosition(event);
 
     this.panOffset = new Point(
-      mousePosition.x - this.panStart.x,
-      mousePosition.y - this.panStart.y
+      mousePosition.x - this._panStart.x,
+      mousePosition.y - this._panStart.y
     );
   }
 
+  /**
+   * Handles the `mouseup` and `mouseleave` events to stop the panning action.
+   * This is triggered when the user releases the mouse or when the mouse leaves the canvas.
+   *
+   * @param event The mouse event that triggers the end of the panning action.
+   */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private onMouseUp(event: MouseEvent): void {
-    this.isPanning = false;
+    this._isPanning = false;
   }
 
   /**
@@ -201,6 +237,11 @@ export class Canvas {
     return CanvasOptions.DefaultOptions.width as number;
   }
 
+  /**
+   * Returns the center point of the canvas based on its width and height.
+   *
+   * @returns The center point of the canvas as a `Point` object.
+   */
   public getCenter(): Point {
     const x = this._options.width / 2;
     const y = this._options.height / 2;
@@ -381,6 +422,13 @@ export class Canvas {
     }
   }
 
+  /**
+   * Zooms in on the canvas by increasing the zoom scale.
+   * If a position is provided, the zoom will be centered around that point.
+   * Otherwise, it defaults to zooming in on the center of the canvas.
+   *
+   * @param position Optional position to center the zoom on.
+   */
   public zoomIn(position?: Point): void {
     // Do nothing if canvas is not zoomable
     if (!this._options.zoomable) {
@@ -390,6 +438,13 @@ export class Canvas {
     this.applyZoom(this._options.zoom.step, position);
   }
 
+  /**
+   * Zooms out on the canvas by decreasing the zoom scale.
+   * If a position is provided, the zoom will be centered around that point.
+   * Otherwise, it defaults to zooming out from the center of the canvas.
+   *
+   * @param position Optional position to center the zoom on.
+   */
   public zoomOut(position?: Point): void {
     // Do nothing if canvas is not zoomable
     if (!this._options.zoomable) {
@@ -399,20 +454,29 @@ export class Canvas {
     this.applyZoom(-this._options.zoom.step, position);
   }
 
-  private applyZoom(zoomStep: number = 0, position?: Point) {
+  /**
+   * Applies the zoom step to the canvas. The zoom scale is adjusted by the
+   * given `zoomStep`, and the pan offset is recalculated to keep the zoom
+   * centered on the provided position (or the center of the canvas if no
+   * position is provided).
+   *
+   * @param zoomStep The zoom step to apply (positive to zoom in, negative to zoom out).
+   * @param position Optional position to center the zoom on.
+   */
+  private applyZoom(zoomStep: number = 0, position?: Point): void {
     // Do nothing if canvas is not zoomable
     if (!this._options.zoomable) {
       return;
     }
 
-    // If not position was provided we zoom to center
+    // If no position was provided, zoom to center
     if (!position) {
       position = this.getCenter();
     }
 
     // Get mouse position in canvas space before zooming
-    const x = ( position.x - this._panOffset.x ) / this.zoomScale;
-    const y = ( position.y - this._panOffset.y ) / this.zoomScale;
+    const x = (position.x - this._panOffset.x) / this.zoomScale;
+    const y = (position.y - this._panOffset.y) / this.zoomScale;
     const canvasMouse = new Point(x, y);
 
     // Update the zoom scale
@@ -428,6 +492,10 @@ export class Canvas {
     this.redraw();
   }
 
+  /**
+   * Resets the zoom scale to its default value (1).
+   * If the canvas is both zoomable and pannable, it resets both zoom and pan.
+   */
   public resetZoom(): void {
     // Do nothing if canvas is not zoomable
     if (!this._options.zoomable) {
@@ -442,6 +510,9 @@ export class Canvas {
     this.zoomScale = 1;
   }
 
+  /**
+   * Resets the pan offset to its default value (0, 0).
+   */
   public resetPan(): void {
     // Do nothing if canvas is not pannable
     if (!this._options.pannable) {
@@ -451,6 +522,9 @@ export class Canvas {
     this.panOffset = new Point(0, 0);
   }
 
+  /**
+   * Resets both the zoom scale and pan offset to their default values (1 for zoom scale and (0, 0) for pan).
+   */
   public resetZoomPan(): void {
     // Do nothing if canvas is not zoomable and pannable
     if (!this._options.zoomable && !this._options.pannable) {
@@ -461,10 +535,22 @@ export class Canvas {
     this.zoomScale = 1;
   }
 
+  /**
+   * Gets the current zoom scale of the canvas.
+   * A value of `1` represents 100% zoom. Values below `1` indicate zooming out,
+   * and values above `1` indicate zooming in.
+   *
+   * @returns The current zoom scale.
+   */
   public get zoomScale(): number {
     return this._zoomScale;
   }
 
+  /**
+   * Sets the zoom scale of the canvas and applies the zoom.
+   *
+   * @param value The new zoom scale to set.
+   */
   public set zoomScale(value: number) {
     // Do nothing if canvas is not zoomable
     if (!this._options.zoomable) {
@@ -475,10 +561,20 @@ export class Canvas {
     this.applyZoom();
   }
 
+  /**
+   * Gets the current pan offset of the canvas.
+   *
+   * @returns The current pan offset as a `Point` object.
+   */
   public get panOffset(): Point {
     return this._panOffset;
   }
 
+  /**
+   * Sets the pan offset of the canvas and triggers a redraw.
+   *
+   * @param value The new pan offset to set.
+   */
   public set panOffset(value: Point) {
     // Do nothing if canvas is not pannable
     if (!this._options.pannable) {
@@ -488,4 +584,5 @@ export class Canvas {
     this._panOffset = value;
     this.redraw();
   }
+
 }

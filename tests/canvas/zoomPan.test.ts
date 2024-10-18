@@ -285,24 +285,24 @@ describe('Zoom and pan function of canvas class', () => {
     canvas.panOffset = new Point(7, 1);
     canvas['onMouseDown'](mockEvent);
 
-    expect((canvas as any).isPanning).toBe(true);
-    expect((canvas as any).panStart).toEqual(new Point(40, 10));
+    expect((canvas as any)._isPanning).toBe(true);
+    expect((canvas as any)._panStart).toEqual(new Point(40, 10));
 
     /* Test left mouse button when explicit and exclusive configured */
     canvas = Canvas.init('canvas-id', { pannable: true, pan: { mouseButtons: [ MouseButton.Left ] } });
     canvas.panOffset = new Point(7, 1);
     canvas['onMouseDown'](mockEvent);
 
-    expect((canvas as any).isPanning).toBe(true);
-    expect((canvas as any).panStart).toEqual(new Point(40, 10));
+    expect((canvas as any)._isPanning).toBe(true);
+    expect((canvas as any)._panStart).toEqual(new Point(40, 10));
 
     /* Test left mouse button when explicit and not exclusive configured */
     canvas = Canvas.init('canvas-id', { pannable: true, pan: { mouseButtons: [ MouseButton.Middle, MouseButton.Left ] } });
     canvas.panOffset = new Point(7, 1);
     canvas['onMouseDown'](mockEvent);
 
-    expect((canvas as any).isPanning).toBe(true);
-    expect((canvas as any).panStart).toEqual(new Point(40, 10));
+    expect((canvas as any)._isPanning).toBe(true);
+    expect((canvas as any)._panStart).toEqual(new Point(40, 10));
   });
 
   test('should not start panning if mouse button is not configured', () => {
@@ -317,13 +317,13 @@ describe('Zoom and pan function of canvas class', () => {
     canvas = Canvas.init('canvas-id', { pannable: true, pan: { mouseButtons: [ MouseButton.Right ] } });
     canvas['onMouseDown'](mockEvent);
 
-    expect((canvas as any).isPanning).toBe(false);
+    expect((canvas as any)._isPanning).toBe(false);
 
     /* Test when no button is configured */
     canvas = Canvas.init('canvas-id', { pannable: true, pan: { mouseButtons: [] } });
     canvas['onMouseDown'](mockEvent);
 
-    expect((canvas as any).isPanning).toBe(false);
+    expect((canvas as any)._isPanning).toBe(false);
   });
 
   test('should pan if panning was started', () => {
@@ -371,10 +371,10 @@ describe('Zoom and pan function of canvas class', () => {
     canvas = Canvas.init('canvas-id', { pannable: true });
 
     canvas['onMouseDown'](mockEvent);
-    expect((canvas as any).isPanning).toBe(true);
+    expect((canvas as any)._isPanning).toBe(true);
 
     canvas['onMouseUp'](mockEvent);
-    expect((canvas as any).isPanning).toBe(false);
+    expect((canvas as any)._isPanning).toBe(false);
   });
 
   test('should prevent default on wheel', () => {
