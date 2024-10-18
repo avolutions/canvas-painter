@@ -8,12 +8,12 @@ export class PanOptions implements IPanOptions {
   /**
    * List of mouse buttons that are used for panning.
    */
-  mouseButtons!: MouseButton[];
+  public mouseButtons!: MouseButton[];
 
   /**
    * Whether panning with the mouse is enabled.
    */
-  useMouse!: boolean;
+  public useMouse!: boolean;
 
   /**
    * Default pan options.

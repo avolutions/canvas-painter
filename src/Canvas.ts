@@ -107,10 +107,16 @@ export class Canvas {
   }
 
   private onMouseDown(event: MouseEvent): void {
-    this.isPanning = true;
+    // If button is not configured for panning we do nothing
+    if (!this._options.pan.mouseButtons?.includes(event.button)) {
+      return;
+    }
 
+    // Get mouse position in canvas
     const mousePosition = Mouse.getOffsetPosition(event);
 
+    // Start panning
+    this.isPanning = true;
     this.panStart = new Point(
       mousePosition.x - this.panOffset.x,
       mousePosition.y - this.panOffset.y
@@ -413,11 +419,12 @@ export class Canvas {
   }
 
   public resetPan(): void {
-    this._panOffset = new Point(0, 0);
+    this.panOffset = new Point(0, 0);
   }
 
   public resetZoomPan(): void {
-
+    this._panOffset = new Point(0, 0);
+    this.zoomScale = 1;
   }
 
   public get zoomScale(): number {

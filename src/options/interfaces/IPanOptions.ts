@@ -1,4 +1,4 @@
-import { MouseButton } from "../../types/MouseButton";
+import { MouseButton } from "../../types/MouseButton.js";
 
 /**
  * Represents options for configuring the pan behavior.
