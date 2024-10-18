@@ -1,65 +1,55 @@
 Options for configuring the behavior of a circle shape.
 
-## Extends
+## Implements
 
-- [`ShapeOptions`](ShapeOptions.md)
+- [`ICircleOptions`](../interfaces/ICircleOptions.md)
 
 ## Constructors
 
 ### new CircleOptions()
 
-> **new CircleOptions**(`visible`?): [`CircleOptions`](CircleOptions.md)
+> **new CircleOptions**(`options`): [`CircleOptions`](CircleOptions.md)
 
-Creates a new instance of ShapeOptions.
+Creates a new instance of ICircleOptions.
 
 #### Parameters
 
-• **visible?**: `boolean`
+• **options**: `Partial`\<[`ICircleOptions`](../interfaces/ICircleOptions.md)\> = `{}`
 
-If true, the shape will be visible.
-                 If false or undefined, the shape will be hidden.
+The partial options provided by the user.
 
 #### Returns
 
 [`CircleOptions`](CircleOptions.md)
 
-#### Inherited from
-
-[`ShapeOptions`](ShapeOptions.md).[`constructor`](ShapeOptions.md#constructors)
-
 #### Defined in
 
-[options/ShapeOptions.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L20)
+[options/CircleOptions.ts:25](https://github.com/avolutions/canvas-painter/blob/main/src/options/CircleOptions.ts#L25)
 
 ## Properties
 
-### visible?
+### visible
 
-> `optional` **visible**: `boolean`
+> **visible**: `boolean`
 
-If true, the shape will be visible.
-                 If false or undefined, the shape will be hidden.
+Determines if the shape should be visible or not.
 
-#### Inherited from
+#### Implementation of
 
-[`ShapeOptions`](ShapeOptions.md).[`visible`](ShapeOptions.md#visible)
+[`ICircleOptions`](../interfaces/ICircleOptions.md).[`visible`](../interfaces/ICircleOptions.md#visible)
 
 #### Defined in
 
-[options/ShapeOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L21)
+[options/CircleOptions.ts:11](https://github.com/avolutions/canvas-painter/blob/main/src/options/CircleOptions.ts#L11)
 
 ***
 
 ### DefaultOptions
 
-> `readonly` `static` **DefaultOptions**: [`CircleOptions`](CircleOptions.md)
+> `readonly` `static` **DefaultOptions**: [`ICircleOptions`](../interfaces/ICircleOptions.md)
 
 Default options for the circle.
 
-#### Overrides
-
-[`ShapeOptions`](ShapeOptions.md).[`DefaultOptions`](ShapeOptions.md#defaultoptions)
-
 #### Defined in
 
-[options/CircleOptions.ts:10](https://github.com/avolutions/canvas-painter/blob/main/src/options/CircleOptions.ts#L10)
+[options/CircleOptions.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/options/CircleOptions.ts#L16)

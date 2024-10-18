@@ -9,7 +9,7 @@ Provides functionality for rendering, resizing, moving, and rotating the rectang
 
 ### new Rectangle()
 
-> **new Rectangle**(`x`, `y`, `width`, `height`, `rotation`, `style`, `options`): [`Rectangle`](Rectangle.md)
+> **new Rectangle**(`x`, `y`, `width`, `height`, `rotation`, `style`, `options`?): [`Rectangle`](Rectangle.md)
 
 Constructs a new Rectangle instance.
 
@@ -39,7 +39,7 @@ The initial rotation of the rectangle in degrees clockwise.
 
 The style options for the rectangle.
 
-• **options**: [`RectangleOptions`](RectangleOptions.md) = `{}`
+• **options?**: [`IRectangleOptions`](../interfaces/IRectangleOptions.md)
 
 The configuration options for the rectangle.
 
@@ -53,7 +53,7 @@ The configuration options for the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:24](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L24)
+[shapes/Rectangle.ts:25](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L25)
 
 ## Properties
 
@@ -135,7 +135,7 @@ The angle (rotation) of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:75](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L75)
+[shapes/Rectangle.ts:69](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L69)
 
 ***
 
@@ -163,7 +163,7 @@ The height of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:59](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L59)
+[shapes/Rectangle.ts:53](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L53)
 
 ***
 
@@ -223,7 +223,7 @@ The position of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:67](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L67)
+[shapes/Rectangle.ts:61](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L61)
 
 ***
 
@@ -251,7 +251,7 @@ The rotation of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:83](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L83)
+[shapes/Rectangle.ts:77](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L77)
 
 ***
 
@@ -311,7 +311,7 @@ The width of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:51](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L51)
+[shapes/Rectangle.ts:45](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L45)
 
 ## Methods
 
@@ -408,7 +408,7 @@ The change in the y-coordinate.
 
 #### Defined in
 
-[shapes/Rectangle.ts:149](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L149)
+[shapes/Rectangle.ts:143](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L143)
 
 ***
 
@@ -462,7 +462,7 @@ The 2D rendering context of the canvas where the rectangle will be drawn.
 
 #### Defined in
 
-[shapes/Rectangle.ts:185](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L185)
+[shapes/Rectangle.ts:179](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L179)
 
 ***
 
@@ -488,7 +488,7 @@ The change in height.
 
 #### Defined in
 
-[shapes/Rectangle.ts:138](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L138)
+[shapes/Rectangle.ts:132](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L132)
 
 ***
 
@@ -510,7 +510,7 @@ The amount to adjust the rectangle's rotation, in degrees.
 
 #### Defined in
 
-[shapes/Rectangle.ts:158](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L158)
+[shapes/Rectangle.ts:152](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L152)
 
 ***
 
@@ -536,7 +536,7 @@ The new height of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:127](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L127)
+[shapes/Rectangle.ts:121](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L121)
 
 ***
 

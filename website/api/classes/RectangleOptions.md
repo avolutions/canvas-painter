@@ -1,78 +1,72 @@
 Options for configuring the behavior of a rectangle shape.
 
-## Extends
+## Implements
 
-- [`ShapeOptions`](ShapeOptions.md)
+- [`IRectangleOptions`](../interfaces/IRectangleOptions.md)
 
 ## Constructors
 
 ### new RectangleOptions()
 
-> **new RectangleOptions**(`centered`?): [`RectangleOptions`](RectangleOptions.md)
+> **new RectangleOptions**(`options`): [`RectangleOptions`](RectangleOptions.md)
 
 Creates a new instance of RectangleOptions.
 
 #### Parameters
 
-• **centered?**: `boolean`
+• **options**: `Partial`\<[`IRectangleOptions`](../interfaces/IRectangleOptions.md)\> = `{}`
 
-If true, the rectangle will be centered at the provided position.
-                  If false or undefined, the rectangle will be positioned from the top-left corner.
+The partial options provided by the user.
 
 #### Returns
 
 [`RectangleOptions`](RectangleOptions.md)
 
-#### Overrides
-
-[`ShapeOptions`](ShapeOptions.md).[`constructor`](ShapeOptions.md#constructors)
-
 #### Defined in
 
-[options/RectangleOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L21)
+[options/RectangleOptions.ts:33](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L33)
 
 ## Properties
 
-### centered?
+### centered
 
-> `optional` **centered**: `boolean`
+> **centered**: `boolean`
 
 If true, the rectangle will be centered at the provided position.
-                  If false or undefined, the rectangle will be positioned from the top-left corner.
+If false or undefined, the rectangle will be positioned from the top-left corner.
+
+#### Implementation of
+
+[`IRectangleOptions`](../interfaces/IRectangleOptions.md).[`centered`](../interfaces/IRectangleOptions.md#centered)
 
 #### Defined in
 
-[options/RectangleOptions.ts:22](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L22)
+[options/RectangleOptions.ts:18](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L18)
 
 ***
 
-### visible?
+### visible
 
-> `optional` **visible**: `boolean`
+> **visible**: `boolean`
 
-If true, the shape will be visible.
-                 If false or undefined, the shape will be hidden.
+Determines if the shape should be visible or not.
 
-#### Inherited from
+#### Implementation of
 
-[`ShapeOptions`](ShapeOptions.md).[`visible`](ShapeOptions.md#visible)
+[`IRectangleOptions`](../interfaces/IRectangleOptions.md).[`visible`](../interfaces/IRectangleOptions.md#visible)
 
 #### Defined in
 
-[options/ShapeOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L21)
+[options/RectangleOptions.ts:12](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L12)
 
 ***
 
 ### DefaultOptions
 
-> `readonly` `static` **DefaultOptions**: [`RectangleOptions`](RectangleOptions.md)
+> `readonly` `static` **DefaultOptions**: [`IRectangleOptions`](../interfaces/IRectangleOptions.md)
 
 Default options for the rectangle.
 
-#### Overrides
-
-[`ShapeOptions`](ShapeOptions.md).[`DefaultOptions`](ShapeOptions.md#defaultoptions)
-
 #### Defined in
 
-[options/RectangleOptions.ts:10](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L10)
+[options/RectangleOptions.ts:23](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L23)

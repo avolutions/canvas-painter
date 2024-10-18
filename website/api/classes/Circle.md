@@ -30,7 +30,7 @@ The radius of the circle.
 
 Defines the styling of the circle.
 
-• **options?**: [`CircleOptions`](CircleOptions.md)
+• **options?**: [`ICircleOptions`](../interfaces/ICircleOptions.md)
 
 The configuration options for the circle.
 
@@ -48,7 +48,7 @@ Throws if invalid arguments are passed.
 
 #### Defined in
 
-[shapes/Circle.ts:19](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L19)
+[shapes/Circle.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L20)
 
 ### new Circle()
 
@@ -77,7 +77,7 @@ The radius of the circle.
 
 Defines the styling of the circle.
 
-• **options?**: [`CircleOptions`](CircleOptions.md)
+• **options?**: [`ICircleOptions`](../interfaces/ICircleOptions.md)
 
 The configuration options for the circle.
 
@@ -95,7 +95,7 @@ Throws if invalid arguments are passed.
 
 #### Defined in
 
-[shapes/Circle.ts:29](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L29)
+[shapes/Circle.ts:30](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L30)
 
 ## Properties
 
@@ -187,7 +187,7 @@ The center point of the circle.
 
 #### Defined in
 
-[shapes/Circle.ts:82](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L82)
+[shapes/Circle.ts:78](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L78)
 
 ***
 
@@ -247,7 +247,7 @@ The radius of the circle.
 
 #### Defined in
 
-[shapes/Circle.ts:91](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L91)
+[shapes/Circle.ts:87](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L87)
 
 ***
 
@@ -376,7 +376,7 @@ The change in the y-coordinate.
 
 #### Defined in
 
-[shapes/Circle.ts:121](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L121)
+[shapes/Circle.ts:117](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L117)
 
 ***
 
@@ -430,7 +430,7 @@ The 2D rendering context of the canvas where the circle will be drawn.
 
 #### Defined in
 
-[shapes/Circle.ts:141](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L141)
+[shapes/Circle.ts:137](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L137)
 
 ***
 
@@ -452,7 +452,7 @@ The change of the radius.
 
 #### Defined in
 
-[shapes/Circle.ts:130](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L130)
+[shapes/Circle.ts:126](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L126)
 
 ***
 
