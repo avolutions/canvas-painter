@@ -26,7 +26,7 @@ export class PanOptions implements IPanOptions {
   /**
    * Creates a new instance of PanOptions.
    *
-   * @param options The partial options provided by the user.
+   * @param options - The partial options provided by the user.
    */
   constructor(options: Partial<IPanOptions> = {}) {
     const optionsWithDefaults = {

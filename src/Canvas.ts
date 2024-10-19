@@ -43,7 +43,6 @@ export class Canvas {
    * @param context - The 2D rendering context of the canvas.
    * @param options - Optional configuration options for the canvas.
    * @param style - Optional styling options for the canvas.
-   * @private
    */
   private constructor(
     canvas: HTMLCanvasElement,
@@ -106,7 +105,7 @@ export class Canvas {
    * Handles the `wheel` event for zooming in or out.
    * When zooming, the current mouse position is used as the zoom center if panning is active.
    *
-   * @param event The wheel event that triggers the zoom action.
+   * @param event - The wheel event that triggers the zoom action.
    */
   private onWheel(event: WheelEvent): void {
     event.preventDefault();
@@ -128,7 +127,7 @@ export class Canvas {
    * Handles the `mousedown` event to start the panning action.
    * The panning will only start if the pressed mouse button is configured for panning.
    *
-   * @param event The mouse event that triggers the panning action.
+   * @param event - The mouse event that triggers the panning action.
    */
   private onMouseDown(event: MouseEvent): void {
     // If button is not configured for panning we do nothing
@@ -151,7 +150,7 @@ export class Canvas {
    * Handles the `mousemove` event to update the panning offset.
    * This is triggered when the user drags the canvas while panning.
    *
-   * @param event The mouse event that triggers the pan movement.
+   * @param event - The mouse event that triggers the pan movement.
    */
   private onMouseMove(event: MouseEvent): void {
     if (!this._isPanning) {
@@ -170,7 +169,7 @@ export class Canvas {
    * Handles the `mouseup` and `mouseleave` events to stop the panning action.
    * This is triggered when the user releases the mouse or when the mouse leaves the canvas.
    *
-   * @param event The mouse event that triggers the end of the panning action.
+   * @param event - The mouse event that triggers the end of the panning action.
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private onMouseUp(event: MouseEvent): void {
@@ -275,7 +274,7 @@ export class Canvas {
    * @param options - Optional configuration options for the canvas.
    * @param style - Optional styling options for the canvas.
    * @returns A new Canvas instance.
-   * @throws {Error} If the canvas element is not found or is not a valid canvas.
+   * @throws Error if the canvas element is not found or is not a valid canvas.
    */
   public static init(id: string, options?: ICanvasOptions, style?: CanvasStyle): Canvas {
     const canvas = document.getElementById(id);
@@ -299,7 +298,6 @@ export class Canvas {
    * Sets the canvas rendering context's styles based on the provided CanvasStyle.
    *
    * @param style - The style settings to apply to the canvas context.
-   * @private
    */
   private setContextStyle(style: CanvasStyle): void {
     if (style.color) {
@@ -388,8 +386,6 @@ export class Canvas {
 
   /**
    * Observes changes in shapes and triggers the canvas redraw process.
-   *
-   * @private
    */
   private observerRedraw = (): void => {
     this.redraw();
@@ -427,7 +423,7 @@ export class Canvas {
    * If a position is provided, the zoom will be centered around that point.
    * Otherwise, it defaults to zooming in on the center of the canvas.
    *
-   * @param position Optional position to center the zoom on.
+   * @param position - Optional position to center the zoom on.
    */
   public zoomIn(position?: Point): void {
     // Do nothing if canvas is not zoomable
@@ -443,7 +439,7 @@ export class Canvas {
    * If a position is provided, the zoom will be centered around that point.
    * Otherwise, it defaults to zooming out from the center of the canvas.
    *
-   * @param position Optional position to center the zoom on.
+   * @param position - Optional position to center the zoom on.
    */
   public zoomOut(position?: Point): void {
     // Do nothing if canvas is not zoomable
@@ -460,8 +456,8 @@ export class Canvas {
    * centered on the provided position (or the center of the canvas if no
    * position is provided).
    *
-   * @param zoomStep The zoom step to apply (positive to zoom in, negative to zoom out).
-   * @param position Optional position to center the zoom on.
+   * @param zoomStep - The zoom step to apply (positive to zoom in, negative to zoom out).
+   * @param position - Optional position to center the zoom on.
    */
   private applyZoom(zoomStep: number = 0, position?: Point): void {
     // Do nothing if canvas is not zoomable
@@ -549,7 +545,7 @@ export class Canvas {
   /**
    * Sets the zoom scale of the canvas and applies the zoom.
    *
-   * @param value The new zoom scale to set.
+   * @param value - The new zoom scale to set.
    */
   public set zoomScale(value: number) {
     // Do nothing if canvas is not zoomable
@@ -573,7 +569,7 @@ export class Canvas {
   /**
    * Sets the pan offset of the canvas and triggers a redraw.
    *
-   * @param value The new pan offset to set.
+   * @param value - The new pan offset to set.
    */
   public set panOffset(value: Point) {
     // Do nothing if canvas is not pannable

@@ -9,8 +9,6 @@ import { ISerializable } from "../common/ISerializable.js";
  *
  * @remarks
  * This is an empty object type and serves as a base or marker for shape definition types.
- *
- * @interface
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface IShapeDefinition extends ISerializable {}

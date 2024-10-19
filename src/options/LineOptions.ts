@@ -20,7 +20,7 @@ export class LineOptions implements ILineOptions {
   /**
    * Creates a new instance of LineOptions.
    *
-   * @param options The partial options provided by the user.
+   * @param options - The partial options provided by the user.
    */
   constructor(options: Partial<ILineOptions> = {}) {
     const optionsWithDefaults = {
