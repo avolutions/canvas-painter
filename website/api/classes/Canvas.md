@@ -16,7 +16,7 @@ The 2D context of the canvas.
 
 #### Defined in
 
-[Canvas.ts:378](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L378)
+[Canvas.ts:376](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L376)
 
 ***
 
@@ -44,7 +44,7 @@ The current pan offset as a `Point` object.
 
 #### Defined in
 
-[Canvas.ts:569](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L569)
+[Canvas.ts:565](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L565)
 
 ***
 
@@ -74,7 +74,7 @@ The current zoom scale.
 
 #### Defined in
 
-[Canvas.ts:545](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L545)
+[Canvas.ts:541](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L541)
 
 ## Methods
 
@@ -90,7 +90,7 @@ Clears the canvas by removing all content.
 
 #### Defined in
 
-[Canvas.ts:385](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L385)
+[Canvas.ts:383](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L383)
 
 ***
 
@@ -112,7 +112,7 @@ The shape to render.
 
 #### Defined in
 
-[Canvas.ts:419](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L419)
+[Canvas.ts:415](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L415)
 
 ***
 
@@ -130,7 +130,7 @@ The center point of the canvas as a `Point` object.
 
 #### Defined in
 
-[Canvas.ts:245](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L245)
+[Canvas.ts:244](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L244)
 
 ***
 
@@ -146,7 +146,7 @@ Clears the canvas and re-renders all watched and visible shapes.
 
 #### Defined in
 
-[Canvas.ts:401](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L401)
+[Canvas.ts:397](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L397)
 
 ***
 
@@ -162,7 +162,7 @@ Resets the pan offset to its default value (0, 0).
 
 #### Defined in
 
-[Canvas.ts:516](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L516)
+[Canvas.ts:512](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L512)
 
 ***
 
@@ -179,7 +179,7 @@ If the canvas is both zoomable and pannable, it resets both zoom and pan.
 
 #### Defined in
 
-[Canvas.ts:499](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L499)
+[Canvas.ts:495](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L495)
 
 ***
 
@@ -195,7 +195,7 @@ Resets both the zoom scale and pan offset to their default values (1 for zoom sc
 
 #### Defined in
 
-[Canvas.ts:528](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L528)
+[Canvas.ts:524](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L524)
 
 ***
 
@@ -221,7 +221,7 @@ Whether to immediately redraw the canvas after unregistering the shape(s).
 
 #### Defined in
 
-[Canvas.ts:347](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L347)
+[Canvas.ts:345](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L345)
 
 ***
 
@@ -247,7 +247,7 @@ Whether to immediately redraw the canvas after registering the shape(s).
 
 #### Defined in
 
-[Canvas.ts:316](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L316)
+[Canvas.ts:314](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L314)
 
 ***
 
@@ -271,7 +271,7 @@ Optional position to center the zoom on.
 
 #### Defined in
 
-[Canvas.ts:432](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L432)
+[Canvas.ts:428](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L428)
 
 ***
 
@@ -295,7 +295,7 @@ Optional position to center the zoom on.
 
 #### Defined in
 
-[Canvas.ts:448](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L448)
+[Canvas.ts:444](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L444)
 
 ***
 
@@ -327,8 +327,8 @@ A new Canvas instance.
 
 #### Throws
 
-If the canvas element is not found or is not a valid canvas.
+Error if the canvas element is not found or is not a valid canvas.
 
 #### Defined in
 
-[Canvas.ts:280](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L280)
+[Canvas.ts:279](https://github.com/avolutions/canvas-painter/blob/main/src/Canvas.ts#L279)

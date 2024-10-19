@@ -14,7 +14,7 @@ Corresponds to `MouseEvent.button` value `3`.
 
 #### Defined in
 
-[types/MouseButton.ts:32](https://github.com/avolutions/canvas-painter/blob/main/src/types/MouseButton.ts#L32)
+[types/MouseButton.ts:30](https://github.com/avolutions/canvas-painter/blob/main/src/types/MouseButton.ts#L30)
 
 ***
 
@@ -27,7 +27,7 @@ Corresponds to `MouseEvent.button` value `4`.
 
 #### Defined in
 
-[types/MouseButton.ts:38](https://github.com/avolutions/canvas-painter/blob/main/src/types/MouseButton.ts#L38)
+[types/MouseButton.ts:36](https://github.com/avolutions/canvas-painter/blob/main/src/types/MouseButton.ts#L36)
 
 ***
 
@@ -40,7 +40,7 @@ Corresponds to `MouseEvent.button` value `0`.
 
 #### Defined in
 
-[types/MouseButton.ts:14](https://github.com/avolutions/canvas-painter/blob/main/src/types/MouseButton.ts#L14)
+[types/MouseButton.ts:12](https://github.com/avolutions/canvas-painter/blob/main/src/types/MouseButton.ts#L12)
 
 ***
 
@@ -53,7 +53,7 @@ Corresponds to `MouseEvent.button` value `1`.
 
 #### Defined in
 
-[types/MouseButton.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/types/MouseButton.ts#L20)
+[types/MouseButton.ts:18](https://github.com/avolutions/canvas-painter/blob/main/src/types/MouseButton.ts#L18)
 
 ***
 
@@ -66,4 +66,4 @@ Corresponds to `MouseEvent.button` value `2`.
 
 #### Defined in
 
-[types/MouseButton.ts:26](https://github.com/avolutions/canvas-painter/blob/main/src/types/MouseButton.ts#L26)
+[types/MouseButton.ts:24](https://github.com/avolutions/canvas-painter/blob/main/src/types/MouseButton.ts#L24)

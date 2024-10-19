@@ -54,8 +54,8 @@ Checks whether the shape is currently visible.
 
 `boolean`
 
-- Returns true if the shape is visible and will be rendered on the canvas.
-                     Returns false if the shape is hidden and will not be rendered.
+Returns true if the shape is visible and will be rendered on the canvas.
+         Returns false if the shape is hidden and will not be rendered.
 
 #### Defined in
 
