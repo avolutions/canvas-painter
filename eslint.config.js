@@ -2,6 +2,7 @@ import typescriptParser from "@typescript-eslint/parser";
 import js from "@eslint/js";
 import ts from 'typescript-eslint';
 import importPlugin from 'eslint-plugin-import';
+import tsdocPlugin from 'eslint-plugin-tsdoc';
 
 export default [
   {
@@ -17,6 +18,7 @@ export default [
   {
     plugins: {
       import: importPlugin,
+      tsdoc: tsdocPlugin,
     },
     rules: {
       "keyword-spacing": ["error", { "before": true, "after": true }],
@@ -30,6 +32,7 @@ export default [
         }
       ],
       "import/extensions": ["error", "always"],
+      "tsdoc/syntax": "warn",
     }
   },
   {
