@@ -42,8 +42,8 @@ export interface IShape {
   /**
    * Checks whether the shape is currently visible.
    *
-   * @returns {boolean} - Returns true if the shape is visible and will be rendered on the canvas.
-   *                      Returns false if the shape is hidden and will not be rendered.
+   * @returns Returns true if the shape is visible and will be rendered on the canvas.
+   *          Returns false if the shape is hidden and will not be rendered.
    */
   isVisible(): boolean;
 }

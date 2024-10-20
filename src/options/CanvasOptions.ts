@@ -52,7 +52,7 @@ export class CanvasOptions implements ICanvasOptions {
   /**
    * Creates a new instance of CanvasOptions.
    *
-   * @param options The partial options provided by the user.
+   * @param options - The partial options provided by the user.
    */
   constructor(options: Partial<ICanvasOptions> = {}) {
     // Handle partial ZoomOptions

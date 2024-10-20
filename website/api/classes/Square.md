@@ -1,63 +1,55 @@
-Class representing a Rectangle, extending the Shape class with a RectangleDefinition.
-Provides functionality for rendering, resizing, moving, and rotating the rectangle.
+Class representing a Square, extending the Rectangle class.
+Provides functionality for rendering, resizing, moving, and rotating the square.
 
 ## Extends
 
-- [`Shape`](Shape.md)\<[`RectangleDefinition`](RectangleDefinition.md), [`RectangleStyle`](RectangleStyle.md), [`RectangleOptions`](RectangleOptions.md)\>
-
-## Extended by
-
-- [`Square`](Square.md)
+- [`Rectangle`](Rectangle.md)
 
 ## Constructors
 
-### new Rectangle()
+### new Square()
 
-> **new Rectangle**(`x`, `y`, `width`, `height`, `rotation`, `style`, `options`?): [`Rectangle`](Rectangle.md)
+> **new Square**(`x`, `y`, `size`, `rotation`, `style`, `options`?): [`Square`](Square.md)
 
-Constructs a new Rectangle instance.
+Constructs a new Square instance.
 
 #### Parameters
 
 • **x**: `number`
 
-The x-coordinate of the rectangle's position.
+The x-coordinate of the square's position.
 
 • **y**: `number`
 
-The y-coordinate of the rectangle's position.
+The y-coordinate of the square's position.
 
-• **width**: `number`
+• **size**: `number`
 
-The width of the rectangle.
-
-• **height**: `number`
-
-The height of the rectangle.
+The size (width/height) of the square.
 
 • **rotation**: `number` = `0`
 
-The initial rotation of the rectangle in degrees clockwise.
+The initial rotation of the square in degrees clockwise.
 
 • **style**: [`RectangleStyle`](RectangleStyle.md) = `{}`
 
-The style options for the rectangle.
+The style options for the square.
 
 • **options?**: [`IRectangleOptions`](../interfaces/IRectangleOptions.md)
 
-The configuration options for the rectangle.
+The configuration options for the square.
 
 #### Returns
 
-[`Rectangle`](Rectangle.md)
+[`Square`](Square.md)
 
 #### Overrides
 
-[`Shape`](Shape.md).[`constructor`](Shape.md#constructors)
+[`Rectangle`](Rectangle.md).[`constructor`](Rectangle.md#constructors)
 
 #### Defined in
 
-[shapes/Rectangle.ts:25](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L25)
+[shapes/Square.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Square.ts#L20)
 
 ## Properties
 
@@ -69,7 +61,7 @@ The shape definition, proxied to trigger observer notifications on change.
 
 #### Inherited from
 
-[`Shape`](Shape.md).[`_definition`](Shape.md#_definition)
+[`Rectangle`](Rectangle.md).[`_definition`](Rectangle.md#_definition)
 
 #### Defined in
 
@@ -85,7 +77,7 @@ The options for configuring the shape, proxied to trigger observer notifications
 
 #### Inherited from
 
-[`Shape`](Shape.md).[`_options`](Shape.md#_options)
+[`Rectangle`](Rectangle.md).[`_options`](Rectangle.md#_options)
 
 #### Defined in
 
@@ -101,7 +93,7 @@ The style settings for the shape, proxied to trigger observer notifications on c
 
 #### Inherited from
 
-[`Shape`](Shape.md).[`_style`](Shape.md#_style)
+[`Rectangle`](Rectangle.md).[`_style`](Rectangle.md#_style)
 
 #### Defined in
 
@@ -117,7 +109,7 @@ List of observer functions to be notified on shape changes.
 
 #### Inherited from
 
-[`Shape`](Shape.md).[`observers`](Shape.md#observers)
+[`Rectangle`](Rectangle.md).[`observers`](Rectangle.md#observers)
 
 #### Defined in
 
@@ -137,6 +129,10 @@ Gets the angle of the rectangle.
 
 The angle (rotation) of the rectangle.
 
+#### Inherited from
+
+[`Rectangle`](Rectangle.md).[`angle`](Rectangle.md#angle)
+
 #### Defined in
 
 [shapes/Rectangle.ts:69](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L69)
@@ -147,27 +143,31 @@ The angle (rotation) of the rectangle.
 
 > `get` **height**(): `number`
 
-Gets the height of the rectangle.
+Gets the height of the square.
 
 > `set` **height**(`height`): `void`
 
-Sets the height of the rectangle.
+Sets the height of the square and updates the width with same value.
 
 #### Parameters
 
 • **height**: `number`
 
-The new height of the rectangle.
+The new height of the square.
 
 #### Returns
 
 `number`
 
-The height of the rectangle.
+The height of the square.
+
+#### Overrides
+
+[`Rectangle`](Rectangle.md).[`height`](Rectangle.md#height)
 
 #### Defined in
 
-[shapes/Rectangle.ts:53](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L53)
+[shapes/Square.ts:45](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Square.ts#L45)
 
 ***
 
@@ -195,7 +195,7 @@ The current options.
 
 #### Inherited from
 
-[`Shape`](Shape.md).[`options`](Shape.md#options)
+[`Rectangle`](Rectangle.md).[`options`](Rectangle.md#options)
 
 #### Defined in
 
@@ -225,6 +225,10 @@ The new position of the rectangle.
 
 The position of the rectangle.
 
+#### Inherited from
+
+[`Rectangle`](Rectangle.md).[`position`](Rectangle.md#position)
+
 #### Defined in
 
 [shapes/Rectangle.ts:61](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L61)
@@ -253,9 +257,41 @@ The new rotation of the rectangle.
 
 The rotation of the rectangle.
 
+#### Inherited from
+
+[`Rectangle`](Rectangle.md).[`rotation`](Rectangle.md#rotation)
+
 #### Defined in
 
 [shapes/Rectangle.ts:77](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L77)
+
+***
+
+### size
+
+> `get` **size**(): `number`
+
+Gets the size (widht/height) of the square.
+
+> `set` **size**(`size`): `void`
+
+Sets the size (width/height) of the square.
+
+#### Parameters
+
+• **size**: `number`
+
+The new size of the square.
+
+#### Returns
+
+`number`
+
+The size of the square.
+
+#### Defined in
+
+[shapes/Square.ts:37](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Square.ts#L37)
 
 ***
 
@@ -283,7 +319,7 @@ The current style settings.
 
 #### Inherited from
 
-[`Shape`](Shape.md).[`style`](Shape.md#style)
+[`Rectangle`](Rectangle.md).[`style`](Rectangle.md#style)
 
 #### Defined in
 
@@ -295,27 +331,31 @@ The current style settings.
 
 > `get` **width**(): `number`
 
-Gets the width of the rectangle.
+Gets the width of the square.
 
 > `set` **width**(`width`): `void`
 
-Sets the width of the rectangle.
+Sets the width of the square and updates the height with same value.
 
 #### Parameters
 
 • **width**: `number`
 
-The new width of the rectangle.
+The new width of the square.
 
 #### Returns
 
 `number`
 
-The width of the rectangle.
+The width of the square.
+
+#### Overrides
+
+[`Rectangle`](Rectangle.md).[`width`](Rectangle.md#width)
 
 #### Defined in
 
-[shapes/Rectangle.ts:45](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L45)
+[shapes/Square.ts:53](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Square.ts#L53)
 
 ## Methods
 
@@ -337,7 +377,7 @@ The observer callback function.
 
 #### Inherited from
 
-[`Shape`](Shape.md).[`addObserver`](Shape.md#addobserver)
+[`Rectangle`](Rectangle.md).[`addObserver`](Rectangle.md#addobserver)
 
 #### Defined in
 
@@ -359,7 +399,7 @@ appear during rendering until `show()` is called.
 
 #### Inherited from
 
-[`Shape`](Shape.md).[`hide`](Shape.md#hide)
+[`Rectangle`](Rectangle.md).[`hide`](Rectangle.md#hide)
 
 #### Defined in
 
@@ -382,7 +422,7 @@ Returns true if the shape is visible and will be rendered on the canvas.
 
 #### Inherited from
 
-[`Shape`](Shape.md).[`isVisible`](Shape.md#isvisible)
+[`Rectangle`](Rectangle.md).[`isVisible`](Rectangle.md#isvisible)
 
 #### Defined in
 
@@ -410,6 +450,10 @@ The change in the y-coordinate.
 
 `void`
 
+#### Inherited from
+
+[`Rectangle`](Rectangle.md).[`move`](Rectangle.md#move)
+
 #### Defined in
 
 [shapes/Rectangle.ts:143](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L143)
@@ -434,7 +478,7 @@ The observer callback function to be removed.
 
 #### Inherited from
 
-[`Shape`](Shape.md).[`removeObserver`](Shape.md#removeobserver)
+[`Rectangle`](Rectangle.md).[`removeObserver`](Rectangle.md#removeobserver)
 
 #### Defined in
 
@@ -460,9 +504,9 @@ The 2D rendering context of the canvas where the rectangle will be drawn.
 
 `void`
 
-#### Overrides
+#### Inherited from
 
-[`Shape`](Shape.md).[`render`](Shape.md#render)
+[`Rectangle`](Rectangle.md).[`render`](Rectangle.md#render)
 
 #### Defined in
 
@@ -472,27 +516,27 @@ The 2D rendering context of the canvas where the rectangle will be drawn.
 
 ### resize()
 
-> **resize**(`deltaWidth`, `deltaHeight`): `void`
+> **resize**(`deltaSize`): `void`
 
-Resizes the rectangle by adjusting the current width and height by delta values.
+Resizes the rectangle by adjusting the current size, width and height by delta value.
 
 #### Parameters
 
-• **deltaWidth**: `number` = `0`
+• **deltaSize**: `number`
 
 The change in width.
-
-• **deltaHeight**: `number` = `0`
-
-The change in height.
 
 #### Returns
 
 `void`
 
+#### Overrides
+
+[`Rectangle`](Rectangle.md).[`resize`](Rectangle.md#resize)
+
 #### Defined in
 
-[shapes/Rectangle.ts:132](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L132)
+[shapes/Square.ts:101](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Square.ts#L101)
 
 ***
 
@@ -512,6 +556,10 @@ The amount to adjust the rectangle's rotation, in degrees.
 
 `void`
 
+#### Inherited from
+
+[`Rectangle`](Rectangle.md).[`rotate`](Rectangle.md#rotate)
+
 #### Defined in
 
 [shapes/Rectangle.ts:152](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L152)
@@ -520,27 +568,27 @@ The amount to adjust the rectangle's rotation, in degrees.
 
 ### setSize()
 
-> **setSize**(`width`, `height`): `void`
+> **setSize**(`size`): `void`
 
-Updates the size of the rectangle by setting new width and height values.
+Updates the size of the square by setting new width and height values.
 
 #### Parameters
 
-• **width**: `number`
+• **size**: `number`
 
-The new width of the rectangle.
-
-• **height**: `number`
-
-The new height of the rectangle.
+The new width and height of the square.
 
 #### Returns
 
 `void`
 
+#### Overrides
+
+[`Rectangle`](Rectangle.md).[`setSize`](Rectangle.md#setsize)
+
 #### Defined in
 
-[shapes/Rectangle.ts:121](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L121)
+[shapes/Square.ts:91](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Square.ts#L91)
 
 ***
 
@@ -558,7 +606,7 @@ during the next rendering cycle.
 
 #### Inherited from
 
-[`Shape`](Shape.md).[`show`](Shape.md#show)
+[`Rectangle`](Rectangle.md).[`show`](Rectangle.md#show)
 
 #### Defined in
 
@@ -580,7 +628,7 @@ An array representation of the shape's definition.
 
 #### Inherited from
 
-[`Shape`](Shape.md).[`toArray`](Shape.md#toarray)
+[`Rectangle`](Rectangle.md).[`toArray`](Rectangle.md#toarray)
 
 #### Defined in
 
@@ -602,7 +650,7 @@ A JSON string  representation of the shape's definition.
 
 #### Inherited from
 
-[`Shape`](Shape.md).[`toJson`](Shape.md#tojson)
+[`Rectangle`](Rectangle.md).[`toJson`](Rectangle.md#tojson)
 
 #### Defined in
 

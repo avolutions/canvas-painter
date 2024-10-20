@@ -28,7 +28,7 @@ export class RectangleOptions implements IRectangleOptions {
   /**
    * Creates a new instance of RectangleOptions.
    *
-   * @param options The partial options provided by the user.
+   * @param options - The partial options provided by the user.
    */
   constructor(options: Partial<IRectangleOptions> = {}) {
     const optionsWithDefaults = {

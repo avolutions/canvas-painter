@@ -4,8 +4,14 @@ export function setupCanvas(): { canvasElement: HTMLCanvasElement, context: Canv
   const context = {
     canvas: canvasElement,
     clearRect: jest.fn(),
+    fillRect: jest.fn(),
     resetTransform: jest.fn(),
+    restore: jest.fn(),
+    rotate: jest.fn(),
+    save: jest.fn(),
+    strokeRect: jest.fn(),
     transform: jest.fn(),
+    translate: jest.fn(),
     // Add any other needed CanvasRenderingContext2D methods here
   } as unknown as CanvasRenderingContext2D;
 

@@ -7,9 +7,9 @@ import { IShape } from "./IShape.js";
 /**
  * Abstract class representing a generic shape with observer functionality.
  *
- * @template TDefinition - The type of shape definition implementing IShapeDefinition.
- * @template TStyle - The type of shape style implementing IShapeStyle.
- * @template TOptions - The type of shape options implementing IShapeOptions.
+ * @typeParam TDefinition - The type of shape definition implementing IShapeDefinition.
+ * @typeParam TStyle - The type of shape style implementing IShapeStyle.
+ * @typeParam TOptions - The type of shape options implementing IShapeOptions.
  */
 export abstract class Shape<
   TDefinition extends IShapeDefinition,
@@ -53,7 +53,6 @@ export abstract class Shape<
    *
    * @param obj - The object to be proxied.
    * @returns A proxied object that triggers observer notifications on change.
-   * @private
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _createProxy(obj: any): any {
@@ -90,7 +89,7 @@ export abstract class Shape<
   /**
    * Converts the shape's definition to an array.
    *
-   * @returns {Array<any>} An array representation of the shape's definition.
+   * @returns An array representation of the shape's definition.
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public toArray(): Array<any> {
@@ -100,7 +99,7 @@ export abstract class Shape<
   /**
    * Converts the shape's definition to a JSON string.
    *
-   * @returns {string} A JSON string  representation of the shape's definition.
+   * @returns A JSON string  representation of the shape's definition.
    */
   public toJson(): string {
     return this._definition.toJson();
@@ -127,8 +126,8 @@ export abstract class Shape<
   /**
    * Checks whether the shape is currently visible.
    *
-   * @returns {boolean} - Returns true if the shape is visible and will be rendered on the canvas.
-   *                      Returns false if the shape is hidden and will not be rendered.
+   * @returns Returns true if the shape is visible and will be rendered on the canvas.
+   *          Returns false if the shape is hidden and will not be rendered.
    */
   public isVisible(): boolean {
     return !!this._options.visible;
@@ -160,8 +159,6 @@ export abstract class Shape<
   /**
    * Notifies all registered observers of a change in the shape's state.
    * This method is triggered when a property of the shape definition, style, or options is changed.
-   *
-   * @private
    */
   private notifyObservers() {
     this.observers.forEach(observer => observer());

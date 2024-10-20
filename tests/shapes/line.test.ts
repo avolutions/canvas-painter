@@ -5,6 +5,7 @@
 import { Point } from '../../src/types/Point';
 import { Line } from '../../src/shapes/Line';
 import { LineStyle } from '../../src/styles/LineStyle';
+import { InvalidConstructorArgumentsError } from '../../src/errors/InvalidConstructorArgumentsError';
 
 describe('Line class', () => {
   let context: CanvasRenderingContext2D;
@@ -120,7 +121,7 @@ describe('Line class', () => {
   test('should throw an error if coordinates are partially provided', () => {
     expect(() => {
       new (Line as unknown as new (...args: any[]) => Line)(0, 0, 100); // Force invalid argument combination
-    }).toThrow('Invalid constructor arguments');
+    }).toThrow(InvalidConstructorArgumentsError);
   });
 
   test("should set new values via setters", () => {

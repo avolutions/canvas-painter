@@ -20,7 +20,7 @@ export class CircleOptions implements ICircleOptions {
   /**
    * Creates a new instance of ICircleOptions.
    *
-   * @param options The partial options provided by the user.
+   * @param options - The partial options provided by the user.
    */
   constructor(options: Partial<ICircleOptions> = {}) {
     const optionsWithDefaults = {

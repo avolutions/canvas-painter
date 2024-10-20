@@ -41,7 +41,7 @@ The configuration options for the line.
 
 #### Throws
 
-Throws if invalid arguments are passed.
+[InvalidConstructorArgumentsError](InvalidConstructorArgumentsError.md) if invalid arguments are passed.
 
 #### Overrides
 
@@ -92,7 +92,7 @@ The configuration options for the line.
 
 #### Throws
 
-Throws if invalid arguments are passed.
+[InvalidConstructorArgumentsError](InvalidConstructorArgumentsError.md) if invalid arguments are passed.
 
 #### Overrides
 
@@ -100,7 +100,7 @@ Throws if invalid arguments are passed.
 
 #### Defined in
 
-[shapes/Line.ts:32](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L32)
+[shapes/Line.ts:31](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L31)
 
 ## Properties
 
@@ -192,7 +192,7 @@ The ending point of the line.
 
 #### Defined in
 
-[shapes/Line.ts:90](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L90)
+[shapes/Line.ts:89](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L89)
 
 ***
 
@@ -224,7 +224,7 @@ The current options.
 
 #### Defined in
 
-[shapes/Shape.ts:193](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L193)
+[shapes/Shape.ts:190](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L190)
 
 ***
 
@@ -252,7 +252,7 @@ The starting point of the line.
 
 #### Defined in
 
-[shapes/Line.ts:81](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L81)
+[shapes/Line.ts:80](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L80)
 
 ***
 
@@ -284,7 +284,7 @@ The current style settings.
 
 #### Defined in
 
-[shapes/Shape.ts:175](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L175)
+[shapes/Shape.ts:172](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L172)
 
 ## Methods
 
@@ -310,7 +310,7 @@ The observer callback function.
 
 #### Defined in
 
-[shapes/Shape.ts:142](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L142)
+[shapes/Shape.ts:141](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L141)
 
 ***
 
@@ -332,7 +332,7 @@ appear during rendering until `show()` is called.
 
 #### Defined in
 
-[shapes/Shape.ts:123](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L123)
+[shapes/Shape.ts:122](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L122)
 
 ***
 
@@ -346,8 +346,8 @@ Checks whether the shape is currently visible.
 
 `boolean`
 
-- Returns true if the shape is visible and will be rendered on the canvas.
-                     Returns false if the shape is hidden and will not be rendered.
+Returns true if the shape is visible and will be rendered on the canvas.
+         Returns false if the shape is hidden and will not be rendered.
 
 #### Inherited from
 
@@ -355,7 +355,7 @@ Checks whether the shape is currently visible.
 
 #### Defined in
 
-[shapes/Shape.ts:133](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L133)
+[shapes/Shape.ts:132](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L132)
 
 ***
 
@@ -381,7 +381,7 @@ The amount to move the end point along the y-axis.
 
 #### Defined in
 
-[shapes/Line.ts:130](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L130)
+[shapes/Line.ts:129](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L129)
 
 ***
 
@@ -407,7 +407,7 @@ The amount to move the start point along the y-axis.
 
 #### Defined in
 
-[shapes/Line.ts:120](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L120)
+[shapes/Line.ts:119](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L119)
 
 ***
 
@@ -433,7 +433,7 @@ The observer callback function to be removed.
 
 #### Defined in
 
-[shapes/Shape.ts:153](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L153)
+[shapes/Shape.ts:152](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L152)
 
 ***
 
@@ -459,7 +459,7 @@ The canvas rendering context to draw the line.
 
 #### Defined in
 
-[shapes/Line.ts:139](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L139)
+[shapes/Line.ts:138](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L138)
 
 ***
 
@@ -481,7 +481,7 @@ during the next rendering cycle.
 
 #### Defined in
 
-[shapes/Shape.ts:114](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L114)
+[shapes/Shape.ts:113](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L113)
 
 ***
 
@@ -503,7 +503,7 @@ An array representation of the shape's definition.
 
 #### Defined in
 
-[shapes/Shape.ts:96](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L96)
+[shapes/Shape.ts:95](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L95)
 
 ***
 
@@ -525,4 +525,4 @@ A JSON string  representation of the shape's definition.
 
 #### Defined in
 
-[shapes/Shape.ts:105](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L105)
+[shapes/Shape.ts:104](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L104)

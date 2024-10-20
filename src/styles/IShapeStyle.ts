@@ -7,8 +7,6 @@
  *
  * @remarks
  * This is an empty object type and serves as a base or marker for shape style types.
- *
- * @interface
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface IShapeStyle {}

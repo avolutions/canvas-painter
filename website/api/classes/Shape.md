@@ -129,7 +129,7 @@ The current options.
 
 #### Defined in
 
-[shapes/Shape.ts:193](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L193)
+[shapes/Shape.ts:190](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L190)
 
 ***
 
@@ -157,7 +157,7 @@ The current style settings.
 
 #### Defined in
 
-[shapes/Shape.ts:175](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L175)
+[shapes/Shape.ts:172](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L172)
 
 ## Methods
 
@@ -183,7 +183,7 @@ The observer callback function.
 
 #### Defined in
 
-[shapes/Shape.ts:142](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L142)
+[shapes/Shape.ts:141](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L141)
 
 ***
 
@@ -205,7 +205,7 @@ appear during rendering until `show()` is called.
 
 #### Defined in
 
-[shapes/Shape.ts:123](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L123)
+[shapes/Shape.ts:122](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L122)
 
 ***
 
@@ -219,8 +219,8 @@ Checks whether the shape is currently visible.
 
 `boolean`
 
-- Returns true if the shape is visible and will be rendered on the canvas.
-                     Returns false if the shape is hidden and will not be rendered.
+Returns true if the shape is visible and will be rendered on the canvas.
+         Returns false if the shape is hidden and will not be rendered.
 
 #### Implementation of
 
@@ -228,7 +228,7 @@ Checks whether the shape is currently visible.
 
 #### Defined in
 
-[shapes/Shape.ts:133](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L133)
+[shapes/Shape.ts:132](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L132)
 
 ***
 
@@ -254,7 +254,7 @@ The observer callback function to be removed.
 
 #### Defined in
 
-[shapes/Shape.ts:153](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L153)
+[shapes/Shape.ts:152](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L152)
 
 ***
 
@@ -302,7 +302,7 @@ during the next rendering cycle.
 
 #### Defined in
 
-[shapes/Shape.ts:114](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L114)
+[shapes/Shape.ts:113](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L113)
 
 ***
 
@@ -324,7 +324,7 @@ An array representation of the shape's definition.
 
 #### Defined in
 
-[shapes/Shape.ts:96](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L96)
+[shapes/Shape.ts:95](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L95)
 
 ***
 
@@ -346,4 +346,4 @@ A JSON string  representation of the shape's definition.
 
 #### Defined in
 
-[shapes/Shape.ts:105](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L105)
+[shapes/Shape.ts:104](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L104)

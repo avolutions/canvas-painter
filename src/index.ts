@@ -9,6 +9,9 @@ export { LineDefinition } from './definitions/LineDefinition.js';
 export { RectangleDefinition } from './definitions/RectangleDefinition.js';
 export { ShapeDefinition } from './definitions/ShapeDefinition.js';
 
+/* Errors */
+export { InvalidConstructorArgumentsError } from './errors/InvalidConstructorArgumentsError.js';
+
 /* Options */
 export { ICanvasOptions } from './options/interfaces/ICanvasOptions.js';
 export { ICircleOptions } from './options/interfaces/ICircleOptions.js';
@@ -32,6 +35,7 @@ export { IShape } from './shapes/IShape.js'
 export { Line } from './shapes/Line.js'
 export { Rectangle } from './shapes/Rectangle.js';
 export { Shape } from './shapes/Shape.js'
+export { Square } from './shapes/Square.js'
 
 /* Styles */
 export { BorderStyle } from './styles/BorderStyle.js';

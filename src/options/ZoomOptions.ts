@@ -25,7 +25,7 @@ export class ZoomOptions implements IZoomOptions {
   /**
    * Creates a new instance of ZoomOptions.
    *
-   * @param options The partial options provided by the user.
+   * @param options - The partial options provided by the user.
    */
   constructor(options: Partial<IZoomOptions> = {}) {
     const optionsWithDefaults = {

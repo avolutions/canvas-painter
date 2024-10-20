@@ -41,11 +41,11 @@ export class CircleDefinition extends ShapeDefinition {
    *
    * @param radius - The new radius of the definition.
    *
-   * @throws {Error} Throws if negative radius is passed.
+   * @throws RangeError if negative radius is passed.
    */
   public set radius(radius: number) {
     if (radius <= 0) {
-      throw new Error("Radius must be a positive number");
+      throw new RangeError("Radius must be a positive number");
     }
     this._radius = radius;
   }

@@ -13,6 +13,7 @@
 - [CircleDefinition](classes/CircleDefinition.md)
 - [CircleOptions](classes/CircleOptions.md)
 - [CircleStyle](classes/CircleStyle.md)
+- [InvalidConstructorArgumentsError](classes/InvalidConstructorArgumentsError.md)
 - [Line](classes/Line.md)
 - [LineDefinition](classes/LineDefinition.md)
 - [LineOptions](classes/LineOptions.md)
@@ -28,6 +29,7 @@
 - [Shape](classes/Shape.md)
 - [ShapeDefinition](classes/ShapeDefinition.md)
 - [ShapeOptions](classes/ShapeOptions.md)
+- [Square](classes/Square.md)
 - [ZoomOptions](classes/ZoomOptions.md)
 
 ## Interfaces

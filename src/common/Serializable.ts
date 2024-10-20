@@ -10,7 +10,7 @@ export class Serializable implements ISerializable {
    * Converts the object's properties to an array. If any of the properties
    * are objects that implement ISerializable, their `toArray` method is called.
    *
-   * @returns {Array<any>} An array representation of the object's properties.
+   * @returns An array representation of the object's properties.
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public toArray(): Array<any> {
@@ -27,7 +27,7 @@ export class Serializable implements ISerializable {
    * are objects that implement ISerializable, their `toJson` method is called.
    * Underscores e.g. of private members are trimmed when setting the serialized name.
    *
-   * @returns {string} A JSON string representation of the object.
+   * @returns A JSON string representation of the object.
    */
   public toJson(): string {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

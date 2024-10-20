@@ -17,7 +17,8 @@ const FeatureList: FeatureItem[] = [
         It's quick, straightforward, and hassle-free. Perfect for both beginners and pros.
         <CodeBlock language="javascript">
 {`const canvas = new Canvas('myCanvas');
-const rectangle = new Rectangle(50, 50, 100, 50);`}
+const rectangle = new Rectangle(50, 50, 100, 50);
+canvas.draw(rectangle);`}
         </CodeBlock >
       </>
     ),
@@ -29,7 +30,9 @@ const rectangle = new Rectangle(50, 50, 100, 50);`}
         <b>CanvasPainter.js</b> takes care of redrawing for you. When you make changes to shapes,
         the canvas detects them and updates automatically - no need for manual redraws.
         <CodeBlock language="javascript">
-{`canvas.watch(rectangle);`}
+        {`const canvas = new Canvas('myCanvas');
+const rectangle = new Rectangle(50, 50, 100, 50);
+canvas.watch(rectangle);`}
         </CodeBlock >
       </>
     ),
@@ -42,6 +45,7 @@ const rectangle = new Rectangle(50, 50, 100, 50);`}
         You can easily adjust your shapes with intuitive controls, making it simple to create dynamic and interactive designs.
         <CodeBlock language="javascript">
 {`rectangle.move(10, 10);
+rectangle.resize(47, 11);
 rectangle.rotate(45);`}
         </CodeBlock >
       </>
