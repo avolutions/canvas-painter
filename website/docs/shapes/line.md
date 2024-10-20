@@ -176,15 +176,15 @@ This will give you a JSON string in this format:
 
 The following table is showing all available line styles and the default values if no value was provided explicit.
 
-Style | Default | Explanation
---- | --- | ---
-`color` | '#000000' (black) | Sets the color for the line.
-`width` | 1.0 | Defines the width of the line.
+Style | Type | Default | Explanation
+--- | --- | --- | ---
+`color` | string | '#000000' (black) | Sets the color for the line.
+`width` | number | 1.0 | Defines the width of the line.
 
 ## Options
 
 The following table is showing all available line options and the default values if no value was provided explicit.
 
-Option | Default | Explanation
---- | --- | ---
-`visible` | true | If `true`, the line will be visible.<br />If `false` or `undefined`, the line will be hidden.
+Option | Type | Default | Explanation
+--- | --- | --- | ---
+`visible` | boolean | true | If `true`, the line will be visible.<br />If `false` or `undefined`, the line will be hidden.

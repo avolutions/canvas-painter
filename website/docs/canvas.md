@@ -368,24 +368,24 @@ console.log(panOffset); // Output: { x: 200, y: 100 }
 
 The following table is showing all available canvas options and there default values if no value was provided explicit.
 
-Option | Default | Explanation
---- | --- | ---
-`height` | 150 | Sets the height of the HTML canvas element.
-`width` | 300 | Sets the width of the HTML canvas element.
-`zoomable` | false | Allows the user to zoom the canvas.
-`pannable` | false | Allows the user to pan the canvas.
-`zoom.step` | 0.1 | The zoom factor that is applied with each zoom event, 0.1 means 10%.
-`zoom.useWheel` | true | Enables (true) or disables (false) zooming with the mouse wheel.
-`pan.mouseButtons` | [ MouseButton.Left ] | A list of mouse buttons that can be used for panning the canvas.
-`pan.useMouse` | true | Enables (true) or disables (false) panning with the mouse.
+Option | Type | Default | Explanation
+--- | --- | --- | ---
+`height` | number | 150 | Sets the height of the HTML canvas element.
+`width` | number | 300 | Sets the width of the HTML canvas element.
+`zoomable` | boolean | false | Allows the user to zoom the canvas.
+`pannable` | boolean | false | Allows the user to pan the canvas.
+`zoom.step` | number | 0.1 | The zoom factor that is applied with each zoom event, 0.1 means 10%.
+`zoom.useWheel` | boolean | true | Enables (true) or disables (false) zooming with the mouse wheel.
+`pan.mouseButtons` | Array&lt;[MouseButton](../api/enumerations/MouseButton)&gt; | [[MouseButton.Left](../api/enumerations/MouseButton#left)] | A list of mouse buttons that can be used for panning the canvas.
+`pan.useMouse` | boolean | true | Enables (true) or disables (false) panning with the mouse.
 
 ## Styles
 
 The following table is showing all available canvas styles and there default values if no value was provided explicit.
 
-Style | Default | Explanation
---- | --- | ---
-`color` | '#000000' (black) | Sets the default fill color of all shapes on the canvas.
+Style | Type | Default | Explanation
+--- | --- | --- | ---
+`color` | string | '#000000' (black) | Sets the default fill color of all shapes on the canvas.
 
 ## Using the JavaScript Canvas API
 

@@ -209,17 +209,17 @@ This will give you a JSON string in this format:
 
 The following table is showing all available rectangle styles and the default values if no value was provided explicit.
 
-Style | Default | Explanation
---- | --- | ---
-`color` | '#000000' (black) | Sets the default fill color for the rectangle.
-`border.color` | '#000000' (black) | Defines the color of rectangles border. Border is only shown if `border.color` or `border.width` is provided.
-`border.width` | 1.0 | Defines the width of rectangles border. Border is only shown if `border.color` or `border.width` is provided.
+Style | Type | Default | Explanation
+--- | --- | --- | ---
+`color` | string | '#000000' (black) | Sets the default fill color for the rectangle.
+`border.color` | string | '#000000' (black) | Defines the color of rectangles border. Border is only shown if `border.color` or `border.width` is provided.
+`border.width` | number | 1.0 | Defines the width of rectangles border. Border is only shown if `border.color` or `border.width` is provided.
 
 ## Options
 
 The following table is showing all available rectangle options and the default values if no value was provided explicit.
 
-Option | Default | Explanation
---- | --- | ---
-`centered` | false | If `true`, the rectangle will be centered at the provided position.<br />If `false` or `undefined`, the rectangle will be positioned from the top-left corner.
-`visible` | true | If `true`, the rectangle will be visible.<br />If `false` or `undefined`, the rectangle will be hidden.
+Option | Type | Default | Explanation
+--- | --- | --- | ---
+`centered` | boolean | false | If `true`, the rectangle will be centered at the provided position.<br />If `false` or `undefined`, the rectangle will be positioned from the top-left corner.
+`visible` | boolean | true | If `true`, the rectangle will be visible.<br />If `false` or `undefined`, the rectangle will be hidden.
