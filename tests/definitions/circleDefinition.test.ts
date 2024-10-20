@@ -15,13 +15,13 @@ describe('CircleDefinition', () => {
   test('should not allow creating a CircleDefinition with radius 0', () => {
     expect(() => {
       new CircleDefinition(new Point(5, 10), 0)
-    }).toThrow("Radius must be a positive number");
+    }).toThrow(new RangeError("Radius must be a positive number"));
   });
 
   test('should not allow creating a CircleDefinition with negative radius', () => {
     expect(() => {
       new CircleDefinition(new Point(5, 10), -5.75)
-    }).toThrow("Radius must be a positive number");
+    }).toThrow(new RangeError("Radius must be a positive number"));
   });
 
   it('should serialize into an array', () => {

@@ -1,3 +1,4 @@
+import { InvalidConstructorArgumentsError } from "../errors/InvalidConstructorArgumentsError.js";
 import { CircleDefinition } from "../definitions/CircleDefinition.js";
 import { CircleOptions } from "../options/CircleOptions.js";
 import { ICircleOptions } from "../options/interfaces/ICircleOptions.js";
@@ -33,7 +34,7 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
    * The `Circle` can be created either by passing a `Point` object representing the center,
    * or by providing the individual coordinates for the center.
    *
-   * @throws Error if invalid arguments are passed.
+   * @throws {@link InvalidConstructorArgumentsError} if invalid arguments are passed.
    */
   constructor(
     arg1: Point | number,
@@ -60,7 +61,7 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
       options = arg4 as ICircleOptions;
 
     } else {
-      throw new Error('Invalid constructor arguments');
+      throw new InvalidConstructorArgumentsError();
     }
 
     super(definition, style, new CircleOptions(options));

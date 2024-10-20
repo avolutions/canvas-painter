@@ -4,6 +4,7 @@
 import { Point } from '../../src/types/Point';
 import { Circle } from '../../src/shapes/Circle';
 import { CircleStyle } from '../../src/styles/CircleStyle';
+import { InvalidConstructorArgumentsError } from '../../src/errors/InvalidConstructorArgumentsError';
 
 describe('Circle class', () => {
   let context: CanvasRenderingContext2D;
@@ -124,19 +125,19 @@ describe('Circle class', () => {
   test('should throw an error if coordinates are partially provided', () => {
     expect(() => {
       new (Circle as unknown as new (...args: any[]) => Circle)(new Point(0, 0), 0, 0); // Force invalid argument combination
-    }).toThrow('Invalid constructor arguments');
+    }).toThrow(InvalidConstructorArgumentsError);
   });
 
   test('should throw an error if Circle object was created with negative radius', () => {
     expect(() => {
       new Circle(0, 0, -1);
-    }).toThrow("Radius must be a positive number");
+    }).toThrow(RangeError);
   });
 
   test('should throw an error if Circle object was created with radius of 0', () => {
     expect(() => {
       new Circle(0, 0, 0);
-    }).toThrow("Radius must be a positive number");
+    }).toThrow(RangeError);
   });
 
   test("should set new values via setters", () => {

@@ -1,3 +1,4 @@
+import { InvalidConstructorArgumentsError } from "../errors/InvalidConstructorArgumentsError.js";
 import { LineDefinition } from "../definitions/LineDefinition.js";
 import { ILineOptions } from "../options/interfaces/ILineOptions.js";
 import { LineOptions } from "../options/LineOptions.js";
@@ -35,7 +36,7 @@ export class Line extends Shape<LineDefinition, LineStyle, ILineOptions> {
    * The `Line` can be created either by passing two `Point` objects representing the start and end of the line,
    * or by providing the individual coordinates for the start and end points.
    *
-   * @throws Error if invalid arguments are passed.
+   * @throws {@link InvalidConstructorArgumentsError} if invalid arguments are passed.
    */
   constructor(
     arg1: Point | number,
@@ -63,7 +64,7 @@ export class Line extends Shape<LineDefinition, LineStyle, ILineOptions> {
       style = arg3 as LineStyle;
       options = arg4 as ILineOptions;
     } else {
-      throw new Error('Invalid constructor arguments');
+      throw new InvalidConstructorArgumentsError();
     }
 
     super(definition, style, new LineOptions(options));

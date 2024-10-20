@@ -9,6 +9,9 @@ export { LineDefinition } from './definitions/LineDefinition.js';
 export { RectangleDefinition } from './definitions/RectangleDefinition.js';
 export { ShapeDefinition } from './definitions/ShapeDefinition.js';
 
+/* Errors */
+export { InvalidConstructorArgumentsError } from './errors/InvalidConstructorArgumentsError.js';
+
 /* Options */
 export { ICanvasOptions } from './options/interfaces/ICanvasOptions.js';
 export { ICircleOptions } from './options/interfaces/ICircleOptions.js';

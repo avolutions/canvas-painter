@@ -26,18 +26,22 @@ describe('Canvas class', () => {
   test('init throws error if element is not found', () => {
     jest.spyOn(document, 'getElementById').mockReturnValueOnce(null);
 
-    expect(() => {
-      Canvas.init('nonexistent-id') }
-    ).toThrow("Element with id 'nonexistent-id' not found");
+    const initWithError = () => {
+      Canvas.init('nonexistent-id')
+    };
+
+    expect(initWithError).toThrow(new ReferenceError("Element with id 'nonexistent-id' not found"));
   });
 
   test('init throws error if element is not a canvas', () => {
     const nonCanvasElement = document.createElement('div');
     jest.spyOn(document, 'getElementById').mockReturnValueOnce(nonCanvasElement);
 
-    expect(() => {
+    const initWithError = () => {
       Canvas.init('non-canvas-id');
-    }).toThrow("Element with id 'non-canvas-id' is not a canvas");
+    };
+
+    expect(initWithError).toThrow(new TypeError("Element with id 'non-canvas-id' is not a canvas"));
   });
 
   test('init throws error if 2d context cannot be retrieved', () => {
@@ -45,9 +49,11 @@ describe('Canvas class', () => {
     jest.spyOn(document, 'getElementById').mockReturnValueOnce(canvasElement);
     jest.spyOn(canvasElement, 'getContext').mockReturnValueOnce(null);
 
-    expect(() => {
+    const initWithError = () => {
       Canvas.init('canvas-id');
-    }).toThrow("Failed to get '2d' context from canvas");
+    };
+
+    expect(initWithError).toThrow(new TypeError("Failed to get '2d' context from canvas"));
   });
 
   test('init returns a Canvas instance with a valid context', () => {
