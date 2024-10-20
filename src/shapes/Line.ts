@@ -1,3 +1,4 @@
+import { InvalidConstructorArgumentsError } from "../errors/InvalidConstructorArgumentsError.js";
 import { LineDefinition } from "../definitions/LineDefinition.js";
 import { ILineOptions } from "../options/interfaces/ILineOptions.js";
 import { LineOptions } from "../options/LineOptions.js";
@@ -63,7 +64,7 @@ export class Line extends Shape<LineDefinition, LineStyle, ILineOptions> {
       style = arg3 as LineStyle;
       options = arg4 as ILineOptions;
     } else {
-      throw new Error('Invalid constructor arguments');
+      throw new InvalidConstructorArgumentsError();
     }
 
     super(definition, style, new LineOptions(options));
