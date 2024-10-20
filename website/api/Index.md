@@ -29,6 +29,7 @@
 - [Shape](classes/Shape.md)
 - [ShapeDefinition](classes/ShapeDefinition.md)
 - [ShapeOptions](classes/ShapeOptions.md)
+- [Square](classes/Square.md)
 - [ZoomOptions](classes/ZoomOptions.md)
 
 ## Interfaces
