@@ -11,7 +11,6 @@ import { Shape } from "./Shape.js";
  */
 export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> {
   /**
-   * @overload
    * @param center - The center `Point` of the circle.
    * @param radius - The radius of the circle.
    * @param style - Defines the styling of the circle.
@@ -20,7 +19,6 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
   constructor(center: Point, radius: number, style?: CircleStyle, options?: ICircleOptions);
 
   /**
-   * @overload
    * @param centerX - The X-coordinate of the starting point.
    * @param centerY - The Y-coordinate of the starting point.
    * @param radius - The radius of the circle.
@@ -35,7 +33,7 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
    * The `Circle` can be created either by passing a `Point` object representing the center,
    * or by providing the individual coordinates for the center.
    *
-   * @throws {Error} Throws if invalid arguments are passed.
+   * @throws Error if invalid arguments are passed.
    */
   constructor(
     arg1: Point | number,

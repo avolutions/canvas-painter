@@ -40,7 +40,7 @@ The configuration options for the circle.
 
 #### Throws
 
-Throws if invalid arguments are passed.
+Error if invalid arguments are passed.
 
 #### Overrides
 
@@ -48,7 +48,7 @@ Throws if invalid arguments are passed.
 
 #### Defined in
 
-[shapes/Circle.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L20)
+[shapes/Circle.ts:19](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L19)
 
 ### new Circle()
 
@@ -87,7 +87,7 @@ The configuration options for the circle.
 
 #### Throws
 
-Throws if invalid arguments are passed.
+Error if invalid arguments are passed.
 
 #### Overrides
 
@@ -95,7 +95,7 @@ Throws if invalid arguments are passed.
 
 #### Defined in
 
-[shapes/Circle.ts:30](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L30)
+[shapes/Circle.ts:28](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L28)
 
 ## Properties
 
@@ -187,7 +187,7 @@ The center point of the circle.
 
 #### Defined in
 
-[shapes/Circle.ts:78](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L78)
+[shapes/Circle.ts:76](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L76)
 
 ***
 
@@ -219,7 +219,7 @@ The current options.
 
 #### Defined in
 
-[shapes/Shape.ts:193](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L193)
+[shapes/Shape.ts:190](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L190)
 
 ***
 
@@ -247,7 +247,7 @@ The radius of the circle.
 
 #### Defined in
 
-[shapes/Circle.ts:87](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L87)
+[shapes/Circle.ts:85](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L85)
 
 ***
 
@@ -279,7 +279,7 @@ The current style settings.
 
 #### Defined in
 
-[shapes/Shape.ts:175](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L175)
+[shapes/Shape.ts:172](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L172)
 
 ## Methods
 
@@ -305,7 +305,7 @@ The observer callback function.
 
 #### Defined in
 
-[shapes/Shape.ts:142](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L142)
+[shapes/Shape.ts:141](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L141)
 
 ***
 
@@ -327,7 +327,7 @@ appear during rendering until `show()` is called.
 
 #### Defined in
 
-[shapes/Shape.ts:123](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L123)
+[shapes/Shape.ts:122](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L122)
 
 ***
 
@@ -341,8 +341,8 @@ Checks whether the shape is currently visible.
 
 `boolean`
 
-- Returns true if the shape is visible and will be rendered on the canvas.
-                     Returns false if the shape is hidden and will not be rendered.
+Returns true if the shape is visible and will be rendered on the canvas.
+         Returns false if the shape is hidden and will not be rendered.
 
 #### Inherited from
 
@@ -350,7 +350,7 @@ Checks whether the shape is currently visible.
 
 #### Defined in
 
-[shapes/Shape.ts:133](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L133)
+[shapes/Shape.ts:132](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L132)
 
 ***
 
@@ -376,7 +376,7 @@ The change in the y-coordinate.
 
 #### Defined in
 
-[shapes/Circle.ts:117](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L117)
+[shapes/Circle.ts:115](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L115)
 
 ***
 
@@ -402,7 +402,7 @@ The observer callback function to be removed.
 
 #### Defined in
 
-[shapes/Shape.ts:153](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L153)
+[shapes/Shape.ts:152](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L152)
 
 ***
 
@@ -430,7 +430,7 @@ The 2D rendering context of the canvas where the circle will be drawn.
 
 #### Defined in
 
-[shapes/Circle.ts:137](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L137)
+[shapes/Circle.ts:135](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L135)
 
 ***
 
@@ -452,7 +452,7 @@ The change of the radius.
 
 #### Defined in
 
-[shapes/Circle.ts:126](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L126)
+[shapes/Circle.ts:124](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Circle.ts#L124)
 
 ***
 
@@ -474,7 +474,7 @@ during the next rendering cycle.
 
 #### Defined in
 
-[shapes/Shape.ts:114](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L114)
+[shapes/Shape.ts:113](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L113)
 
 ***
 
@@ -496,7 +496,7 @@ An array representation of the shape's definition.
 
 #### Defined in
 
-[shapes/Shape.ts:96](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L96)
+[shapes/Shape.ts:95](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L95)
 
 ***
 
@@ -518,4 +518,4 @@ A JSON string  representation of the shape's definition.
 
 #### Defined in
 
-[shapes/Shape.ts:105](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L105)
+[shapes/Shape.ts:104](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L104)

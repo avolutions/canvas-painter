@@ -3,8 +3,6 @@
  *
  * Used to identify which mouse button was pressed during a mouse event.
  * The values correspond to the `MouseEvent.button` property.
- *
- * @enum {number}
  */
 export enum MouseButton {
   /**

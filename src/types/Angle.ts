@@ -26,7 +26,7 @@ export class Angle implements ISerializable {
    * Serializes the object’s properties into an array, consisting of
    * the degrees, radians, and the result of the `isNormalized()` method.
    *
-   * @returns {Array<number | boolean>} An array containing the degrees as a number,
+   * @returns An array containing the degrees as a number,
    * the radians as a number, and the result of `isNormalized()` as a boolean.
    */
   public toArray(): Array<number | boolean> {
@@ -41,7 +41,7 @@ export class Angle implements ISerializable {
    * Serializes the object’s properties into a JSON string. The JSON object contains
    * the degrees, radians, and the result of the `isNormalized()` method.
    *
-   * @returns {string} A JSON string representation of the object, including degrees,
+   * @returns A JSON string representation of the object, including degrees,
    * radians, and whether it is normalized.
    */
   public toJson(): string {
