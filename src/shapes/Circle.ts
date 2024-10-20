@@ -34,7 +34,7 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
    * The `Circle` can be created either by passing a `Point` object representing the center,
    * or by providing the individual coordinates for the center.
    *
-   * @throws Error if invalid arguments are passed.
+   * @throws {@link InvalidConstructorArgumentsError} if invalid arguments are passed.
    */
   constructor(
     arg1: Point | number,

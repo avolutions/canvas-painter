@@ -36,7 +36,7 @@ export class Line extends Shape<LineDefinition, LineStyle, ILineOptions> {
    * The `Line` can be created either by passing two `Point` objects representing the start and end of the line,
    * or by providing the individual coordinates for the start and end points.
    *
-   * @throws Error if invalid arguments are passed.
+   * @throws {@link InvalidConstructorArgumentsError} if invalid arguments are passed.
    */
   constructor(
     arg1: Point | number,

@@ -60,7 +60,7 @@ Sets the radius of the definition.
 
 #### Throws
 
-Error if negative radius is passed.
+RangeError if negative radius is passed.
 
 #### Parameters
 

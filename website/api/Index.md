@@ -13,6 +13,7 @@
 - [CircleDefinition](classes/CircleDefinition.md)
 - [CircleOptions](classes/CircleOptions.md)
 - [CircleStyle](classes/CircleStyle.md)
+- [InvalidConstructorArgumentsError](classes/InvalidConstructorArgumentsError.md)
 - [Line](classes/Line.md)
 - [LineDefinition](classes/LineDefinition.md)
 - [LineOptions](classes/LineOptions.md)
