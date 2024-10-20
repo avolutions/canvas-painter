@@ -131,13 +131,13 @@ describe('Circle class', () => {
   test('should throw an error if Circle object was created with negative radius', () => {
     expect(() => {
       new Circle(0, 0, -1);
-    }).toThrow("Radius must be a positive number");
+    }).toThrow(RangeError);
   });
 
   test('should throw an error if Circle object was created with radius of 0', () => {
     expect(() => {
       new Circle(0, 0, 0);
-    }).toThrow("Radius must be a positive number");
+    }).toThrow(RangeError);
   });
 
   test("should set new values via setters", () => {

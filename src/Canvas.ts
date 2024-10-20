@@ -273,22 +273,25 @@ export class Canvas {
    * @param id - The ID of the HTML canvas element.
    * @param options - Optional configuration options for the canvas.
    * @param style - Optional styling options for the canvas.
+   *
    * @returns A new Canvas instance.
-   * @throws Error if the canvas element is not found or is not a valid canvas.
+   *
+   * @throws ReferenceError if the canvas element is not found.
+   * @throws TypeError if the element is not a valid canvas or can't get 2d context.
    */
   public static init(id: string, options?: ICanvasOptions, style?: CanvasStyle): Canvas {
     const canvas = document.getElementById(id);
     if (!canvas) {
-      throw new Error(`Element with id '${id}' not found`);
+      throw new ReferenceError(`Element with id '${id}' not found`);
     }
 
     if (!(canvas instanceof HTMLCanvasElement)) {
-      throw new Error(`Element with id '${id}' is not a canvas`);
+      throw new TypeError(`Element with id '${id}' is not a canvas`);
     }
 
     const context = canvas.getContext('2d');
     if (!context) {
-      throw new Error(`Failed to get '2d' context from canvas`);
+      throw new TypeError(`Failed to get '2d' context from canvas`);
     }
 
     return new Canvas(canvas, context, options, style);
