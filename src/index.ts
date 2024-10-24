@@ -47,6 +47,7 @@ export { RectangleStyle } from './styles/RectangleStyle.js';
 
 /* Types */
 export { Angle } from './types/Angle.js';
+export { Cursor } from './types/Cursor.js';
 export { Mouse } from './types/Mouse.js';
 export { MouseButton } from './types/MouseButton.js';
 export { Point } from './types/Point.js';

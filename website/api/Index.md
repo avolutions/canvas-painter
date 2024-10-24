@@ -1,5 +1,6 @@
 ## Enumerations
 
+- [Cursor](enumerations/Cursor.md)
 - [MouseButton](enumerations/MouseButton.md)
 
 ## Classes
