@@ -2,6 +2,7 @@ import { CanvasOptions } from "./options/CanvasOptions.js";
 import { ICanvasOptions } from "./options/interfaces/ICanvasOptions.js";
 import { IShape } from "./shapes/IShape.js";
 import { CanvasStyle } from "./styles/CanvasStyle.js";
+import { ICanvasStyle } from "./styles/interfaces/ICanvasStyle.js";
 import { Mouse } from "./types/Mouse.js";
 import { Point } from "./types/Point.js";
 
@@ -48,19 +49,16 @@ export class Canvas {
     canvas: HTMLCanvasElement,
     context: CanvasRenderingContext2D,
     options?: ICanvasOptions,
-    style?: CanvasStyle
+    style?: ICanvasStyle
   ) {
     this._canvas = canvas;
     this._context = context;
 
-    // Merge default options with the provided options
+    // Create options
     this._options = new CanvasOptions(options);
 
-    // Set styles
-    this._style = {
-      ...CanvasStyle.DefaultStyle,
-      ...style
-    };
+    // Create style
+    this._style = new CanvasStyle(style);
 
     // Determine width, set canvas width and update options with new value
     const width = this.getWidth(options);
@@ -72,7 +70,8 @@ export class Canvas {
     this._canvas.height = height;
     this._options.height = height;
 
-    this.setContextStyle(this._style);
+    // Apply styles to context
+    this.applyStyle(this._style);
 
     this._panOffset = new Point(0, 0);
     this._panStart = new Point(0, 0);
@@ -99,6 +98,11 @@ export class Canvas {
       // Handle the case when the mouse leaves the canvas during dragging
       this._canvas.addEventListener('mouseleave', this.onMouseUp.bind(this));
     }
+
+    // Prevent default context menu on right click
+    this._canvas.addEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault();
+    });
   }
 
   /**
@@ -144,6 +148,9 @@ export class Canvas {
       mousePosition.x - this.panOffset.x,
       mousePosition.y - this.panOffset.y
     );
+
+    // Set cursor for panning
+    this._canvas.style.cursor = this._style.cursor.panActive;
   }
 
   /**
@@ -173,7 +180,11 @@ export class Canvas {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private onMouseUp(event: MouseEvent): void {
+    // Stop panning
     this._isPanning = false;
+
+    // Set default cursor
+    this._canvas.style.cursor = this._style.cursor.default;
   }
 
   /**
@@ -279,7 +290,7 @@ export class Canvas {
    * @throws ReferenceError if the canvas element is not found.
    * @throws TypeError if the element is not a valid canvas or can't get 2d context.
    */
-  public static init(id: string, options?: ICanvasOptions, style?: CanvasStyle): Canvas {
+  public static init(id: string, options?: ICanvasOptions, style?: ICanvasStyle): Canvas {
     const canvas = document.getElementById(id);
     if (!canvas) {
       throw new ReferenceError(`Element with id '${id}' not found`);
@@ -298,14 +309,16 @@ export class Canvas {
   }
 
   /**
-   * Sets the canvas rendering context's styles based on the provided CanvasStyle.
+   * Sets the canvas and context styles based on the provided CanvasStyle.
    *
-   * @param style - The style settings to apply to the canvas context.
+   * @param style - The style settings to apply to the canvas and context.
    */
-  private setContextStyle(style: CanvasStyle): void {
-    if (style.color) {
-      this._context.fillStyle = style.color;
-    }
+  private applyStyle(style: CanvasStyle): void {
+    // Canvas
+    this._canvas.style.cursor = style.cursor.default;
+
+    // Context
+    this._context.fillStyle = style.color;
   }
 
   /**

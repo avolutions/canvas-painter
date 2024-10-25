@@ -38,7 +38,11 @@ export { Shape } from './shapes/Shape.js'
 export { Square } from './shapes/Square.js'
 
 /* Styles */
+export { ICanvasCursorStyle } from './styles/interfaces/ICanvasCursorStyle.js';
+export { ICanvasStyle } from './styles/interfaces/ICanvasStyle.js';
+
 export { BorderStyle } from './styles/BorderStyle.js';
+export { CanvasCursorStyle } from './styles/CanvasCursorStyle.js';
 export { CanvasStyle } from './styles/CanvasStyle.js';
 export { CircleStyle } from './styles/CircleStyle.js';
 export { IShapeStyle } from './styles/IShapeStyle.js';

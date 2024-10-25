@@ -21,12 +21,12 @@ describe('CanvasOptions', () => {
     expect(options).toBeInstanceOf(CanvasOptions);
     expect(options.width).toBe(defaults.width);
     expect(options.height).toBe(defaults.height);
-    expect(options.zoomable).toBe(defaults.zoomable)
-    expect(options.pannable).toBe(defaults.pannable)
+    expect(options.zoomable).toBe(defaults.zoomable);
+    expect(options.pannable).toBe(defaults.pannable);
     expect(options.zoom).toBeInstanceOf(ZoomOptions);
-    expect(options.zoom).toEqual(defaults.zoom)
+    expect(options.zoom).toEqual(defaults.zoom);
     expect(options.pan).toBeInstanceOf(PanOptions);
-    expect(options.pan).toEqual(defaults.pan)
+    expect(options.pan).toEqual(defaults.pan);
   });
 
   test('should set the values provided by constructor', () => {

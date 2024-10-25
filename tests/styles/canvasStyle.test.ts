@@ -1,29 +1,64 @@
+import { CanvasCursorStyle } from '../../src/styles/CanvasCursorStyle';
 import { CanvasStyle } from '../../src/styles/CanvasStyle';
+import { Cursor } from '../../src/types/Cursor';
 
 describe('CanvasStyle', () => {
   test('should have default style', () => {
-    const defaultStyle = CanvasStyle.DefaultStyle;
+    const style = CanvasStyle.DefaultStyle;
 
-    expect(defaultStyle.color).toBe('#000000');
+    expect(style.color).toBe('#000000');
+    expect(style.cursor).toBe(CanvasCursorStyle.DefaultStyle);
   });
 
-  test('should create instance with default color', () => {
-    const canvasStyle = new CanvasStyle();
+  test('should create an instance of CanvasStyle with default styles', () => {
+    const defaults = CanvasStyle.DefaultStyle;
+    const style = new CanvasStyle();
 
-    expect(canvasStyle.color).toBeUndefined();  // No color provided
+    expect(style).toBeInstanceOf(CanvasStyle);
+    expect(style.color).toBe(defaults.color);
+    expect(style.cursor).toBeInstanceOf(CanvasCursorStyle);
+    expect(style.cursor).toEqual(defaults.cursor);
   });
 
-  test('should create instance with custom color', () => {
-    const canvasStyle = new CanvasStyle('#FFFFFF');
+  test('should set the values provided by constructor', () => {
+    const color = '#FFFFFF';
+    const cursor = {
+      default: Cursor.Grab,
+      panActive: Cursor.Text
+    };
 
-    expect(canvasStyle.color).toBe('#FFFFFF');
+    const style = new CanvasStyle({ color: color, cursor: cursor });
+
+    expect(style.color).toBe(color);
+    expect(style.cursor).toBeInstanceOf(CanvasCursorStyle);
+    expect(style.cursor.default).toBe(cursor.default);
+    expect(style.cursor.panActive).toBe(cursor.panActive);
+  });
+
+  test('should set partial values provided by constructor', () => {
+    const defaults = CanvasStyle.DefaultStyle;
+
+    const style = new CanvasStyle({ cursor: { panActive: Cursor.SwResize } });
+
+    expect(style.color).toBe(defaults.color);
+    expect(style.cursor).toBeInstanceOf(CanvasCursorStyle);
+    expect(style.cursor.default).toBe(CanvasCursorStyle.DefaultStyle.default);
+    expect(style.cursor.panActive).toBe(Cursor.SwResize);
   });
 
   test('should allow update of properties', () => {
-    const options = new CanvasStyle();
+    const style = new CanvasStyle();
 
-    options.color = 'red';
+    style.color = '#FFFFFF';
+    style.cursor.default = Cursor.Alias;
+    style.cursor.panActive = Cursor.Move;
 
-    expect(options.color).toBe('red');
+    expect(style.color).toBe('#FFFFFF');
+    expect(style.cursor.default).toBe(Cursor.Alias);
+    expect(style.cursor.panActive).toBe(Cursor.Move);
+
+    style.cursor = { default: Cursor.Copy, panActive: Cursor.Pointer };
+    expect(style.cursor.default).toBe(Cursor.Copy);
+    expect(style.cursor.panActive).toBe(Cursor.Pointer);
   });
 });

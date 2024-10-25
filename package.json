@@ -42,6 +42,7 @@
   "author": "Alexander Vogt <alexander.vogt@avolutions.de>",
   "license": "MIT",
   "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
     "@types/jest": "^29.5.13",
     "@typescript-eslint/eslint-plugin": "^8.5.0",
     "@typescript-eslint/parser": "^8.5.0",
