@@ -24,6 +24,7 @@ describe('Cursor', () => {
     expect(Cursor.NwResize).toBe('nw-resize');
     expect(Cursor.NwseResize).toBe('nwse-resize');
     expect(Cursor.Move).toBe('move');
+    expect(Cursor.Pointer).toBe('pointer');
     expect(Cursor.SResize).toBe('s-resize');
     expect(Cursor.SeResize).toBe('se-resize');
     expect(Cursor.SwResize).toBe('sw-resize');

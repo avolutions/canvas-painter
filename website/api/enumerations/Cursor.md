@@ -10,7 +10,7 @@ Indicates an alias or shortcut is to be created.
 
 #### Defined in
 
-types/Cursor.ts:8
+[types/Cursor.ts:8](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L8)
 
 ***
 
@@ -22,7 +22,7 @@ Indicates that scrolling in any direction is possible.
 
 #### Defined in
 
-types/Cursor.ts:13
+[types/Cursor.ts:13](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L13)
 
 ***
 
@@ -34,7 +34,7 @@ The browser determines the cursor based on the context.
 
 #### Defined in
 
-types/Cursor.ts:18
+[types/Cursor.ts:18](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L18)
 
 ***
 
@@ -46,7 +46,7 @@ An available cell (usually for table or spreadsheet navigation).
 
 #### Defined in
 
-types/Cursor.ts:23
+[types/Cursor.ts:23](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L23)
 
 ***
 
@@ -58,7 +58,7 @@ Indicates that an edge is to be moved, changing the column width.
 
 #### Defined in
 
-types/Cursor.ts:28
+[types/Cursor.ts:28](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L28)
 
 ***
 
@@ -70,7 +70,7 @@ A context menu is available.
 
 #### Defined in
 
-types/Cursor.ts:33
+[types/Cursor.ts:33](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L33)
 
 ***
 
@@ -82,7 +82,7 @@ Indicates that something can be copied.
 
 #### Defined in
 
-types/Cursor.ts:38
+[types/Cursor.ts:38](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L38)
 
 ***
 
@@ -94,7 +94,7 @@ The default cursor (usually an arrow).
 
 #### Defined in
 
-types/Cursor.ts:43
+[types/Cursor.ts:43](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L43)
 
 ***
 
@@ -106,7 +106,7 @@ The east edge is to be moved.
 
 #### Defined in
 
-types/Cursor.ts:48
+[types/Cursor.ts:48](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L48)
 
 ***
 
@@ -118,7 +118,7 @@ Both the east and west edges are to be moved.
 
 #### Defined in
 
-types/Cursor.ts:53
+[types/Cursor.ts:53](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L53)
 
 ***
 
@@ -130,7 +130,7 @@ An item is being grabbed.
 
 #### Defined in
 
-types/Cursor.ts:58
+[types/Cursor.ts:58](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L58)
 
 ***
 
@@ -142,7 +142,7 @@ An item is being grabbed and dragged.
 
 #### Defined in
 
-types/Cursor.ts:63
+[types/Cursor.ts:63](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L63)
 
 ***
 
@@ -154,7 +154,7 @@ A help cursor, usually rendered as a question mark.
 
 #### Defined in
 
-types/Cursor.ts:68
+[types/Cursor.ts:68](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L68)
 
 ***
 
@@ -166,7 +166,7 @@ Something is to be moved.
 
 #### Defined in
 
-types/Cursor.ts:113
+[types/Cursor.ts:113](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L113)
 
 ***
 
@@ -178,7 +178,7 @@ The northeast edge is to be moved.
 
 #### Defined in
 
-types/Cursor.ts:93
+[types/Cursor.ts:93](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L93)
 
 ***
 
@@ -190,7 +190,7 @@ Both the northeast and southwest edges are to be moved.
 
 #### Defined in
 
-types/Cursor.ts:98
+[types/Cursor.ts:98](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L98)
 
 ***
 
@@ -202,7 +202,7 @@ The item may not be dropped at the current location.
 
 #### Defined in
 
-types/Cursor.ts:78
+[types/Cursor.ts:78](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L78)
 
 ***
 
@@ -214,7 +214,7 @@ No cursor is rendered.
 
 #### Defined in
 
-types/Cursor.ts:83
+[types/Cursor.ts:83](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L83)
 
 ***
 
@@ -226,7 +226,7 @@ Indicates that something is not allowed to be done.
 
 #### Defined in
 
-types/Cursor.ts:73
+[types/Cursor.ts:73](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L73)
 
 ***
 
@@ -238,7 +238,7 @@ The north edge is to be moved.
 
 #### Defined in
 
-types/Cursor.ts:88
+[types/Cursor.ts:88](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L88)
 
 ***
 
@@ -250,7 +250,7 @@ The northwest edge is to be moved.
 
 #### Defined in
 
-types/Cursor.ts:103
+[types/Cursor.ts:103](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L103)
 
 ***
 
@@ -262,7 +262,19 @@ Both the northwest and southeast edges are to be moved.
 
 #### Defined in
 
-types/Cursor.ts:108
+[types/Cursor.ts:108](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L108)
+
+***
+
+### Pointer
+
+> **Pointer**: `"pointer"`
+
+The cursor is a pointer that indicates a link. Typically an image of a pointing hand.
+
+#### Defined in
+
+[types/Cursor.ts:118](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L118)
 
 ***
 
@@ -274,7 +286,7 @@ The southeast edge is to be moved.
 
 #### Defined in
 
-types/Cursor.ts:123
+[types/Cursor.ts:128](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L128)
 
 ***
 
@@ -286,7 +298,7 @@ The south edge is to be moved.
 
 #### Defined in
 
-types/Cursor.ts:118
+[types/Cursor.ts:123](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L123)
 
 ***
 
@@ -298,7 +310,7 @@ The southwest edge is to be moved.
 
 #### Defined in
 
-types/Cursor.ts:128
+[types/Cursor.ts:133](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L133)
 
 ***
 
@@ -310,7 +322,7 @@ Text can be selected (usually rendered as an I-bar).
 
 #### Defined in
 
-types/Cursor.ts:133
+[types/Cursor.ts:138](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L138)
 
 ***
 
@@ -322,7 +334,7 @@ Indicates vertical-text, such as for Asian languages.
 
 #### Defined in
 
-types/Cursor.ts:138
+[types/Cursor.ts:143](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L143)
 
 ***
 
@@ -334,7 +346,7 @@ The program is busy (often rendered as a spinning wheel or hourglass).
 
 #### Defined in
 
-types/Cursor.ts:143
+[types/Cursor.ts:148](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L148)
 
 ***
 
@@ -346,7 +358,7 @@ The west edge is to be moved.
 
 #### Defined in
 
-types/Cursor.ts:148
+[types/Cursor.ts:153](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L153)
 
 ***
 
@@ -358,7 +370,7 @@ The cursor indicates that zooming in is possible.
 
 #### Defined in
 
-types/Cursor.ts:153
+[types/Cursor.ts:158](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L158)
 
 ***
 
@@ -370,4 +382,4 @@ The cursor indicates that zooming out is possible.
 
 #### Defined in
 
-types/Cursor.ts:158
+[types/Cursor.ts:163](https://github.com/avolutions/canvas-painter/blob/main/src/types/Cursor.ts#L163)

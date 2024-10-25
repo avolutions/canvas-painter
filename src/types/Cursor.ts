@@ -113,6 +113,11 @@ export enum Cursor {
   Move = "move",
 
   /**
+   * The cursor is a pointer that indicates a link. Typically an image of a pointing hand.
+   */
+  Pointer = "pointer",
+
+  /**
    * The south edge is to be moved.
    */
   SResize = "s-resize",
