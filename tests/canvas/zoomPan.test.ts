@@ -2,7 +2,10 @@
  * @jest-environment jsdom
  */
 
+import { fireEvent } from '@testing-library/dom';
+
 import { Canvas } from "../../src/Canvas";
+import { CanvasStyle } from "../../src/styles/CanvasStyle";
 import { MouseButton } from "../../src/types/MouseButton";
 import { Point } from "../../src/types/Point";
 import { setupCanvas } from "./canvasTestUtils";
@@ -21,15 +24,24 @@ describe('Zoom and pan function of canvas class', () => {
     jest.restoreAllMocks();
   });
 
+  test('should call the contextmenu event listener and prevent default behavior', () => {
+    const canvas = Canvas.init('canvas-id');
+    const preventDefaultSpy = jest.spyOn(Event.prototype, 'preventDefault');
+
+    fireEvent.contextMenu((canvas as any)._canvas);
+
+    expect(preventDefaultSpy).toHaveBeenCalled();
+  });
+
   test('should apply event handler for zooming', () => {
     const spy = jest.spyOn(canvasElement, 'addEventListener');
 
     Canvas.init('canvas-id');
-    expect(spy).not.toHaveBeenCalled();
+    expect(spy).not.toHaveBeenCalledWith('wheel', expect.any(Function));
     spy.mockClear();
 
     Canvas.init('canvas-id', { zoomable: false });
-    expect(spy).not.toHaveBeenCalled();
+    expect(spy).not.toHaveBeenCalledWith('wheel', expect.any(Function));
     spy.mockClear();
 
     Canvas.init('canvas-id', { zoomable: true });
@@ -37,7 +49,7 @@ describe('Zoom and pan function of canvas class', () => {
     spy.mockClear();
 
     Canvas.init('canvas-id', { zoomable: true, zoom: { useWheel: false } });
-    expect(spy).not.toHaveBeenCalled();
+    expect(spy).not.toHaveBeenCalledWith('wheel', expect.any(Function));
     spy.mockClear();
 
     Canvas.init('canvas-id', { zoomable: true, zoom: { useWheel: true } });
@@ -45,7 +57,7 @@ describe('Zoom and pan function of canvas class', () => {
     spy.mockClear();
 
     Canvas.init('canvas-id', { zoomable: false, zoom: { useWheel: true } });
-    expect(spy).not.toHaveBeenCalled();
+    expect(spy).not.toHaveBeenCalledWith('wheel', expect.any(Function));
     spy.mockClear();
   });
 
@@ -53,11 +65,17 @@ describe('Zoom and pan function of canvas class', () => {
     const spy = jest.spyOn(canvasElement, 'addEventListener');
 
     Canvas.init('canvas-id');
-    expect(spy).not.toHaveBeenCalled();
+    expect(spy).not.toHaveBeenCalledWith('mousedown', expect.any(Function));
+    expect(spy).not.toHaveBeenCalledWith('mousemove', expect.any(Function));
+    expect(spy).not.toHaveBeenCalledWith('mouseup', expect.any(Function));
+    expect(spy).not.toHaveBeenCalledWith('mouseleave', expect.any(Function));
     spy.mockClear();
 
     Canvas.init('canvas-id', { pannable: false });
-    expect(spy).not.toHaveBeenCalled();
+    expect(spy).not.toHaveBeenCalledWith('mousedown', expect.any(Function));
+    expect(spy).not.toHaveBeenCalledWith('mousemove', expect.any(Function));
+    expect(spy).not.toHaveBeenCalledWith('mouseup', expect.any(Function));
+    expect(spy).not.toHaveBeenCalledWith('mouseleave', expect.any(Function));
     spy.mockClear();
 
     Canvas.init('canvas-id', { pannable: true });
@@ -68,7 +86,10 @@ describe('Zoom and pan function of canvas class', () => {
     spy.mockClear();
 
     Canvas.init('canvas-id', { pannable: true, pan: { useMouse: false } });
-    expect(spy).not.toHaveBeenCalled();
+    expect(spy).not.toHaveBeenCalledWith('mousedown', expect.any(Function));
+    expect(spy).not.toHaveBeenCalledWith('mousemove', expect.any(Function));
+    expect(spy).not.toHaveBeenCalledWith('mouseup', expect.any(Function));
+    expect(spy).not.toHaveBeenCalledWith('mouseleave', expect.any(Function));
     spy.mockClear();
 
     Canvas.init('canvas-id', { pannable: true, pan: { useMouse: true } });
@@ -79,7 +100,10 @@ describe('Zoom and pan function of canvas class', () => {
     spy.mockClear();
 
     Canvas.init('canvas-id', { pannable: false, pan: { useMouse: true } });
-    expect(spy).not.toHaveBeenCalled();
+    expect(spy).not.toHaveBeenCalledWith('mousedown', expect.any(Function));
+    expect(spy).not.toHaveBeenCalledWith('mousemove', expect.any(Function));
+    expect(spy).not.toHaveBeenCalledWith('mouseup', expect.any(Function));
+    expect(spy).not.toHaveBeenCalledWith('mouseleave', expect.any(Function));
     spy.mockClear();
   });
 
@@ -372,9 +396,11 @@ describe('Zoom and pan function of canvas class', () => {
 
     canvas['onMouseDown'](mockEvent);
     expect((canvas as any)._isPanning).toBe(true);
+    expect((canvas as any)._canvas.style.cursor).toEqual(CanvasStyle.DefaultStyle.cursor?.panActive);
 
     canvas['onMouseUp'](mockEvent);
     expect((canvas as any)._isPanning).toBe(false);
+    expect((canvas as any)._canvas.style.cursor).toEqual(CanvasStyle.DefaultStyle.cursor?.default);
   });
 
   test('should prevent default on wheel', () => {

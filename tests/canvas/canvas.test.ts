@@ -5,6 +5,7 @@
 import { Canvas } from '../../src/Canvas';
 import { CanvasOptions } from '../../src/options/CanvasOptions';
 import { CanvasStyle } from '../../src/styles/CanvasStyle';
+import { Cursor } from '../../src/types/Cursor';
 import { Point } from '../../src/types/Point';
 import { MockShape } from '../mocks/MockShape';
 import { setupCanvas } from './canvasTestUtils';
@@ -178,18 +179,24 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
     const defaultStyle = CanvasStyle.DefaultStyle;
 
-    expect((canvas as any)._style).toStrictEqual(defaultStyle);
+    expect((canvas as any)._style).toEqual(defaultStyle);
   });
 
   test('should set passed style', () => {
-    const color = 'red';
     const style = {
-      color: color
+      color: 'red',
+      cursor: {
+        default: Cursor.Move
+      }
     };
     const canvas = Canvas.init('canvas-id', {}, style);
 
-    expect((canvas as any)._style.color).toBe(color);
-    expect(canvas.context.fillStyle).toBe(color);
+    expect((canvas as any)._style.color).toBe(style.color);
+    expect((canvas as any)._style.cursor.default).toBe(style.cursor.default);
+
+    expect(canvas.context.fillStyle).toBe(style.color);
+
+    expect((canvas as any)._canvas.style.cursor).toBe(style.cursor.default);
   });
 
   test('should watch an empty array without error', () => {

@@ -386,6 +386,8 @@ The following table is showing all available canvas styles and there default val
 Style | Type | Default | Explanation
 --- | --- | --- | ---
 `color` | string | '#000000' (black) | Sets the default fill color of all shapes on the canvas.
+`cursor.default` | [Cursor](../api/enumerations/Cursor) | [Cursor.Default](../api/enumerations/Cursor#default) | Defines the default cursor that is shown while hovering the canvas.
+`cursor.panActive` | [Cursor](../api/enumerations/Cursor) | [Cursor.Grabbing](../api/enumerations/Cursor#grabbing) | Defines the cursor that is shown while panning the canvas.
 
 ## Using the JavaScript Canvas API
 

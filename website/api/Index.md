@@ -1,5 +1,6 @@
 ## Enumerations
 
+- [Cursor](enumerations/Cursor.md)
 - [MouseButton](enumerations/MouseButton.md)
 
 ## Classes
@@ -7,6 +8,7 @@
 - [Angle](classes/Angle.md)
 - [BorderStyle](classes/BorderStyle.md)
 - [Canvas](classes/Canvas.md)
+- [CanvasCursorStyle](classes/CanvasCursorStyle.md)
 - [CanvasOptions](classes/CanvasOptions.md)
 - [CanvasStyle](classes/CanvasStyle.md)
 - [Circle](classes/Circle.md)
@@ -34,7 +36,9 @@
 
 ## Interfaces
 
+- [ICanvasCursorStyle](interfaces/ICanvasCursorStyle.md)
 - [ICanvasOptions](interfaces/ICanvasOptions.md)
+- [ICanvasStyle](interfaces/ICanvasStyle.md)
 - [ICircleOptions](interfaces/ICircleOptions.md)
 - [ILineOptions](interfaces/ILineOptions.md)
 - [IPanOptions](interfaces/IPanOptions.md)
