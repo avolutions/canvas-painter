@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import CodeBlock from '@theme/CodeBlock';
-import styles from './CanvasConfigurator.module.css';
+import styles from '../../css/Configurator.module.css';
 
 import { CanvasOptions, CanvasStyle } from '../../../node_modules/@avolutions/canvas-painter/dist/esm/index.js';
 import CursorDropdown from '../CursorDropdown/CursorDropdown';
@@ -34,7 +34,6 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ setOptions, set
   const [optionsJson, setOptionsJson] = useState<string>(formatAsJavaScriptObject(options, CanvasOptions.DefaultOptions));
   const [styleJson, setStyleJson] = useState<string>(formatAsJavaScriptObject(style, CanvasStyle.DefaultStyle));
 
-  // State for collapsing JSON sections
   const [isOptionsSectionCollapsed, setIsOptionsSectionCollapsed] = useState(false);
   const [isOptionsJsonCollapsed, setIsOptionsJsonCollapsed] = useState(true);
 
@@ -245,7 +244,7 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ setOptions, set
               <label>cursor.panActive</label>
               <CursorDropdown
                 value={style.cursor.panActive}
-                onChange={(newCursor) => handleStyleChange('cursor', { ...style.cursor, default: newCursor })}
+                onChange={(newCursor) => handleStyleChange('cursor', { ...style.cursor, panActive: newCursor })}
               />
             </div>
 
