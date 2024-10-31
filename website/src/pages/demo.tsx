@@ -5,6 +5,7 @@ import styles from './demo.module.css';
 
 import { CanvasOptions, CanvasStyle } from '../../node_modules/@avolutions/canvas-painter/dist/esm/index.js';
 import CanvasDisplay from '../components/CanvasDisplay/CanvasDisplay';
+import ShapeConfigurator from '../components/ShapeConfigurator/ShapeConfigurator';
 
 export default function Demo(): JSX.Element {
   const [options, setOptions] = useState<CanvasOptions>(CanvasOptions.DefaultOptions);
@@ -24,6 +25,10 @@ export default function Demo(): JSX.Element {
             options={options}
             style={style} />
         </main>
+
+        <aside className={styles.sidebar}>
+          <ShapeConfigurator />
+        </aside>
       </div>
     </Layout>
   );
