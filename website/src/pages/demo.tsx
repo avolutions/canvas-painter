@@ -27,7 +27,7 @@ export default function Demo(): JSX.Element {
         </main>
 
         <aside className={styles.sidebar}>
-          <ShapeConfigurator />
+          <ShapeConfigurator canvas={canvasInstance} />
         </aside>
       </div>
     </Layout>

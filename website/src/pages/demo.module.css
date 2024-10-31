@@ -21,3 +21,8 @@
   border-left: 1px solid #eaeaea;
   border-right: 1px solid #eaeaea;
 }
+
+.canvas {
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+}
