@@ -1,0 +1,67 @@
+.configurator {
+  padding: 1rem;
+  border-right: 1px solid #eaeaea;
+}
+
+.configurator hr {
+  margin: 10pt 0;
+}
+
+.formRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.formRow > label {
+  width: 150px;
+  font-weight: 600;
+}
+
+.formRow > label.top {
+  align-self: flex-start;
+}
+
+.formRow input[type="text"],
+.formRow input[type="number"],
+.formRow select {
+  padding: 0.4rem;
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.formRow input[type="color"] {
+  flex: 1;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkboxGroup label {
+  margin-left: 5pt;
+}
+
+.collapsibleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+}
+
+/* Specific styles for h3 and h4 headers */
+.h3Header {
+  font-size: var(--ifm-h3-font-size);
+}
+
+.h4Header {
+  font-size: var(--ifm-h4-font-size);
+}

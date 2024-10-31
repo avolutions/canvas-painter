@@ -1,0 +1,22 @@
+.demoLayout {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.sidebar {
+  width: 300px;
+  overflow-y: auto;
+  padding: 1rem;
+  border-right: 1px solid #eaeaea;
+  background-color: var(--ifm-background-color);
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  height: calc(100vh - var(--ifm-navbar-height));
+  scrollbar-width: thin;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
