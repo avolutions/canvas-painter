@@ -40,6 +40,14 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ setOptions, set
   const [isStyleSectionCollapsed, setIsStyleSectionCollapsed] = useState(false);
   const [isStyleJsonCollapsed, setIsStyleJsonCollapsed] = useState(true);
 
+  useEffect(() => {
+    setOptions(options);
+  }, [options, setOptions]);
+
+  useEffect(() => {
+    setStyle(style);
+  }, [style, setStyle]);
+
   // Update JSON strings when options or style states change
   useEffect(() => {
     setOptionsJson(formatAsJavaScriptObject(options, CanvasOptions.DefaultOptions));
@@ -51,11 +59,10 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ setOptions, set
 
   // Handlers to update options and style states
   const handleOptionsChange = (field: keyof CanvasOptions, value: any) => {
-    updateOptions((prevOptions) => {
-      const updatedOptions = { ...prevOptions, [field]: value };
-      setOptions(updatedOptions);
-      return updatedOptions;
-    });
+    updateOptions((prevOptions) => ({
+      ...prevOptions,
+      [field]: value,
+    }));
   };
 
   const handleMouseButtonsChange = (button: number, checked: boolean) => {
@@ -66,11 +73,10 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ setOptions, set
   };
 
   const handleStyleChange = (field: keyof CanvasStyle, value: string) => {
-    updateStyle((prevStyle) => {
-      const updatedStyle = { ...prevStyle, [field]: value };
-      setStyle(updatedStyle); // Notify parent
-      return updatedStyle;
-    });
+    updateStyle((prevStyle) => ({
+      ...prevStyle,
+      [field]: value,
+    }));
   };
 
   return (
