@@ -1,0 +1,28 @@
+.demoLayout {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.sidebar {
+  width: 300px;
+  overflow-y: auto;
+  padding: 1rem;
+  background-color: var(--ifm-background-color);
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  height: calc(100vh - var(--ifm-navbar-height));
+  scrollbar-width: thin;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  border-left: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+}
+
+.canvas {
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+}

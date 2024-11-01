@@ -14,7 +14,8 @@
 <p align="center">
   <a href="https://avolutions.github.io/canvas-painter">Website</a> |
   <a href="https://avolutions.github.io/canvas-painter/docs">User Guide</a> |
-  <a href="https://avolutions.github.io/canvas-painter/api">API Documentation</a>
+  <a href="https://avolutions.github.io/canvas-painter/api">API Documentation</a> |
+  <a href="https://avolutions.github.io/canvas-painter/demo">Demo</a>
 </p>
 
 ## About

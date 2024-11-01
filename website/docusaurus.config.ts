@@ -71,7 +71,16 @@ const config: Config = {
           position: 'left',
           label: 'User Guide',
         },
-        {to: '/api', label: 'API', position: 'left'},
+        {
+          to: '/api',
+          label: 'API',
+          position: 'left'
+        },
+        {
+          to: '/demo',
+          label: 'Demo',
+          position: 'left'
+        },
         {
           href: 'https://github.com/avolutions/canvas-painter',
           label: 'GitHub',
