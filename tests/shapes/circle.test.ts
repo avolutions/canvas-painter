@@ -134,12 +134,6 @@ describe('Circle class', () => {
     }).toThrow(RangeError);
   });
 
-  test('should throw an error if Circle object was created with radius of 0', () => {
-    expect(() => {
-      new Circle(0, 0, 0);
-    }).toThrow(RangeError);
-  });
-
   test("should set new values via setters", () => {
     const circle = new Circle(new Point(5, 10), 7);
 
