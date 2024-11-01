@@ -166,7 +166,7 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
       );
     }
 
-    return this._definition.position;
+    return new Point(this._definition.position.x, this._definition.position.y);
   }
 
   /**

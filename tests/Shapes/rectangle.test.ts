@@ -168,6 +168,15 @@ describe('Rectangle class', () => {
     expect(rectangle.angle.degrees).toBe(-60);
   });
 
+  test("should not change position while rotating", () => {
+    const rectangle = new Rectangle(25, 30, 50, 60, 45);
+
+    rectangle.render(context);
+
+    expect(rectangle.position.x).toBe(25);
+    expect(rectangle.position.y).toBe(30);
+  });
+
   test("should notify observer when definition changed by setters", () => {
     const observer = jest.fn();
     const rectangle = new Rectangle(0, 0, 0, 0, 0, { color: 'red' });
