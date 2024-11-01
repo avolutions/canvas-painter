@@ -14,7 +14,7 @@ The border style of the rectangle.
 
 #### Defined in
 
-styles/interfaces/IRectangleStyle.ts:16
+[styles/interfaces/IRectangleStyle.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/styles/interfaces/IRectangleStyle.ts#L16)
 
 ***
 
@@ -26,4 +26,4 @@ The fill color of the rectangle.
 
 #### Defined in
 
-styles/interfaces/IRectangleStyle.ts:11
+[styles/interfaces/IRectangleStyle.ts:11](https://github.com/avolutions/canvas-painter/blob/main/src/styles/interfaces/IRectangleStyle.ts#L11)

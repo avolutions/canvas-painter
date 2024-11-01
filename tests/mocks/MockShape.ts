@@ -1,7 +1,7 @@
 import { ShapeDefinition } from "../../src/definitions/ShapeDefinition";
 import { ShapeOptions } from "../../src/options/ShapeOptions";
 import { Shape } from "../../src/shapes/Shape";
-import { IShapeStyle } from "../../src/styles/IShapeStyle";
+import { IShapeStyle } from "../../src/styles/interfaces/IShapeStyle";
 import { Point } from "../../src/types/Point";
 
 export class MockShapeDefinition extends ShapeDefinition {
