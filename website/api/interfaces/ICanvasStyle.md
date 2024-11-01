@@ -10,7 +10,7 @@ Default color for canvas shapes.
 
 #### Defined in
 
-styles/interfaces/ICanvasStyle.ts:10
+[styles/interfaces/ICanvasStyle.ts:10](https://github.com/avolutions/canvas-painter/blob/main/src/styles/interfaces/ICanvasStyle.ts#L10)
 
 ***
 
@@ -22,4 +22,4 @@ Cursor style configuration for different canvas interaction states.
 
 #### Defined in
 
-styles/interfaces/ICanvasStyle.ts:15
+[styles/interfaces/ICanvasStyle.ts:15](https://github.com/avolutions/canvas-painter/blob/main/src/styles/interfaces/ICanvasStyle.ts#L15)
