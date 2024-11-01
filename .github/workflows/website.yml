@@ -6,6 +6,8 @@ on:
 
 jobs:
   deploy:
+    needs: publish
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -34,6 +36,10 @@ jobs:
 
     - name: Install dependencies
       run: npm install
+      working-directory: ./website
+
+    - name: Use newest CanvasPainter version
+      run: npm update @avolutions/canvas-painter
       working-directory: ./website
 
     - name: Build the site
