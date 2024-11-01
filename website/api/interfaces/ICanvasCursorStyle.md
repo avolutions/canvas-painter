@@ -11,7 +11,7 @@ Cursor style in the default state.
 
 #### Defined in
 
-styles/interfaces/ICanvasCursorStyle.ts:11
+[styles/interfaces/ICanvasCursorStyle.ts:11](https://github.com/avolutions/canvas-painter/blob/main/src/styles/interfaces/ICanvasCursorStyle.ts#L11)
 
 ***
 
@@ -23,4 +23,4 @@ Cursor style when panning is active on the canvas.
 
 #### Defined in
 
-styles/interfaces/ICanvasCursorStyle.ts:16
+[styles/interfaces/ICanvasCursorStyle.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/styles/interfaces/ICanvasCursorStyle.ts#L16)

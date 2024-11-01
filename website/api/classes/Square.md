@@ -9,7 +9,7 @@ Provides functionality for rendering, resizing, moving, and rotating the square.
 
 ### new Square()
 
-> **new Square**(`x`, `y`, `size`, `rotation`, `style`, `options`?): [`Square`](Square.md)
+> **new Square**(`x`, `y`, `size`, `rotation`, `style`?, `options`?): [`Square`](Square.md)
 
 Constructs a new Square instance.
 
@@ -31,7 +31,7 @@ The size (width/height) of the square.
 
 The initial rotation of the square in degrees clockwise.
 
-• **style**: [`RectangleStyle`](RectangleStyle.md) = `{}`
+• **style?**: [`IRectangleStyle`](../interfaces/IRectangleStyle.md)
 
 The style options for the square.
 
@@ -135,7 +135,7 @@ The angle (rotation) of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:69](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L69)
+[shapes/Rectangle.ts:70](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L70)
 
 ***
 
@@ -231,7 +231,7 @@ The position of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:61](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L61)
+[shapes/Rectangle.ts:62](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L62)
 
 ***
 
@@ -263,7 +263,7 @@ The rotation of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:77](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L77)
+[shapes/Rectangle.ts:78](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L78)
 
 ***
 
@@ -456,7 +456,7 @@ The change in the y-coordinate.
 
 #### Defined in
 
-[shapes/Rectangle.ts:143](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L143)
+[shapes/Rectangle.ts:144](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L144)
 
 ***
 
@@ -510,7 +510,7 @@ The 2D rendering context of the canvas where the rectangle will be drawn.
 
 #### Defined in
 
-[shapes/Rectangle.ts:179](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L179)
+[shapes/Rectangle.ts:180](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L180)
 
 ***
 
@@ -562,7 +562,7 @@ The amount to adjust the rectangle's rotation, in degrees.
 
 #### Defined in
 
-[shapes/Rectangle.ts:152](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L152)
+[shapes/Rectangle.ts:153](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L153)
 
 ***
 

@@ -212,8 +212,8 @@ The following table is showing all available rectangle styles and the default va
 Style | Type | Default | Explanation
 --- | --- | --- | ---
 `color` | string | '#000000' (black) | Sets the default fill color for the rectangle.
-`border.color` | string | '#000000' (black) | Defines the color of rectangles border. Border is only shown if `border.color` or `border.width` is provided.
-`border.width` | number | 1.0 | Defines the width of rectangles border. Border is only shown if `border.color` or `border.width` is provided.
+`border.color` | string | '' | Defines the color of rectangles border. Border is only shown if `border.color` and `border.width` is provided.
+`border.width` | number | 0 | Defines the width of rectangles border. Border is only shown if `border.color` and `border.width` is provided.
 
 ## Options
 

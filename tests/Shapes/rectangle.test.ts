@@ -66,7 +66,13 @@ describe('Rectangle class', () => {
   test("should set new values via setters", () => {
     const newPosition = new Point(5, 5);
     const newAngle = new Angle(85);
-    const newStyle = { color: 'red' };
+    const newStyle = {
+      color: 'red',
+      border: {
+        color: 'blue',
+        width: 2.5
+      }
+    };
     const rectangle = new Rectangle(0, 0, 0, 0, 0);
 
     rectangle.width = 300;
@@ -80,7 +86,7 @@ describe('Rectangle class', () => {
     expect(rectangle.position).toEqual(newPosition);
     expect(rectangle.angle.degrees).toBe(newAngle.degrees);
     expect(rectangle.rotation).toBe(85);
-    expect(rectangle.style).toStrictEqual(newStyle);
+    expect(rectangle.style).toEqual(newStyle);
 
     rectangle.style.color = 'blue';
     rectangle.position.x = 25;
@@ -187,11 +193,17 @@ describe('Rectangle class', () => {
     rectangle.height = 10;
     rectangle.position = new Point(10, 10);
     rectangle.rotation = 10; // currently notify twice
-    rectangle.style = { color: 'yellow' };
+    rectangle.style = {
+      color: 'yellow',
+      border: {
+        color: 'green',
+        width: 4.2
+      }
+    };
     rectangle.style.color = 'blue';
     rectangle.position.x = 25;
 
-    expect(observer).toHaveBeenCalledTimes(8);
+    expect(observer).toHaveBeenCalledTimes(9);
   });
 
   test("should notify observer when definition changed by methods", () => {
@@ -250,16 +262,21 @@ describe('Rectangle class', () => {
     expect(context.fillRect).toHaveBeenCalledWith(0, 0, 10, 20);
   });
 
-  test('should apply color from given style', () => {
-    const rectangle = new Rectangle(0, 0, 0, 0);
-    rectangle.render(context);
+  test('should render with given style', () => {
+    const style = {
+      color: 'red',
+      border: {
+        color: 'blue',
+        width: 2.5
+      }
+    };
+    const rectangle = new Rectangle(0, 0, 0, 0, 0, style);
 
-    expect(context.fillStyle).toBe('blue'); // mock context default fillStyle
-
-    rectangle.style.color = 'red';
     rectangle.render(context);
 
     expect(context.fillStyle).toBe('red');
+    expect(context.strokeStyle).toBe('blue');
+    expect(context.lineWidth).toBe(2.5);
   });
 
   test('should not draw border if not given', () => {
@@ -290,29 +307,5 @@ describe('Rectangle class', () => {
     rectangle.render(context);
 
     expect(context.strokeRect).toHaveBeenCalledWith(10, 15, 20, 25);
-  });
-
-  test('should apply border width', () => {
-    const rectangle = new Rectangle(0, 0, 0, 0, 0, { border: {} });
-    rectangle.render(context);
-
-    expect(context.lineWidth).toBe(23); // mock context default lineWidth
-
-    const rectangle2 = new Rectangle(0, 0, 0, 0, 0, { border: { width: 12 } });
-    rectangle2.render(context);
-
-    expect(context.lineWidth).toBe(12);
-  });
-
-  test('should apply border color', () => {
-    const rectangle = new Rectangle(0, 0, 0, 0, 0, { border: { } });
-    rectangle.render(context);
-
-    expect(context.strokeStyle).toBe('green'); // mock context default strokeStyle
-
-    const rectangle2 = new Rectangle(0, 0, 0, 0, 0, { border: { color: '#123456' } });
-    rectangle2.render(context);
-
-    expect(context.strokeStyle).toBe('#123456');
   });
 });

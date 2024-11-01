@@ -17,6 +17,7 @@ const line = new Line(
   start,    // A Point representing the start position of the line
   end,      // A Point representing the end position of the line
   style,    // (optional) Style properties for this line.
+  options   // (optional) Options for this line.
 );
 ```
 
@@ -29,6 +30,7 @@ const line = new Line(
   endX,     // The X-coordinate of the ending point.
   endY,     // The Y-coordinate of the ending point.
   style,    // (optional) Style properties for this line.
+  options   // (optional) Options for this line.
 );
 ```
 
