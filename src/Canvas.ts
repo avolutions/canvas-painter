@@ -11,7 +11,7 @@ import { Point } from "./types/Point.js";
  */
 export class Canvas {
   /** Stores instances of `Canvas` associated with HTML canvas elements. */
-  private static instances = new WeakMap<HTMLCanvasElement, Canvas>();
+  private static readonly instances = new WeakMap<HTMLCanvasElement, Canvas>();
 
   /** The HTML canvas element being managed. */
   private _canvas: HTMLCanvasElement;
@@ -126,7 +126,7 @@ export class Canvas {
    *
    * @param event - The mouse event that triggers the context menu.
    */
-  private onContextMenu = (event: MouseEvent): void => {
+  private readonly onContextMenu = (event: MouseEvent): void => {
     event.preventDefault();
   }
 
@@ -136,7 +136,7 @@ export class Canvas {
    *
    * @param event - The wheel event that triggers the zoom action.
    */
-  private onWheel = (event: WheelEvent): void => {
+  private readonly onWheel = (event: WheelEvent): void => {
     event.preventDefault();
 
     // If pannable is active, we use current mouse position as zoom center
@@ -158,7 +158,7 @@ export class Canvas {
    *
    * @param event - The mouse event that triggers the panning action.
    */
-  private onMouseDown = (event: MouseEvent): void => {
+  private readonly onMouseDown = (event: MouseEvent): void => {
     // If button is not configured for panning we do nothing
     if (!this._options.pan.mouseButtons?.includes(event.button)) {
       return;
@@ -184,7 +184,7 @@ export class Canvas {
    *
    * @param event - The mouse event that triggers the pan movement.
    */
-  private onMouseMove = (event: MouseEvent): void => {
+  private readonly onMouseMove = (event: MouseEvent): void => {
     if (!this._isPanning) {
       return;
     }
@@ -204,7 +204,7 @@ export class Canvas {
    * @param event - The mouse event that triggers the end of the panning action.
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  private onMouseUp = (event: MouseEvent): void => {
+  private readonly onMouseUp = (event: MouseEvent): void => {
     // Stop panning
     this._isPanning = false;
 
