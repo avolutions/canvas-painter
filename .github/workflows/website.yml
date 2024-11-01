@@ -1,18 +1,17 @@
 name: Deploy website
 
 on:
-  push:
-    branches: "main"
+  workflow_dispatch:
 
 jobs:
   deploy:
-    needs: publish
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
+
+    if: github.ref == 'refs/heads/main'
 
     permissions:
       contents: read
