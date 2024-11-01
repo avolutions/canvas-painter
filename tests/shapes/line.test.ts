@@ -38,7 +38,7 @@ describe('Line class', () => {
     expect(line.start.y).toBe(start.y);
     expect(line.end.x).toBe(end.x);
     expect(line.end.y).toBe(end.y);
-    expect(line.style).toStrictEqual({});
+    expect(line.style).toEqual(LineStyle.DefaultStyle);
 
     // Ensure default options applied correctly
     expect(line.options.visible).toBe(true);
@@ -47,7 +47,10 @@ describe('Line class', () => {
   test('should create a Line object using Points and style', () => {
     const start = new Point(5, 10);
     const end = new Point(15, 20);
-    const style = new LineStyle('red', 2.5);
+    const style = {
+      color: 'red',
+      width: 2.5
+    };
 
     const line = new Line(start, end, style);
 
@@ -55,7 +58,7 @@ describe('Line class', () => {
     expect(line.start.y).toBe(start.y);
     expect(line.end.x).toBe(end.x);
     expect(line.end.y).toBe(end.y);
-    expect(line.style).toStrictEqual(style);
+    expect(line.style).toEqual(style);
     expect(line.style.color).toBe(style.color);
     expect(line.style.width).toBe(style.width);
   });
@@ -63,11 +66,14 @@ describe('Line class', () => {
   test('should initialize options from constructor using Points', () => {
     const start = new Point(5, 10);
     const end = new Point(15, 20);
-    const style = new LineStyle('red', 2.5);
+    const style = {
+      color: 'red',
+      width: 2.5
+    };
 
     const line = new Line(start, end, style, { visible: false });
 
-    expect(line.options.visible).toStrictEqual(false);
+    expect(line.options.visible).toBe(false);
   });
 
   test('should create a Line object using coordinates', () => {
@@ -82,7 +88,7 @@ describe('Line class', () => {
     expect(line.start.y).toBe(startY);
     expect(line.end.x).toBe(endX);
     expect(line.end.y).toBe(endY);
-    expect(line.style).toStrictEqual({});
+    expect(line.style).toEqual(LineStyle.DefaultStyle);
 
     // Ensure default options applied correctly
     expect(line.options.visible).toBe(true);
@@ -93,7 +99,10 @@ describe('Line class', () => {
     const startY = 10;
     const endX = 15;
     const endY = 20;
-    const style = new LineStyle('red', 2.5);
+    const style = {
+      color: 'red',
+      width: 2.5
+    };
 
     const line = new Line(startX, startY, endX, endY, style);
 
@@ -101,7 +110,7 @@ describe('Line class', () => {
     expect(line.start.y).toBe(startY);
     expect(line.end.x).toBe(endX);
     expect(line.end.y).toBe(endY);
-    expect(line.style).toStrictEqual(style);
+    expect(line.style).toEqual(style);
     expect(line.style.color).toBe(style.color);
     expect(line.style.width).toBe(style.width);
   });
@@ -111,7 +120,10 @@ describe('Line class', () => {
     const startY = 10;
     const endX = 15;
     const endY = 20;
-    const style = new LineStyle('red', 2.5);
+    const style = {
+      color: 'red',
+      width: 2.5
+    };
 
     const line = new Line(startX, startY, endX, endY, style, { visible: false });
 
@@ -154,7 +166,10 @@ describe('Line class', () => {
 
     const start = new Point(5, 10);
     const end = new Point(15, 20);
-    const style = new LineStyle('red', 2.5);
+    const style = {
+      color: 'red',
+      width: 2.5
+    };
 
     const line = new Line(start, end, style);
 
@@ -259,19 +274,15 @@ describe('Line class', () => {
     expect(observer).toHaveBeenCalledTimes(8);
   });
 
-  test('should apply given style', () => {
+  test('should render with given style', () => {
     const start = new Point(5, 10);
     const end = new Point(15, 20);
+    const style = {
+      color: 'red',
+      width: 2.5
+    };
 
-    const line = new Line(start, end);
-
-    line.render(context);
-
-    expect(context.strokeStyle).toBe('green'); // mock context default fillStyle
-    expect(context.lineWidth).toBe(23); // mock context default lineWidth
-
-    line.style.color = 'red';
-    line.style.width = 2.5;
+    const line = new Line(start, end, style);
 
     line.render(context);
 

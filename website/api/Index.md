@@ -41,6 +41,7 @@
 - [ICanvasStyle](interfaces/ICanvasStyle.md)
 - [ICircleOptions](interfaces/ICircleOptions.md)
 - [ILineOptions](interfaces/ILineOptions.md)
+- [ILineStyle](interfaces/ILineStyle.md)
 - [IPanOptions](interfaces/IPanOptions.md)
 - [IRectangleOptions](interfaces/IRectangleOptions.md)
 - [ISerializable](interfaces/ISerializable.md)
