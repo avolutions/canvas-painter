@@ -1,15 +1,38 @@
+import { IBorderStyle } from "./interfaces/IBorderStyle.js";
+
 /**
- * Class representing the border style of a shape.
+ * Represents the style options for a border.
  */
-export class BorderStyle {
+export class BorderStyle implements IBorderStyle {
+  /**
+   * The color of the border.
+   */
+  public color!: string;
+
+  /**
+   * The width of the border in pixels.
+   */
+  public width!: number;
+
+  /**
+   * Default style for the border.
+   */
+  public static readonly DefaultStyle: IBorderStyle = {
+    color: '',
+    width: 0
+  };
+
   /**
    * Creates a new instance of BorderStyle.
    *
-   * @param color - The color of the border. If undefined, a default color may be used.
-   * @param width - The width of the border in pixels. If undefined, a default width may be used.
+   * @param style - The partial style provided by the user.
    */
-  constructor(
-    public color?: string,
-    public width?: number
-  ) {}
+  constructor(style: Partial<IBorderStyle> = {}) {
+    const styleWithDefaults = {
+      ...BorderStyle.DefaultStyle,
+      ...style
+    };
+
+    Object.assign(this, styleWithDefaults);
+  }
 }

@@ -4,7 +4,7 @@ LineStyle for styling, and LineOptions for additional options.
 
 ## Extends
 
-- [`Shape`](Shape.md)\<[`LineDefinition`](LineDefinition.md), [`LineStyle`](LineStyle.md), [`ILineOptions`](../interfaces/ILineOptions.md)\>
+- [`Shape`](Shape.md)\<[`LineDefinition`](LineDefinition.md), [`LineStyle`](LineStyle.md), [`LineOptions`](LineOptions.md)\>
 
 ## Constructors
 
@@ -27,7 +27,7 @@ The starting `Point` of the line.
 
 The ending `Point` of the line.
 
-• **style?**: [`LineStyle`](LineStyle.md)
+• **style?**: [`ILineStyle`](../interfaces/ILineStyle.md)
 
 Defines the styling of the line.
 
@@ -49,7 +49,7 @@ The configuration options for the line.
 
 #### Defined in
 
-[shapes/Line.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L21)
+[shapes/Line.ts:22](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L22)
 
 ### new Line()
 
@@ -78,7 +78,7 @@ The X-coordinate of the ending point.
 
 The Y-coordinate of the ending point.
 
-• **style?**: [`LineStyle`](LineStyle.md)
+• **style?**: [`ILineStyle`](../interfaces/ILineStyle.md)
 
 Defines the styling of the line.
 
@@ -96,11 +96,11 @@ The configuration options for the line.
 
 #### Overrides
 
-`Shape<LineDefinition, LineStyle, ILineOptions>.constructor`
+`Shape<LineDefinition, LineStyle, LineOptions>.constructor`
 
 #### Defined in
 
-[shapes/Line.ts:31](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L31)
+[shapes/Line.ts:32](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L32)
 
 ## Properties
 
@@ -122,7 +122,7 @@ The shape definition, proxied to trigger observer notifications on change.
 
 ### \_options
 
-> `protected` **\_options**: [`ILineOptions`](../interfaces/ILineOptions.md)
+> `protected` **\_options**: [`LineOptions`](LineOptions.md)
 
 The options for configuring the shape, proxied to trigger observer notifications on change.
 
@@ -192,7 +192,7 @@ The ending point of the line.
 
 #### Defined in
 
-[shapes/Line.ts:89](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L89)
+[shapes/Line.ts:90](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L90)
 
 ***
 
@@ -252,7 +252,7 @@ The starting point of the line.
 
 #### Defined in
 
-[shapes/Line.ts:80](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L80)
+[shapes/Line.ts:81](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L81)
 
 ***
 
@@ -381,7 +381,7 @@ The amount to move the end point along the y-axis.
 
 #### Defined in
 
-[shapes/Line.ts:129](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L129)
+[shapes/Line.ts:130](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L130)
 
 ***
 
@@ -407,7 +407,7 @@ The amount to move the start point along the y-axis.
 
 #### Defined in
 
-[shapes/Line.ts:119](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L119)
+[shapes/Line.ts:120](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L120)
 
 ***
 
@@ -459,7 +459,7 @@ The canvas rendering context to draw the line.
 
 #### Defined in
 
-[shapes/Line.ts:138](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L138)
+[shapes/Line.ts:139](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L139)
 
 ***
 

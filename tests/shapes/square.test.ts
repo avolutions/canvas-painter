@@ -81,7 +81,13 @@ describe('Square class', () => {
   test("should set new values via setters", () => {
     const newPosition = new Point(5, 5);
     const newAngle = new Angle(85);
-    const newStyle = { color: 'red' };
+    const newStyle = {
+      color: 'red',
+      border: {
+        color: 'blue',
+        width: 2.5
+      }
+    };
     const square = new Square(0, 0, 0, 0);
 
     square.position = newPosition;
@@ -91,7 +97,7 @@ describe('Square class', () => {
     expect(square.position).toEqual(newPosition);
     expect(square.angle.degrees).toBe(newAngle.degrees);
     expect(square.rotation).toBe(85);
-    expect(square.style).toStrictEqual(newStyle);
+    expect(square.style).toEqual(newStyle);
 
     square.style.color = 'blue';
     square.position.x = 25;
@@ -194,11 +200,17 @@ describe('Square class', () => {
     square.height = 15;
     square.position = new Point(10, 10);
     square.rotation = 10; // currently notify twice
-    square.style = { color: 'yellow' };
+    square.style = {
+      color: 'yellow',
+      border: {
+        color: 'green',
+        width: 4.2
+      }
+    };
     square.style.color = 'blue';
     square.position.x = 25;
 
-    expect(observer).toHaveBeenCalledTimes(12);
+    expect(observer).toHaveBeenCalledTimes(13);
   });
 
   test("should notify observer when definition changed by methods", () => {
@@ -257,16 +269,21 @@ describe('Square class', () => {
     expect(context.fillRect).toHaveBeenCalledWith(0, 0, 10, 10);
   });
 
-  test('should apply color from given style', () => {
-    const square = new Square(0, 0, 0);
-    square.render(context);
+  test('should render with given style', () => {
+    const style = {
+      color: 'red',
+      border: {
+        color: 'blue',
+        width: 2.5
+      }
+    };
+    const square = new Square(0, 0, 0, 0, style);
 
-    expect(context.fillStyle).toBe('blue'); // mock context default fillStyle
-
-    square.style.color = 'red';
     square.render(context);
 
     expect(context.fillStyle).toBe('red');
+    expect(context.strokeStyle).toBe('blue');
+    expect(context.lineWidth).toBe(2.5);
   });
 
   test('should not draw border if not given', () => {
@@ -297,29 +314,5 @@ describe('Square class', () => {
     square.render(context);
 
     expect(context.strokeRect).toHaveBeenCalledWith(10, 15, 20, 20);
-  });
-
-  test('should apply border width', () => {
-    const square = new Square(0, 0, 0, 0, { border: {} });
-    square.render(context);
-
-    expect(context.lineWidth).toBe(23); // mock context default lineWidth
-
-    const square2 = new Square(0, 0, 0, 0, { border: { width: 12 } });
-    square2.render(context);
-
-    expect(context.lineWidth).toBe(12);
-  });
-
-  test('should apply border color', () => {
-    const square = new Square(0, 0, 0, 0, { border: { } });
-    square.render(context);
-
-    expect(context.strokeStyle).toBe('green'); // mock context default strokeStyle
-
-    const square2 = new Square(0, 0, 0, 0, { border: { color: '#123456' } });
-    square2.render(context);
-
-    expect(context.strokeStyle).toBe('#123456');
   });
 });

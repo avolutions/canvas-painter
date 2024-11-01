@@ -3,9 +3,9 @@
 <h1 align="center">CanvasPainter.js</h1>
 
 <p align="center">
-  <a href="https://sonarcloud.io/project/overview?id=avolutions_canvas-painter"><img src="https://sonarcloud.io/api/project_badges/measure?project=avolutions_canvas-painter&metric=alert_status" alt="Quality Gate"></a>
+  <a href="https://sonarcloud.io/summary/overall?id=avolutions_canvas-painter"><img src="https://sonarcloud.io/api/project_badges/measure?project=avolutions_canvas-painter&metric=alert_status" alt="Quality Gate"></a>
   <a href="https://github.com/avolutions/canvas-painter/actions"><img src="https://github.com/avolutions/canvas-painter/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
-  <a href="https://sonarcloud.io/project/overview?id=avolutions_canvas-painter"><img src="https://sonarcloud.io/api/project_badges/measure?project=avolutions_canvas-painter&metric=coverage" alt="Coverage"></a>
+  <a href="https://sonarcloud.io/component_measures?id=avolutions_canvas-painter&metric=coverage&view=list"><img src="https://sonarcloud.io/api/project_badges/measure?project=avolutions_canvas-painter&metric=coverage" alt="Coverage"></a>
   <a href="https://www.npmjs.com/package/@avolutions/canvas-painter"><img src="https://img.shields.io/npm/dw/@avolutions%2Fcanvas-painter" alt="Downloads"></a>
   <a href="https://www.npmjs.com/package/@avolutions/canvas-painter"><img src="https://img.shields.io/npm/v/@avolutions%2Fcanvas-painter" alt="Version"></a>
   <a href="https://github.com/avolutions/canvas-painter/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@avolutions%2Fcanvas-painter" alt="License"></a>
@@ -14,7 +14,8 @@
 <p align="center">
   <a href="https://avolutions.github.io/canvas-painter">Website</a> |
   <a href="https://avolutions.github.io/canvas-painter/docs">User Guide</a> |
-  <a href="https://avolutions.github.io/canvas-painter/api">API Documentation</a>
+  <a href="https://avolutions.github.io/canvas-painter/api">API Documentation</a> |
+  <a href="https://avolutions.github.io/canvas-painter/demo">Demo</a>
 </p>
 
 ## About

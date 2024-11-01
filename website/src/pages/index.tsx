@@ -5,7 +5,6 @@ import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import CodeBlock from '@theme/CodeBlock';
 
 import styles from './index.module.css';
 
@@ -21,9 +20,14 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline} 🦥</p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
+            className={`${styles.button} button button--secondary button--lg`}
             to="/docs">
             Getting started
+          </Link>
+          <Link
+            className={`${styles.button} button button--secondary button--lg`}
+            to="/demo">
+            Demo
           </Link>
         </div>
       </div>

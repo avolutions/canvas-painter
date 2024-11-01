@@ -5,6 +5,7 @@
 import { Canvas } from '../../src/Canvas';
 import { CanvasOptions } from '../../src/options/CanvasOptions';
 import { CanvasStyle } from '../../src/styles/CanvasStyle';
+import { Cursor } from '../../src/types/Cursor';
 import { Point } from '../../src/types/Point';
 import { MockShape } from '../mocks/MockShape';
 import { setupCanvas } from './canvasTestUtils';
@@ -60,8 +61,36 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
 
     expect(canvas).toBeInstanceOf(Canvas);
+    expect(Canvas['instances'].has(canvasElement)).toBe(true);
+    expect(Canvas['instances'].get(canvasElement)).toBe(canvas);
+
     expect(canvas.context).toBe(context);
     expect(canvas.panOffset).toEqual(new Point(0, 0));
+  });
+
+  test('should cleanup old instance if new one is created', () => {
+    const removeEventListenerSpy = jest.spyOn(canvasElement, 'removeEventListener');
+    const deleteSpy = jest.spyOn(Canvas['instances'], 'delete');
+
+    const canvas = Canvas.init('canvas-id');
+
+    // Re-initialize, triggering the removal of the old instance and listener
+    const canvas2 = Canvas.init('canvas-id');
+
+    // Verify that the delete method was called on the first instance
+    expect(deleteSpy).toHaveBeenCalledWith(canvasElement);
+
+    // Verify that the new instance is stored in the WeakMap
+    expect(Canvas['instances'].get(canvasElement)).toBe(canvas2);
+    expect(Canvas['instances'].get(canvasElement)).not.toBe(canvas);
+
+    // Verify that event listener were removed
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('wheel', expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('mousedown', expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('mousemove', expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('mouseup', expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('mouseleave', expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('contextmenu', expect.any(Function));
   });
 
   test('should set default options', () => {
@@ -178,18 +207,24 @@ describe('Canvas class', () => {
     const canvas = Canvas.init('canvas-id');
     const defaultStyle = CanvasStyle.DefaultStyle;
 
-    expect((canvas as any)._style).toStrictEqual(defaultStyle);
+    expect((canvas as any)._style).toEqual(defaultStyle);
   });
 
   test('should set passed style', () => {
-    const color = 'red';
     const style = {
-      color: color
+      color: 'red',
+      cursor: {
+        default: Cursor.Move
+      }
     };
     const canvas = Canvas.init('canvas-id', {}, style);
 
-    expect((canvas as any)._style.color).toBe(color);
-    expect(canvas.context.fillStyle).toBe(color);
+    expect((canvas as any)._style.color).toBe(style.color);
+    expect((canvas as any)._style.cursor.default).toBe(style.cursor.default);
+
+    expect(canvas.context.fillStyle).toBe(style.color);
+
+    expect((canvas as any)._canvas.style.cursor).toBe(style.cursor.default);
   });
 
   test('should watch an empty array without error', () => {

@@ -2,25 +2,21 @@ Represents the style options for a line.
 
 ## Implements
 
-- [`IShapeStyle`](../interfaces/IShapeStyle.md)
+- [`ILineStyle`](../interfaces/ILineStyle.md)
 
 ## Constructors
 
 ### new LineStyle()
 
-> **new LineStyle**(`color`?, `width`?): [`LineStyle`](LineStyle.md)
+> **new LineStyle**(`style`): [`LineStyle`](LineStyle.md)
 
-Creates an instance of LineStyle.
+Creates a new instance of LineStyle.
 
 #### Parameters
 
-• **color?**: `string`
+• **style**: `Partial`\<[`ILineStyle`](../interfaces/ILineStyle.md)\> = `{}`
 
-The color of the line stroke. Optional.
-
-• **width?**: `number`
-
-The width of the line stroke. Optional.
+The partial style provided by the user.
 
 #### Returns
 
@@ -28,28 +24,48 @@ The width of the line stroke. Optional.
 
 #### Defined in
 
-[styles/LineStyle.ts:13](https://github.com/avolutions/canvas-painter/blob/main/src/styles/LineStyle.ts#L13)
+[styles/LineStyle.ts:30](https://github.com/avolutions/canvas-painter/blob/main/src/styles/LineStyle.ts#L30)
 
 ## Properties
 
-### color?
+### color
 
-> `optional` **color**: `string`
+> **color**: `string`
 
-The color of the line stroke. Optional.
+The color of the line stroke.
+
+#### Implementation of
+
+[`ILineStyle`](../interfaces/ILineStyle.md).[`color`](../interfaces/ILineStyle.md#color)
 
 #### Defined in
 
-[styles/LineStyle.ts:14](https://github.com/avolutions/canvas-painter/blob/main/src/styles/LineStyle.ts#L14)
+[styles/LineStyle.ts:10](https://github.com/avolutions/canvas-painter/blob/main/src/styles/LineStyle.ts#L10)
 
 ***
 
-### width?
+### width
 
-> `optional` **width**: `number`
+> **width**: `number`
 
-The width of the line stroke. Optional.
+The width of the line stroke.
+
+#### Implementation of
+
+[`ILineStyle`](../interfaces/ILineStyle.md).[`width`](../interfaces/ILineStyle.md#width)
 
 #### Defined in
 
 [styles/LineStyle.ts:15](https://github.com/avolutions/canvas-painter/blob/main/src/styles/LineStyle.ts#L15)
+
+***
+
+### DefaultStyle
+
+> `readonly` `static` **DefaultStyle**: [`ILineStyle`](../interfaces/ILineStyle.md)
+
+Default style for the line.
+
+#### Defined in
+
+[styles/LineStyle.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/styles/LineStyle.ts#L20)

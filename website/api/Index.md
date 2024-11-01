@@ -1,5 +1,6 @@
 ## Enumerations
 
+- [Cursor](enumerations/Cursor.md)
 - [MouseButton](enumerations/MouseButton.md)
 
 ## Classes
@@ -7,6 +8,7 @@
 - [Angle](classes/Angle.md)
 - [BorderStyle](classes/BorderStyle.md)
 - [Canvas](classes/Canvas.md)
+- [CanvasCursorStyle](classes/CanvasCursorStyle.md)
 - [CanvasOptions](classes/CanvasOptions.md)
 - [CanvasStyle](classes/CanvasStyle.md)
 - [Circle](classes/Circle.md)
@@ -34,11 +36,17 @@
 
 ## Interfaces
 
+- [IBorderStyle](interfaces/IBorderStyle.md)
+- [ICanvasCursorStyle](interfaces/ICanvasCursorStyle.md)
 - [ICanvasOptions](interfaces/ICanvasOptions.md)
+- [ICanvasStyle](interfaces/ICanvasStyle.md)
 - [ICircleOptions](interfaces/ICircleOptions.md)
+- [ICircleStyle](interfaces/ICircleStyle.md)
 - [ILineOptions](interfaces/ILineOptions.md)
+- [ILineStyle](interfaces/ILineStyle.md)
 - [IPanOptions](interfaces/IPanOptions.md)
 - [IRectangleOptions](interfaces/IRectangleOptions.md)
+- [IRectangleStyle](interfaces/IRectangleStyle.md)
 - [ISerializable](interfaces/ISerializable.md)
 - [IShape](interfaces/IShape.md)
 - [IShapeDefinition](interfaces/IShapeDefinition.md)

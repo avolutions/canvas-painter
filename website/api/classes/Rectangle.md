@@ -13,7 +13,7 @@ Provides functionality for rendering, resizing, moving, and rotating the rectang
 
 ### new Rectangle()
 
-> **new Rectangle**(`x`, `y`, `width`, `height`, `rotation`, `style`, `options`?): [`Rectangle`](Rectangle.md)
+> **new Rectangle**(`x`, `y`, `width`, `height`, `rotation`, `style`?, `options`?): [`Rectangle`](Rectangle.md)
 
 Constructs a new Rectangle instance.
 
@@ -39,7 +39,7 @@ The height of the rectangle.
 
 The initial rotation of the rectangle in degrees clockwise.
 
-• **style**: [`RectangleStyle`](RectangleStyle.md) = `{}`
+• **style?**: [`IRectangleStyle`](../interfaces/IRectangleStyle.md)
 
 The style options for the rectangle.
 
@@ -57,7 +57,7 @@ The configuration options for the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:25](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L25)
+[shapes/Rectangle.ts:26](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L26)
 
 ## Properties
 
@@ -139,7 +139,7 @@ The angle (rotation) of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:69](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L69)
+[shapes/Rectangle.ts:70](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L70)
 
 ***
 
@@ -167,7 +167,7 @@ The height of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:53](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L53)
+[shapes/Rectangle.ts:54](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L54)
 
 ***
 
@@ -227,7 +227,7 @@ The position of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:61](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L61)
+[shapes/Rectangle.ts:62](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L62)
 
 ***
 
@@ -255,7 +255,7 @@ The rotation of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:77](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L77)
+[shapes/Rectangle.ts:78](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L78)
 
 ***
 
@@ -315,7 +315,7 @@ The width of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:45](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L45)
+[shapes/Rectangle.ts:46](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L46)
 
 ## Methods
 
@@ -412,7 +412,7 @@ The change in the y-coordinate.
 
 #### Defined in
 
-[shapes/Rectangle.ts:143](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L143)
+[shapes/Rectangle.ts:144](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L144)
 
 ***
 
@@ -466,7 +466,7 @@ The 2D rendering context of the canvas where the rectangle will be drawn.
 
 #### Defined in
 
-[shapes/Rectangle.ts:179](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L179)
+[shapes/Rectangle.ts:180](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L180)
 
 ***
 
@@ -492,7 +492,7 @@ The change in height.
 
 #### Defined in
 
-[shapes/Rectangle.ts:132](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L132)
+[shapes/Rectangle.ts:133](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L133)
 
 ***
 
@@ -514,7 +514,7 @@ The amount to adjust the rectangle's rotation, in degrees.
 
 #### Defined in
 
-[shapes/Rectangle.ts:152](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L152)
+[shapes/Rectangle.ts:153](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L153)
 
 ***
 
@@ -540,7 +540,7 @@ The new height of the rectangle.
 
 #### Defined in
 
-[shapes/Rectangle.ts:121](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L121)
+[shapes/Rectangle.ts:122](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Rectangle.ts#L122)
 
 ***
 

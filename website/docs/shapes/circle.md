@@ -14,9 +14,10 @@ A new circle shape is created using one of the `Circle` constructors.
 import { Circle } from '@avolutions/canvas-painter';
 
 const circle = new Circle(
-  center,   // A Point representing the center position of the circle
-  radius,   // The radius of the circle
+  center,   // A Point representing the center position of the circle.
+  radius,   // The radius of the circle.
   style,    // (optional) Style properties for this circle.
+  options   // (optional) Options for this circle.
 );
 ```
 
@@ -26,8 +27,9 @@ import { Circle } from '@avolutions/canvas-painter';
 const circle = new Circle(
   centerX,  // The X-coordinate of the center point.
   centerY,  // The Y-coordinate of the center point.
-  radius,   // The radius of the circle
+  radius,   // The radius of the circle.
   style,    // (optional) Style properties for this circle.
+  options   // (optional) Options for this circle.
 );
 ```
 
@@ -174,8 +176,8 @@ The following table is showing all available circle styles and the default value
 Style | Type | Default | Explanation
 --- | --- | --- | ---
 `color` | string | '#000000' (black) | Sets the default fill color for the circle.
-`border.color` | string | '#000000' (black) | Defines the color of circle border. Border is only shown if `border.color` or `border.width` is provided.
-`border.width` | number | 1.0 | Defines the width of circles border. Border is only shown if `border.color` or `border.width` is provided.
+`border.color` | string | '' | Defines the color of circle border. Border is only shown if `border.color` and `border.width` is provided.
+`border.width` | number | 0 | Defines the width of circles border. Border is only shown if `border.color` and `border.width` is provided.
 
 ## Options
 
