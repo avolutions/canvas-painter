@@ -1,4 +1,4 @@
-import { IShapeStyle } from "../IShapeStyle.js";
+import { IShapeStyle } from "./IShapeStyle.js";
 
 /**
  * Represents the style options for a line.

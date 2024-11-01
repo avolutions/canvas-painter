@@ -1,4 +1,4 @@
-import { IShapeStyle } from "../IShapeStyle.js";
+import { IShapeStyle } from "./IShapeStyle.js";
 import { IBorderStyle } from "./IBorderStyle.js";
 
 /**
