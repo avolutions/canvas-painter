@@ -1,5 +1,5 @@
 import { IRectangleOptions } from "../options/interfaces/IRectangleOptions.js";
-import { RectangleStyle } from "../styles/RectangleStyle.js";
+import { IRectangleStyle } from "../styles/interfaces/IRectangleStyle.js";
 import { Rectangle } from "./Rectangle.js";
 
 /**
@@ -22,7 +22,7 @@ export class Square extends Rectangle {
     y: number,
     size: number,
     rotation: number = 0,
-    style: RectangleStyle = {},
+    style?: IRectangleStyle,
     options?: IRectangleOptions
   ) {
     super(x, y, size, size, rotation, style, options);

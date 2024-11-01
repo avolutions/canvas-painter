@@ -21,7 +21,7 @@ export class CanvasStyle implements ICanvasStyle {
    */
   public static readonly DefaultStyle: ICanvasStyle = {
     color: '#000000',
-    cursor: CanvasCursorStyle.DefaultStyle,
+    cursor: CanvasCursorStyle.DefaultStyle
   };
 
   /**

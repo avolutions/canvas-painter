@@ -1,42 +1,45 @@
 import { LineStyle } from '../../src/styles/LineStyle';
 
 describe('LineStyle', () => {
-  test('should create instance with default values', () => {
+  test('should have default style', () => {
+    const style = LineStyle.DefaultStyle;
+
+    expect(style.color).toBe('#000000');
+    expect(style.width).toBe(1);
+  });
+
+  test('should create an instance of LineStyle with default styles', () => {
+    const defaults = LineStyle.DefaultStyle;
     const style = new LineStyle();
 
-    expect(style.color).toBeUndefined();
-    expect(style.width).toBeUndefined();
+    expect(style).toBeInstanceOf(LineStyle);
+    expect(style.color).toBe(defaults.color);
+    expect(style.width).toEqual(defaults.width);
   });
 
-  it('should create a LineStyle with the correct color and width', () => {
-    const style = new LineStyle('red', 5);
+  test('should set the values provided by constructor', () => {
+    const style = new LineStyle({ color: '#FFFFFF', width: 2.5 });
 
-    expect(style.color).toBe('red');
-    expect(style.width).toBe(5);
+    expect(style.color).toBe('#FFFFFF');
+    expect(style.width).toBe(2.5);
   });
 
-  it('should allow creating a LineStyle with only color', () => {
-    const style = new LineStyle('blue');
+  test('should set partial values provided by constructor', () => {
+    const defaults = LineStyle.DefaultStyle;
 
-    expect(style.color).toBe('blue');
-    expect(style.width).toBeUndefined();
+    const style = new LineStyle({ width: 7.3 });
+
+    expect(style.color).toBe(defaults.color);
+    expect(style.width).toBe(7.3);
   });
 
-  it('should allow creating a LineStyle with only width', () => {
-    const style = new LineStyle(undefined, 10);
+  test('should allow update of properties', () => {
+    const style = new LineStyle();
 
-    expect(style.color).toBeUndefined();
-    expect(style.width).toBe(10);
-  });
+    style.color = '#FFFFFF';
+    style.width = 4.2;
 
-  it('should allow updating of properties', () => {
-    const style = new LineStyle('red', 5);
-
-    // Update color and width
-    style.color = 'blue';
-    style.width = 10;
-
-    expect(style.color).toBe('blue');
-    expect(style.width).toBe(10);
+    expect(style.color).toBe('#FFFFFF');
+    expect(style.width).toBe(4.2);
   });
 });

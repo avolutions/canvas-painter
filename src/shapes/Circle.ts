@@ -3,6 +3,7 @@ import { CircleDefinition } from "../definitions/CircleDefinition.js";
 import { CircleOptions } from "../options/CircleOptions.js";
 import { ICircleOptions } from "../options/interfaces/ICircleOptions.js";
 import { CircleStyle } from "../styles/CircleStyle.js";
+import { ICircleStyle } from "../styles/interfaces/ICircleStyle.js";
 import { Point } from "../types/Point.js";
 import { Shape } from "./Shape.js";
 
@@ -17,7 +18,7 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
    * @param style - Defines the styling of the circle.
    * @param options - The configuration options for the circle.
    */
-  constructor(center: Point, radius: number, style?: CircleStyle, options?: ICircleOptions);
+  constructor(center: Point, radius: number, style?: ICircleStyle, options?: ICircleOptions);
 
   /**
    * @param centerX - The X-coordinate of the starting point.
@@ -26,7 +27,7 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
    * @param style - Defines the styling of the circle.
    * @param options - The configuration options for the circle.
    */
-  constructor(centerX: number, centerY: number, radius: number, style?: CircleStyle, options?: ICircleOptions);
+  constructor(centerX: number, centerY: number, radius: number, style?: ICircleStyle, options?: ICircleOptions);
 
   /**
    * Creates an instance of the `Circle` class.
@@ -39,32 +40,32 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
   constructor(
     arg1: Point | number,
     arg2: number,
-    arg3?: CircleStyle | number,
-    arg4?: CircleStyle | ICircleOptions,
+    arg3?: ICircleStyle | number,
+    arg4?: ICircleStyle | ICircleOptions,
     arg5?: ICircleOptions
   ) {
-    let style: CircleStyle;
     let definition: CircleDefinition;
+    let style: ICircleStyle;
     let options: ICircleOptions;
 
-    if (typeof arg1 === 'number' && typeof arg3 === 'number' && ( arg4 instanceof CircleStyle || typeof arg4 === 'object' || arg4 === undefined )) {
+    if (typeof arg1 === 'number' && typeof arg3 === 'number') {
       // Constructor with coordinates
       const center = new Point(arg1, arg2);
       definition = new CircleDefinition(center, arg3);
-      style = arg4 as CircleStyle;
+      style = arg4 as ICircleStyle;
       options = arg5 as ICircleOptions;
 
-    } else if (arg1 instanceof Point && ( arg3 instanceof CircleStyle || typeof arg3 === 'object' || arg3 === undefined ) && arg5 === undefined) {
+    } else if (arg1 instanceof Point && typeof arg3 !== 'number' && arg5 === undefined) {
       // Constructor with Point object
       definition = new CircleDefinition(arg1, arg2);
-      style = arg3 as CircleStyle;
+      style = arg3 as ICircleStyle;
       options = arg4 as ICircleOptions;
 
     } else {
       throw new InvalidConstructorArgumentsError();
     }
 
-    super(definition, style, new CircleOptions(options));
+    super(definition, new CircleStyle(style), new CircleOptions(options));
   }
 
   // Getters
@@ -137,7 +138,7 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
     context.save(); // Save the current canvas state
 
     // Set circle specific styles
-    context.fillStyle = this.style.color ?? context.fillStyle;
+    context.fillStyle = this.style.color;
 
     context.beginPath();
     context.arc(
@@ -149,10 +150,10 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
     );
     context.fill();
 
-    // Draw border for circle if style is set
-    if (this.style.border) {
-      context.lineWidth = this.style.border.width ?? context.lineWidth;
-      context.strokeStyle = this.style.border.color ?? context.strokeStyle;
+    // Draw border for circle
+    if (this.style.border.width > 0 && this.style.border.color !== '') {
+      context.lineWidth = this.style.border.width;
+      context.strokeStyle = this.style.border.color;
 
       context.stroke();
     }

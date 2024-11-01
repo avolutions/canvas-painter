@@ -1,27 +1,45 @@
 import { BorderStyle } from '../../src/styles/BorderStyle';
 
 describe('BorderStyle', () => {
-  test('should create instance with default values', () => {
-    const borderStyle = new BorderStyle();
+  test('should have default style', () => {
+    const style = BorderStyle.DefaultStyle;
 
-    expect(borderStyle.color).toBeUndefined();
-    expect(borderStyle.width).toBeUndefined();
+    expect(style.color).toBe('');
+    expect(style.width).toBe(0);
   });
 
-  test('should create instance with provided color and width', () => {
-    const borderStyle = new BorderStyle('red', 5);
+  test('should create an instance of BorderStyle with default styles', () => {
+    const defaults = BorderStyle.DefaultStyle;
+    const style = new BorderStyle();
 
-    expect(borderStyle.color).toBe('red');
-    expect(borderStyle.width).toBe(5);
+    expect(style).toBeInstanceOf(BorderStyle);
+    expect(style.color).toBe(defaults.color);
+    expect(style.width).toEqual(defaults.width);
+  });
+
+  test('should set the values provided by constructor', () => {
+    const style = new BorderStyle({ color: '#FFFFFF', width: 2.5 });
+
+    expect(style.color).toBe('#FFFFFF');
+    expect(style.width).toBe(2.5);
+  });
+
+  test('should set partial values provided by constructor', () => {
+    const defaults = BorderStyle.DefaultStyle;
+
+    const style = new BorderStyle({ width: 7.3 });
+
+    expect(style.color).toBe(defaults.color);
+    expect(style.width).toBe(7.3);
   });
 
   test('should allow update of properties', () => {
-    const options = new BorderStyle();
+    const style = new BorderStyle();
 
-    options.color = 'red';
-    options.width = 42;
+    style.color = '#FFFFFF';
+    style.width = 4.2;
 
-    expect(options.color).toBe('red');
-    expect(options.width).toBe(42);
+    expect(style.color).toBe('#FFFFFF');
+    expect(style.width).toBe(4.2);
   });
 });

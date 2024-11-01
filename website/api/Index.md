@@ -36,13 +36,17 @@
 
 ## Interfaces
 
+- [IBorderStyle](interfaces/IBorderStyle.md)
 - [ICanvasCursorStyle](interfaces/ICanvasCursorStyle.md)
 - [ICanvasOptions](interfaces/ICanvasOptions.md)
 - [ICanvasStyle](interfaces/ICanvasStyle.md)
 - [ICircleOptions](interfaces/ICircleOptions.md)
+- [ICircleStyle](interfaces/ICircleStyle.md)
 - [ILineOptions](interfaces/ILineOptions.md)
+- [ILineStyle](interfaces/ILineStyle.md)
 - [IPanOptions](interfaces/IPanOptions.md)
 - [IRectangleOptions](interfaces/IRectangleOptions.md)
+- [IRectangleStyle](interfaces/IRectangleStyle.md)
 - [ISerializable](interfaces/ISerializable.md)
 - [IShape](interfaces/IShape.md)
 - [IShapeDefinition](interfaces/IShapeDefinition.md)

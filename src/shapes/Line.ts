@@ -2,6 +2,7 @@ import { InvalidConstructorArgumentsError } from "../errors/InvalidConstructorAr
 import { LineDefinition } from "../definitions/LineDefinition.js";
 import { ILineOptions } from "../options/interfaces/ILineOptions.js";
 import { LineOptions } from "../options/LineOptions.js";
+import { ILineStyle } from "../styles/interfaces/ILineStyle.js";
 import { LineStyle } from "../styles/LineStyle.js";
 import { Point } from "../types/Point.js";
 import { Shape } from "./Shape.js";
@@ -11,14 +12,14 @@ import { Shape } from "./Shape.js";
  * It uses LineDefinition for defining the start and end points,
  * LineStyle for styling, and LineOptions for additional options.
  */
-export class Line extends Shape<LineDefinition, LineStyle, ILineOptions> {
+export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
   /**
    * @param start - The starting `Point` of the line.
    * @param end - The ending `Point` of the line.
    * @param style - Defines the styling of the line.
    * @param options - The configuration options for the line.
    */
-  constructor(start: Point, end: Point, style?: LineStyle, options?: ILineOptions);
+  constructor(start: Point, end: Point, style?: ILineStyle, options?: ILineOptions);
 
   /**
    * @param startX - The X-coordinate of the starting point.
@@ -28,7 +29,7 @@ export class Line extends Shape<LineDefinition, LineStyle, ILineOptions> {
    * @param style - Defines the styling of the line.
    * @param options - The configuration options for the line.
    */
-  constructor(startX: number, startY: number, endX: number, endY: number, style?: LineStyle, options?: ILineOptions);
+  constructor(startX: number, startY: number, endX: number, endY: number, style?: ILineStyle, options?: ILineOptions);
 
   /**
    * Creates an instance of the `Line` class.
@@ -41,13 +42,13 @@ export class Line extends Shape<LineDefinition, LineStyle, ILineOptions> {
   constructor(
     arg1: Point | number,
     arg2: Point | number,
-    arg3?: LineStyle | number,
+    arg3?: ILineStyle | number,
     arg4?: number | ILineOptions,
-    arg5?: LineStyle,
+    arg5?: ILineStyle,
     arg6?: ILineOptions
   ) {
-    let style: LineStyle;
     let definition: LineDefinition;
+    let style: ILineStyle;
     let options: ILineOptions;
 
     if (typeof arg1 === 'number' && typeof arg2 === 'number' && typeof arg3 === 'number' && typeof arg4 === 'number') {
@@ -56,18 +57,18 @@ export class Line extends Shape<LineDefinition, LineStyle, ILineOptions> {
       const end = new Point(arg3, arg4);
 
       definition = new LineDefinition(start, end);
-      style = arg5 as LineStyle;
+      style = arg5 as ILineStyle;
       options = arg6 as ILineOptions;
     } else if (arg1 instanceof Point && arg2 instanceof Point) {
       // Constructor with Point objects
       definition = new LineDefinition(arg1, arg2);
-      style = arg3 as LineStyle;
+      style = arg3 as ILineStyle;
       options = arg4 as ILineOptions;
     } else {
       throw new InvalidConstructorArgumentsError();
     }
 
-    super(definition, style, new LineOptions(options));
+    super(definition, new LineStyle(style), new LineOptions(options));
   }
 
   // Getters
@@ -138,8 +139,8 @@ export class Line extends Shape<LineDefinition, LineStyle, ILineOptions> {
   public render(context: CanvasRenderingContext2D): void {
     context.save(); // Save the current canvas state
 
-    context.lineWidth = this.style.width ?? context.lineWidth;
-    context.strokeStyle = this.style.color ?? context.strokeStyle;
+    context.lineWidth = this.style.width;
+    context.strokeStyle = this.style.color;
 
     context.beginPath();
     context.moveTo(this.start.x, this.start.y);

@@ -25,7 +25,7 @@ The partial style provided by the user.
 
 #### Defined in
 
-styles/CanvasCursorStyle.ts:32
+[styles/CanvasCursorStyle.ts:32](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CanvasCursorStyle.ts#L32)
 
 ## Properties
 
@@ -41,7 +41,7 @@ Cursor style in the default state.
 
 #### Defined in
 
-styles/CanvasCursorStyle.ts:12
+[styles/CanvasCursorStyle.ts:12](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CanvasCursorStyle.ts#L12)
 
 ***
 
@@ -57,7 +57,7 @@ Cursor style when panning is active on the canvas.
 
 #### Defined in
 
-styles/CanvasCursorStyle.ts:17
+[styles/CanvasCursorStyle.ts:17](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CanvasCursorStyle.ts#L17)
 
 ***
 
@@ -69,4 +69,4 @@ Default style for the canvas cursors.
 
 #### Defined in
 
-styles/CanvasCursorStyle.ts:22
+[styles/CanvasCursorStyle.ts:22](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CanvasCursorStyle.ts#L22)

@@ -7,3 +7,9 @@ across different shape types.
 ## Remarks
 
 This is an empty object type and serves as a base or marker for shape style types.
+
+## Extended by
+
+- [`ICircleStyle`](ICircleStyle.md)
+- [`ILineStyle`](ILineStyle.md)
+- [`IRectangleStyle`](IRectangleStyle.md)

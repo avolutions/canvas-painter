@@ -19,7 +19,7 @@ import { Square } from '@avolutions/canvas-painter';
 const square = new Square(
   x,        // The x-coordinate of the square's position.
   y,        // The y-coordinate of the square's position.
-  width,    // The size (width/height) of the square.
+  size,    // The size (width/height) of the square.
   rotation, // (optional) The initial rotation of the square in degrees clockwise.
   style,    // (optional) Style properties for this square.
   options   // (optional) Options for this square.

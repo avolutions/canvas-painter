@@ -1,22 +1,22 @@
-Class representing the border style of a shape.
+Represents the style options for a border.
+
+## Implements
+
+- [`IBorderStyle`](../interfaces/IBorderStyle.md)
 
 ## Constructors
 
 ### new BorderStyle()
 
-> **new BorderStyle**(`color`?, `width`?): [`BorderStyle`](BorderStyle.md)
+> **new BorderStyle**(`style`): [`BorderStyle`](BorderStyle.md)
 
 Creates a new instance of BorderStyle.
 
 #### Parameters
 
-• **color?**: `string`
+• **style**: `Partial`\<[`IBorderStyle`](../interfaces/IBorderStyle.md)\> = `{}`
 
-The color of the border. If undefined, a default color may be used.
-
-• **width?**: `number`
-
-The width of the border in pixels. If undefined, a default width may be used.
+The partial style provided by the user.
 
 #### Returns
 
@@ -24,28 +24,48 @@ The width of the border in pixels. If undefined, a default width may be used.
 
 #### Defined in
 
-[styles/BorderStyle.ts:11](https://github.com/avolutions/canvas-painter/blob/main/src/styles/BorderStyle.ts#L11)
+[styles/BorderStyle.ts:30](https://github.com/avolutions/canvas-painter/blob/main/src/styles/BorderStyle.ts#L30)
 
 ## Properties
 
-### color?
+### color
 
-> `optional` **color**: `string`
+> **color**: `string`
 
-The color of the border. If undefined, a default color may be used.
+The color of the border.
+
+#### Implementation of
+
+[`IBorderStyle`](../interfaces/IBorderStyle.md).[`color`](../interfaces/IBorderStyle.md#color)
 
 #### Defined in
 
-[styles/BorderStyle.ts:12](https://github.com/avolutions/canvas-painter/blob/main/src/styles/BorderStyle.ts#L12)
+[styles/BorderStyle.ts:10](https://github.com/avolutions/canvas-painter/blob/main/src/styles/BorderStyle.ts#L10)
 
 ***
 
-### width?
+### width
 
-> `optional` **width**: `number`
+> **width**: `number`
 
-The width of the border in pixels. If undefined, a default width may be used.
+The width of the border in pixels.
+
+#### Implementation of
+
+[`IBorderStyle`](../interfaces/IBorderStyle.md).[`width`](../interfaces/IBorderStyle.md#width)
 
 #### Defined in
 
-[styles/BorderStyle.ts:13](https://github.com/avolutions/canvas-painter/blob/main/src/styles/BorderStyle.ts#L13)
+[styles/BorderStyle.ts:15](https://github.com/avolutions/canvas-painter/blob/main/src/styles/BorderStyle.ts#L15)
+
+***
+
+### DefaultStyle
+
+> `readonly` `static` **DefaultStyle**: [`IBorderStyle`](../interfaces/IBorderStyle.md)
+
+Default style for the border.
+
+#### Defined in
+
+[styles/BorderStyle.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/styles/BorderStyle.ts#L20)
