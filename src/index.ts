@@ -42,6 +42,7 @@ export { IBorderStyle } from './styles/interfaces/IBorderStyle.js';
 export { ICanvasCursorStyle } from './styles/interfaces/ICanvasCursorStyle.js';
 export { ICanvasStyle } from './styles/interfaces/ICanvasStyle.js';
 export { ICircleStyle } from './styles/interfaces/ICircleStyle.js';
+export { ILineStyle } from './styles/interfaces/ILineStyle.js';
 
 export { BorderStyle } from './styles/BorderStyle.js';
 export { CanvasCursorStyle } from './styles/CanvasCursorStyle.js';

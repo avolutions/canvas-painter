@@ -36,6 +36,7 @@
 
 ## Interfaces
 
+- [IBorderStyle](interfaces/IBorderStyle.md)
 - [ICanvasCursorStyle](interfaces/ICanvasCursorStyle.md)
 - [ICanvasOptions](interfaces/ICanvasOptions.md)
 - [ICanvasStyle](interfaces/ICanvasStyle.md)
