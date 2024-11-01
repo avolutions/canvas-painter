@@ -4,7 +4,7 @@ import CanvasConfigurator from '../components/CanvasConfigurator/CanvasConfigura
 import ShapeConfigurator from '../components/ShapeConfigurator/ShapeConfigurator';
 import styles from './demo.module.css';
 
-import { Canvas, CanvasOptions, CanvasStyle } from '../../node_modules/@avolutions/canvas-painter/dist/esm/index.js';
+import { Canvas, CanvasOptions, CanvasStyle } from '@avolutions/canvas-painter';
 
 export default function Demo(): JSX.Element {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);

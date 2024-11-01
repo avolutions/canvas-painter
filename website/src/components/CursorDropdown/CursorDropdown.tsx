@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cursor } from '../../../node_modules/@avolutions/canvas-painter/dist/esm/index.js';
+import { Cursor } from '@avolutions/canvas-painter';
 
 interface CursorDropdownProps {
   value: Cursor;

@@ -3,7 +3,7 @@ import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import CodeBlock from '@theme/CodeBlock';
 import styles from '../../css/Configurator.module.css';
 
-import { CanvasOptions, CanvasStyle } from '../../../node_modules/@avolutions/canvas-painter/dist/esm/index.js';
+import { CanvasOptions, CanvasStyle } from '@avolutions/canvas-painter';
 import CursorDropdown from '../CursorDropdown/CursorDropdown';
 
 // Format JSON-like output function
