@@ -10,4 +10,5 @@ This is an empty object type and serves as a base or marker for shape style type
 
 ## Extended by
 
+- [`ICircleStyle`](ICircleStyle.md)
 - [`ILineStyle`](ILineStyle.md)

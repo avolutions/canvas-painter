@@ -37,7 +37,7 @@ describe('Circle class', () => {
     expect(circle.center.x).toBe(center.x);
     expect(circle.center.y).toBe(center.y);
     expect(circle.radius).toBe(7);
-    expect(circle.style).toStrictEqual({});
+    expect(circle.style).toEqual(CircleStyle.DefaultStyle);
 
     // Ensure default options applied correctly
     expect(circle.options.visible).toBe(true);
@@ -45,7 +45,13 @@ describe('Circle class', () => {
 
   test('should create a Circle object using Point and style', () => {
     const center = new Point(5, 10);
-    const style = new CircleStyle('red');
+    const style = {
+      color: 'red',
+      border: {
+        color: 'blue',
+        width: 2.5
+      }
+    };
 
     const circle = new Circle(center, 7, style);
 
@@ -53,8 +59,7 @@ describe('Circle class', () => {
     expect(circle.center.x).toBe(center.x);
     expect(circle.center.y).toBe(center.y);
     expect(circle.radius).toBe(7);
-    expect(circle.style).toStrictEqual(style);
-    expect(circle.style.color).toBe(style.color);
+    expect(circle.style).toEqual(style);
 
     const circle2 = new Circle(center, 7, { color: 'red' });
 
@@ -63,12 +68,13 @@ describe('Circle class', () => {
     expect(circle2.center.y).toBe(center.y);
     expect(circle2.radius).toBe(7);
     expect(circle2.style.color).toBe(style.color);
-    expect(circle2.style.border).toBeUndefined();
   });
 
   test('should initialize options from constructor using Point', () => {
     const center = new Point(5, 10);
-    const style = new CircleStyle('red');
+    const style = {
+      color: 'red'
+    };
 
     const circle = new Circle(center, 7, style, { visible: false });
 
@@ -84,7 +90,7 @@ describe('Circle class', () => {
     expect(circle.center.x).toBe(5);
     expect(circle.center.y).toBe(10);
     expect(circle.radius).toBe(7);
-    expect(circle.style).toStrictEqual({});
+    expect(circle.style).toEqual(CircleStyle.DefaultStyle);
 
     // Ensure default options applied correctly
     expect(circle.options.visible).toBe(true);
@@ -93,15 +99,20 @@ describe('Circle class', () => {
   test('should create a Circle object using coordinates and style', () => {
     const centerX = 5;
     const centerY = 10;
-    const style = new CircleStyle('red');
+    const style = {
+      color: 'red',
+      border: {
+        color: 'blue',
+        width: 2.5
+      }
+    };
 
     const circle = new Circle(centerX, centerY, 7, style);
 
     expect(circle.center.x).toBe(5);
     expect(circle.center.y).toBe(10);
     expect(circle.radius).toBe(7);
-    expect(circle.style).toStrictEqual(style);
-    expect(circle.style.color).toBe(style.color);
+    expect(circle.style).toEqual(style);
 
     const circle2 = new Circle(centerX, centerY, 7, { color: 'red' });
 
@@ -109,13 +120,14 @@ describe('Circle class', () => {
     expect(circle2.center.y).toBe(10);
     expect(circle2.radius).toBe(7);
     expect(circle2.style.color).toBe(style.color);
-    expect(circle2.style.border).toBeUndefined();
   });
 
   test('should initialize options from constructor using Point', () => {
     const centerX = 5;
     const centerY = 10;
-    const style = new CircleStyle('red');
+    const style = {
+      color: 'red'
+    };
 
     const circle = new Circle(centerX, centerY, 7, style, { visible: false });
 
@@ -158,19 +170,21 @@ describe('Circle class', () => {
   test("should notify observer when definition changed by setters", () => {
     const observer = jest.fn();
 
-    const style = new CircleStyle('red', { color: 'green', width: 2.5 });
+    const style = {
+      color: 'green',
+      width: 2.5
+    };
     const circle = new Circle(5, 10, 7, style);
 
     circle.addObserver(observer);
 
     circle.center = new Point(50, 100);
     circle.radius = 7.756;
-    circle.style = { border: { color: 'yellow', width: 2.5 } }
     circle.center.x = 51;
-    circle.center.x = 101;
+    circle.center.y = 101;
     circle.style.color = 'green';
 
-    expect(observer).toHaveBeenCalledTimes(6);
+    expect(observer).toHaveBeenCalledTimes(4);
   });
 
   test('should move center on x- and y-axis', () => {
@@ -233,16 +247,21 @@ describe('Circle class', () => {
     expect(context.arc).toHaveBeenCalledWith(1, 2, 3, 0, Math.PI * 2);
   });
 
-  test('should apply color from given style', () => {
-    const circle = new Circle(0, 0, 1);
-    circle.render(context);
+  test('should render with given style', () => {
+    const style = {
+      color: 'red',
+      border: {
+        color: 'blue',
+        width: 2.5
+      }
+    };
+    const circle = new Circle(0, 0, 1, style);
 
-    expect(context.fillStyle).toBe('blue'); // mock context default fillStyle
-
-    circle.style.color = 'red';
     circle.render(context);
 
     expect(context.fillStyle).toBe('red');
+    expect(context.strokeStyle).toBe('blue');
+    expect(context.lineWidth).toBe(2.5);
   });
 
   test('should not draw border if not given', () => {
@@ -274,29 +293,4 @@ describe('Circle class', () => {
 
     expect(context.stroke).toHaveBeenCalled();
   });
-
-  test('should apply border width', () => {
-    const circle = new Circle(0, 0, 1, { border: {} });
-    circle.render(context);
-
-    expect(context.lineWidth).toBe(23); // mock context default lineWidth
-
-    const circle2 = new Circle(0, 0, 1, { border: { width: 12 } });
-    circle2.render(context);
-
-    expect(context.lineWidth).toBe(12);
-  });
-
-  test('should apply border color', () => {
-    const circle = new Circle(0, 0, 1, { border: { } });
-    circle.render(context);
-
-    expect(context.strokeStyle).toBe('green'); // mock context default strokeStyle
-
-    const circle2 = new Circle(0, 0, 1, { border: { color: '#123456' } });
-    circle2.render(context);
-
-    expect(context.strokeStyle).toBe('#123456');
-  });
-
 });

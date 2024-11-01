@@ -1,26 +1,22 @@
-Class representing the style of a circle.
+Represents the style options for a circle.
 
 ## Implements
 
-- [`IShapeStyle`](../interfaces/IShapeStyle.md)
+- [`ICircleStyle`](../interfaces/ICircleStyle.md)
 
 ## Constructors
 
 ### new CircleStyle()
 
-> **new CircleStyle**(`color`?, `border`?): [`CircleStyle`](CircleStyle.md)
+> **new CircleStyle**(`style`): [`CircleStyle`](CircleStyle.md)
 
 Creates a new instance of CircleStyle.
 
 #### Parameters
 
-• **color?**: `string`
+• **style**: `Partial`\<[`ICircleStyle`](../interfaces/ICircleStyle.md)\> = `{}`
 
-The fill color of the circle. If undefined, a default color may be used.
-
-• **border?**: [`BorderStyle`](BorderStyle.md)
-
-The border style of the circle. If undefined, no border may be applied.
+The partial style provided by the user.
 
 #### Returns
 
@@ -28,15 +24,19 @@ The border style of the circle. If undefined, no border may be applied.
 
 #### Defined in
 
-[styles/CircleStyle.ts:14](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L14)
+[styles/CircleStyle.ts:31](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L31)
 
 ## Properties
 
-### border?
+### border
 
-> `optional` **border**: [`BorderStyle`](BorderStyle.md)
+> **border**: [`BorderStyle`](BorderStyle.md)
 
-The border style of the circle. If undefined, no border may be applied.
+The border style of the circle.
+
+#### Implementation of
+
+[`ICircleStyle`](../interfaces/ICircleStyle.md).[`border`](../interfaces/ICircleStyle.md#border)
 
 #### Defined in
 
@@ -44,12 +44,28 @@ The border style of the circle. If undefined, no border may be applied.
 
 ***
 
-### color?
+### color
 
-> `optional` **color**: `string`
+> **color**: `string`
 
-The fill color of the circle. If undefined, a default color may be used.
+The fill color of the circle.
+
+#### Implementation of
+
+[`ICircleStyle`](../interfaces/ICircleStyle.md).[`color`](../interfaces/ICircleStyle.md#color)
 
 #### Defined in
 
-[styles/CircleStyle.ts:15](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L15)
+[styles/CircleStyle.ts:11](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L11)
+
+***
+
+### DefaultStyle
+
+> `readonly` `static` **DefaultStyle**: [`ICircleStyle`](../interfaces/ICircleStyle.md)
+
+Default style for the circle.
+
+#### Defined in
+
+[styles/CircleStyle.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L21)
