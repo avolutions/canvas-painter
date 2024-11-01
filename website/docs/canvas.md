@@ -16,13 +16,19 @@ Then ensure that you have a `<canvas>` element in your HTML with an id:
 <canvas id="myCanvas"></canvas>
 ```
 
-After you've added the canvas element to your HTML, you can initialize the `Canvas` class using the `init()` method:
+After you've added the canvas element to your HTML, you can initialize the `Canvas` class using the `init()` method.
 
 ```js
 import { Canvas } from '@avolutions/canvas-painter';
 
 const canvas = Canvas.init('myCanvas');
 ```
+
+:::info
+
+Note that you can initialize the canvas only once per HTML element. If you call `init()` again with the same element ID, the previous instance will be replaced.
+
+:::
 
 ### With options
 
