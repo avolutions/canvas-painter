@@ -5,6 +5,7 @@ import { Shape } from "./Shape.js";
 import { RectangleStyle } from "../styles/RectangleStyle.js";
 import { RectangleOptions } from "../options/RectangleOptions.js";
 import { IRectangleOptions } from "../options/interfaces/IRectangleOptions.js";
+import { IRectangleStyle } from "../styles/interfaces/IRectangleStyle.js";
 
 /**
  * Class representing a Rectangle, extending the Shape class with a RectangleDefinition.
@@ -28,12 +29,12 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
     width: number,
     height: number,
     rotation: number = 0,
-    style: RectangleStyle = {},
+    style?: IRectangleStyle,
     options?: IRectangleOptions
   ) {
     // Create a RectangleDefinition using the provided parameters
     const rectangleDefinition = new RectangleDefinition(new Point(x, y), width, height, new Angle(rotation));
-    super(rectangleDefinition, style, new RectangleOptions(options));
+    super(rectangleDefinition, new RectangleStyle(style), new RectangleOptions(options));
   }
 
   // Getters
@@ -180,7 +181,7 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
     context.save(); // Save the current canvas state
 
     // Set rectangle specific styles
-    context.fillStyle = this.style.color ?? context.fillStyle;
+    context.fillStyle = this.style.color;
 
     const topLeft = this.getTopLeftPosition();
 
@@ -207,10 +208,10 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
       this._definition.height
     );
 
-    // Draw border for rect if style is set
-    if (this.style.border) {
-      context.lineWidth = this.style.border.width ?? context.lineWidth;
-      context.strokeStyle = this.style.border.color ?? context.strokeStyle;
+    // Draw border for rectangle
+    if (this.style.border.width > 0 && this.style.border.color !== '') {
+      context.lineWidth = this.style.border.width;
+      context.strokeStyle = this.style.border.color;
 
       context.strokeRect(
         topLeft.x,

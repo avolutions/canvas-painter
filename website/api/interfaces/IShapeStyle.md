@@ -12,3 +12,4 @@ This is an empty object type and serves as a base or marker for shape style type
 
 - [`ICircleStyle`](ICircleStyle.md)
 - [`ILineStyle`](ILineStyle.md)
+- [`IRectangleStyle`](IRectangleStyle.md)

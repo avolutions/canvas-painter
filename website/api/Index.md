@@ -46,6 +46,7 @@
 - [ILineStyle](interfaces/ILineStyle.md)
 - [IPanOptions](interfaces/IPanOptions.md)
 - [IRectangleOptions](interfaces/IRectangleOptions.md)
+- [IRectangleStyle](interfaces/IRectangleStyle.md)
 - [ISerializable](interfaces/ISerializable.md)
 - [IShape](interfaces/IShape.md)
 - [IShapeDefinition](interfaces/IShapeDefinition.md)

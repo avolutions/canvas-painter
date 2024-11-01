@@ -14,7 +14,7 @@ The border style of the circle.
 
 #### Defined in
 
-styles/interfaces/ICircleStyle.ts:16
+[styles/interfaces/ICircleStyle.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/styles/interfaces/ICircleStyle.ts#L16)
 
 ***
 
@@ -26,4 +26,4 @@ The fill color of the circle.
 
 #### Defined in
 
-styles/interfaces/ICircleStyle.ts:11
+[styles/interfaces/ICircleStyle.ts:11](https://github.com/avolutions/canvas-painter/blob/main/src/styles/interfaces/ICircleStyle.ts#L11)
