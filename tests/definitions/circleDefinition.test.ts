@@ -12,10 +12,11 @@ describe('CircleDefinition', () => {
     expect(circle.radius).toBe(10);
   });
 
-  test('should not allow creating a CircleDefinition with radius 0', () => {
-    expect(() => {
-      new CircleDefinition(new Point(5, 10), 0)
-    }).toThrow(new RangeError("Radius must be a positive number"));
+  test('should allow creating a CircleDefinition with radius 0', () => {
+    const center = new Point(0, 0);
+    const circle = new CircleDefinition(center, 0);
+
+    expect(circle.radius).toBe(0);
   });
 
   test('should not allow creating a CircleDefinition with negative radius', () => {
