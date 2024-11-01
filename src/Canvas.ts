@@ -10,6 +10,9 @@ import { Point } from "./types/Point.js";
  * Class representing a Canvas element that can manage and render shapes.
  */
 export class Canvas {
+  /** Stores instances of `Canvas` associated with HTML canvas elements. */
+  private static instances = new WeakMap<HTMLCanvasElement, Canvas>();
+
   /** The HTML canvas element being managed. */
   private _canvas: HTMLCanvasElement;
 
@@ -73,9 +76,11 @@ export class Canvas {
     // Apply styles to context
     this.applyStyle(this._style);
 
+    // Initialize pan properties
     this._panOffset = new Point(0, 0);
     this._panStart = new Point(0, 0);
 
+    // Register event listeners
     this.addEventListener();
   }
 
@@ -87,22 +92,42 @@ export class Canvas {
   private addEventListener(): void {
     // Add event listener for zooming
     if (this._options.zoomable && this._options.zoom.useWheel) {
-      this._canvas.addEventListener('wheel', this.onWheel.bind(this));
+      this._canvas.addEventListener('wheel', this.onWheel);
     }
 
     // Add event listener for panning
     if (this._options.pannable && this._options.pan.useMouse) {
-      this._canvas.addEventListener('mousedown', this.onMouseDown.bind(this));
-      this._canvas.addEventListener('mousemove', this.onMouseMove.bind(this));
-      this._canvas.addEventListener('mouseup', this.onMouseUp.bind(this));
+      this._canvas.addEventListener('mousedown', this.onMouseDown);
+      this._canvas.addEventListener('mousemove', this.onMouseMove);
+      this._canvas.addEventListener('mouseup', this.onMouseUp);
       // Handle the case when the mouse leaves the canvas during dragging
-      this._canvas.addEventListener('mouseleave', this.onMouseUp.bind(this));
+      this._canvas.addEventListener('mouseleave', this.onMouseUp);
     }
 
     // Prevent default context menu on right click
-    this._canvas.addEventListener('contextmenu', (event: MouseEvent) => {
-      event.preventDefault();
-    });
+    this._canvas.addEventListener('contextmenu', this.onContextMenu);
+  }
+
+  /**
+   * Removes all registered event listeners from the canvas element to prevent memory leaks and
+   * disable specific interactions.
+   */
+  private removeEventListener(): void {
+    this._canvas.removeEventListener('wheel', this.onWheel);
+    this._canvas.removeEventListener('mousedown', this.onMouseDown);
+    this._canvas.removeEventListener('mousemove', this.onMouseMove);
+    this._canvas.removeEventListener('mouseup', this.onMouseUp);
+    this._canvas.removeEventListener('mouseleave', this.onMouseUp);
+    this._canvas.removeEventListener('contextmenu', this.onContextMenu);
+  }
+
+  /**
+   * Handles the `contextmenu` event to prevent the default context menu from appearing.
+   *
+   * @param event - The mouse event that triggers the context menu.
+   */
+  private onContextMenu = (event: MouseEvent): void => {
+    event.preventDefault();
   }
 
   /**
@@ -111,7 +136,7 @@ export class Canvas {
    *
    * @param event - The wheel event that triggers the zoom action.
    */
-  private onWheel(event: WheelEvent): void {
+  private onWheel = (event: WheelEvent): void => {
     event.preventDefault();
 
     // If pannable is active, we use current mouse position as zoom center
@@ -133,7 +158,7 @@ export class Canvas {
    *
    * @param event - The mouse event that triggers the panning action.
    */
-  private onMouseDown(event: MouseEvent): void {
+  private onMouseDown = (event: MouseEvent): void => {
     // If button is not configured for panning we do nothing
     if (!this._options.pan.mouseButtons?.includes(event.button)) {
       return;
@@ -159,7 +184,7 @@ export class Canvas {
    *
    * @param event - The mouse event that triggers the pan movement.
    */
-  private onMouseMove(event: MouseEvent): void {
+  private onMouseMove = (event: MouseEvent): void => {
     if (!this._isPanning) {
       return;
     }
@@ -179,7 +204,7 @@ export class Canvas {
    * @param event - The mouse event that triggers the end of the panning action.
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  private onMouseUp(event: MouseEvent): void {
+  private onMouseUp = (event: MouseEvent): void => {
     // Stop panning
     this._isPanning = false;
 
@@ -305,7 +330,20 @@ export class Canvas {
       throw new TypeError(`Failed to get '2d' context from canvas`);
     }
 
-    return new Canvas(canvas, context, options, style);
+    // Check if an instance already exists for this canvas element
+    if (Canvas.instances.has(canvas)) {
+      const instance = Canvas.instances.get(canvas)!;
+
+      // Remove event listener and delete instance
+      instance.removeEventListener();
+      Canvas.instances.delete(canvas);
+    }
+
+    // Create a new instance and store it in the WeakMap
+    const instance = new Canvas(canvas, context, options, style);
+    Canvas.instances.set(canvas, instance);
+
+    return instance;
   }
 
   /**
