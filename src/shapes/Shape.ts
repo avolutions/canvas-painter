@@ -1,4 +1,5 @@
 import { ISerializable } from "../common/ISerializable.js";
+import { ShapeState } from "../common/ShapeState.js";
 import { IShapeDefinition } from "../definitions/IShapeDefinition.js";
 import { IShapeOptions } from "../options/interfaces/IShapeOptions.js";
 import { IShapeStyle } from "../styles/interfaces/IShapeStyle.js";
@@ -24,6 +25,9 @@ export abstract class Shape<
 
   /** The options for configuring the shape, proxied to trigger observer notifications on change. */
   protected _options: TOptions;
+
+  /** The current state of the shape, representing its visual or interactive status. */
+  protected _state: ShapeState = ShapeState.Default;
 
   /** List of observer functions to be notified on shape changes. */
   protected observers: (() => void)[] = [];
@@ -198,5 +202,24 @@ export abstract class Shape<
    */
   public set options(options: TOptions) {
     Object.assign(this._options, options);
+  }
+
+  /**
+   * Gets the current state of the shape.
+   *
+   * @returns The current state of the shape.
+   */
+  public get state(): ShapeState {
+    return this._state;
+  }
+
+  /**
+   * Sets a new state for the shape.
+   *
+   * @param state - The new state to assign to the shape.
+   */
+  public set state(state: ShapeState) {
+    console.log(state);
+    this._state = state;
   }
 }

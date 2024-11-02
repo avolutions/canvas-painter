@@ -1,3 +1,4 @@
+import { ShapeState } from "../../src/common/ShapeState";
 import { Point } from "../../src/types/Point";
 import { MockShape, MockShapeStyle } from "../mocks/MockShape";
 
@@ -37,6 +38,20 @@ describe('Shape class', () => {
     const shape = new MockShape(10);
 
     expect((shape as any)._definition.width).toBe(10);
+  });
+
+  test("should have default state", () => {
+    const shape = new MockShape();
+
+    expect(shape.state).toEqual(ShapeState.Default);
+  });
+
+  test("should set state through setter", () => {
+    const shape = new MockShape();
+
+    shape.state = ShapeState.Hover;
+
+    expect(shape.state).toEqual(ShapeState.Hover);
   });
 
   test("should set empty style and options from constructor", () => {

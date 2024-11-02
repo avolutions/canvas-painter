@@ -1,3 +1,6 @@
+import { ShapeState } from "../common/ShapeState.js";
+import { Point } from "../types/Point.js";
+
 /**
  * Interface representing a shape that can be rendered on a canvas.
  *
@@ -46,4 +49,18 @@ export interface IShape {
    *          Returns false if the shape is hidden and will not be rendered.
    */
   isVisible(): boolean;
+
+  /**
+   * Gets the current state of the shape.
+   *
+   * @returns The current state of the shape.
+   */
+  get state(): ShapeState;
+
+  /**
+   * Sets a new state for the shape.
+   *
+   * @param state - The new state to assign to the shape.
+   */
+  set state(state: ShapeState);
 }

@@ -1,6 +1,7 @@
 /* Common */
 export { ISerializable } from './common/ISerializable.js';
 export { Serializable } from './common/Serializable.js';
+export { ShapeState } from './common/ShapeState.js';
 
 /* Definitions */
 export { CircleDefinition } from './definitions/CircleDefinition.js';
