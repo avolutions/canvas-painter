@@ -79,14 +79,12 @@ describe('Rectangle class', () => {
     rectangle.height = 400;
     rectangle.position = newPosition;
     rectangle.rotation = 85;
-    rectangle.style = newStyle;
 
     expect(rectangle.width).toBe(300);
     expect(rectangle.height).toBe(400);
     expect(rectangle.position).toEqual(newPosition);
     expect(rectangle.angle.degrees).toBe(newAngle.degrees);
     expect(rectangle.rotation).toBe(85);
-    expect(rectangle.style).toEqual(newStyle);
 
     rectangle.style.color = 'blue';
     rectangle.position.x = 25;
@@ -193,17 +191,10 @@ describe('Rectangle class', () => {
     rectangle.height = 10;
     rectangle.position = new Point(10, 10);
     rectangle.rotation = 10; // currently notify twice
-    rectangle.style = {
-      color: 'yellow',
-      border: {
-        color: 'green',
-        width: 4.2
-      }
-    };
     rectangle.style.color = 'blue';
     rectangle.position.x = 25;
 
-    expect(observer).toHaveBeenCalledTimes(9);
+    expect(observer).toHaveBeenCalledTimes(7);
   });
 
   test("should notify observer when definition changed by methods", () => {

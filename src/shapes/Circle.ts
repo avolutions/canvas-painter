@@ -151,7 +151,7 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
     context.fill();
 
     // Draw border for circle
-    if (this.style.border.width > 0 && this.style.border.color !== '') {
+    if (this.style.border.hasBorder()) {
       context.lineWidth = this.style.border.width;
       context.strokeStyle = this.style.border.color;
 

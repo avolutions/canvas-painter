@@ -42,4 +42,28 @@ describe('BorderStyle', () => {
     expect(style.color).toBe('#FFFFFF');
     expect(style.width).toBe(4.2);
   });
+
+  test('should determine hasBorder correctly', () => {
+    let borderStyle: BorderStyle;
+
+    borderStyle = new BorderStyle();
+    borderStyle.color = 'red';
+    borderStyle.width = 5;
+    expect(borderStyle.hasBorder()).toBe(true);
+
+    borderStyle = new BorderStyle();
+    borderStyle.color = '';
+    borderStyle.width = 5;
+    expect(borderStyle.hasBorder()).toBe(false);
+
+    borderStyle = new BorderStyle();
+    borderStyle.color = 'blue';
+    borderStyle.width = 0;
+    expect(borderStyle.hasBorder()).toBe(false);
+
+    borderStyle = new BorderStyle();
+    borderStyle.color = '';
+    borderStyle.width = 0;
+    expect(borderStyle.hasBorder()).toBe(false);
+  });
 });

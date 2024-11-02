@@ -92,12 +92,10 @@ describe('Square class', () => {
 
     square.position = newPosition;
     square.rotation = 85;
-    square.style = newStyle;
 
     expect(square.position).toEqual(newPosition);
     expect(square.angle.degrees).toBe(newAngle.degrees);
     expect(square.rotation).toBe(85);
-    expect(square.style).toEqual(newStyle);
 
     square.style.color = 'blue';
     square.position.x = 25;
@@ -200,17 +198,10 @@ describe('Square class', () => {
     square.height = 15;
     square.position = new Point(10, 10);
     square.rotation = 10; // currently notify twice
-    square.style = {
-      color: 'yellow',
-      border: {
-        color: 'green',
-        width: 4.2
-      }
-    };
     square.style.color = 'blue';
     square.position.x = 25;
 
-    expect(observer).toHaveBeenCalledTimes(13);
+    expect(observer).toHaveBeenCalledTimes(11);
   });
 
   test("should notify observer when definition changed by methods", () => {

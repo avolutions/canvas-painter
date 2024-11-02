@@ -15,6 +15,16 @@ export class BorderStyle implements IBorderStyle {
   public width!: number;
 
   /**
+   * Determines if the border is visible based on its color and width.
+   * A border is considered present if the color is non-empty and the width is greater than 0.
+   *
+   * @returns `true` if the border has a color and a positive width, `false` otherwise.
+   */
+  public hasBorder(): boolean {
+    return this.color !== '' && this.width > 0;
+  }
+
+  /**
    * Default style for the border.
    */
   public static readonly DefaultStyle: IBorderStyle = {

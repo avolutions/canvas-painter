@@ -209,7 +209,7 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
     );
 
     // Draw border for rectangle
-    if (this.style.border.width > 0 && this.style.border.color !== '') {
+    if (this.style.border.hasBorder()) {
       context.lineWidth = this.style.border.width;
       context.strokeStyle = this.style.border.color;
 

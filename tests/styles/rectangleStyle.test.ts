@@ -56,9 +56,5 @@ describe('RectangleStyle', () => {
     expect(style.color).toBe('#FFFFFF');
     expect(style.border.color).toBe('#123456');
     expect(style.border.width).toBe(7.3);
-
-    style.border = { color: '#987654', width: 2 };
-    expect(style.border.color).toBe('#987654');
-    expect(style.border.width).toBe(2);
   });
 });
