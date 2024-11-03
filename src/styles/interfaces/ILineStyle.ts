@@ -1,16 +1,9 @@
+import { ILineBaseStyle } from "./ILineBaseStyle.js";
 import { IShapeStyle } from "./IShapeStyle.js";
 
 /**
- * Represents the style options for a line.
+ * Represents the style options for a line including the states.
  */
-export interface ILineStyle extends IShapeStyle {
-  /**
-   * The color of the line stroke.
-   */
-  color?: string;
+export interface ILineStyle extends ILineBaseStyle, IShapeStyle {
 
-  /**
-   * The width of the line stroke.
-   */
-  width?: number;
 }

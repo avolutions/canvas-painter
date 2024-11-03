@@ -1,10 +1,12 @@
 import { BorderStyle } from "./BorderStyle.js";
+import { ICircleBaseStyle } from "./interfaces/ICircleBaseStyle.js";
 import { ICircleStyle } from "./interfaces/ICircleStyle.js";
+import { ShapeStyle } from "./ShapeStyle.js";
 
 /**
  * Represents the style options for a circle.
  */
-export class CircleStyle implements ICircleStyle {
+export class CircleStyle extends ShapeStyle<ICircleBaseStyle> implements ICircleStyle {
   /**
    * The fill color of the circle.
    */
@@ -29,6 +31,8 @@ export class CircleStyle implements ICircleStyle {
    * @param style - The partial style provided by the user.
    */
   constructor(style: Partial<ICircleStyle> = {}) {
+    super();
+
     // Handle partial BorderStyle
     const borderStyle = new BorderStyle(style.border || {});
 

@@ -1,12 +1,14 @@
+import { IShapeBaseStyle } from "./IShapeBaseStyle.js";
+
 /**
- * Interface for defining the styling structure of a shape.
- *
- * This interface can be extended by various shape styles
- * (e.g., border, fill) to ensure a consistent structure
- * across different shape types.
- *
- * @remarks
- * This is an empty object type and serves as a base or marker for shape style types.
+ * Interface representing the style properties for a shape.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface IShapeStyle {}
+export interface IShapeStyle {
+  /**
+   * Hover style for the shape.
+   *
+   * When the shape is in the hover state, the properties defined in this style
+   * override the default style properties.
+   */
+  hover?: IShapeBaseStyle;
+}

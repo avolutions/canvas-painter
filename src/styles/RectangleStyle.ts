@@ -1,10 +1,12 @@
 import { BorderStyle } from "./BorderStyle.js";
+import { IRectangleBaseStyle } from "./interfaces/IRectangleBaseStyle.js";
 import { IRectangleStyle } from "./interfaces/IRectangleStyle.js";
+import { ShapeStyle } from "./ShapeStyle.js";
 
 /**
  * Represents the style options for a rectangle.
  */
-export class RectangleStyle implements IRectangleStyle {
+export class RectangleStyle extends ShapeStyle<IRectangleBaseStyle> implements IRectangleStyle {
   /**
    * The fill color of the rectangle.
    */
@@ -29,6 +31,8 @@ export class RectangleStyle implements IRectangleStyle {
    * @param style - The partial style provided by the user.
    */
   constructor(style: Partial<IRectangleStyle> = {}) {
+    super();
+
     // Handle partial BorderStyle
     const borderStyle = new BorderStyle(style.border || {});
 
