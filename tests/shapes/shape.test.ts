@@ -54,6 +54,21 @@ describe('Shape class', () => {
     expect(shape.state).toEqual(ShapeState.Hover);
   });
 
+  test("should notify observers if state is changed", () => {
+    const observer = jest.fn();
+    const shape = new MockShape();
+
+    shape.addObserver(observer);
+
+    shape.state = ShapeState.Hover;
+    expect(observer).toHaveBeenCalledTimes(1);
+    observer.mockClear();
+
+    // Do not notify if state was not changed
+    shape.state = ShapeState.Hover;
+    expect(observer).not.toHaveBeenCalled();
+  });
+
   test("should set empty style and options from constructor", () => {
     const shape = new MockShape(10, false);
 

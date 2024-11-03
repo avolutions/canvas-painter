@@ -24,6 +24,13 @@ describe('Zoom and pan function of canvas class', () => {
     jest.restoreAllMocks();
   });
 
+  test('should apply default event handlers', () => {
+    const spy = jest.spyOn(canvasElement, 'addEventListener');
+    const canvas = Canvas.init('canvas-id');
+
+    expect(spy).toHaveBeenCalledWith('mousemove', expect.any(Function));
+  });
+
   test('should call the contextmenu event listener and prevent default behavior', () => {
     const canvas = Canvas.init('canvas-id');
     const preventDefaultSpy = jest.spyOn(Event.prototype, 'preventDefault');
@@ -66,42 +73,36 @@ describe('Zoom and pan function of canvas class', () => {
 
     Canvas.init('canvas-id');
     expect(spy).not.toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(spy).not.toHaveBeenCalledWith('mousemove', expect.any(Function));
     expect(spy).not.toHaveBeenCalledWith('mouseup', expect.any(Function));
     expect(spy).not.toHaveBeenCalledWith('mouseleave', expect.any(Function));
     spy.mockClear();
 
     Canvas.init('canvas-id', { pannable: false });
     expect(spy).not.toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(spy).not.toHaveBeenCalledWith('mousemove', expect.any(Function));
     expect(spy).not.toHaveBeenCalledWith('mouseup', expect.any(Function));
     expect(spy).not.toHaveBeenCalledWith('mouseleave', expect.any(Function));
     spy.mockClear();
 
     Canvas.init('canvas-id', { pannable: true });
     expect(spy).toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(spy).toHaveBeenCalledWith('mousemove', expect.any(Function));
     expect(spy).toHaveBeenCalledWith('mouseup', expect.any(Function));
     expect(spy).toHaveBeenCalledWith('mouseleave', expect.any(Function));
     spy.mockClear();
 
     Canvas.init('canvas-id', { pannable: true, pan: { useMouse: false } });
     expect(spy).not.toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(spy).not.toHaveBeenCalledWith('mousemove', expect.any(Function));
     expect(spy).not.toHaveBeenCalledWith('mouseup', expect.any(Function));
     expect(spy).not.toHaveBeenCalledWith('mouseleave', expect.any(Function));
     spy.mockClear();
 
     Canvas.init('canvas-id', { pannable: true, pan: { useMouse: true } });
     expect(spy).toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(spy).toHaveBeenCalledWith('mousemove', expect.any(Function));
     expect(spy).toHaveBeenCalledWith('mouseup', expect.any(Function));
     expect(spy).toHaveBeenCalledWith('mouseleave', expect.any(Function));
     spy.mockClear();
 
     Canvas.init('canvas-id', { pannable: false, pan: { useMouse: true } });
     expect(spy).not.toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(spy).not.toHaveBeenCalledWith('mousemove', expect.any(Function));
     expect(spy).not.toHaveBeenCalledWith('mouseup', expect.any(Function));
     expect(spy).not.toHaveBeenCalledWith('mouseleave', expect.any(Function));
     spy.mockClear();

@@ -15,14 +15,14 @@ describe('Point class', () => {
     expect(point.y).toBe(-4);
   });
 
-  it('should serialize into an array', () => {
+  test('should serialize into an array', () => {
     const point = new Point(5, 6);
     const result = point.toArray();
 
     expect(result).toEqual([5, 6]);
   });
 
-  it('should serialize into json', () => {
+  test('should serialize into json', () => {
     const point = new Point(5, 6);
     const result = point.toJson();
 
@@ -94,11 +94,23 @@ describe('Point class', () => {
     expect(point.y).toBe(3);
   });
 
-  it('should not move the point if no deltas are provided', () => {
+  test('should not move the point if no deltas are provided', () => {
     const point = new Point(5, 6);
 
     point.move();
     expect(point.x).toBe(5);
     expect(point.y).toBe(6);
+  });
+
+  test('should untransform the point coordinates based on offset and zoom', () => {
+    const point = new Point(100, 200);
+    const offset = new Point(10, 20);
+    const zoom = 2;
+
+    const result = point.asUntransformed(offset, zoom);
+
+    expect(result.x).toBe((100 - 10) / 2);
+    expect(result.y).toBe((200 - 20) / 2);
+    expect(result).toBeInstanceOf(Point);
   });
 });
