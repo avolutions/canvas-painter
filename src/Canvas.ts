@@ -1,3 +1,4 @@
+import { ShapeState } from "./common/ShapeState.js";
 import { CanvasOptions } from "./options/CanvasOptions.js";
 import { ICanvasOptions } from "./options/interfaces/ICanvasOptions.js";
 import { IShape } from "./shapes/IShape.js";
@@ -98,11 +99,12 @@ export class Canvas {
     // Add event listener for panning
     if (this._options.pannable && this._options.pan.useMouse) {
       this._canvas.addEventListener('mousedown', this.onMouseDown);
-      this._canvas.addEventListener('mousemove', this.onMouseMove);
       this._canvas.addEventListener('mouseup', this.onMouseUp);
-      // Handle the case when the mouse leaves the canvas during dragging
-      this._canvas.addEventListener('mouseleave', this.onMouseUp);
+      this._canvas.addEventListener('mouseleave', this.onMouseUp); // when the mouse leaves the canvas during dragging
     }
+
+    // Add other event listener
+    this._canvas.addEventListener('mousemove', this.onMouseMove);
 
     // Prevent default context menu on right click
     this._canvas.addEventListener('contextmenu', this.onContextMenu);
@@ -185,16 +187,36 @@ export class Canvas {
    * @param event - The mouse event that triggers the pan movement.
    */
   private readonly onMouseMove = (event: MouseEvent): void => {
-    if (!this._isPanning) {
+    const mousePosition = Mouse.getOffsetPosition(event);
+
+    // Handle panning
+    if (this._isPanning) {
+      this.panOffset = new Point(
+        mousePosition.x - this._panStart.x,
+        mousePosition.y - this._panStart.y
+      );
+
       return;
     }
 
-    const mousePosition = Mouse.getOffsetPosition(event);
+    // Handle hover state
+    let hoverSet = false;
 
-    this.panOffset = new Point(
-      mousePosition.x - this._panStart.x,
-      mousePosition.y - this._panStart.y
-    );
+    // Iterate watchedShapes backwards, to check highest layered shapes first
+    for (let i = this.watchedShapes.length - 1; i >= 0; i--) {
+      const shape = this.watchedShapes[i];
+
+      if (!hoverSet && shape.isMouseOver(mousePosition.asUntransformed(this.panOffset, this.zoomScale))) {
+        // Set the first hovered shape to Hover state
+        shape.state = ShapeState.Hover;
+
+        // Set the flag after finding the first hovered shape
+        hoverSet = true;
+      } else {
+        // Ensure all other shapes are in Default state if not hovered
+        shape.state = ShapeState.Default;
+      }
+    }
   }
 
   /**
