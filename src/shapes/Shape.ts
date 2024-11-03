@@ -3,6 +3,7 @@ import { ShapeState } from "../common/ShapeState.js";
 import { IShapeDefinition } from "../definitions/IShapeDefinition.js";
 import { IShapeOptions } from "../options/interfaces/IShapeOptions.js";
 import { IShapeStyle } from "../styles/interfaces/IShapeStyle.js";
+import { Point } from "../types/Point.js";
 import { IShape } from "./IShape.js";
 
 /**
@@ -136,6 +137,14 @@ export abstract class Shape<
   public isVisible(): boolean {
     return !!this._options.visible;
   }
+
+  /**
+   * Determines if the mouse is currently over the shape.
+   *
+   * @param mousePosition - The current mouse position.
+   * @returns True if the mouse is over the shape, false otherwise.
+   */
+  public abstract isMouseOver(mousePosition: Point): boolean;
 
   /**
    * Adds an observer function that will be called when the shape's state changes.

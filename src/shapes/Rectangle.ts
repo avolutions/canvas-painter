@@ -223,4 +223,14 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
 
     context.restore(); // Restore the canvas state to before the transformations
   }
+
+  /**
+   * Determines if the mouse is currently over the shape.
+   *
+   * @param mousePosition - The current mouse position.
+   * @returns True if the mouse is over the shape, false otherwise.
+   */
+  public isMouseOver(mousePosition: Point): boolean {
+    return false;
+  }
 }

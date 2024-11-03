@@ -160,4 +160,23 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
 
     context.restore(); // Restore the canvas state to before the transformations
   }
+
+  /**
+   * Determines if the mouse is currently over the shape.
+   *
+   * @param mousePosition - The current mouse position.
+   * @returns True if the mouse is over the shape, false otherwise.
+   */
+  public isMouseOver(mousePosition: Point): boolean {
+    const dx = mousePosition.x - this.center.x;
+    const dy = mousePosition.y - this.center.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    // Adjust radius to include the border width
+    const borderRadius = this.style.border.hasBorder() ? this.style.border.width / 2 : 0;
+    const effectiveRadius = this.radius + borderRadius;
+
+    // Check if the distance is within the circle's radius
+    return distance <= effectiveRadius;
+  }
 }

@@ -51,6 +51,14 @@ export interface IShape {
   isVisible(): boolean;
 
   /**
+   * Determines if the mouse is currently over the shape.
+   *
+   * @param mousePosition - The current mouse position.
+   * @returns True if the mouse is over the shape, false otherwise.
+   */
+  isMouseOver(mousePosition: Point): boolean;
+
+  /**
    * Gets the current state of the shape.
    *
    * @returns The current state of the shape.
