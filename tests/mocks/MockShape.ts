@@ -1,6 +1,8 @@
 import { ShapeDefinition } from "../../src/definitions/ShapeDefinition";
 import { ShapeOptions } from "../../src/options/ShapeOptions";
 import { Shape } from "../../src/shapes/Shape";
+import { ShapeStyle } from "../../src/styles/ShapeStyle";
+import { IShapeBaseStyle } from "../../src/styles/interfaces/IShapeBaseStyle";
 import { IShapeStyle } from "../../src/styles/interfaces/IShapeStyle";
 import { Point } from "../../src/types/Point";
 
@@ -22,7 +24,7 @@ export class MockShapeDefinition extends ShapeDefinition {
   }
 }
 
-export class MockShapeStyle implements IShapeStyle {
+export class MockShapeStyle extends ShapeStyle<IShapeBaseStyle> implements IShapeStyle {
   color = '#000000';
 }
 
@@ -76,5 +78,9 @@ export class MockShape extends Shape<MockShapeDefinition, MockShapeStyle, MockSh
 
   public render(context: CanvasRenderingContext2D): void {
 
+  }
+
+  public isMouseOver(mousePosition: Point): boolean {
+    return true;
   }
 }
