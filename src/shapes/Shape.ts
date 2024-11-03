@@ -228,7 +228,47 @@ export abstract class Shape<
    * @param state - The new state to assign to the shape.
    */
   public set state(state: ShapeState) {
-    console.log(state);
-    this._state = state;
+    // Update state if not already in this state and notify observers to apply state styles
+    if (state !== this._state) {
+      this._state = state;
+      this.notifyObservers();
+    }
   }
+
+  /**
+   * Retrieves the effective style of the shape based on its current state.
+   *
+   * @returns The computed style object for the current shape state, with state-specific overrides merged in as necessary.
+   */
+  public get stateStyle(): TStyle {
+    // Start with a shallow copy of the default style, excluding state-specific keys
+    const baseStyle = { ...this._style } as TStyle;
+
+    // Remove state-specific keys from the base style object
+    delete (baseStyle as any).hover;
+    delete (baseStyle as any).selected;
+
+    // If we are in a non-default state, apply the state-specific overrides
+    if (this._state !== ShapeState.Default) {
+      const stateOverrides = this._style[this._state] as Partial<TStyle> | undefined;
+
+      if (stateOverrides) {
+        // Merge the overrides into the base style to apply state-specific values
+        for (const key in stateOverrides) {
+          if (stateOverrides[key] !== undefined) {
+            baseStyle[key as keyof TStyle] = stateOverrides[key]!;
+          }
+        }
+      }
+    }
+
+    // Return a new Proxy to handle both single property access and full object access
+    return new Proxy(baseStyle, {
+      get: (target, prop) => {
+        // Directly return properties on baseStyle for single property access
+        return prop in target ? target[prop as keyof TStyle] : undefined;
+      },
+    }) as TStyle;
+  }
+
 }
