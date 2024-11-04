@@ -176,8 +176,23 @@ The following table is showing all available circle styles and the default value
 Style | Type | Default | Explanation
 --- | --- | --- | ---
 `color` | string | '#000000' (black) | Sets the default fill color for the circle.
-`border.color` | string | '' | Defines the color of circle border. Border is only shown if `border.color` and `border.width` is provided.
-`border.width` | number | 0 | Defines the width of circles border. Border is only shown if `border.color` and `border.width` is provided.
+`borderColor` | string | '' | Defines the color of circle border. Border is only shown if `borderColor` and `borderWidth` is provided.
+`borderWidth` | number | 0 | Defines the width of circles border. Border is only shown if `borderColor` and `borderWidth` is provided.
+
+You can specify styles for different shape states by providing a unique set of properties under each state (e.g., hover). Each state-specific style overrides the default only while the shape is in that state.
+
+```js
+{
+  color: '#00000',
+  borderColor: '',
+  borderWidth: 0,
+  hover: {
+    color: '#00000',
+    borderColor: '',
+    borderWidth: 0
+  }
+}
+```
 
 ## Options
 
@@ -186,3 +201,9 @@ The following table is showing all available circle options and the default valu
 Option | Type | Default | Explanation
 --- | --- | --- | ---
 `visible` | boolean | true | If `true`, the circle will be visible.<br />If `false` or `undefined`, the circle will be hidden.
+
+```js
+{
+  visible: true
+}
+```
