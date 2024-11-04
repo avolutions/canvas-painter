@@ -39,7 +39,6 @@ export { Shape } from './shapes/Shape.js'
 export { Square } from './shapes/Square.js'
 
 /* Styles */
-export { IBorderStyle } from './styles/interfaces/IBorderStyle.js';
 export { ICanvasCursorStyle } from './styles/interfaces/ICanvasCursorStyle.js';
 export { ICanvasStyle } from './styles/interfaces/ICanvasStyle.js';
 export { ICircleBaseStyle } from './styles/interfaces/ICircleBaseStyle.js';
@@ -51,7 +50,6 @@ export { IRectangleStyle } from './styles/interfaces/IRectangleStyle.js';
 export { IShapeBaseStyle } from './styles/interfaces/IShapeBaseStyle.js';
 export { IShapeStyle } from './styles/interfaces/IShapeStyle.js';
 
-export { BorderStyle } from './styles/BorderStyle.js';
 export { CanvasCursorStyle } from './styles/CanvasCursorStyle.js';
 export { CanvasStyle } from './styles/CanvasStyle.js';
 export { CircleStyle } from './styles/CircleStyle.js';

@@ -47,10 +47,8 @@ describe('Circle class', () => {
     const center = new Point(5, 10);
     const style = {
       color: 'red',
-      border: {
-        color: 'blue',
-        width: 2.5
-      }
+      borderColor: 'blue',
+      borderWidth: 2.5
     };
 
     const circle = new Circle(center, 7, style);
@@ -101,10 +99,8 @@ describe('Circle class', () => {
     const centerY = 10;
     const style = {
       color: 'red',
-      border: {
-        color: 'blue',
-        width: 2.5
-      }
+      borderColor: 'blue',
+      borderWidth: 2.5
     };
 
     const circle = new Circle(centerX, centerY, 7, style);
@@ -250,10 +246,8 @@ describe('Circle class', () => {
   test('should render with given style', () => {
     const style = {
       color: 'red',
-      border: {
-        color: 'blue',
-        width: 2.5
-      }
+      borderColor: 'blue',
+      borderWidth: 2.5
     };
     const circle = new Circle(0, 0, 1, style);
 
@@ -288,7 +282,7 @@ describe('Circle class', () => {
   });
 
   test('should draw border', () => {
-    const circle = new Circle(0, 0, 1, { border: { width: 1, color: 'red'} });
+    const circle = new Circle(0, 0, 1, { borderWidth: 1, borderColor: 'red' });
     circle.render(context);
 
     expect(context.stroke).toHaveBeenCalled();

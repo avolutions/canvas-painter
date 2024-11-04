@@ -66,13 +66,7 @@ describe('Rectangle class', () => {
   test("should set new values via setters", () => {
     const newPosition = new Point(5, 5);
     const newAngle = new Angle(85);
-    const newStyle = {
-      color: 'red',
-      border: {
-        color: 'blue',
-        width: 2.5
-      }
-    };
+
     const rectangle = new Rectangle(0, 0, 0, 0, 0);
 
     rectangle.width = 300;
@@ -256,10 +250,8 @@ describe('Rectangle class', () => {
   test('should render with given style', () => {
     const style = {
       color: 'red',
-      border: {
-        color: 'blue',
-        width: 2.5
-      }
+      borderColor: 'blue',
+      borderWidth: 2.5
     };
     const rectangle = new Rectangle(0, 0, 0, 0, 0, style);
 
@@ -294,7 +286,7 @@ describe('Rectangle class', () => {
   });
 
   test('should draw border', () => {
-    const rectangle = new Rectangle(10, 15, 20, 25, 0, { border: { width: 1, color: 'red'} });
+    const rectangle = new Rectangle(10, 15, 20, 25, 0, { borderWidth: 1, borderColor: 'red' });
     rectangle.render(context);
 
     expect(context.strokeRect).toHaveBeenCalledWith(10, 15, 20, 25);

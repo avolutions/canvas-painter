@@ -181,7 +181,7 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
     context.save(); // Save the current canvas state
 
     // Set rectangle specific styles
-    context.fillStyle = this.style.color;
+    context.fillStyle = this.stateStyle.color;
 
     const topLeft = this.getTopLeftPosition();
 
@@ -209,9 +209,9 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
     );
 
     // Draw border for rectangle
-    if (this.style.border.hasBorder()) {
-      context.lineWidth = this.style.border.width;
-      context.strokeStyle = this.style.border.color;
+    if (this.hasBorder()) {
+      context.strokeStyle = this.stateStyle.borderColor;
+      context.lineWidth = this.stateStyle.borderWidth;
 
       context.strokeRect(
         topLeft.x,

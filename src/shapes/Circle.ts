@@ -138,7 +138,7 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
     context.save(); // Save the current canvas state
 
     // Set circle specific styles
-    context.fillStyle = this.style.color;
+    context.fillStyle = this.stateStyle.color;
 
     context.beginPath();
     context.arc(
@@ -151,9 +151,9 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
     context.fill();
 
     // Draw border for circle
-    if (this.style.border.hasBorder()) {
-      context.lineWidth = this.style.border.width;
-      context.strokeStyle = this.style.border.color;
+    if (this.hasBorder()) {
+      context.strokeStyle = this.stateStyle.borderColor;
+      context.lineWidth = this.stateStyle.borderWidth;
 
       context.stroke();
     }
@@ -173,7 +173,7 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
     const distance = Math.sqrt(dx * dx + dy * dy);
 
     // Adjust radius to include the border width
-    const borderRadius = this.style.border.hasBorder() ? this.style.border.width / 2 : 0;
+    const borderRadius = this.hasBorder() ? this.stateStyle.borderWidth / 2 : 0;
     const effectiveRadius = this.radius + borderRadius;
 
     // Check if the distance is within the circle's radius

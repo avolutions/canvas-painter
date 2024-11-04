@@ -1,4 +1,3 @@
-import { BorderStyle } from "./BorderStyle.js";
 import { IRectangleBaseStyle } from "./interfaces/IRectangleBaseStyle.js";
 import { IRectangleStyle } from "./interfaces/IRectangleStyle.js";
 import { ShapeStyle } from "./ShapeStyle.js";
@@ -13,16 +12,22 @@ export class RectangleStyle extends ShapeStyle<IRectangleBaseStyle> implements I
   public color!: string;
 
   /**
-  *  The border style of the rectangle.
-  */
-  public border!: BorderStyle;
+   * The color of the border.
+   */
+  public borderColor!: string;
+
+  /**
+   * The width of the border in pixels.
+   */
+  public borderWidth!: number;
 
   /**
    * Default style for the rectangle.
    */
   public static readonly DefaultStyle: IRectangleStyle = {
     color: '#000000',
-    border: BorderStyle.DefaultStyle
+    borderColor: '',
+    borderWidth: 0
   };
 
   /**
@@ -33,13 +38,9 @@ export class RectangleStyle extends ShapeStyle<IRectangleBaseStyle> implements I
   constructor(style: Partial<IRectangleStyle> = {}) {
     super();
 
-    // Handle partial BorderStyle
-    const borderStyle = new BorderStyle(style.border || {});
-
     const styleWithDefaults = {
       ...RectangleStyle.DefaultStyle,
-      ...style,
-      border: borderStyle, // Ensure border is correctly merged
+      ...style
     };
 
     Object.assign(this, styleWithDefaults);

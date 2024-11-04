@@ -1,4 +1,3 @@
-import { IBorderStyle } from "./IBorderStyle.js";
 import { IShapeBaseStyle } from "./IShapeBaseStyle.js";
 
 /**
@@ -11,7 +10,12 @@ export interface ICircleBaseStyle extends IShapeBaseStyle {
   color?: string;
 
   /**
-   *  The border style of the circle.
+   * The color of the border.
    */
-  border?: IBorderStyle;
+  borderColor?: string;
+
+  /**
+   * The width of the border in pixels.
+   */
+  borderWidth?: number;
 }

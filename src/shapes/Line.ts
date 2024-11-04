@@ -139,8 +139,8 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
   public render(context: CanvasRenderingContext2D): void {
     context.save(); // Save the current canvas state
 
-    context.lineWidth = this.style.width;
-    context.strokeStyle = this.style.color;
+    context.lineWidth = this.stateStyle.width;
+    context.strokeStyle = this.stateStyle.color;
 
     context.beginPath();
     context.moveTo(this.start.x, this.start.y);

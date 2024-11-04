@@ -1,4 +1,3 @@
-import { BorderStyle } from "./BorderStyle.js";
 import { ICircleBaseStyle } from "./interfaces/ICircleBaseStyle.js";
 import { ICircleStyle } from "./interfaces/ICircleStyle.js";
 import { ShapeStyle } from "./ShapeStyle.js";
@@ -13,16 +12,22 @@ export class CircleStyle extends ShapeStyle<ICircleBaseStyle> implements ICircle
   public color!: string;
 
   /**
-  *  The border style of the circle.
-  */
-  public border!: BorderStyle;
+   * The color of the border.
+   */
+  public borderColor!: string;
+
+  /**
+   * The width of the border in pixels.
+   */
+  public borderWidth!: number;
 
   /**
    * Default style for the circle.
    */
   public static readonly DefaultStyle: ICircleStyle = {
     color: '#000000',
-    border: BorderStyle.DefaultStyle
+    borderColor: '',
+    borderWidth: 0
   };
 
   /**
@@ -33,13 +38,9 @@ export class CircleStyle extends ShapeStyle<ICircleBaseStyle> implements ICircle
   constructor(style: Partial<ICircleStyle> = {}) {
     super();
 
-    // Handle partial BorderStyle
-    const borderStyle = new BorderStyle(style.border || {});
-
     const styleWithDefaults = {
       ...CircleStyle.DefaultStyle,
-      ...style,
-      border: borderStyle, // Ensure border is correctly merged
+      ...style
     };
 
     Object.assign(this, styleWithDefaults);

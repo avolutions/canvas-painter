@@ -242,11 +242,12 @@ export abstract class Shape<
    */
   public get stateStyle(): TStyle {
     // Start with a shallow copy of the default style, excluding state-specific keys
-    const baseStyle = { ...this._style } as TStyle;
+    const baseStyle = { ...this._style };
 
     // Remove state-specific keys from the base style object
-    delete (baseStyle as any).hover;
-    delete (baseStyle as any).selected;
+    Object.values(ShapeState).forEach((state) => {
+      delete baseStyle[state as keyof typeof baseStyle];
+    });
 
     // If we are in a non-default state, apply the state-specific overrides
     if (this._state !== ShapeState.Default) {
@@ -268,7 +269,23 @@ export abstract class Shape<
         // Directly return properties on baseStyle for single property access
         return prop in target ? target[prop as keyof TStyle] : undefined;
       },
-    }) as TStyle;
+    });
   }
 
+  /**
+   * Determines if the current state style includes a visible border.
+   *
+   * @returns `true` if `borderColor` and `borderWidth` are defined and indicate a visible border; otherwise, `false`.
+   */
+  protected hasBorder(): boolean {
+    return (
+      this.stateStyle &&
+      'borderColor' in this.stateStyle &&
+      'borderWidth' in this.stateStyle &&
+      typeof this.stateStyle.borderColor === 'string' &&
+      typeof this.stateStyle.borderWidth === 'number' &&
+      this.stateStyle.borderColor !== '' &&
+      this.stateStyle.borderWidth > 0
+    );
+  }
 }
