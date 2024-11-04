@@ -1,6 +1,9 @@
 import { ShapeState } from "../../src/common/ShapeState";
+import { ShapeStyle } from "../../src/styles/ShapeStyle";
 import { Point } from "../../src/types/Point";
-import { MockShape, MockShapeStyle } from "../mocks/MockShape";
+import { MockShape } from "../mocks/MockShape";
+import { MockShapeOptions } from "../mocks/MockShapeOptions";
+import { MockShapeStyle } from "../mocks/MockShapeStyle";
 
 describe('Shape class', () => {
   test("should serialize definition to array", () => {
@@ -34,10 +37,12 @@ describe('Shape class', () => {
     expect(shape.toJson()).toEqual(JSON.stringify(expectedResult));
   });
 
-  test("should set definition from constructor", () => {
+  test("should set definition, style and options from constructor", () => {
     const shape = new MockShape(10);
 
     expect((shape as any)._definition.width).toBe(10);
+    expect(shape.style).toEqual(MockShapeStyle.DefaultStyle);
+    expect(shape.options).toEqual(MockShapeOptions.DefaultOptions);
   });
 
   test("should have default state", () => {
@@ -67,13 +72,6 @@ describe('Shape class', () => {
     // Do not notify if state was not changed
     shape.state = ShapeState.Hover;
     expect(observer).not.toHaveBeenCalled();
-  });
-
-  test("should set empty style and options from constructor", () => {
-    const shape = new MockShape(10, false);
-
-    expect(shape.style).toEqual({});
-    expect(shape.options).toEqual({});
   });
 
   test("should get style through getter", () => {
@@ -273,5 +271,73 @@ describe('Shape class', () => {
 
     expect(observer).toHaveBeenCalledTimes(0);
     expect(observer1).toHaveBeenCalledTimes(1);
+  });
+
+  test("should remove state properties from stateStyle", () => {
+    const style = {
+      color: 'red',
+      hover: {
+        color: 'blue'
+      }
+    };
+
+    const shape = new MockShape(10, style);
+
+    expect(shape.style).toHaveProperty('hover');
+    expect(shape.stateStyle).not.toHaveProperty('hover');
+  });
+
+  test("should return state style", () => {
+    const style = {
+      color: 'red',
+      hover: {
+        color: 'blue'
+      }
+    };
+
+    const shape = new MockShape(10, style);
+
+    expect(shape.stateStyle.color).toBe('red');
+
+    shape.state = ShapeState.Hover;
+    expect(shape.stateStyle.color).toBe('blue');
+
+    shape.state = ShapeState.Default;
+    expect(shape.stateStyle.color).toBe('red');
+  });
+
+  test("should return state style", () => {
+    const style = {
+      color: 'red',
+      hover: {
+        color: 'blue'
+      }
+    };
+
+    const shape = new MockShape(10, style);
+
+    expect(shape.stateStyle.color).toBe('red');
+
+    shape.state = ShapeState.Hover;
+    expect(shape.stateStyle.color).toBe('blue');
+
+    shape.state = ShapeState.Default;
+    expect(shape.stateStyle.color).toBe('red');
+  });
+
+  test("should determine border", () => {
+    let shape: MockShape;
+
+    shape = new MockShape(10);
+    expect(shape.hasBorderTest()).toBe(false);
+
+    shape = new MockShape(10, { borderColor: 'red', borderWidth: 0 });
+    expect(shape.hasBorderTest()).toBe(false);
+
+    shape = new MockShape(10, { borderColor: '', borderWidth: 1 });
+    expect(shape.hasBorderTest()).toBe(false);
+
+    shape = new MockShape(10, { borderColor: 'red', borderWidth: 1 });
+    expect(shape.hasBorderTest()).toBe(true);
   });
 });

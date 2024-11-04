@@ -49,8 +49,8 @@ export abstract class Shape<
    */
   constructor(definition: TDefinition, style?: TStyle, options?: TOptions) {
     this._definition = this._createProxy(definition);
-    this._style = this._createProxy(style || {}); // Default to an empty object if no style is provided
-    this._options = this._createProxy(options || {}); // Default to an empty object if no options are provided
+    this._style = this._createProxy(style); // Default to an empty object if no style is provided
+    this._options = this._createProxy(options); // Default to an empty object if no options are provided
   }
 
   /**
