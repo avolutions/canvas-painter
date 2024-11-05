@@ -5,6 +5,7 @@
 import { Point } from '../../src/types/Point';
 import { Rectangle } from '../../src/shapes/Rectangle';
 import { Angle } from '../../src/types/Angle';
+import { ShapeState } from '../../src/common/ShapeState';
 
 describe('Rectangle class', () => {
   let context: CanvasRenderingContext2D;
@@ -247,11 +248,16 @@ describe('Rectangle class', () => {
     expect(context.fillRect).toHaveBeenCalledWith(0, 0, 10, 20);
   });
 
-  test('should render with given style', () => {
+  test('should render with given state style', () => {
     const style = {
       color: 'red',
       borderColor: 'blue',
-      borderWidth: 2.5
+      borderWidth: 2.5,
+      hover: {
+        color: 'green',
+        borderColor: 'yellow',
+        borderWidth: 4.2,
+      }
     };
     const rectangle = new Rectangle(0, 0, 0, 0, 0, style);
 
@@ -260,6 +266,13 @@ describe('Rectangle class', () => {
     expect(context.fillStyle).toBe('red');
     expect(context.strokeStyle).toBe('blue');
     expect(context.lineWidth).toBe(2.5);
+
+    rectangle.state = ShapeState.Hover;
+    rectangle.render(context);
+
+    expect(context.fillStyle).toBe('green');
+    expect(context.strokeStyle).toBe('yellow');
+    expect(context.lineWidth).toBe(4.2);
   });
 
   test('should not draw border if not given', () => {

@@ -247,11 +247,16 @@ describe('Circle class', () => {
     expect(context.arc).toHaveBeenCalledWith(1, 2, 3, 0, Math.PI * 2);
   });
 
-  test('should render with given style', () => {
+  test('should render with given state style', () => {
     const style = {
       color: 'red',
       borderColor: 'blue',
-      borderWidth: 2.5
+      borderWidth: 2.5,
+      hover: {
+        color: 'green',
+        borderColor: 'yellow',
+        borderWidth: 4.2,
+      }
     };
     const circle = new Circle(0, 0, 1, style);
 
@@ -260,6 +265,13 @@ describe('Circle class', () => {
     expect(context.fillStyle).toBe('red');
     expect(context.strokeStyle).toBe('blue');
     expect(context.lineWidth).toBe(2.5);
+
+    circle.state = ShapeState.Hover;
+    circle.render(context);
+
+    expect(context.fillStyle).toBe('green');
+    expect(context.strokeStyle).toBe('yellow');
+    expect(context.lineWidth).toBe(4.2);
   });
 
   test('should not draw border if not given', () => {

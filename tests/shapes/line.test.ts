@@ -7,6 +7,7 @@ import { Line } from '../../src/shapes/Line';
 import { LineStyle } from '../../src/styles/LineStyle';
 import { InvalidConstructorArgumentsError } from '../../src/errors/InvalidConstructorArgumentsError';
 import { Cursor } from '../../src/types/Cursor';
+import { ShapeState } from '../../src/common/ShapeState';
 
 describe('Line class', () => {
   let context: CanvasRenderingContext2D;
@@ -278,12 +279,16 @@ describe('Line class', () => {
     expect(observer).toHaveBeenCalledTimes(8);
   });
 
-  test('should render with given style', () => {
+  test('should render with given state style', () => {
     const start = new Point(5, 10);
     const end = new Point(15, 20);
     const style = {
       color: 'red',
-      width: 2.5
+      width: 2.5,
+      hover: {
+        color: 'green',
+        width: 4.2,
+      }
     };
 
     const line = new Line(start, end, style);
@@ -292,6 +297,12 @@ describe('Line class', () => {
 
     expect(context.strokeStyle).toBe('red');
     expect(context.lineWidth).toBe(2.5);
+
+    line.state = ShapeState.Hover;
+    line.render(context);
+
+    expect(context.strokeStyle).toBe('green');
+    expect(context.lineWidth).toBe(4.2);
   });
 
   test('should draw line with correct values', () => {

@@ -83,10 +83,10 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
   }
 
   /**
-     * Gets the ending point of the line.
-     *
-     * @returns The ending point of the line.
-     */
+   * Gets the ending point of the line.
+   *
+   * @returns The ending point of the line.
+   */
   public get end(): Point {
     return this._definition.end;
   }

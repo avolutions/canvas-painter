@@ -209,17 +209,19 @@ export class Canvas {
       const shape = this.watchedShapes[i];
 
       if (!hoverSet && shape.isMouseOver(mousePosition.asUntransformed(this.panOffset, this.zoomScale))) {
-        // Set the first hovered shape to Hover state
+        // Set the first hovered shape to Hover state (if not already in it)
         shape.state = ShapeState.Hover;
 
-        // Set cursor
+        // Set hover style cursor
         this._canvas.style.cursor = shape.stateStyle.cursor!;
 
         // Set the flag after finding the first hovered shape
         hoverSet = true;
       } else {
-        // Reset cursor
-        this._canvas.style.cursor = this._style.cursor.default;
+        // Reset cursor if currently hovered shape is no longer hovered
+        if (shape.state === ShapeState.Hover) {
+          this._canvas.style.cursor = this._style.cursor.default;
+        }
 
         // Ensure all other shapes are in Default state if not hovered
         shape.state = ShapeState.Default;
