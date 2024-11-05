@@ -286,7 +286,7 @@ describe('Rectangle class', () => {
   });
 
   test('should draw border', () => {
-    const rectangle = new Rectangle(10, 15, 20, 25, 0, { borderWidth: 1, borderColor: 'red' });
+    const rectangle = new Rectangle(10, 15, 20, 25, 0, { borderWidth: 1 });
     rectangle.render(context);
 
     expect(context.strokeRect).toHaveBeenCalledWith(10, 15, 20, 25);
@@ -314,28 +314,28 @@ describe('Rectangle class', () => {
   });
 
   test('should account for border width in the effective bounds', () => {
-    const rectangle = new Rectangle(50, 50, 100, 50, 0, { borderWidth: 10, borderColor: 'red' });
+    const rectangle = new Rectangle(50, 50, 100, 50, 0, { borderWidth: 10 });
     const mousePosition = new Point(45, 60);
 
     expect(rectangle.isMouseOver(mousePosition)).toBe(true);
   });
 
   test('should return false if the mouse is outside the rectangle with border', () => {
-    const rectangle = new Rectangle(50, 50, 100, 50, 0, { borderWidth: 10, borderColor: 'red' });
+    const rectangle = new Rectangle(50, 50, 100, 50, 0, { borderWidth: 10 });
     const mousePosition = new Point(40, 60);
 
     expect(rectangle.isMouseOver(mousePosition)).toBe(false);
   });
 
   test('should correctly detect mouse over when rectangle is rotated', () => {
-    const rectangle = new Rectangle(50, 50, 100, 50, 45, { borderWidth: 10, borderColor: 'red' });
+    const rectangle = new Rectangle(50, 50, 100, 50, 45, { borderWidth: 10 });
     const mousePosition = new Point(85, 85);
 
     expect(rectangle.isMouseOver(mousePosition)).toBe(true);
   });
 
   test('should return false for mouse position outside rotated rectangle', () => {
-    const rectangle = new Rectangle(50, 50, 100, 50, 45, { borderWidth: 10, borderColor: 'red' });
+    const rectangle = new Rectangle(50, 50, 100, 50, 45, { borderWidth: 10 });
     const mousePosition = new Point(10, 10);
 
     expect(rectangle.isMouseOver(mousePosition)).toBe(false);

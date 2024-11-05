@@ -283,7 +283,7 @@ describe('Circle class', () => {
   });
 
   test('should draw border', () => {
-    const circle = new Circle(0, 0, 1, { borderWidth: 1, borderColor: 'red' });
+    const circle = new Circle(0, 0, 1, { borderWidth: 1 });
     circle.render(context);
 
     expect(context.stroke).toHaveBeenCalled();
@@ -311,14 +311,14 @@ describe('Circle class', () => {
   });
 
   test('should account for border width in the effective radius', () => {
-    const circle = new Circle(50, 50, 20, { borderWidth: 10, borderColor: 'red' });
+    const circle = new Circle(50, 50, 20, { borderWidth: 10 });
     const mousePosition = new Point(75, 50);
 
     expect(circle.isMouseOver(mousePosition)).toBe(true);
   });
 
   test('should return false if the mouse is outside the circle with border', () => {
-    const circle = new Circle(50, 50, 20, { borderWidth: 10, borderColor: 'red' });
+    const circle = new Circle(50, 50, 20, { borderWidth: 10 });
     const mousePosition = new Point(80, 50);
 
     expect(circle.isMouseOver(mousePosition)).toBe(false);

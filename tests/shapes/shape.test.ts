@@ -290,42 +290,31 @@ describe('Shape class', () => {
   test("should return state style", () => {
     const style = {
       color: 'red',
+      borderWidth: 1,
       hover: {
-        color: 'blue'
+        color: 'blue',
+        borderColor: 'green'
       }
     };
 
     const shape = new MockShape(10, style);
 
     expect(shape.stateStyle.color).toBe('red');
+    expect(shape.stateStyle.borderColor).toBe('#000000');
+    expect(shape.stateStyle.borderWidth).toBe(1);
 
     shape.state = ShapeState.Hover;
     expect(shape.stateStyle.color).toBe('blue');
+    expect(shape.stateStyle.borderColor).toBe('green');
+    expect(shape.stateStyle.borderWidth).toBe(1);
 
     shape.state = ShapeState.Default;
     expect(shape.stateStyle.color).toBe('red');
+    expect(shape.stateStyle.borderColor).toBe('#000000');
+    expect(shape.stateStyle.borderWidth).toBe(1);
   });
 
-  test("should return state style", () => {
-    const style = {
-      color: 'red',
-      hover: {
-        color: 'blue'
-      }
-    };
-
-    const shape = new MockShape(10, style);
-
-    expect(shape.stateStyle.color).toBe('red');
-
-    shape.state = ShapeState.Hover;
-    expect(shape.stateStyle.color).toBe('blue');
-
-    shape.state = ShapeState.Default;
-    expect(shape.stateStyle.color).toBe('red');
-  });
-
-  test("should determine border", () => {
+  test("should evaluate hasBorder correctly", () => {
     let shape: MockShape;
 
     shape = new MockShape(10);
@@ -336,6 +325,9 @@ describe('Shape class', () => {
 
     shape = new MockShape(10, { borderColor: '', borderWidth: 1 });
     expect(shape.hasBorderTest()).toBe(false);
+
+    shape = new MockShape(10, { borderWidth: 1 });
+    expect(shape.hasBorderTest()).toBe(true);
 
     shape = new MockShape(10, { borderColor: 'red', borderWidth: 1 });
     expect(shape.hasBorderTest()).toBe(true);

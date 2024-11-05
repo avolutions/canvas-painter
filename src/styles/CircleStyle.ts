@@ -26,7 +26,7 @@ export class CircleStyle extends ShapeStyle<ICircleBaseStyle> implements ICircle
    */
   public static readonly DefaultStyle: ICircleStyle = {
     color: '#000000',
-    borderColor: '',
+    borderColor: '#000000',
     borderWidth: 0
   };
 

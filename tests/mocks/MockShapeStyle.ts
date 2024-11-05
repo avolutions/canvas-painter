@@ -21,7 +21,7 @@ export class MockShapeStyle extends ShapeStyle<IMockShapeBaseStyle> implements I
 
   public static readonly DefaultStyle: IMockShapeStyle = {
     color: '#000000',
-    borderColor: '',
+    borderColor: '#000000',
     borderWidth: 0
   };
 

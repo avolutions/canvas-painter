@@ -5,7 +5,7 @@ describe('RectangleStyle', () => {
     const style = RectangleStyle.DefaultStyle;
 
     expect(style.color).toBe('#000000');
-    expect(style.borderColor).toBe('');
+    expect(style.borderColor).toBe('#000000');
     expect(style.borderWidth).toBe(0);
   });
 

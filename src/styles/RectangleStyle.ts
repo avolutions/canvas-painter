@@ -26,7 +26,7 @@ export class RectangleStyle extends ShapeStyle<IRectangleBaseStyle> implements I
    */
   public static readonly DefaultStyle: IRectangleStyle = {
     color: '#000000',
-    borderColor: '',
+    borderColor: '#000000',
     borderWidth: 0
   };
 

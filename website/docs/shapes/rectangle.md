@@ -212,19 +212,19 @@ The following table is showing all available rectangle styles and the default va
 Style | Type | Default | Explanation
 --- | --- | --- | ---
 `color` | string | '#000000' (black) | Sets the default fill color for the rectangle.
-`borderColor` | string | '' | Defines the color of rectangles border. Border is only shown if `borderColor` and `borderWidth` is provided.
+`borderColor` | string | '#000000' | Defines the color of rectangles border. Border is only shown if `borderColor` and `borderWidth` is provided.
 `borderWidth` | number | 0 | Defines the width of rectangles border. Border is only shown if `borderColor` and `borderWidth` is provided.
 
 You can specify styles for different shape states by providing a unique set of properties under each state (e.g., hover, selected, active). Each state-specific style overrides the default only while the shape is in that state.
 
 ```js
 {
-  color: '#00000',
-  borderColor: '',
+  color: '#000000',
+  borderColor: '#000000',
   borderWidth: 0,
   hover: {
-    color: '#00000',
-    borderColor: '',
+    color: '#000000',
+    borderColor: '#000000',
     borderWidth: 0
   }
 }

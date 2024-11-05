@@ -293,7 +293,7 @@ describe('Square class', () => {
   });
 
   test('should draw border', () => {
-    const square = new Square(10, 15, 20, 0, { borderWidth: 1, borderColor: 'red' });
+    const square = new Square(10, 15, 20, 0, { borderWidth: 1 });
     square.render(context);
 
     expect(context.strokeRect).toHaveBeenCalledWith(10, 15, 20, 20);
