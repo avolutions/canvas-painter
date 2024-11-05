@@ -5,6 +5,7 @@ import { Point } from '../../src/types/Point';
 import { Circle } from '../../src/shapes/Circle';
 import { CircleStyle } from '../../src/styles/CircleStyle';
 import { InvalidConstructorArgumentsError } from '../../src/errors/InvalidConstructorArgumentsError';
+import { ShapeState } from '../../src/common/ShapeState';
 
 describe('Circle class', () => {
   let context: CanvasRenderingContext2D;
@@ -286,5 +287,40 @@ describe('Circle class', () => {
     circle.render(context);
 
     expect(context.stroke).toHaveBeenCalled();
+  });
+
+  test('should return true if the mouse is inside the circle', () => {
+    const circle = new Circle(50, 50, 20);
+    const mousePosition = new Point(55, 55);
+
+    expect(circle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return true if the mouse is exactly on the edge of the circle', () => {
+    const circle = new Circle(50, 50, 20);
+    const mousePosition = new Point(70, 50);
+
+    expect(circle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false if the mouse is outside the circle', () => {
+    const circle = new Circle(50, 50, 20);
+    const mousePosition = new Point(80, 50);
+
+    expect(circle.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should account for border width in the effective radius', () => {
+    const circle = new Circle(50, 50, 20, { borderWidth: 10, borderColor: 'red' });
+    const mousePosition = new Point(75, 50);
+
+    expect(circle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false if the mouse is outside the circle with border', () => {
+    const circle = new Circle(50, 50, 20, { borderWidth: 10, borderColor: 'red' });
+    const mousePosition = new Point(80, 50);
+
+    expect(circle.isMouseOver(mousePosition)).toBe(false);
   });
 });

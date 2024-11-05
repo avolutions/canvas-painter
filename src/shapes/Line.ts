@@ -157,6 +157,36 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
    * @returns True if the mouse is over the shape, false otherwise.
    */
   public isMouseOver(mousePosition: Point): boolean {
-    return false;
+    // Get the line width and calculate the tolerance distance
+    const lineWidth = this.stateStyle.width / 2;
+
+    // Calculate the vector components for the line and the point-to-start vector
+    const dx = this.end.x - this.start.x;
+    const dy = this.end.y - this.start.y;
+    const lengthSquared = dx * dx + dy * dy;
+
+    // If the line is effectively a point (start and end are the same), just check distance to the point
+    if (lengthSquared === 0) {
+        const distanceToStart = Math.hypot(mousePosition.x - this.start.x, mousePosition.y - this.start.y);
+        return distanceToStart <= lineWidth;
+    }
+
+    // Project the mouse position onto the line to find the closest point
+    const t = ((mousePosition.x - this.start.x) * dx + (mousePosition.y - this.start.y) * dy) / lengthSquared;
+
+    // Ensure t is within the segment [0, 1] to restrict the closest point to the line segment
+    if (t < 0 || t > 1) {
+      return false;
+    }
+
+    // Calculate the closest point on the line segment to the mouse position
+    const closestX = this.start.x + t * dx;
+    const closestY = this.start.y + t * dy;
+
+    // Calculate the distance from the mouse position to the closest point
+    const distanceToLine = Math.hypot(mousePosition.x - closestX, mousePosition.y - closestY);
+
+    // Check if this distance is within the tolerance (half the line width)
+    return distanceToLine <= lineWidth;
   }
 }

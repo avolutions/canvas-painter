@@ -231,6 +231,32 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
    * @returns True if the mouse is over the shape, false otherwise.
    */
   public isMouseOver(mousePosition: Point): boolean {
-    return false;
+    // Translate the mouse position based on the rectangle's position
+    const x = mousePosition.x - this._definition.position.x;
+    const y = mousePosition.y - this._definition.position.y;
+
+    // If the rectangle is rotated, apply the reverse rotation
+    const angle = -this._definition.angle.radians;
+    const sin = Math.sin(angle);
+    const cos = Math.cos(angle);
+
+    const rotatedX = x * cos - y * sin;
+    const rotatedY = x * sin + y * cos;
+
+    // If the rectangle is centered, adjust coordinates accordingly
+    const offsetX = this.options.centered ? -this._definition.width / 2 : 0;
+    const offsetY = this.options.centered ? -this._definition.height / 2 : 0;
+
+    // Calculate half of the border width for both inward and outward bounds expansion
+    const borderWidth = this.hasBorder() ? this.stateStyle.borderWidth / 2 : 0;
+
+    // Check if the rotated mouse coordinates are within the rectangle's bounds,
+    // taking into account half the border width on each side
+    return (
+      rotatedX >= offsetX - borderWidth &&
+      rotatedX <= offsetX + this._definition.width + borderWidth &&
+      rotatedY >= offsetY - borderWidth &&
+      rotatedY <= offsetY + this._definition.height + borderWidth
+    );
   }
 }

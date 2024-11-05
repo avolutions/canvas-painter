@@ -303,4 +303,67 @@ describe('Line class', () => {
     expect(context.lineTo).toHaveBeenCalledWith(15, 20);
     expect(context.stroke).toHaveBeenCalled();
   });
+
+  test('should return true if the mouse is within tolerance of the line', () => {
+    const line = new Line(10, 10, 30, 30, { width: 4 });
+    const mousePosition = new Point(20, 21); // Near the line
+
+    expect(line.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return true if the mouse is exactly on the line', () => {
+    const line = new Line(10, 10, 30, 30, { width: 4 });
+    const mousePosition = new Point(20, 20); // Directly on the line
+
+    expect(line.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false if the mouse is outside the tolerance of the line', () => {
+    const line = new Line(10, 10, 30, 30, { width: 4 });
+    const mousePosition = new Point(20, 25); // Beyond tolerance
+
+    expect(line.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should consider the line width when determining tolerance', () => {
+    const line = new Line(10, 10, 30, 30, { width: 8 });
+    const mousePosition = new Point(20, 23); // Within increased tolerance
+
+    expect(line.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return true if the line is effectively a point and mouse is within tolerance', () => {
+    const line = new Line(15, 15, 15, 15, { width: 4 });
+    const mousePosition = new Point(16, 15); // Near the point
+
+    expect(line.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false if the line is effectively a point and mouse is outside tolerance', () => {
+    const line = new Line(15, 15, 15, 15, { width: 4 });
+    const mousePosition = new Point(20, 15);// Beyond tolerance from point
+
+    expect(line.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should return false if the mouse is outside the line segment bounds', () => {
+    const line = new Line(10, 10, 30, 30, { width: 4 });
+    const mousePosition = new Point(5, 5); // Outside the line segment
+
+    expect(line.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should return true if the mouse is near the end of the line within tolerance', () => {
+    const line = new Line(10, 10, 30, 30, { width: 4 });
+    const mousePosition = new Point(30, 29); // Near the end within tolerance
+
+    expect(line.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return true if the mouse is near the start of the line within tolerance', () => {
+    const line = new Line(10, 10, 30, 30, { width: 4 });
+    const mousePosition = new Point(10, 11); // Near the start within tolerance
+
+    expect(line.isMouseOver(mousePosition)).toBe(true);
+  });
 });

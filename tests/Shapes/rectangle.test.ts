@@ -291,4 +291,60 @@ describe('Rectangle class', () => {
 
     expect(context.strokeRect).toHaveBeenCalledWith(10, 15, 20, 25);
   });
+
+  test('should return true if the mouse is inside the rectangle', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 0);
+    const mousePosition = new Point(75, 60);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return true if the mouse is exactly on the edge of the rectangle', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 0);
+    const mousePosition = new Point(50, 60);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false if the mouse is outside the rectangle', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 0);
+    const mousePosition = new Point(10, 60);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should account for border width in the effective bounds', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 0, { borderWidth: 10, borderColor: 'red' });
+    const mousePosition = new Point(45, 60);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false if the mouse is outside the rectangle with border', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 0, { borderWidth: 10, borderColor: 'red' });
+    const mousePosition = new Point(40, 60);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should correctly detect mouse over when rectangle is rotated', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 45, { borderWidth: 10, borderColor: 'red' });
+    const mousePosition = new Point(85, 85);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false for mouse position outside rotated rectangle', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 45, { borderWidth: 10, borderColor: 'red' });
+    const mousePosition = new Point(10, 10);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should consider centered option when calculating bounds', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 0, {}, { centered: true });
+    const mousePosition = new Point(50, 50);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(true);
+  });
 });
