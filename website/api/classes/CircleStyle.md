@@ -1,5 +1,9 @@
 Represents the style options for a circle.
 
+## Extends
+
+- [`ShapeStyle`](ShapeStyle.md)\<[`ICircleBaseStyle`](../interfaces/ICircleBaseStyle.md)\>
+
 ## Implements
 
 - [`ICircleStyle`](../interfaces/ICircleStyle.md)
@@ -22,25 +26,45 @@ The partial style provided by the user.
 
 [`CircleStyle`](CircleStyle.md)
 
+#### Overrides
+
+[`ShapeStyle`](ShapeStyle.md).[`constructor`](ShapeStyle.md#constructors)
+
 #### Defined in
 
-[styles/CircleStyle.ts:31](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L31)
+[styles/CircleStyle.ts:40](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L40)
 
 ## Properties
 
-### border
+### borderColor
 
-> **border**: [`BorderStyle`](BorderStyle.md)
+> **borderColor**: `string`
 
-The border style of the circle.
+The color of the border.
 
 #### Implementation of
 
-[`ICircleStyle`](../interfaces/ICircleStyle.md).[`border`](../interfaces/ICircleStyle.md#border)
+[`ICircleStyle`](../interfaces/ICircleStyle.md).[`borderColor`](../interfaces/ICircleStyle.md#bordercolor)
 
 #### Defined in
 
-[styles/CircleStyle.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L16)
+[styles/CircleStyle.ts:13](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L13)
+
+***
+
+### borderWidth
+
+> **borderWidth**: `number`
+
+The width of the border in pixels.
+
+#### Implementation of
+
+[`ICircleStyle`](../interfaces/ICircleStyle.md).[`borderWidth`](../interfaces/ICircleStyle.md#borderwidth)
+
+#### Defined in
+
+[styles/CircleStyle.ts:18](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L18)
 
 ***
 
@@ -56,7 +80,50 @@ The fill color of the circle.
 
 #### Defined in
 
-[styles/CircleStyle.ts:11](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L11)
+[styles/CircleStyle.ts:23](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L23)
+
+***
+
+### cursor
+
+> **cursor**: [`Cursor`](../enumerations/Cursor.md)
+
+Specifies the cursor style for the shape.
+
+#### Implementation of
+
+[`ICircleStyle`](../interfaces/ICircleStyle.md).[`cursor`](../interfaces/ICircleStyle.md#cursor)
+
+#### Inherited from
+
+[`ShapeStyle`](ShapeStyle.md).[`cursor`](ShapeStyle.md#cursor)
+
+#### Defined in
+
+[styles/ShapeStyle.ts:12](https://github.com/avolutions/canvas-painter/blob/main/src/styles/ShapeStyle.ts#L12)
+
+***
+
+### hover?
+
+> `optional` **hover**: [`ICircleBaseStyle`](../interfaces/ICircleBaseStyle.md)
+
+Hover style for the shape.
+
+When the shape is in the hover state, the properties defined in this style
+override the default style properties.
+
+#### Implementation of
+
+[`ICircleStyle`](../interfaces/ICircleStyle.md).[`hover`](../interfaces/ICircleStyle.md#hover)
+
+#### Inherited from
+
+[`ShapeStyle`](ShapeStyle.md).[`hover`](ShapeStyle.md#hover)
+
+#### Defined in
+
+[styles/ShapeStyle.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/styles/ShapeStyle.ts#L20)
 
 ***
 
@@ -68,4 +135,4 @@ Default style for the circle.
 
 #### Defined in
 
-[styles/CircleStyle.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L21)
+[styles/CircleStyle.ts:28](https://github.com/avolutions/canvas-painter/blob/main/src/styles/CircleStyle.ts#L28)

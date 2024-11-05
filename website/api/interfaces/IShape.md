@@ -2,6 +2,52 @@ Interface representing a shape that can be rendered on a canvas.
 
 This interface defines methods for rendering the shape on a canvas and managing observers.
 
+## Accessors
+
+### state
+
+> `get` **state**(): [`ShapeState`](../enumerations/ShapeState.md)
+
+Gets the current state of the shape.
+
+> `set` **state**(`state`): `void`
+
+Sets a new state for the shape.
+
+#### Parameters
+
+• **state**: [`ShapeState`](../enumerations/ShapeState.md)
+
+The new state to assign to the shape.
+
+#### Returns
+
+[`ShapeState`](../enumerations/ShapeState.md)
+
+The current state of the shape.
+
+#### Defined in
+
+[shapes/IShape.ts:67](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L67)
+
+***
+
+### stateStyle
+
+> `get` **stateStyle**(): [`IShapeStyle`](IShapeStyle.md)
+
+Retrieves the effective style of the shape based on its current state.
+
+#### Returns
+
+[`IShapeStyle`](IShapeStyle.md)
+
+The computed style object for the current shape state, with state-specific overrides merged in as necessary.
+
+#### Defined in
+
+[shapes/IShape.ts:81](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L81)
+
 ## Methods
 
 ### addObserver()
@@ -22,7 +68,7 @@ A callback function to be invoked when the shape's state changes.
 
 #### Defined in
 
-[shapes/IShape.ts:19](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L19)
+[shapes/IShape.ts:23](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L23)
 
 ***
 
@@ -40,7 +86,31 @@ appear during rendering until `show()` is called.
 
 #### Defined in
 
-[shapes/IShape.ts:40](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L40)
+[shapes/IShape.ts:44](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L44)
+
+***
+
+### isMouseOver()
+
+> **isMouseOver**(`mousePosition`): `boolean`
+
+Determines if the mouse is currently over the shape.
+
+#### Parameters
+
+• **mousePosition**: [`Point`](../classes/Point.md)
+
+The current mouse position.
+
+#### Returns
+
+`boolean`
+
+True if the mouse is over the shape, false otherwise.
+
+#### Defined in
+
+[shapes/IShape.ts:60](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L60)
 
 ***
 
@@ -59,7 +129,7 @@ Returns true if the shape is visible and will be rendered on the canvas.
 
 #### Defined in
 
-[shapes/IShape.ts:48](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L48)
+[shapes/IShape.ts:52](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L52)
 
 ***
 
@@ -81,7 +151,7 @@ The observer callback function to be removed.
 
 #### Defined in
 
-[shapes/IShape.ts:26](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L26)
+[shapes/IShape.ts:30](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L30)
 
 ***
 
@@ -103,7 +173,7 @@ The 2D rendering context of the canvas where the shape will be drawn.
 
 #### Defined in
 
-[shapes/IShape.ts:12](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L12)
+[shapes/IShape.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L16)
 
 ***
 
@@ -121,4 +191,4 @@ during the next rendering cycle.
 
 #### Defined in
 
-[shapes/IShape.ts:33](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L33)
+[shapes/IShape.ts:37](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L37)

@@ -2,11 +2,11 @@
 
 - [Cursor](enumerations/Cursor.md)
 - [MouseButton](enumerations/MouseButton.md)
+- [ShapeState](enumerations/ShapeState.md)
 
 ## Classes
 
 - [Angle](classes/Angle.md)
-- [BorderStyle](classes/BorderStyle.md)
 - [Canvas](classes/Canvas.md)
 - [CanvasCursorStyle](classes/CanvasCursorStyle.md)
 - [CanvasOptions](classes/CanvasOptions.md)
@@ -31,24 +31,28 @@
 - [Shape](classes/Shape.md)
 - [ShapeDefinition](classes/ShapeDefinition.md)
 - [ShapeOptions](classes/ShapeOptions.md)
+- [ShapeStyle](classes/ShapeStyle.md)
 - [Square](classes/Square.md)
 - [ZoomOptions](classes/ZoomOptions.md)
 
 ## Interfaces
 
-- [IBorderStyle](interfaces/IBorderStyle.md)
 - [ICanvasCursorStyle](interfaces/ICanvasCursorStyle.md)
 - [ICanvasOptions](interfaces/ICanvasOptions.md)
 - [ICanvasStyle](interfaces/ICanvasStyle.md)
+- [ICircleBaseStyle](interfaces/ICircleBaseStyle.md)
 - [ICircleOptions](interfaces/ICircleOptions.md)
 - [ICircleStyle](interfaces/ICircleStyle.md)
+- [ILineBaseStyle](interfaces/ILineBaseStyle.md)
 - [ILineOptions](interfaces/ILineOptions.md)
 - [ILineStyle](interfaces/ILineStyle.md)
 - [IPanOptions](interfaces/IPanOptions.md)
+- [IRectangleBaseStyle](interfaces/IRectangleBaseStyle.md)
 - [IRectangleOptions](interfaces/IRectangleOptions.md)
 - [IRectangleStyle](interfaces/IRectangleStyle.md)
 - [ISerializable](interfaces/ISerializable.md)
 - [IShape](interfaces/IShape.md)
+- [IShapeBaseStyle](interfaces/IShapeBaseStyle.md)
 - [IShapeDefinition](interfaces/IShapeDefinition.md)
 - [IShapeOptions](interfaces/IShapeOptions.md)
 - [IShapeStyle](interfaces/IShapeStyle.md)
