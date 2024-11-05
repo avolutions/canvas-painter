@@ -495,10 +495,11 @@ export class Canvas {
    * Clears the canvas and re-renders all watched and visible shapes.
    */
   public redraw(): void {
-    this.clear();
-
      // Reset the transformation matrix to identity
     this._context.resetTransform();
+
+    // Clear the whole canvas
+    this.clear();
 
     // Apply the new transformation
     this._context.transform(this.zoomScale, 0, 0, this.zoomScale, this._panOffset.x, this._panOffset.y);

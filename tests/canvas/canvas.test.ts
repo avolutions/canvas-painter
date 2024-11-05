@@ -465,6 +465,22 @@ describe('Canvas class', () => {
     expect(drawSpy).toHaveBeenCalledTimes(2);
   });
 
+  test('should reset transformation before clearing when redrawing the canvas', () => {
+    const canvas = Canvas.init('canvas-id');
+
+    jest.spyOn(canvas, 'clear');
+    jest.spyOn(context, 'resetTransform');
+
+    canvas.redraw();
+
+    expect(context.resetTransform).toHaveBeenCalled();
+    expect(canvas.clear).toHaveBeenCalled();
+
+    const resetTransformOrder = (context.resetTransform as jest.Mock).mock.invocationCallOrder[0];
+    const clearOrder = (canvas.clear as jest.Mock).mock.invocationCallOrder[0];
+    expect(resetTransformOrder).toBeLessThan(clearOrder);
+  });
+
   test('should apply transformation when redrawing the canvas', () => {
     let canvas: Canvas;
 

@@ -26,7 +26,7 @@ const LineConfigurator: React.FC<LineConfiguratorProps> = ({ line, onLineChange 
         {!isLineCollapsed && (
           <>
             <div className={styles.formRow}>
-              <label>center.x</label>
+              <label>start.x</label>
               <input
                 type="number"
                 value={line.start.x}
@@ -34,7 +34,7 @@ const LineConfigurator: React.FC<LineConfiguratorProps> = ({ line, onLineChange 
               />
             </div>
             <div className={styles.formRow}>
-              <label>center.y</label>
+              <label>start.y</label>
               <input
                 type="number"
                 value={line.start.y}
@@ -42,7 +42,7 @@ const LineConfigurator: React.FC<LineConfiguratorProps> = ({ line, onLineChange 
               />
             </div>
             <div className={styles.formRow}>
-              <label>center.x</label>
+              <label>end.x</label>
               <input
                 type="number"
                 value={line.end.x}
@@ -50,7 +50,7 @@ const LineConfigurator: React.FC<LineConfiguratorProps> = ({ line, onLineChange 
               />
             </div>
             <div className={styles.formRow}>
-              <label>center.y</label>
+              <label>end.y</label>
               <input
                 type="number"
                 value={line.end.y}
