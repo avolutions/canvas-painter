@@ -66,11 +66,13 @@ export class Canvas {
 
     // Determine width, set canvas width and update options with new value
     const width = this.getWidth(options);
+    this._canvas.style.width = "auto"; // Overrides any CSS class-based width
     this._canvas.width = width;
     this._options.width = width;
 
     // Determine height, set canvas width and update options with new value
     const height = this.getHeight(options);
+    this._canvas.style.height = "auto"; // Overrides any CSS class-based width
     this._canvas.height = height;
     this._options.height = height;
 

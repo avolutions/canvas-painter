@@ -116,6 +116,13 @@ describe('Canvas class', () => {
     expect(canvasElement.height).toBe(456);
   });
 
+  test('should the canvas style width and height to auto', () => {
+    const canvas = Canvas.init('canvas-id');
+
+    expect((canvas as any)._canvas.style.width).toBe('auto');
+    expect((canvas as any)._canvas.style.height).toBe('auto');
+  });
+
   test('should use the canvas element attributes if no options are provided', () => {
     // Mock getComputedStyle to simulate CSS dimensions
     jest.spyOn(window, 'getComputedStyle').mockReturnValueOnce({
