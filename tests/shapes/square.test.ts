@@ -81,23 +81,15 @@ describe('Square class', () => {
   test("should set new values via setters", () => {
     const newPosition = new Point(5, 5);
     const newAngle = new Angle(85);
-    const newStyle = {
-      color: 'red',
-      border: {
-        color: 'blue',
-        width: 2.5
-      }
-    };
+
     const square = new Square(0, 0, 0, 0);
 
     square.position = newPosition;
     square.rotation = 85;
-    square.style = newStyle;
 
     expect(square.position).toEqual(newPosition);
     expect(square.angle.degrees).toBe(newAngle.degrees);
     expect(square.rotation).toBe(85);
-    expect(square.style).toEqual(newStyle);
 
     square.style.color = 'blue';
     square.position.x = 25;
@@ -200,17 +192,10 @@ describe('Square class', () => {
     square.height = 15;
     square.position = new Point(10, 10);
     square.rotation = 10; // currently notify twice
-    square.style = {
-      color: 'yellow',
-      border: {
-        color: 'green',
-        width: 4.2
-      }
-    };
     square.style.color = 'blue';
     square.position.x = 25;
 
-    expect(observer).toHaveBeenCalledTimes(13);
+    expect(observer).toHaveBeenCalledTimes(11);
   });
 
   test("should notify observer when definition changed by methods", () => {
@@ -272,10 +257,8 @@ describe('Square class', () => {
   test('should render with given style', () => {
     const style = {
       color: 'red',
-      border: {
-        color: 'blue',
-        width: 2.5
-      }
+      borderColor: 'blue',
+      borderWidth: 2.5
     };
     const square = new Square(0, 0, 0, 0, style);
 
@@ -310,7 +293,7 @@ describe('Square class', () => {
   });
 
   test('should draw border', () => {
-    const square = new Square(10, 15, 20, 0, { border: { width: 1, color: 'red'} });
+    const square = new Square(10, 15, 20, 0, { borderWidth: 1 });
     square.render(context);
 
     expect(context.strokeRect).toHaveBeenCalledWith(10, 15, 20, 20);

@@ -83,10 +83,10 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
   }
 
   /**
-     * Gets the ending point of the line.
-     *
-     * @returns The ending point of the line.
-     */
+   * Gets the ending point of the line.
+   *
+   * @returns The ending point of the line.
+   */
   public get end(): Point {
     return this._definition.end;
   }
@@ -139,8 +139,8 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
   public render(context: CanvasRenderingContext2D): void {
     context.save(); // Save the current canvas state
 
-    context.lineWidth = this.style.width;
-    context.strokeStyle = this.style.color;
+    context.lineWidth = this.stateStyle.width;
+    context.strokeStyle = this.stateStyle.color;
 
     context.beginPath();
     context.moveTo(this.start.x, this.start.y);
@@ -148,5 +148,45 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
     context.stroke();
 
     context.restore(); // Restore the canvas state to before the transformations
+  }
+
+  /**
+   * Determines if the mouse is currently over the shape.
+   *
+   * @param mousePosition - The current mouse position.
+   * @returns True if the mouse is over the shape, false otherwise.
+   */
+  public isMouseOver(mousePosition: Point): boolean {
+    // Get the line width and calculate the tolerance distance
+    const lineWidth = this.stateStyle.width / 2;
+
+    // Calculate the vector components for the line and the point-to-start vector
+    const dx = this.end.x - this.start.x;
+    const dy = this.end.y - this.start.y;
+    const lengthSquared = dx * dx + dy * dy;
+
+    // If the line is effectively a point (start and end are the same), just check distance to the point
+    if (lengthSquared === 0) {
+        const distanceToStart = Math.hypot(mousePosition.x - this.start.x, mousePosition.y - this.start.y);
+        return distanceToStart <= lineWidth;
+    }
+
+    // Project the mouse position onto the line to find the closest point
+    const t = ((mousePosition.x - this.start.x) * dx + (mousePosition.y - this.start.y) * dy) / lengthSquared;
+
+    // Ensure t is within the segment [0, 1] to restrict the closest point to the line segment
+    if (t < 0 || t > 1) {
+      return false;
+    }
+
+    // Calculate the closest point on the line segment to the mouse position
+    const closestX = this.start.x + t * dx;
+    const closestY = this.start.y + t * dy;
+
+    // Calculate the distance from the mouse position to the closest point
+    const distanceToLine = Math.hypot(mousePosition.x - closestX, mousePosition.y - closestY);
+
+    // Check if this distance is within the tolerance (half the line width)
+    return distanceToLine <= lineWidth;
   }
 }

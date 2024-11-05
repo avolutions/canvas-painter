@@ -1,5 +1,9 @@
 Represents the style options for a rectangle.
 
+## Extends
+
+- [`ShapeStyle`](ShapeStyle.md)\<[`IRectangleBaseStyle`](../interfaces/IRectangleBaseStyle.md)\>
+
 ## Implements
 
 - [`IRectangleStyle`](../interfaces/IRectangleStyle.md)
@@ -22,25 +26,45 @@ The partial style provided by the user.
 
 [`RectangleStyle`](RectangleStyle.md)
 
+#### Overrides
+
+[`ShapeStyle`](ShapeStyle.md).[`constructor`](ShapeStyle.md#constructors)
+
 #### Defined in
 
-[styles/RectangleStyle.ts:31](https://github.com/avolutions/canvas-painter/blob/main/src/styles/RectangleStyle.ts#L31)
+[styles/RectangleStyle.ts:40](https://github.com/avolutions/canvas-painter/blob/main/src/styles/RectangleStyle.ts#L40)
 
 ## Properties
 
-### border
+### borderColor
 
-> **border**: [`BorderStyle`](BorderStyle.md)
+> **borderColor**: `string`
 
-The border style of the rectangle.
+The color of the border.
 
 #### Implementation of
 
-[`IRectangleStyle`](../interfaces/IRectangleStyle.md).[`border`](../interfaces/IRectangleStyle.md#border)
+[`IRectangleStyle`](../interfaces/IRectangleStyle.md).[`borderColor`](../interfaces/IRectangleStyle.md#bordercolor)
 
 #### Defined in
 
-[styles/RectangleStyle.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/styles/RectangleStyle.ts#L16)
+[styles/RectangleStyle.ts:13](https://github.com/avolutions/canvas-painter/blob/main/src/styles/RectangleStyle.ts#L13)
+
+***
+
+### borderWidth
+
+> **borderWidth**: `number`
+
+The width of the border in pixels.
+
+#### Implementation of
+
+[`IRectangleStyle`](../interfaces/IRectangleStyle.md).[`borderWidth`](../interfaces/IRectangleStyle.md#borderwidth)
+
+#### Defined in
+
+[styles/RectangleStyle.ts:18](https://github.com/avolutions/canvas-painter/blob/main/src/styles/RectangleStyle.ts#L18)
 
 ***
 
@@ -56,7 +80,50 @@ The fill color of the rectangle.
 
 #### Defined in
 
-[styles/RectangleStyle.ts:11](https://github.com/avolutions/canvas-painter/blob/main/src/styles/RectangleStyle.ts#L11)
+[styles/RectangleStyle.ts:23](https://github.com/avolutions/canvas-painter/blob/main/src/styles/RectangleStyle.ts#L23)
+
+***
+
+### cursor
+
+> **cursor**: [`Cursor`](../enumerations/Cursor.md)
+
+Specifies the cursor style for the shape.
+
+#### Implementation of
+
+[`IRectangleStyle`](../interfaces/IRectangleStyle.md).[`cursor`](../interfaces/IRectangleStyle.md#cursor)
+
+#### Inherited from
+
+[`ShapeStyle`](ShapeStyle.md).[`cursor`](ShapeStyle.md#cursor)
+
+#### Defined in
+
+[styles/ShapeStyle.ts:12](https://github.com/avolutions/canvas-painter/blob/main/src/styles/ShapeStyle.ts#L12)
+
+***
+
+### hover?
+
+> `optional` **hover**: [`IRectangleBaseStyle`](../interfaces/IRectangleBaseStyle.md)
+
+Hover style for the shape.
+
+When the shape is in the hover state, the properties defined in this style
+override the default style properties.
+
+#### Implementation of
+
+[`IRectangleStyle`](../interfaces/IRectangleStyle.md).[`hover`](../interfaces/IRectangleStyle.md#hover)
+
+#### Inherited from
+
+[`ShapeStyle`](ShapeStyle.md).[`hover`](ShapeStyle.md#hover)
+
+#### Defined in
+
+[styles/ShapeStyle.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/styles/ShapeStyle.ts#L20)
 
 ***
 
@@ -68,4 +135,4 @@ Default style for the rectangle.
 
 #### Defined in
 
-[styles/RectangleStyle.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/styles/RectangleStyle.ts#L21)
+[styles/RectangleStyle.ts:28](https://github.com/avolutions/canvas-painter/blob/main/src/styles/RectangleStyle.ts#L28)

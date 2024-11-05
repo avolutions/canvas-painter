@@ -181,7 +181,23 @@ The following table is showing all available line styles and the default values 
 Style | Type | Default | Explanation
 --- | --- | --- | ---
 `color` | string | '#000000' (black) | Sets the color for the line.
+`cursor` | [Cursor](../../api/enumerations/Cursor) | [Cursor.Default](../../api/enumerations/Cursor#default) | Specifies a custom cursor style for the shape. Overrides the default cursor when interacting with the shape.
 `width` | number | 1.0 | Defines the width of the line.
+
+You can specify styles for different shape states by providing a unique set of properties under each state (e.g., hover, selected, active). Each state-specific style overrides the default only while the shape is in that state.
+
+```js
+{
+  color: '#00000',
+  cursor: Cursor.Default,
+  width: 1.0,
+  hover: {
+    color: '#00000',
+    cursor: Cursor.Default,
+    width: 1.0
+  }
+}
+```
 
 ## Options
 
@@ -190,3 +206,9 @@ The following table is showing all available line options and the default values
 Option | Type | Default | Explanation
 --- | --- | --- | ---
 `visible` | boolean | true | If `true`, the line will be visible.<br />If `false` or `undefined`, the line will be hidden.
+
+```js
+{
+  visible: true
+}
+```

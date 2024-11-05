@@ -1,53 +1,20 @@
 import { ShapeDefinition } from "../../src/definitions/ShapeDefinition";
-import { ShapeOptions } from "../../src/options/ShapeOptions";
 import { Shape } from "../../src/shapes/Shape";
-import { IShapeStyle } from "../../src/styles/interfaces/IShapeStyle";
 import { Point } from "../../src/types/Point";
 
-export class MockShapeDefinition extends ShapeDefinition {
-  width: number;
-  name: string;
-  isFoo: boolean;
-  list: Array<number>;
-  position: Point;
+import { IMockShapeStyle, MockShapeStyle } from "./MockShapeStyle"
+import { IMockShapeOptions, MockShapeOptions } from "./MockShapeOptions"
+import { MockShapeDefinition } from "./MockShapeDefinition"
 
-  constructor(width: number = 0, name: string = '', isFoo: boolean = true, list: Array<number> = [], position: Point = new Point(0,0)) {
-    super();
-
-    this.width = width;
-    this.name = name;
-    this.isFoo = isFoo;
-    this.list = list;
-    this.position = position;
-  }
-}
-
-export class MockShapeStyle implements IShapeStyle {
-  color = '#000000';
-}
-
-export class MockShapeOptions extends ShapeOptions {
-  public static readonly DefaultOptions: MockShapeOptions = {
-    ...ShapeOptions.DefaultOptions,
-  };
-
-  constructor() {
-    super();
-  }
-}
 
 // Concrete class extending Shape
-export class MockShape extends Shape<MockShapeDefinition, MockShapeStyle, MockShapeOptions> {
-  constructor(width: number = 0, withStyleAndOptions: boolean = true) {
-    const definition = new MockShapeDefinition(width);
-    if (withStyleAndOptions) {
-      let options: MockShapeOptions = {
-        ...MockShapeOptions.DefaultOptions
-      };
-      super(definition, new MockShapeStyle(), options);
-    } else {
-      super(definition);
-    }
+export class MockShape extends Shape<MockShapeDefinition, IMockShapeStyle, IMockShapeOptions> {
+  constructor(width: number = 0, style?: IMockShapeStyle, options?: IMockShapeOptions ) {
+    super(
+      new MockShapeDefinition(width),
+      new MockShapeStyle(style),
+      new MockShapeOptions(options)
+    );
   }
 
   public get position(): Point {
@@ -76,5 +43,13 @@ export class MockShape extends Shape<MockShapeDefinition, MockShapeStyle, MockSh
 
   public render(context: CanvasRenderingContext2D): void {
 
+  }
+
+  public isMouseOver(mousePosition: Point): boolean {
+    return true;
+  }
+
+  public hasBorderTest() {
+    return this.hasBorder();
   }
 }

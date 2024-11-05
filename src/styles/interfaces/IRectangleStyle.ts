@@ -1,17 +1,9 @@
 import { IShapeStyle } from "./IShapeStyle.js";
-import { IBorderStyle } from "./IBorderStyle.js";
+import { IRectangleBaseStyle } from "./IRectangleBaseStyle.js";
 
 /**
- * Represents the style options for a rectangle.
+ * Represents the style options for a rectangle including the states.
  */
-export interface IRectangleStyle extends IShapeStyle {
-  /**
-   * The fill color of the rectangle.
-   */
-  color?: string;
+export interface IRectangleStyle extends IRectangleBaseStyle, IShapeStyle {
 
-  /**
-   *  The border style of the rectangle.
-   */
-  border?: IBorderStyle;
 }

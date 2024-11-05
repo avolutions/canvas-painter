@@ -1,17 +1,9 @@
+import { ICircleBaseStyle } from "./ICircleBaseStyle.js";
 import { IShapeStyle } from "./IShapeStyle.js";
-import { IBorderStyle } from "./IBorderStyle.js";
 
 /**
- * Represents the style options for a circle.
+ * Represents the style options for a circle including the states.
  */
-export interface ICircleStyle extends IShapeStyle {
-  /**
-   * The fill color of the circle.
-   */
-  color?: string;
+export interface ICircleStyle extends ICircleBaseStyle, IShapeStyle {
 
-  /**
-   *  The border style of the circle.
-   */
-  border?: IBorderStyle;
 }

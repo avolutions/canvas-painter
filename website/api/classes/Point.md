@@ -60,6 +60,34 @@ The y-coordinate of the point.
 
 ## Methods
 
+### asUntransformed()
+
+> **asUntransformed**(`offset`, `zoom`): `this`
+
+Adjusts the point's coordinates to remove the effects of a specified pan offset and zoom level.
+
+#### Parameters
+
+• **offset**: [`Point`](Point.md)
+
+The pan offset to remove from the current point's coordinates.
+
+• **zoom**: `number`
+
+The zoom level to reverse from the current point's coordinates.
+
+#### Returns
+
+`this`
+
+The current point with out transformation.
+
+#### Defined in
+
+[types/Point.ts:67](https://github.com/avolutions/canvas-painter/blob/main/src/types/Point.ts#L67)
+
+***
+
 ### move()
 
 > **move**(`deltaX`, `deltaY`): `void`

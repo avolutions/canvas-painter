@@ -61,28 +61,28 @@ const CircleConfigurator: React.FC<CircleConfiguratorProps> = ({ circle, onCircl
               {!isCircleStyleCollapsed && (
                 <>
                   <div className={styles.formRow}>
+                    <label>borderColor</label>
+                    <input
+                      type="color"
+                      value={circle.style.borderColor}
+                      onChange={(e) => onCircleChange('style.borderColor', e.target.value)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
+                    <label>borderWidth</label>
+                    <input
+                      type="number"
+                      value={circle.style.borderWidth}
+                      min="0"
+                      onChange={(e) => onCircleChange('style.borderWidth', Number(e.target.value))}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
                     <label>color</label>
                     <input
                       type="color"
                       value={circle.style.color}
                       onChange={(e) => onCircleChange('style.color', e.target.value)}
-                    />
-                  </div>
-                  <div className={styles.formRow}>
-                    <label>border.color</label>
-                    <input
-                      type="color"
-                      value={circle.style.border.color}
-                      onChange={(e) => onCircleChange('style.border.color', e.target.value)}
-                    />
-                  </div>
-                  <div className={styles.formRow}>
-                    <label>border.width</label>
-                    <input
-                      type="number"
-                      value={circle.style.border.width}
-                      min="0"
-                      onChange={(e) => onCircleChange('style.border.width', Number(e.target.value))}
                     />
                   </div>
                 </>
