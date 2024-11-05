@@ -64,7 +64,7 @@ export class Point extends Serializable {
    *
    * @returns The current point with out transformation.
    */
-  public asUntransformed(offset: Point, zoom: number): Point {
+  public asUntransformed(offset: Point, zoom: number): this {
     this.x = (this.x - offset.x) / zoom;
     this.y = (this.y - offset.y) / zoom;
 
