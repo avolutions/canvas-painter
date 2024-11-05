@@ -105,6 +105,7 @@ export class Canvas {
 
     // Add other event listener
     this._canvas.addEventListener('mousemove', this.onMouseMove);
+    this._canvas.addEventListener('mouseleave', this.onMouseLeave);
 
     // Prevent default context menu on right click
     this._canvas.addEventListener('contextmenu', this.onContextMenu);
@@ -120,6 +121,7 @@ export class Canvas {
     this._canvas.removeEventListener('mousemove', this.onMouseMove);
     this._canvas.removeEventListener('mouseup', this.onMouseUp);
     this._canvas.removeEventListener('mouseleave', this.onMouseUp);
+    this._canvas.removeEventListener('mouseleave', this.onMouseLeave);
     this._canvas.removeEventListener('contextmenu', this.onContextMenu);
   }
 
@@ -233,6 +235,18 @@ export class Canvas {
     // Set default cursor
     this._canvas.style.cursor = this._style.cursor.default;
   }
+
+  /**
+   * Handles the mouse leave event for the canvas.
+   * This method is triggered when the mouse leaves the canvas area,
+   * setting the state of all watched shapes to `Default`.
+   *
+   * @param event - The mouse event that triggered this handler.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  private readonly onMouseLeave = (event: MouseEvent): void => {
+    this.setStateForAllShapes(ShapeState.Default);
+  };
 
   /**
    * Retrieves the height of the canvas element, prioritizing the provided options,
@@ -657,4 +671,14 @@ export class Canvas {
     this.redraw();
   }
 
+  /**
+   * Sets a specified state for all shapes being watched.
+   *
+   * @param state - The state to set for all watched shapes.
+   */
+  private setStateForAllShapes(state: ShapeState): void {
+    this.watchedShapes.forEach(shape => {
+        shape.state = state;
+    });
+  }
 }

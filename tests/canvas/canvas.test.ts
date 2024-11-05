@@ -91,6 +91,8 @@ describe('Canvas class', () => {
     expect(removeEventListenerSpy).toHaveBeenCalledWith('mouseup', expect.any(Function));
     expect(removeEventListenerSpy).toHaveBeenCalledWith('mouseleave', expect.any(Function));
     expect(removeEventListenerSpy).toHaveBeenCalledWith('contextmenu', expect.any(Function));
+
+    expect(removeEventListenerSpy).toHaveBeenCalledTimes(7);
   });
 
   test('should set default options', () => {
