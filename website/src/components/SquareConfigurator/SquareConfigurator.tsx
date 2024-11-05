@@ -72,28 +72,28 @@ const SquareConfigurator: React.FC<SquareConfiguratorProps> = ({ square, onSquar
               {!isSquareStyleCollapsed && (
                 <>
                   <div className={styles.formRow}>
+                    <label>borderColor</label>
+                    <input
+                      type="color"
+                      value={square.style.borderColor}
+                      onChange={(e) => onSquareChange('style.borderColor', e.target.value)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
+                    <label>borderWidth</label>
+                    <input
+                      type="number"
+                      value={square.style.borderWidth}
+                      min="0"
+                      onChange={(e) => onSquareChange('style.borderWidth', Number(e.target.value))}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
                     <label>color</label>
                     <input
                       type="color"
                       value={square.style.color}
                       onChange={(e) => onSquareChange('style.color', e.target.value)}
-                    />
-                  </div>
-                  <div className={styles.formRow}>
-                    <label>border.color</label>
-                    <input
-                      type="color"
-                      value={square.style.border.color}
-                      onChange={(e) => onSquareChange('style.border.color', e.target.value)}
-                    />
-                  </div>
-                  <div className={styles.formRow}>
-                    <label>border.width</label>
-                    <input
-                      type="number"
-                      value={square.style.border.width}
-                      min="0"
-                      onChange={(e) => onSquareChange('style.border.width', Number(e.target.value))}
                     />
                   </div>
                 </>

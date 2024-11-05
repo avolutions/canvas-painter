@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import styles from '../../css/Configurator.module.css';
 import { Rectangle } from '@avolutions/canvas-painter';
+import CursorDropdown from '../CursorDropdown/CursorDropdown';
 
 interface RectangleConfiguratorProps {
   rectangle: Rectangle;
@@ -80,6 +81,23 @@ const RectangleConfigurator: React.FC<RectangleConfiguratorProps> = ({ rectangle
               {!isRectangleStyleCollapsed && (
                 <>
                   <div className={styles.formRow}>
+                    <label>borderColor</label>
+                    <input
+                      type="color"
+                      value={rectangle.style.borderColor}
+                      onChange={(e) => onRectangleChange('style.borderColor', e.target.value)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
+                    <label>borderWidth</label>
+                    <input
+                      type="number"
+                      value={rectangle.style.borderWidth}
+                      min="0"
+                      onChange={(e) => onRectangleChange('style.borderWidth', Number(e.target.value))}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
                     <label>color</label>
                     <input
                       type="color"
@@ -88,20 +106,10 @@ const RectangleConfigurator: React.FC<RectangleConfiguratorProps> = ({ rectangle
                     />
                   </div>
                   <div className={styles.formRow}>
-                    <label>border.color</label>
-                    <input
-                      type="color"
-                      value={rectangle.style.border.color}
-                      onChange={(e) => onRectangleChange('style.border.color', e.target.value)}
-                    />
-                  </div>
-                  <div className={styles.formRow}>
-                    <label>border.width</label>
-                    <input
-                      type="number"
-                      value={rectangle.style.border.width}
-                      min="0"
-                      onChange={(e) => onRectangleChange('style.border.width', Number(e.target.value))}
+                    <label>cursor</label>
+                    <CursorDropdown
+                      value={rectangle.style.cursor}
+                      onChange={(e) => onRectangleChange('style.cursor', e )}
                     />
                   </div>
                 </>
