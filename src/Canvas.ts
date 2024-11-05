@@ -212,9 +212,15 @@ export class Canvas {
         // Set the first hovered shape to Hover state
         shape.state = ShapeState.Hover;
 
+        // Set cursor
+        this._canvas.style.cursor = shape.stateStyle.cursor!;
+
         // Set the flag after finding the first hovered shape
         hoverSet = true;
       } else {
+        // Reset cursor
+        this._canvas.style.cursor = this._style.cursor.default;
+
         // Ensure all other shapes are in Default state if not hovered
         shape.state = ShapeState.Default;
       }
@@ -229,11 +235,13 @@ export class Canvas {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private readonly onMouseUp = (event: MouseEvent): void => {
-    // Stop panning
-    this._isPanning = false;
+    if (this._isPanning) {
+      // Stop panning
+      this._isPanning = false;
 
-    // Set default cursor
-    this._canvas.style.cursor = this._style.cursor.default;
+      // Set default cursor
+      this._canvas.style.cursor = this._style.cursor.default;
+    }
   }
 
   /**

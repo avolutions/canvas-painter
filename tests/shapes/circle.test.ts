@@ -6,6 +6,7 @@ import { Circle } from '../../src/shapes/Circle';
 import { CircleStyle } from '../../src/styles/CircleStyle';
 import { InvalidConstructorArgumentsError } from '../../src/errors/InvalidConstructorArgumentsError';
 import { ShapeState } from '../../src/common/ShapeState';
+import { Cursor } from '../../src/types/Cursor';
 
 describe('Circle class', () => {
   let context: CanvasRenderingContext2D;
@@ -49,7 +50,8 @@ describe('Circle class', () => {
     const style = {
       color: 'red',
       borderColor: 'blue',
-      borderWidth: 2.5
+      borderWidth: 2.5,
+      cursor: Cursor.Alias
     };
 
     const circle = new Circle(center, 7, style);
@@ -101,7 +103,8 @@ describe('Circle class', () => {
     const style = {
       color: 'red',
       borderColor: 'blue',
-      borderWidth: 2.5
+      borderWidth: 2.5,
+      cursor: Cursor.Grab
     };
 
     const circle = new Circle(centerX, centerY, 7, style);

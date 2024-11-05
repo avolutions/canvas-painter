@@ -1,9 +1,15 @@
+import { Cursor } from "../../types/Cursor.js";
 import { IShapeBaseStyle } from "./IShapeBaseStyle.js";
 
 /**
  * Interface representing the style properties for a shape.
  */
 export interface IShapeStyle {
+  /**
+   * Specifies the cursor style for the shape.
+   */
+  cursor?: Cursor;
+
   /**
    * Hover style for the shape.
    *

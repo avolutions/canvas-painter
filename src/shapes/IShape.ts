@@ -1,4 +1,5 @@
 import { ShapeState } from "../common/ShapeState.js";
+import { IShapeStyle } from "../styles/interfaces/IShapeStyle.js";
 import { Point } from "../types/Point.js";
 
 /**
@@ -71,4 +72,11 @@ export interface IShape {
    * @param state - The new state to assign to the shape.
    */
   set state(state: ShapeState);
+
+  /**
+   * Retrieves the effective style of the shape based on its current state.
+   *
+   * @returns The computed style object for the current shape state, with state-specific overrides merged in as necessary.
+   */
+  get stateStyle(): IShapeStyle;
 }

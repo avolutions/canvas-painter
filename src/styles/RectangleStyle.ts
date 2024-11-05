@@ -1,3 +1,4 @@
+import { Cursor } from "../types/Cursor.js";
 import { IRectangleBaseStyle } from "./interfaces/IRectangleBaseStyle.js";
 import { IRectangleStyle } from "./interfaces/IRectangleStyle.js";
 import { ShapeStyle } from "./ShapeStyle.js";
@@ -6,11 +7,6 @@ import { ShapeStyle } from "./ShapeStyle.js";
  * Represents the style options for a rectangle.
  */
 export class RectangleStyle extends ShapeStyle<IRectangleBaseStyle> implements IRectangleStyle {
-  /**
-   * The fill color of the rectangle.
-   */
-  public color!: string;
-
   /**
    * The color of the border.
    */
@@ -22,12 +18,18 @@ export class RectangleStyle extends ShapeStyle<IRectangleBaseStyle> implements I
   public borderWidth!: number;
 
   /**
+   * The fill color of the rectangle.
+   */
+  public color!: string;
+
+  /**
    * Default style for the rectangle.
    */
   public static readonly DefaultStyle: IRectangleStyle = {
-    color: '#000000',
     borderColor: '#000000',
-    borderWidth: 0
+    borderWidth: 0,
+    color: '#000000',
+    cursor: Cursor.Default
   };
 
   /**

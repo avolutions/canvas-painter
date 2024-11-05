@@ -1,3 +1,4 @@
+import { Cursor } from "../types/Cursor.js";
 import { ILineBaseStyle } from "./interfaces/ILineBaseStyle.js";
 import { ILineStyle } from "./interfaces/ILineStyle.js";
 import { ShapeStyle } from "./ShapeStyle.js";
@@ -21,7 +22,8 @@ export class LineStyle extends ShapeStyle<ILineBaseStyle> implements ILineStyle 
    */
   public static readonly DefaultStyle: ILineStyle = {
     color: '#000000',
-    width: 1
+    cursor: Cursor.Default,
+    width: 1,
   };
 
   /**

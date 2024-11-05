@@ -5,11 +5,6 @@ import { IShapeBaseStyle } from "./IShapeBaseStyle.js";
  */
 export interface IRectangleBaseStyle extends IShapeBaseStyle {
   /**
-   * The fill color of the rectangle.
-   */
-  color?: string;
-
-  /**
    * The color of the border.
    */
   borderColor?: string;
@@ -18,4 +13,9 @@ export interface IRectangleBaseStyle extends IShapeBaseStyle {
    * The width of the border in pixels.
    */
   borderWidth?: number;
+
+  /**
+   * The fill color of the rectangle.
+   */
+  color?: string;
 }

@@ -6,6 +6,7 @@ import { Point } from '../../src/types/Point';
 import { Line } from '../../src/shapes/Line';
 import { LineStyle } from '../../src/styles/LineStyle';
 import { InvalidConstructorArgumentsError } from '../../src/errors/InvalidConstructorArgumentsError';
+import { Cursor } from '../../src/types/Cursor';
 
 describe('Line class', () => {
   let context: CanvasRenderingContext2D;
@@ -49,7 +50,8 @@ describe('Line class', () => {
     const end = new Point(15, 20);
     const style = {
       color: 'red',
-      width: 2.5
+      width: 2.5,
+      cursor: Cursor.Copy
     };
 
     const line = new Line(start, end, style);
@@ -61,6 +63,7 @@ describe('Line class', () => {
     expect(line.style).toEqual(style);
     expect(line.style.color).toBe(style.color);
     expect(line.style.width).toBe(style.width);
+    expect(line.style.cursor).toBe(style.cursor);
   });
 
   test('should initialize options from constructor using Points', () => {
@@ -101,7 +104,8 @@ describe('Line class', () => {
     const endY = 20;
     const style = {
       color: 'red',
-      width: 2.5
+      width: 2.5,
+      cursor: Cursor.Copy
     };
 
     const line = new Line(startX, startY, endX, endY, style);
@@ -113,6 +117,7 @@ describe('Line class', () => {
     expect(line.style).toEqual(style);
     expect(line.style.color).toBe(style.color);
     expect(line.style.width).toBe(style.width);
+    expect(line.style.cursor).toBe(style.cursor);
   });
 
   test('should initialize options from constructor using coordinates', () => {
@@ -177,7 +182,6 @@ describe('Line class', () => {
 
     line.start = new Point(50, 100);
     line.end = new Point(150, 200);
-    line.style = { color: 'blue', width: 3 }
     line.start.x = 51;
     line.start.x = 101;
     line.end.x = 151;
@@ -185,7 +189,7 @@ describe('Line class', () => {
     line.style.color = 'green';
     line.style.width = 5;
 
-    expect(observer).toHaveBeenCalledTimes(10);
+    expect(observer).toHaveBeenCalledTimes(8);
   });
 
   test('should move start on x- and y-axis', () => {

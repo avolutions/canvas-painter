@@ -175,21 +175,24 @@ The following table is showing all available circle styles and the default value
 
 Style | Type | Default | Explanation
 --- | --- | --- | ---
+`borderColor` | string | '#000000' | Defines the color of circle border. Border is only shown if `borderColor` is provided and `borderWidth` is greater 0.
+`borderWidth` | number | 0 | Defines the width of circles border. Border is only shown if `borderColor` is provided and `borderWidth` is greater 0.
 `color` | string | '#000000' (black) | Sets the default fill color for the circle.
-`borderColor` | string | '#000000' | Defines the color of circle border. Border is only shown if `borderColor` and `borderWidth` is provided.
-`borderWidth` | number | 0 | Defines the width of circles border. Border is only shown if `borderColor` and `borderWidth` is provided.
+`cursor` | [Cursor](../../api/enumerations/Cursor) | [Cursor.Default](../../api/enumerations/Cursor#default) | Specifies a custom cursor style for the shape. Overrides the default cursor when interacting with the shape.
 
 You can specify styles for different shape states by providing a unique set of properties under each state (e.g., hover). Each state-specific style overrides the default only while the shape is in that state.
 
 ```js
 {
-  color: '#000000',
   borderColor: '#000000',
   borderWidth: 0,
+  color: '#000000',
+  cursor: Cursor.Default,
   hover: {
-    color: '#000000',
     borderColor: '#000000',
-    borderWidth: 0
+    borderWidth: 0,
+    color: '#000000',
+    cursor: Cursor.Default
   }
 }
 ```

@@ -1,3 +1,4 @@
+import { Cursor } from "../types/Cursor.js";
 import { ICircleBaseStyle } from "./interfaces/ICircleBaseStyle.js";
 import { ICircleStyle } from "./interfaces/ICircleStyle.js";
 import { ShapeStyle } from "./ShapeStyle.js";
@@ -6,11 +7,6 @@ import { ShapeStyle } from "./ShapeStyle.js";
  * Represents the style options for a circle.
  */
 export class CircleStyle extends ShapeStyle<ICircleBaseStyle> implements ICircleStyle {
-  /**
-   * The fill color of the circle.
-   */
-  public color!: string;
-
   /**
    * The color of the border.
    */
@@ -22,12 +18,18 @@ export class CircleStyle extends ShapeStyle<ICircleBaseStyle> implements ICircle
   public borderWidth!: number;
 
   /**
+   * The fill color of the circle.
+   */
+  public color!: string;
+
+  /**
    * Default style for the circle.
    */
   public static readonly DefaultStyle: ICircleStyle = {
-    color: '#000000',
     borderColor: '#000000',
-    borderWidth: 0
+    borderWidth: 0,
+    color: '#000000',
+    cursor: Cursor.Default
   };
 
   /**
