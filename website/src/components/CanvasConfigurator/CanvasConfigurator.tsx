@@ -3,7 +3,7 @@ import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import CodeBlock from '@theme/CodeBlock';
 import styles from '../../css/Configurator.module.css';
 
-import { CanvasOptions, CanvasStyle } from '@avolutions/canvas-painter';
+import { Canvas, CanvasOptions, CanvasStyle } from '@avolutions/canvas-painter';
 import CursorDropdown from '../CursorDropdown/CursorDropdown';
 
 // Format JSON-like output function
@@ -23,11 +23,12 @@ const formatAsJavaScriptObject = (
 };
 
 interface CanvasConfiguratorProps {
+  canvas: Canvas,
   setOptions: React.Dispatch<React.SetStateAction<CanvasOptions>>;
   setStyle: React.Dispatch<React.SetStateAction<CanvasStyle>>;
 }
 
-const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ setOptions, setStyle }) => {
+const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ canvas, setOptions, setStyle }) => {
   const [options, updateOptions] = useState<CanvasOptions>(CanvasOptions.DefaultOptions);
   const [style, updateStyle] = useState<CanvasStyle>(CanvasStyle.DefaultStyle);
 
@@ -39,6 +40,14 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ setOptions, set
 
   const [isStyleSectionCollapsed, setIsStyleSectionCollapsed] = useState(false);
   const [isStyleJsonCollapsed, setIsStyleJsonCollapsed] = useState(true);
+
+  useEffect(() => {
+    updateOptions((prevOptions) => ({
+      ...prevOptions,
+      width: canvas._options.width,
+      height: canvas._options.height,
+    }));
+  }, []);
 
   useEffect(() => {
     setOptions(options);
