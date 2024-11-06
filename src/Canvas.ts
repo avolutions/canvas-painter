@@ -66,11 +66,13 @@ export class Canvas {
 
     // Determine width, set canvas width and update options with new value
     const width = this.getWidth(options);
+    this._canvas.style.width = "auto"; // Overrides any CSS class-based width
     this._canvas.width = width;
     this._options.width = width;
 
     // Determine height, set canvas width and update options with new value
     const height = this.getHeight(options);
+    this._canvas.style.height = "auto"; // Overrides any CSS class-based width
     this._canvas.height = height;
     this._options.height = height;
 
@@ -495,10 +497,11 @@ export class Canvas {
    * Clears the canvas and re-renders all watched and visible shapes.
    */
   public redraw(): void {
-    this.clear();
-
      // Reset the transformation matrix to identity
     this._context.resetTransform();
+
+    // Clear the whole canvas
+    this.clear();
 
     // Apply the new transformation
     this._context.transform(this.zoomScale, 0, 0, this.zoomScale, this._panOffset.x, this._panOffset.y);
