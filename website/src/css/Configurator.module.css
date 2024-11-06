@@ -71,3 +71,12 @@ hr {
 .h4Header {
   font-size: var(--ifm-h4-font-size);
 }
+
+.buttons {
+}
+
+.buttons .button {
+  color: white;
+  margin-bottom: 5pt;
+  width: 100%;
+}
