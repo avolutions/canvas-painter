@@ -10,9 +10,8 @@ export default function Demo(): JSX.Element {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const [canvasInstance, setCanvasInstance] = useState<Canvas | null>(null);
-
-  const [options, setOptions] = useState<CanvasOptions>(CanvasOptions.DefaultOptions);
-  const [style, setStyle] = useState<CanvasStyle>(CanvasStyle.DefaultStyle);
+  const [options, setOptions] = useState<CanvasOptions>();
+  const [style, setStyle] = useState<CanvasStyle>();
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -26,9 +25,12 @@ export default function Demo(): JSX.Element {
     <Layout>
       <div className={styles.demoLayout}>
         <aside className={styles.sidebar}>
-          <CanvasConfigurator
-            setOptions={setOptions}
-            setStyle={setStyle} />
+            {canvasInstance && (
+              <CanvasConfigurator
+                canvas={canvasInstance}
+                setOptions={setOptions}
+                setStyle={setStyle} />
+            )}
         </aside>
 
         <main className={styles.content}>

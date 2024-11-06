@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import styles from '../../css/Configurator.module.css';
-import { Rectangle } from '@avolutions/canvas-painter';
+import { Rectangle, ShapeState } from '@avolutions/canvas-painter';
 import CursorDropdown from '../CursorDropdown/CursorDropdown';
 
 interface RectangleConfiguratorProps {
@@ -13,6 +13,20 @@ const RectangleConfigurator: React.FC<RectangleConfiguratorProps> = ({ rectangle
   const [isRectangleCollapsed, setIsRectangleCollapsed] = useState(true);
   const [isRectangleStyleCollapsed, setIsRectangleStyleCollapsed] = useState(true);
   const [isRectangleOptionsCollapsed, setIsRectangleOptionsCollapsed] = useState(true);
+  const [selectedState, setSelectedState] = useState(ShapeState.Default);
+
+  const getStyleValue = (property) => {
+    return selectedState === ShapeState.Default
+      ? rectangle.style[property]
+      : rectangle.style[selectedState]?.[property] || '';
+  };
+
+  const handleStyleChange = (property, value) => {
+    const path = selectedState === ShapeState.Default
+      ? `style.${property}`
+      : `style.${selectedState}.${property}`;
+    onRectangleChange(path, value);
+  };
 
   return (
     <>
@@ -81,35 +95,43 @@ const RectangleConfigurator: React.FC<RectangleConfiguratorProps> = ({ rectangle
               {!isRectangleStyleCollapsed && (
                 <>
                   <div className={styles.formRow}>
+                    <label>Select State</label>
+                    <select value={selectedState} onChange={(e) => setSelectedState(e.target.value)}>
+                      <option value={ShapeState.Default}>{ShapeState.Default}</option>
+                      <option value={ShapeState.Hover}>{ShapeState.Hover}</option>
+                    </select>
+                  </div>
+
+                  <div className={styles.formRow}>
                     <label>borderColor</label>
                     <input
                       type="color"
-                      value={rectangle.style.borderColor}
-                      onChange={(e) => onRectangleChange('style.borderColor', e.target.value)}
+                      value={getStyleValue('borderColor')}
+                      onChange={(e) => handleStyleChange('borderColor', e.target.value)}
                     />
                   </div>
                   <div className={styles.formRow}>
                     <label>borderWidth</label>
                     <input
                       type="number"
-                      value={rectangle.style.borderWidth}
+                      value={getStyleValue('borderWidth')}
                       min="0"
-                      onChange={(e) => onRectangleChange('style.borderWidth', Number(e.target.value))}
+                      onChange={(e) => handleStyleChange('borderWidth', Number(e.target.value))}
                     />
                   </div>
                   <div className={styles.formRow}>
                     <label>color</label>
                     <input
                       type="color"
-                      value={rectangle.style.color}
-                      onChange={(e) => onRectangleChange('style.color', e.target.value)}
+                      value={getStyleValue('color')}
+                      onChange={(e) => handleStyleChange('color', e.target.value)}
                     />
                   </div>
                   <div className={styles.formRow}>
                     <label>cursor</label>
                     <CursorDropdown
-                      value={rectangle.style.cursor}
-                      onChange={(e) => onRectangleChange('style.cursor', e )}
+                      value={getStyleValue('cursor')}
+                      onChange={(e) => handleStyleChange('cursor', e )}
                     />
                   </div>
                 </>
