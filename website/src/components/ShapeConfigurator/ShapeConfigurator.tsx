@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Canvas, Circle, Line, Rectangle, Shape, Square } from '@avolutions/canvas-painter';
+import { Canvas, Circle, CircleStyle, Line, LineStyle, Rectangle, RectangleStyle, Shape, Square } from '@avolutions/canvas-painter';
 import RectangleConfigurator from '../RectangleConfigurator/RectangleConfigurator';
 import SquareConfigurator from '../SquareConfigurator/SquareConfigurator';
 import CircleConfigurator from '../CircleConfigurator/CircleConfigurator';
@@ -14,10 +14,10 @@ const ShapeConfigurator: React.FC<ShapeConfiguratorProps> = ({ canvas }) => {
   const [, setRenderTrigger] = useState(0); // Dummy state variable for forcing re-renders
 
   const [shapes, setShapes] = useState<Shape[]>([]);
-  const [rectangle, setRectangle] = useState<Rectangle>(new Rectangle(0, 0, 0, 0, 0, {}, {}));
-  const [square, setSquare] = useState<Square>(new Square(0, 0, 0, 0, {}, {}));
-  const [circle, setCircle] = useState<Circle>(new Circle(0, 0, 0, {}, {}));
-  const [line, setLine] = useState<Line>(new Line(0, 0, 0, 0, {}, {}));
+  const [rectangle, setRectangle] = useState<Rectangle>(new Rectangle(0, 0, 0, 0, 0, { hover: RectangleStyle.DefaultStyle }, {}));
+  const [square, setSquare] = useState<Square>(new Square(0, 0, 0, 0, { hover: RectangleStyle.DefaultStyle }, {}));
+  const [circle, setCircle] = useState<Circle>(new Circle(0, 0, 0, { hover: CircleStyle.DefaultStyle }, {}));
+  const [line, setLine] = useState<Line>(new Line(0, 0, 0, 0, { hover: LineStyle.DefaultStyle }, {}));
 
   useEffect(() => {
     setShapes((prevShapes) => [...prevShapes, rectangle, square, circle, line]);

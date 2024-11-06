@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import styles from '../../css/Configurator.module.css';
-import { Line } from '@avolutions/canvas-painter';
+import { Line, ShapeState } from '@avolutions/canvas-painter';
+import CursorDropdown from '../CursorDropdown/CursorDropdown';
 
 interface LineConfiguratorProps {
   line: Line;
@@ -12,6 +13,20 @@ const LineConfigurator: React.FC<LineConfiguratorProps> = ({ line, onLineChange 
   const [isLineCollapsed, setIsLineCollapsed] = useState(true);
   const [isLineStyleCollapsed, setIsLineStyleCollapsed] = useState(true);
   const [isLineOptionsCollapsed, setIsLineOptionsCollapsed] = useState(true);
+  const [selectedState, setSelectedState] = useState(ShapeState.Default);
+
+  const getStyleValue = (property) => {
+    return selectedState === ShapeState.Default
+      ? line.style[property]
+      : line.style[selectedState]?.[property] || '';
+  };
+
+  const handleStyleChange = (property, value) => {
+    const path = selectedState === ShapeState.Default
+      ? `style.${property}`
+      : `style.${selectedState}.${property}`;
+    onLineChange(path, value);
+  };
 
   return (
     <>
@@ -69,20 +84,35 @@ const LineConfigurator: React.FC<LineConfiguratorProps> = ({ line, onLineChange 
               {!isLineStyleCollapsed && (
                 <>
                   <div className={styles.formRow}>
+                    <label>Select State</label>
+                    <select value={selectedState} onChange={(e) => setSelectedState(e.target.value)}>
+                      <option value={ShapeState.Default}>{ShapeState.Default}</option>
+                      <option value={ShapeState.Hover}>{ShapeState.Hover}</option>
+                    </select>
+                  </div>
+
+                  <div className={styles.formRow}>
                     <label>color</label>
                     <input
                       type="color"
-                      value={line.style.color}
-                      onChange={(e) => onLineChange('style.color', e.target.value)}
+                      value={getStyleValue('color')}
+                      onChange={(e) => handleStyleChange('color', e.target.value)}
                     />
                   </div>
                   <div className={styles.formRow}>
                     <label>width</label>
                     <input
                       type="number"
-                      value={line.style.width}
+                      value={getStyleValue('width')}
                       min="0"
-                      onChange={(e) => onLineChange('style.width', Number(e.target.value))}
+                      onChange={(e) => handleStyleChange('width', Number(e.target.value))}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
+                    <label>cursor</label>
+                    <CursorDropdown
+                      value={getStyleValue('cursor')}
+                      onChange={(e) => handleStyleChange('cursor', e )}
                     />
                   </div>
                 </>

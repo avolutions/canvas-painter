@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import styles from '../../css/Configurator.module.css';
-import { Circle } from '@avolutions/canvas-painter';
+import { Circle, ShapeState } from '@avolutions/canvas-painter';
+import CursorDropdown from '../CursorDropdown/CursorDropdown';
 
 interface CircleConfiguratorProps {
   circle: Circle;
@@ -12,6 +13,21 @@ const CircleConfigurator: React.FC<CircleConfiguratorProps> = ({ circle, onCircl
   const [isCircleCollapsed, setIsCircleCollapsed] = useState(true);
   const [isCircleStyleCollapsed, setIsCircleStyleCollapsed] = useState(true);
   const [isCircleOptionsCollapsed, setIsCircleOptionsCollapsed] = useState(true);
+
+  const [selectedState, setSelectedState] = useState(ShapeState.Default);
+
+  const getStyleValue = (property) => {
+    return selectedState === ShapeState.Default
+      ? circle.style[property]
+      : circle.style[selectedState]?.[property] || '';
+  };
+
+  const handleStyleChange = (property, value) => {
+    const path = selectedState === ShapeState.Default
+      ? `style.${property}`
+      : `style.${selectedState}.${property}`;
+    onCircleChange(path, value);
+  };
 
   return (
     <>
@@ -61,28 +77,43 @@ const CircleConfigurator: React.FC<CircleConfiguratorProps> = ({ circle, onCircl
               {!isCircleStyleCollapsed && (
                 <>
                   <div className={styles.formRow}>
+                    <label>Select State</label>
+                    <select value={selectedState} onChange={(e) => setSelectedState(e.target.value)}>
+                      <option value={ShapeState.Default}>{ShapeState.Default}</option>
+                      <option value={ShapeState.Hover}>{ShapeState.Hover}</option>
+                    </select>
+                  </div>
+
+                  <div className={styles.formRow}>
                     <label>borderColor</label>
                     <input
                       type="color"
-                      value={circle.style.borderColor}
-                      onChange={(e) => onCircleChange('style.borderColor', e.target.value)}
+                      value={getStyleValue('borderColor')}
+                      onChange={(e) => handleStyleChange('borderColor', e.target.value)}
                     />
                   </div>
                   <div className={styles.formRow}>
                     <label>borderWidth</label>
                     <input
                       type="number"
-                      value={circle.style.borderWidth}
+                      value={getStyleValue('borderWidth')}
                       min="0"
-                      onChange={(e) => onCircleChange('style.borderWidth', Number(e.target.value))}
+                      onChange={(e) => handleStyleChange('borderWidth', Number(e.target.value))}
                     />
                   </div>
                   <div className={styles.formRow}>
                     <label>color</label>
                     <input
                       type="color"
-                      value={circle.style.color}
-                      onChange={(e) => onCircleChange('style.color', e.target.value)}
+                      value={getStyleValue('color')}
+                      onChange={(e) => handleStyleChange('color', e.target.value)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
+                    <label>cursor</label>
+                    <CursorDropdown
+                      value={getStyleValue('cursor')}
+                      onChange={(e) => handleStyleChange('cursor', e )}
                     />
                   </div>
                 </>
