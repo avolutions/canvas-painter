@@ -41,6 +41,8 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ canvas, setOpti
   const [isStyleSectionCollapsed, setIsStyleSectionCollapsed] = useState(false);
   const [isStyleJsonCollapsed, setIsStyleJsonCollapsed] = useState(true);
 
+  const [isActionsSectionCollapsed, setIsActionsSectionCollapsed] = useState(false);
+
   useEffect(() => {
     updateOptions((prevOptions) => ({
       ...prevOptions,
@@ -86,6 +88,18 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ canvas, setOpti
       ...prevStyle,
       [field]: value,
     }));
+  };
+
+  const handleResetZoom = () => {
+    canvas.resetZoom();
+  };
+
+  const handleResetPan = () => {
+    canvas.resetPan();
+  };
+
+  const handleResetZoomPan = () => {
+    canvas.resetZoomPan();
   };
 
   return (
@@ -272,6 +286,39 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ canvas, setOpti
                 {isStyleJsonCollapsed ? <FiChevronDown /> : <FiChevronUp />}
               </button>
               {!isStyleJsonCollapsed && <CodeBlock language="json">{styleJson}</CodeBlock>}
+            </div>
+          </>
+        )}
+      </div>
+
+      <hr />
+
+      <div className={styles.collapsibleSection}>
+        <button
+          onClick={() => setIsActionsSectionCollapsed((prev) => !prev)}
+          className={`${styles.collapsibleHeader} ${styles.h3Header}`}
+        >
+          Actions
+          {isActionsSectionCollapsed ? <FiChevronDown /> : <FiChevronUp />}
+        </button>
+        {!isActionsSectionCollapsed && (
+          <>
+            <div className={styles.buttons}>
+              {options.zoomable &&
+                <button
+                  className={`${styles.button} button button--secondary`}
+                  onClick={handleResetZoom}>Reset Zoom</button>
+              }
+              {options.pannable &&
+                <button
+                  className={`${styles.button} button button--secondary`}
+                  onClick={handleResetPan}>Reset Pan</button>
+              }
+              {options.zoomable && options.pannable &&
+                <button
+                  className={`${styles.button} button button--secondary`}
+                  onClick={handleResetZoomPan}>Reset Zoom & Pan</button>
+              }
             </div>
           </>
         )}
