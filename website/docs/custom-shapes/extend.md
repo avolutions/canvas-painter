@@ -29,10 +29,8 @@ class Japan extends Rectangle {
   constructor(x, y) {
     const style = {
       color: 'white',
-      border: {
-        color: 'black',
-        width: 1
-      }
+      borderColor: 'black',
+      borderWidth: 1
     }
 
     super(x, y, 150, 100, 0, style);

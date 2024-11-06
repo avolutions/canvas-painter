@@ -138,7 +138,7 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
     context.save(); // Save the current canvas state
 
     // Set circle specific styles
-    context.fillStyle = this.style.color;
+    context.fillStyle = this.stateStyle.color;
 
     context.beginPath();
     context.arc(
@@ -151,13 +151,32 @@ export class Circle extends Shape<CircleDefinition, CircleStyle, CircleOptions> 
     context.fill();
 
     // Draw border for circle
-    if (this.style.border.width > 0 && this.style.border.color !== '') {
-      context.lineWidth = this.style.border.width;
-      context.strokeStyle = this.style.border.color;
+    if (this.hasBorder()) {
+      context.strokeStyle = this.stateStyle.borderColor;
+      context.lineWidth = this.stateStyle.borderWidth;
 
       context.stroke();
     }
 
     context.restore(); // Restore the canvas state to before the transformations
+  }
+
+  /**
+   * Determines if the mouse is currently over the shape.
+   *
+   * @param mousePosition - The current mouse position.
+   * @returns True if the mouse is over the shape, false otherwise.
+   */
+  public isMouseOver(mousePosition: Point): boolean {
+    const dx = mousePosition.x - this.center.x;
+    const dy = mousePosition.y - this.center.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    // Adjust radius to include the border width
+    const borderRadius = this.hasBorder() ? this.stateStyle.borderWidth / 2 : 0;
+    const effectiveRadius = this.radius + borderRadius;
+
+    // Check if the distance is within the circle's radius
+    return distance <= effectiveRadius;
   }
 }

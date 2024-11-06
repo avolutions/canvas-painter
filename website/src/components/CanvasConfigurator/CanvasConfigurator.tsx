@@ -3,7 +3,7 @@ import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import CodeBlock from '@theme/CodeBlock';
 import styles from '../../css/Configurator.module.css';
 
-import { CanvasOptions, CanvasStyle } from '@avolutions/canvas-painter';
+import { Canvas, CanvasOptions, CanvasStyle } from '@avolutions/canvas-painter';
 import CursorDropdown from '../CursorDropdown/CursorDropdown';
 
 // Format JSON-like output function
@@ -23,11 +23,12 @@ const formatAsJavaScriptObject = (
 };
 
 interface CanvasConfiguratorProps {
+  canvas: Canvas,
   setOptions: React.Dispatch<React.SetStateAction<CanvasOptions>>;
   setStyle: React.Dispatch<React.SetStateAction<CanvasStyle>>;
 }
 
-const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ setOptions, setStyle }) => {
+const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ canvas, setOptions, setStyle }) => {
   const [options, updateOptions] = useState<CanvasOptions>(CanvasOptions.DefaultOptions);
   const [style, updateStyle] = useState<CanvasStyle>(CanvasStyle.DefaultStyle);
 
@@ -39,6 +40,16 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ setOptions, set
 
   const [isStyleSectionCollapsed, setIsStyleSectionCollapsed] = useState(false);
   const [isStyleJsonCollapsed, setIsStyleJsonCollapsed] = useState(true);
+
+  const [isActionsSectionCollapsed, setIsActionsSectionCollapsed] = useState(false);
+
+  useEffect(() => {
+    updateOptions((prevOptions) => ({
+      ...prevOptions,
+      width: canvas._options.width,
+      height: canvas._options.height,
+    }));
+  }, []);
 
   useEffect(() => {
     setOptions(options);
@@ -77,6 +88,18 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ setOptions, set
       ...prevStyle,
       [field]: value,
     }));
+  };
+
+  const handleResetZoom = () => {
+    canvas.resetZoom();
+  };
+
+  const handleResetPan = () => {
+    canvas.resetPan();
+  };
+
+  const handleResetZoomPan = () => {
+    canvas.resetZoomPan();
   };
 
   return (
@@ -232,14 +255,6 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ setOptions, set
         {!isStyleSectionCollapsed && (
           <>
             <div className={styles.formRow}>
-              <label>color</label>
-              <input
-                type="color"
-                value={style.color}
-                onChange={(e) => handleStyleChange('color', e.target.value)}
-              />
-            </div>
-            <div className={styles.formRow}>
               <label>cursor.default</label>
               <CursorDropdown
                 value={style.cursor.default}
@@ -263,6 +278,39 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ setOptions, set
                 {isStyleJsonCollapsed ? <FiChevronDown /> : <FiChevronUp />}
               </button>
               {!isStyleJsonCollapsed && <CodeBlock language="json">{styleJson}</CodeBlock>}
+            </div>
+          </>
+        )}
+      </div>
+
+      <hr />
+
+      <div className={styles.collapsibleSection}>
+        <button
+          onClick={() => setIsActionsSectionCollapsed((prev) => !prev)}
+          className={`${styles.collapsibleHeader} ${styles.h3Header}`}
+        >
+          Actions
+          {isActionsSectionCollapsed ? <FiChevronDown /> : <FiChevronUp />}
+        </button>
+        {!isActionsSectionCollapsed && (
+          <>
+            <div className={styles.buttons}>
+              {options.zoomable &&
+                <button
+                  className={`${styles.button} button button--secondary`}
+                  onClick={handleResetZoom}>Reset Zoom</button>
+              }
+              {options.pannable &&
+                <button
+                  className={`${styles.button} button button--secondary`}
+                  onClick={handleResetPan}>Reset Pan</button>
+              }
+              {options.zoomable && options.pannable &&
+                <button
+                  className={`${styles.button} button button--secondary`}
+                  onClick={handleResetZoomPan}>Reset Zoom & Pan</button>
+              }
             </div>
           </>
         )}

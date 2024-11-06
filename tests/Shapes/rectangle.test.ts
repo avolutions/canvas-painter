@@ -5,6 +5,7 @@
 import { Point } from '../../src/types/Point';
 import { Rectangle } from '../../src/shapes/Rectangle';
 import { Angle } from '../../src/types/Angle';
+import { ShapeState } from '../../src/common/ShapeState';
 
 describe('Rectangle class', () => {
   let context: CanvasRenderingContext2D;
@@ -66,27 +67,19 @@ describe('Rectangle class', () => {
   test("should set new values via setters", () => {
     const newPosition = new Point(5, 5);
     const newAngle = new Angle(85);
-    const newStyle = {
-      color: 'red',
-      border: {
-        color: 'blue',
-        width: 2.5
-      }
-    };
+
     const rectangle = new Rectangle(0, 0, 0, 0, 0);
 
     rectangle.width = 300;
     rectangle.height = 400;
     rectangle.position = newPosition;
     rectangle.rotation = 85;
-    rectangle.style = newStyle;
 
     expect(rectangle.width).toBe(300);
     expect(rectangle.height).toBe(400);
     expect(rectangle.position).toEqual(newPosition);
     expect(rectangle.angle.degrees).toBe(newAngle.degrees);
     expect(rectangle.rotation).toBe(85);
-    expect(rectangle.style).toEqual(newStyle);
 
     rectangle.style.color = 'blue';
     rectangle.position.x = 25;
@@ -193,17 +186,10 @@ describe('Rectangle class', () => {
     rectangle.height = 10;
     rectangle.position = new Point(10, 10);
     rectangle.rotation = 10; // currently notify twice
-    rectangle.style = {
-      color: 'yellow',
-      border: {
-        color: 'green',
-        width: 4.2
-      }
-    };
     rectangle.style.color = 'blue';
     rectangle.position.x = 25;
 
-    expect(observer).toHaveBeenCalledTimes(9);
+    expect(observer).toHaveBeenCalledTimes(7);
   });
 
   test("should notify observer when definition changed by methods", () => {
@@ -262,12 +248,15 @@ describe('Rectangle class', () => {
     expect(context.fillRect).toHaveBeenCalledWith(0, 0, 10, 20);
   });
 
-  test('should render with given style', () => {
+  test('should render with given state style', () => {
     const style = {
       color: 'red',
-      border: {
-        color: 'blue',
-        width: 2.5
+      borderColor: 'blue',
+      borderWidth: 2.5,
+      hover: {
+        color: 'green',
+        borderColor: 'yellow',
+        borderWidth: 4.2,
       }
     };
     const rectangle = new Rectangle(0, 0, 0, 0, 0, style);
@@ -277,6 +266,13 @@ describe('Rectangle class', () => {
     expect(context.fillStyle).toBe('red');
     expect(context.strokeStyle).toBe('blue');
     expect(context.lineWidth).toBe(2.5);
+
+    rectangle.state = ShapeState.Hover;
+    rectangle.render(context);
+
+    expect(context.fillStyle).toBe('green');
+    expect(context.strokeStyle).toBe('yellow');
+    expect(context.lineWidth).toBe(4.2);
   });
 
   test('should not draw border if not given', () => {
@@ -303,9 +299,65 @@ describe('Rectangle class', () => {
   });
 
   test('should draw border', () => {
-    const rectangle = new Rectangle(10, 15, 20, 25, 0, { border: { width: 1, color: 'red'} });
+    const rectangle = new Rectangle(10, 15, 20, 25, 0, { borderWidth: 1 });
     rectangle.render(context);
 
     expect(context.strokeRect).toHaveBeenCalledWith(10, 15, 20, 25);
+  });
+
+  test('should return true if the mouse is inside the rectangle', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 0);
+    const mousePosition = new Point(75, 60);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return true if the mouse is exactly on the edge of the rectangle', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 0);
+    const mousePosition = new Point(50, 60);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false if the mouse is outside the rectangle', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 0);
+    const mousePosition = new Point(10, 60);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should account for border width in the effective bounds', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 0, { borderWidth: 10 });
+    const mousePosition = new Point(45, 60);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false if the mouse is outside the rectangle with border', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 0, { borderWidth: 10 });
+    const mousePosition = new Point(40, 60);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should correctly detect mouse over when rectangle is rotated', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 45, { borderWidth: 10 });
+    const mousePosition = new Point(85, 85);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false for mouse position outside rotated rectangle', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 45, { borderWidth: 10 });
+    const mousePosition = new Point(10, 10);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should consider centered option when calculating bounds', () => {
+    const rectangle = new Rectangle(50, 50, 100, 50, 0, {}, { centered: true });
+    const mousePosition = new Point(50, 50);
+
+    expect(rectangle.isMouseOver(mousePosition)).toBe(true);
   });
 });

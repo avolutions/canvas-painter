@@ -1,7 +1,9 @@
 import { ISerializable } from "../common/ISerializable.js";
+import { ShapeState } from "../common/ShapeState.js";
 import { IShapeDefinition } from "../definitions/IShapeDefinition.js";
 import { IShapeOptions } from "../options/interfaces/IShapeOptions.js";
 import { IShapeStyle } from "../styles/interfaces/IShapeStyle.js";
+import { Point } from "../types/Point.js";
 import { IShape } from "./IShape.js";
 
 /**
@@ -25,6 +27,9 @@ export abstract class Shape<
   /** The options for configuring the shape, proxied to trigger observer notifications on change. */
   protected _options: TOptions;
 
+  /** The current state of the shape, representing its visual or interactive status. */
+  protected _state: ShapeState = ShapeState.Default;
+
   /** List of observer functions to be notified on shape changes. */
   protected observers: (() => void)[] = [];
 
@@ -44,8 +49,8 @@ export abstract class Shape<
    */
   constructor(definition: TDefinition, style?: TStyle, options?: TOptions) {
     this._definition = this._createProxy(definition);
-    this._style = this._createProxy(style || {}); // Default to an empty object if no style is provided
-    this._options = this._createProxy(options || {}); // Default to an empty object if no options are provided
+    this._style = this._createProxy(style); // Default to an empty object if no style is provided
+    this._options = this._createProxy(options); // Default to an empty object if no options are provided
   }
 
   /**
@@ -134,6 +139,14 @@ export abstract class Shape<
   }
 
   /**
+   * Determines if the mouse is currently over the shape.
+   *
+   * @param mousePosition - The current mouse position.
+   * @returns True if the mouse is over the shape, false otherwise.
+   */
+  public abstract isMouseOver(mousePosition: Point): boolean;
+
+  /**
    * Adds an observer function that will be called when the shape's state changes.
    *
    * @param observer - The observer callback function.
@@ -198,5 +211,81 @@ export abstract class Shape<
    */
   public set options(options: TOptions) {
     Object.assign(this._options, options);
+  }
+
+  /**
+   * Gets the current state of the shape.
+   *
+   * @returns The current state of the shape.
+   */
+  public get state(): ShapeState {
+    return this._state;
+  }
+
+  /**
+   * Sets a new state for the shape.
+   *
+   * @param state - The new state to assign to the shape.
+   */
+  public set state(state: ShapeState) {
+    // Update state if not already in this state and notify observers to apply state styles
+    if (state !== this._state) {
+      this._state = state;
+      this.notifyObservers();
+    }
+  }
+
+  /**
+   * Retrieves the effective style of the shape based on its current state.
+   *
+   * @returns The computed style object for the current shape state, with state-specific overrides merged in as necessary.
+   */
+  public get stateStyle(): TStyle {
+    // Start with a shallow copy of the default style, excluding state-specific keys
+    const baseStyle = { ...this._style };
+
+    // Remove state-specific keys from the base style object
+    Object.values(ShapeState).forEach((state) => {
+      delete baseStyle[state as keyof typeof baseStyle];
+    });
+
+    // If we are in a non-default state, apply the state-specific overrides
+    if (this._state !== ShapeState.Default) {
+      const stateOverrides = this._style[this._state] as Partial<TStyle> | undefined;
+
+      if (stateOverrides) {
+        // Merge the overrides into the base style to apply state-specific values
+        for (const key in stateOverrides) {
+          if (stateOverrides[key] !== undefined) {
+            baseStyle[key as keyof TStyle] = stateOverrides[key]!;
+          }
+        }
+      }
+    }
+
+    // Return a new Proxy to handle both single property access and full object access
+    return new Proxy(baseStyle, {
+      get: (target, prop) => {
+        // Directly return properties on baseStyle for single property access
+        return prop in target ? target[prop as keyof TStyle] : undefined;
+      },
+    });
+  }
+
+  /**
+   * Determines if the current state style includes a visible border.
+   *
+   * @returns `true` if `borderColor` and `borderWidth` are defined and indicate a visible border; otherwise, `false`.
+   */
+  protected hasBorder(): boolean {
+    return (
+      this.stateStyle &&
+      'borderColor' in this.stateStyle &&
+      'borderWidth' in this.stateStyle &&
+      typeof this.stateStyle.borderColor === 'string' &&
+      typeof this.stateStyle.borderWidth === 'number' &&
+      this.stateStyle.borderColor !== '' &&
+      this.stateStyle.borderWidth > 0
+    );
   }
 }

@@ -6,6 +6,8 @@ import { Point } from '../../src/types/Point';
 import { Line } from '../../src/shapes/Line';
 import { LineStyle } from '../../src/styles/LineStyle';
 import { InvalidConstructorArgumentsError } from '../../src/errors/InvalidConstructorArgumentsError';
+import { Cursor } from '../../src/types/Cursor';
+import { ShapeState } from '../../src/common/ShapeState';
 
 describe('Line class', () => {
   let context: CanvasRenderingContext2D;
@@ -49,7 +51,8 @@ describe('Line class', () => {
     const end = new Point(15, 20);
     const style = {
       color: 'red',
-      width: 2.5
+      width: 2.5,
+      cursor: Cursor.Copy
     };
 
     const line = new Line(start, end, style);
@@ -61,6 +64,7 @@ describe('Line class', () => {
     expect(line.style).toEqual(style);
     expect(line.style.color).toBe(style.color);
     expect(line.style.width).toBe(style.width);
+    expect(line.style.cursor).toBe(style.cursor);
   });
 
   test('should initialize options from constructor using Points', () => {
@@ -101,7 +105,8 @@ describe('Line class', () => {
     const endY = 20;
     const style = {
       color: 'red',
-      width: 2.5
+      width: 2.5,
+      cursor: Cursor.Copy
     };
 
     const line = new Line(startX, startY, endX, endY, style);
@@ -113,6 +118,7 @@ describe('Line class', () => {
     expect(line.style).toEqual(style);
     expect(line.style.color).toBe(style.color);
     expect(line.style.width).toBe(style.width);
+    expect(line.style.cursor).toBe(style.cursor);
   });
 
   test('should initialize options from constructor using coordinates', () => {
@@ -177,7 +183,6 @@ describe('Line class', () => {
 
     line.start = new Point(50, 100);
     line.end = new Point(150, 200);
-    line.style = { color: 'blue', width: 3 }
     line.start.x = 51;
     line.start.x = 101;
     line.end.x = 151;
@@ -185,7 +190,7 @@ describe('Line class', () => {
     line.style.color = 'green';
     line.style.width = 5;
 
-    expect(observer).toHaveBeenCalledTimes(10);
+    expect(observer).toHaveBeenCalledTimes(8);
   });
 
   test('should move start on x- and y-axis', () => {
@@ -274,12 +279,16 @@ describe('Line class', () => {
     expect(observer).toHaveBeenCalledTimes(8);
   });
 
-  test('should render with given style', () => {
+  test('should render with given state style', () => {
     const start = new Point(5, 10);
     const end = new Point(15, 20);
     const style = {
       color: 'red',
-      width: 2.5
+      width: 2.5,
+      hover: {
+        color: 'green',
+        width: 4.2,
+      }
     };
 
     const line = new Line(start, end, style);
@@ -288,6 +297,12 @@ describe('Line class', () => {
 
     expect(context.strokeStyle).toBe('red');
     expect(context.lineWidth).toBe(2.5);
+
+    line.state = ShapeState.Hover;
+    line.render(context);
+
+    expect(context.strokeStyle).toBe('green');
+    expect(context.lineWidth).toBe(4.2);
   });
 
   test('should draw line with correct values', () => {
@@ -302,5 +317,68 @@ describe('Line class', () => {
     expect(context.moveTo).toHaveBeenCalledWith(5, 10);
     expect(context.lineTo).toHaveBeenCalledWith(15, 20);
     expect(context.stroke).toHaveBeenCalled();
+  });
+
+  test('should return true if the mouse is within tolerance of the line', () => {
+    const line = new Line(10, 10, 30, 30, { width: 4 });
+    const mousePosition = new Point(20, 21); // Near the line
+
+    expect(line.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return true if the mouse is exactly on the line', () => {
+    const line = new Line(10, 10, 30, 30, { width: 4 });
+    const mousePosition = new Point(20, 20); // Directly on the line
+
+    expect(line.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false if the mouse is outside the tolerance of the line', () => {
+    const line = new Line(10, 10, 30, 30, { width: 4 });
+    const mousePosition = new Point(20, 25); // Beyond tolerance
+
+    expect(line.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should consider the line width when determining tolerance', () => {
+    const line = new Line(10, 10, 30, 30, { width: 8 });
+    const mousePosition = new Point(20, 23); // Within increased tolerance
+
+    expect(line.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return true if the line is effectively a point and mouse is within tolerance', () => {
+    const line = new Line(15, 15, 15, 15, { width: 4 });
+    const mousePosition = new Point(16, 15); // Near the point
+
+    expect(line.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false if the line is effectively a point and mouse is outside tolerance', () => {
+    const line = new Line(15, 15, 15, 15, { width: 4 });
+    const mousePosition = new Point(20, 15);// Beyond tolerance from point
+
+    expect(line.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should return false if the mouse is outside the line segment bounds', () => {
+    const line = new Line(10, 10, 30, 30, { width: 4 });
+    const mousePosition = new Point(5, 5); // Outside the line segment
+
+    expect(line.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should return true if the mouse is near the end of the line within tolerance', () => {
+    const line = new Line(10, 10, 30, 30, { width: 4 });
+    const mousePosition = new Point(30, 29); // Near the end within tolerance
+
+    expect(line.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return true if the mouse is near the start of the line within tolerance', () => {
+    const line = new Line(10, 10, 30, 30, { width: 4 });
+    const mousePosition = new Point(10, 11); // Near the start within tolerance
+
+    expect(line.isMouseOver(mousePosition)).toBe(true);
   });
 });

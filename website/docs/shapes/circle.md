@@ -175,9 +175,27 @@ The following table is showing all available circle styles and the default value
 
 Style | Type | Default | Explanation
 --- | --- | --- | ---
+`borderColor` | string | '#000000' | Defines the color of circle border. Border is only shown if `borderColor` is provided and `borderWidth` is greater 0.
+`borderWidth` | number | 0 | Defines the width of circles border. Border is only shown if `borderColor` is provided and `borderWidth` is greater 0.
 `color` | string | '#000000' (black) | Sets the default fill color for the circle.
-`border.color` | string | '' | Defines the color of circle border. Border is only shown if `border.color` and `border.width` is provided.
-`border.width` | number | 0 | Defines the width of circles border. Border is only shown if `border.color` and `border.width` is provided.
+`cursor` | [Cursor](../../api/enumerations/Cursor) | [Cursor.Default](../../api/enumerations/Cursor#default) | Specifies a custom cursor style for the shape. Overrides the default cursor when interacting with the shape.
+
+You can specify styles for different shape states by providing a unique set of properties under each state (e.g., hover). Each state-specific style overrides the default only while the shape is in that state.
+
+```js
+{
+  borderColor: '#000000',
+  borderWidth: 0,
+  color: '#000000',
+  cursor: Cursor.Default,
+  hover: {
+    borderColor: '#000000',
+    borderWidth: 0,
+    color: '#000000',
+    cursor: Cursor.Default
+  }
+}
+```
 
 ## Options
 
@@ -186,3 +204,9 @@ The following table is showing all available circle options and the default valu
 Option | Type | Default | Explanation
 --- | --- | --- | ---
 `visible` | boolean | true | If `true`, the circle will be visible.<br />If `false` or `undefined`, the circle will be hidden.
+
+```js
+{
+  visible: true
+}
+```

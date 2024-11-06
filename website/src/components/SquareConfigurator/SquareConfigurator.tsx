@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import styles from '../../css/Configurator.module.css';
-import { Square } from '@avolutions/canvas-painter';
+import { ShapeState, Square } from '@avolutions/canvas-painter';
+import CursorDropdown from '../CursorDropdown/CursorDropdown';
 
 interface SquareConfiguratorProps {
   square: Square;
@@ -12,6 +13,21 @@ const SquareConfigurator: React.FC<SquareConfiguratorProps> = ({ square, onSquar
   const [isSquareCollapsed, setIsSquareCollapsed] = useState(true);
   const [isSquareStyleCollapsed, setIsSquareStyleCollapsed] = useState(true);
   const [isSquareOptionsCollapsed, setIsSquareOptionsCollapsed] = useState(true);
+
+  const [selectedState, setSelectedState] = useState(ShapeState.Default);
+
+  const getStyleValue = (property) => {
+    return selectedState === ShapeState.Default
+      ? square.style[property]
+      : square.style[selectedState]?.[property] || '';
+  };
+
+  const handleStyleChange = (property, value) => {
+    const path = selectedState === ShapeState.Default
+      ? `style.${property}`
+      : `style.${selectedState}.${property}`;
+      onSquareChange(path, value);
+  };
 
   return (
     <>
@@ -72,28 +88,42 @@ const SquareConfigurator: React.FC<SquareConfiguratorProps> = ({ square, onSquar
               {!isSquareStyleCollapsed && (
                 <>
                   <div className={styles.formRow}>
+                    <label>Select State</label>
+                    <select value={selectedState} onChange={(e) => setSelectedState(e.target.value)}>
+                      <option value={ShapeState.Default}>{ShapeState.Default}</option>
+                      <option value={ShapeState.Hover}>{ShapeState.Hover}</option>
+                    </select>
+                  </div>
+                  <div className={styles.formRow}>
+                    <label>borderColor</label>
+                    <input
+                      type="color"
+                      value={getStyleValue('borderColor')}
+                      onChange={(e) => handleStyleChange('borderColor', e.target.value)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
+                    <label>borderWidth</label>
+                    <input
+                      type="number"
+                      value={getStyleValue('borderWidth')}
+                      min="0"
+                      onChange={(e) => handleStyleChange('borderWidth', Number(e.target.value))}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
                     <label>color</label>
                     <input
                       type="color"
-                      value={square.style.color}
-                      onChange={(e) => onSquareChange('style.color', e.target.value)}
+                      value={getStyleValue('color')}
+                      onChange={(e) => handleStyleChange('color', e.target.value)}
                     />
                   </div>
                   <div className={styles.formRow}>
-                    <label>border.color</label>
-                    <input
-                      type="color"
-                      value={square.style.border.color}
-                      onChange={(e) => onSquareChange('style.border.color', e.target.value)}
-                    />
-                  </div>
-                  <div className={styles.formRow}>
-                    <label>border.width</label>
-                    <input
-                      type="number"
-                      value={square.style.border.width}
-                      min="0"
-                      onChange={(e) => onSquareChange('style.border.width', Number(e.target.value))}
+                    <label>cursor</label>
+                    <CursorDropdown
+                      value={getStyleValue('cursor')}
+                      onChange={(e) => handleStyleChange('cursor', e )}
                     />
                   </div>
                 </>

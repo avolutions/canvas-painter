@@ -55,4 +55,19 @@ export class Point extends Serializable {
     this.x += deltaX;
     this.y += deltaY;
   }
+
+  /**
+   * Adjusts the point's coordinates to remove the effects of a specified pan offset and zoom level.
+   *
+   * @param offset - The pan offset to remove from the current point's coordinates.
+   * @param zoom - The zoom level to reverse from the current point's coordinates.
+   *
+   * @returns The current point with out transformation.
+   */
+  public asUntransformed(offset: Point, zoom: number): this {
+    this.x = (this.x - offset.x) / zoom;
+    this.y = (this.y - offset.y) / zoom;
+
+    return this;
+  }
 }

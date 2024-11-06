@@ -91,6 +91,8 @@ describe('Canvas class', () => {
     expect(removeEventListenerSpy).toHaveBeenCalledWith('mouseup', expect.any(Function));
     expect(removeEventListenerSpy).toHaveBeenCalledWith('mouseleave', expect.any(Function));
     expect(removeEventListenerSpy).toHaveBeenCalledWith('contextmenu', expect.any(Function));
+
+    expect(removeEventListenerSpy).toHaveBeenCalledTimes(7);
   });
 
   test('should set default options', () => {
@@ -112,6 +114,13 @@ describe('Canvas class', () => {
 
     expect(canvasElement.width).toBe(123);
     expect(canvasElement.height).toBe(456);
+  });
+
+  test('should the canvas style width and height to auto', () => {
+    const canvas = Canvas.init('canvas-id');
+
+    expect((canvas as any)._canvas.style.width).toBe('auto');
+    expect((canvas as any)._canvas.style.height).toBe('auto');
   });
 
   test('should use the canvas element attributes if no options are provided', () => {
@@ -461,6 +470,22 @@ describe('Canvas class', () => {
     /* Clear canvas once, draw every watched shape */
     expect(clearSpy).toHaveBeenCalledTimes(1);
     expect(drawSpy).toHaveBeenCalledTimes(2);
+  });
+
+  test('should reset transformation before clearing when redrawing the canvas', () => {
+    const canvas = Canvas.init('canvas-id');
+
+    jest.spyOn(canvas, 'clear');
+    jest.spyOn(context, 'resetTransform');
+
+    canvas.redraw();
+
+    expect(context.resetTransform).toHaveBeenCalled();
+    expect(canvas.clear).toHaveBeenCalled();
+
+    const resetTransformOrder = (context.resetTransform as jest.Mock).mock.invocationCallOrder[0];
+    const clearOrder = (canvas.clear as jest.Mock).mock.invocationCallOrder[0];
+    expect(resetTransformOrder).toBeLessThan(clearOrder);
   });
 
   test('should apply transformation when redrawing the canvas', () => {

@@ -1,9 +1,12 @@
+import { Cursor } from "../types/Cursor.js";
+import { ILineBaseStyle } from "./interfaces/ILineBaseStyle.js";
 import { ILineStyle } from "./interfaces/ILineStyle.js";
+import { ShapeStyle } from "./ShapeStyle.js";
 
 /**
  * Represents the style options for a line.
  */
-export class LineStyle implements ILineStyle {
+export class LineStyle extends ShapeStyle<ILineBaseStyle> implements ILineStyle {
   /**
    * The color of the line stroke.
    */
@@ -19,7 +22,8 @@ export class LineStyle implements ILineStyle {
    */
   public static readonly DefaultStyle: ILineStyle = {
     color: '#000000',
-    width: 1
+    cursor: Cursor.Default,
+    width: 1,
   };
 
   /**
@@ -28,6 +32,8 @@ export class LineStyle implements ILineStyle {
    * @param style - The partial style provided by the user.
    */
   constructor(style: Partial<ILineStyle> = {}) {
+    super();
+
     const styleWithDefaults = {
       ...LineStyle.DefaultStyle,
       ...style

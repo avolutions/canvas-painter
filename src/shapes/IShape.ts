@@ -1,3 +1,7 @@
+import { ShapeState } from "../common/ShapeState.js";
+import { IShapeStyle } from "../styles/interfaces/IShapeStyle.js";
+import { Point } from "../types/Point.js";
+
 /**
  * Interface representing a shape that can be rendered on a canvas.
  *
@@ -46,4 +50,33 @@ export interface IShape {
    *          Returns false if the shape is hidden and will not be rendered.
    */
   isVisible(): boolean;
+
+  /**
+   * Determines if the mouse is currently over the shape.
+   *
+   * @param mousePosition - The current mouse position.
+   * @returns True if the mouse is over the shape, false otherwise.
+   */
+  isMouseOver(mousePosition: Point): boolean;
+
+  /**
+   * Gets the current state of the shape.
+   *
+   * @returns The current state of the shape.
+   */
+  get state(): ShapeState;
+
+  /**
+   * Sets a new state for the shape.
+   *
+   * @param state - The new state to assign to the shape.
+   */
+  set state(state: ShapeState);
+
+  /**
+   * Retrieves the effective style of the shape based on its current state.
+   *
+   * @returns The computed style object for the current shape state, with state-specific overrides merged in as necessary.
+   */
+  get stateStyle(): IShapeStyle;
 }

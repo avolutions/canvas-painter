@@ -5,6 +5,8 @@ import { Point } from '../../src/types/Point';
 import { Circle } from '../../src/shapes/Circle';
 import { CircleStyle } from '../../src/styles/CircleStyle';
 import { InvalidConstructorArgumentsError } from '../../src/errors/InvalidConstructorArgumentsError';
+import { ShapeState } from '../../src/common/ShapeState';
+import { Cursor } from '../../src/types/Cursor';
 
 describe('Circle class', () => {
   let context: CanvasRenderingContext2D;
@@ -47,10 +49,9 @@ describe('Circle class', () => {
     const center = new Point(5, 10);
     const style = {
       color: 'red',
-      border: {
-        color: 'blue',
-        width: 2.5
-      }
+      borderColor: 'blue',
+      borderWidth: 2.5,
+      cursor: Cursor.Alias
     };
 
     const circle = new Circle(center, 7, style);
@@ -101,10 +102,9 @@ describe('Circle class', () => {
     const centerY = 10;
     const style = {
       color: 'red',
-      border: {
-        color: 'blue',
-        width: 2.5
-      }
+      borderColor: 'blue',
+      borderWidth: 2.5,
+      cursor: Cursor.Grab
     };
 
     const circle = new Circle(centerX, centerY, 7, style);
@@ -247,12 +247,15 @@ describe('Circle class', () => {
     expect(context.arc).toHaveBeenCalledWith(1, 2, 3, 0, Math.PI * 2);
   });
 
-  test('should render with given style', () => {
+  test('should render with given state style', () => {
     const style = {
       color: 'red',
-      border: {
-        color: 'blue',
-        width: 2.5
+      borderColor: 'blue',
+      borderWidth: 2.5,
+      hover: {
+        color: 'green',
+        borderColor: 'yellow',
+        borderWidth: 4.2,
       }
     };
     const circle = new Circle(0, 0, 1, style);
@@ -262,6 +265,13 @@ describe('Circle class', () => {
     expect(context.fillStyle).toBe('red');
     expect(context.strokeStyle).toBe('blue');
     expect(context.lineWidth).toBe(2.5);
+
+    circle.state = ShapeState.Hover;
+    circle.render(context);
+
+    expect(context.fillStyle).toBe('green');
+    expect(context.strokeStyle).toBe('yellow');
+    expect(context.lineWidth).toBe(4.2);
   });
 
   test('should not draw border if not given', () => {
@@ -288,9 +298,44 @@ describe('Circle class', () => {
   });
 
   test('should draw border', () => {
-    const circle = new Circle(0, 0, 1, { border: { width: 1, color: 'red'} });
+    const circle = new Circle(0, 0, 1, { borderWidth: 1 });
     circle.render(context);
 
     expect(context.stroke).toHaveBeenCalled();
+  });
+
+  test('should return true if the mouse is inside the circle', () => {
+    const circle = new Circle(50, 50, 20);
+    const mousePosition = new Point(55, 55);
+
+    expect(circle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return true if the mouse is exactly on the edge of the circle', () => {
+    const circle = new Circle(50, 50, 20);
+    const mousePosition = new Point(70, 50);
+
+    expect(circle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false if the mouse is outside the circle', () => {
+    const circle = new Circle(50, 50, 20);
+    const mousePosition = new Point(80, 50);
+
+    expect(circle.isMouseOver(mousePosition)).toBe(false);
+  });
+
+  test('should account for border width in the effective radius', () => {
+    const circle = new Circle(50, 50, 20, { borderWidth: 10 });
+    const mousePosition = new Point(75, 50);
+
+    expect(circle.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should return false if the mouse is outside the circle with border', () => {
+    const circle = new Circle(50, 50, 20, { borderWidth: 10 });
+    const mousePosition = new Point(80, 50);
+
+    expect(circle.isMouseOver(mousePosition)).toBe(false);
   });
 });
