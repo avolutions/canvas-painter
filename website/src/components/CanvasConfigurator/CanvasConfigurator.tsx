@@ -255,14 +255,6 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ canvas, setOpti
         {!isStyleSectionCollapsed && (
           <>
             <div className={styles.formRow}>
-              <label>color</label>
-              <input
-                type="color"
-                value={style.color}
-                onChange={(e) => handleStyleChange('color', e.target.value)}
-              />
-            </div>
-            <div className={styles.formRow}>
               <label>cursor.default</label>
               <CursorDropdown
                 value={style.cursor.default}
