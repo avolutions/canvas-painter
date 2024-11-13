@@ -139,6 +139,16 @@ export abstract class Shape<
   }
 
   /**
+   * Checks whether the shape is draggable or not.
+   *
+   * @returns Returns true if the shape is draggable.
+   *          Returns false if the shape is not draggable.
+   */
+  public isDraggable(): boolean {
+    return !!this._options.draggable;
+  }
+
+  /**
    * Determines if the mouse is currently over the shape.
    *
    * @param mousePosition - The current mouse position.

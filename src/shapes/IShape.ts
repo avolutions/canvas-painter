@@ -52,6 +52,14 @@ export interface IShape {
   isVisible(): boolean;
 
   /**
+   * Checks whether the shape is draggable or not.
+   *
+   * @returns Returns true if the shape is draggable.
+   *          Returns false if the shape is not draggable.
+   */
+  isDraggable(): boolean;
+
+  /**
    * Determines if the mouse is currently over the shape.
    *
    * @param mousePosition - The current mouse position.

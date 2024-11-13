@@ -10,9 +10,15 @@ export class ShapeOptions implements IShapeOptions {
   public visible!: boolean;
 
   /**
+   * Determines if the shape can be dragged by mouse.
+   */
+  public draggable!: boolean;
+
+  /**
    * Default options for shapes.
    */
   public static readonly DefaultOptions: ShapeOptions = {
     visible: true,
+    draggable: true
   };
 }

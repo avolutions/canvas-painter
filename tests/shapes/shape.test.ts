@@ -95,7 +95,9 @@ describe('Shape class', () => {
     const shape = new MockShape();
 
     expect(shape.options.visible).toBe(true);
+    expect(shape.options.draggable).toBe(true);
     expect(shape.isVisible()).toBe(true);
+    expect(shape.isDraggable()).toBe(true);
   });
 
   test("should set options through setter", () => {
@@ -103,11 +105,15 @@ describe('Shape class', () => {
 
     shape.options = { visible: false };
     expect(shape.options.visible).toBe(false);
+    expect(shape.options.draggable).toBe(false);
     expect(shape.isVisible()).toBe(false);
+    expect(shape.isDraggable()).toBe(false);
 
     shape.options.visible = true;
     expect(shape.options.visible).toBe(true);
+    expect(shape.options.draggable).toBe(true);
     expect(shape.isVisible()).toBe(true);
+    expect(shape.isDraggable()).toBe(true);
   });
 
   test("should handle visibility correctly", () => {
