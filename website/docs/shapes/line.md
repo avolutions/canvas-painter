@@ -104,6 +104,7 @@ Method | Description | Example
 --- | --- | ---
 `moveStart()` | Moves the line start by adjusting the current position by delta values. | `line.moveStart(5, -10);`
 `moveEnd()` | Moves the line end by adjusting the current position by delta values. | `line.moveEnd(-2, 7.5);`
+`move()` | Moves the line start & end by adjusting the current position by delta values. | `line.move(-4.2, 8.15);`
 
 ## Get properties of a line
 
