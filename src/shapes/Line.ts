@@ -132,6 +132,17 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
   }
 
   /**
+   * Moves the start & end point of the line by the specified deltas along the x and y axes.
+   *
+   * @param deltaX - The amount to move the start & end point along the x-axis.
+   * @param deltaY - The amount to move the start & end point along the y-axis.
+   */
+  public move(deltaX: number = 0, deltaY: number = 0): void {
+    this.moveStart(deltaX, deltaY);
+    this.moveEnd(deltaX, deltaY);
+  }
+
+  /**
    * Renders the line on a canvas context.
    *
    * @param context - The canvas rendering context to draw the line.
