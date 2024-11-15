@@ -85,14 +85,12 @@ describe('Canvas class', () => {
     expect(Canvas['instances'].get(canvasElement)).not.toBe(canvas);
 
     // Verify that event listener were removed
-    expect(removeEventListenerSpy).toHaveBeenCalledWith('wheel', expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('contextmenu', expect.any(Function));
     expect(removeEventListenerSpy).toHaveBeenCalledWith('mousedown', expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('mouseleave', expect.any(Function));
     expect(removeEventListenerSpy).toHaveBeenCalledWith('mousemove', expect.any(Function));
     expect(removeEventListenerSpy).toHaveBeenCalledWith('mouseup', expect.any(Function));
-    expect(removeEventListenerSpy).toHaveBeenCalledWith('mouseleave', expect.any(Function));
-    expect(removeEventListenerSpy).toHaveBeenCalledWith('contextmenu', expect.any(Function));
-
-    expect(removeEventListenerSpy).toHaveBeenCalledTimes(7);
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('wheel', expect.any(Function));
   });
 
   test('should set default options', () => {

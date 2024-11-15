@@ -88,29 +88,15 @@ export class Canvas {
   }
 
   /**
-   * Adds event listeners for zooming and panning.
-   * Zooming is enabled when `zoomable` is `true` and `useWheel` is enabled in the options.
-   * Panning is enabled when `pannable` is `true` and `useMouse` is enabled in the options.
+   * Adds event listeners for the canvas element.
    */
   private addEventListener(): void {
-    // Add event listener for zooming
-    if (this._options.zoomable && this._options.zoom.useWheel) {
-      this._canvas.addEventListener('wheel', this.onWheel);
-    }
-
-    // Add event listener for panning
-    if (this._options.pannable && this._options.pan.useMouse) {
-      this._canvas.addEventListener('mousedown', this.onMouseDown);
-      this._canvas.addEventListener('mouseup', this.onMouseUp);
-      this._canvas.addEventListener('mouseleave', this.onMouseUp); // when the mouse leaves the canvas during dragging
-    }
-
-    // Add other event listener
-    this._canvas.addEventListener('mousemove', this.onMouseMove);
-    this._canvas.addEventListener('mouseleave', this.onMouseLeave);
-
-    // Prevent default context menu on right click
     this._canvas.addEventListener('contextmenu', this.onContextMenu);
+    this._canvas.addEventListener('mousedown', this.onMouseDown);
+    this._canvas.addEventListener('mouseleave', this.onMouseLeave);
+    this._canvas.addEventListener('mousemove', this.onMouseMove);
+    this._canvas.addEventListener('mouseup', this.onMouseUp);
+    this._canvas.addEventListener('wheel', this.onWheel);
   }
 
   /**
@@ -118,13 +104,12 @@ export class Canvas {
    * disable specific interactions.
    */
   private removeEventListener(): void {
-    this._canvas.removeEventListener('wheel', this.onWheel);
+    this._canvas.removeEventListener('contextmenu', this.onContextMenu);
     this._canvas.removeEventListener('mousedown', this.onMouseDown);
+    this._canvas.removeEventListener('mouseleave', this.onMouseLeave);
     this._canvas.removeEventListener('mousemove', this.onMouseMove);
     this._canvas.removeEventListener('mouseup', this.onMouseUp);
-    this._canvas.removeEventListener('mouseleave', this.onMouseUp);
-    this._canvas.removeEventListener('mouseleave', this.onMouseLeave);
-    this._canvas.removeEventListener('contextmenu', this.onContextMenu);
+    this._canvas.removeEventListener('wheel', this.onWheel);
   }
 
   /**
@@ -133,6 +118,7 @@ export class Canvas {
    * @param event - The mouse event that triggers the context menu.
    */
   private readonly onContextMenu = (event: MouseEvent): void => {
+    // Prevent default context menu on right click
     event.preventDefault();
   }
 
@@ -143,6 +129,12 @@ export class Canvas {
    * @param event - The wheel event that triggers the zoom action.
    */
   private readonly onWheel = (event: WheelEvent): void => {
+    // If zooming is not activated, we do nothing
+    if (!this._options.zoomable || !this._options.zoom.useWheel) {
+      return;
+    }
+
+    // Prevent default wheel behavior
     event.preventDefault();
 
     // If pannable is active, we use current mouse position as zoom center
@@ -165,8 +157,12 @@ export class Canvas {
    * @param event - The mouse event that triggers the panning action.
    */
   private readonly onMouseDown = (event: MouseEvent): void => {
-    // If button is not configured for panning we do nothing
-    if (!this._options.pan.mouseButtons?.includes(event.button)) {
+    // If canvas is not pannable or not pannable by mouse or button is not configured for panning we do nothing
+    if (
+      !this._options.pannable ||
+      !this._options.pan.useMouse ||
+      !this._options.pan.mouseButtons?.includes(event.button)
+    ) {
       return;
     }
 
@@ -255,8 +251,12 @@ export class Canvas {
    *
    * @param event - The mouse event that triggered this handler.
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private readonly onMouseLeave = (event: MouseEvent): void => {
+    // If we were panning, handle like a mouse up
+    if (this._isPanning) {
+      this.onMouseUp(event);
+    }
+
     this.setStateForAllShapes(ShapeState.Default);
   };
 
