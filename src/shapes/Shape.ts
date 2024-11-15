@@ -157,6 +157,13 @@ export abstract class Shape<
   public abstract isMouseOver(mousePosition: Point): boolean;
 
   /**
+   * Handles the drag operation by applying the given delta to the current position.
+   *
+   * @param delta - The change in position represented as a `Point`.
+   */
+  public abstract onDrag(delta: Point): void;
+
+  /**
    * Adds an observer function that will be called when the shape's state changes.
    *
    * @param observer - The observer callback function.

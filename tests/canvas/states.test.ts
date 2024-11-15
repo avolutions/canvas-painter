@@ -44,6 +44,7 @@ describe('State functions of canvas class', () => {
     expect(shape1.state).toBe(ShapeState.Hover);
     expect(shape2.state).toBe(ShapeState.Default);
 
+    expect((canvas as any)._hoverShape).toBe(shape1);
     expect((canvas as any)._canvas.style.cursor).toBe(Cursor.Copy);
   });
 
@@ -63,6 +64,7 @@ describe('State functions of canvas class', () => {
     expect(shape1.state).toBe(ShapeState.Default);
     expect(shape2.state).toBe(ShapeState.Hover);
 
+    expect((canvas as any)._hoverShape).toBe(shape2);
     expect((canvas as any)._canvas.style.cursor).toBe(Cursor.Move);
   });
 
@@ -86,6 +88,7 @@ describe('State functions of canvas class', () => {
     expect(shape2.state).toBe(ShapeState.Default);
 
     expect((canvas as any)._canvas.style.cursor).toBe(Cursor.Default);
+    expect((canvas as any)._hoverShape).toBeNull();
   });
 
   test('should reset all states to Default if mouse is leaving canvas', () => {
@@ -108,6 +111,7 @@ describe('State functions of canvas class', () => {
     expect(shape2.state).toBe(ShapeState.Default);
 
     expect((canvas as any)._canvas.style.cursor).toBe(Cursor.Default);
+    expect((canvas as any)._hoverShape).toBeNull();
   });
 
 });

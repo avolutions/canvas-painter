@@ -41,6 +41,15 @@ export class Canvas {
   /** The starting point of the pan operation. This is the position where the user initiated the panning action. */
   private _panStart: Point;
 
+  /** The shape currently being hovered over by the mouse. */
+  private _hoverShape: IShape | null = null;
+
+  /** The shape currently being dragged. */
+  private _dragShape: IShape | null = null;
+
+  /** The last mouse position of the drag operation. */
+  private _dragPosition: Point;
+
   /**
    * Constructs a new Canvas instance.
    *
@@ -82,6 +91,9 @@ export class Canvas {
     // Initialize pan properties
     this._panOffset = new Point(0, 0);
     this._panStart = new Point(0, 0);
+
+    // Initialize drag properties
+    this._dragPosition = new Point(0, 0);
 
     // Register event listeners
     this.addEventListener();
@@ -157,27 +169,38 @@ export class Canvas {
    * @param event - The mouse event that triggers the panning action.
    */
   private readonly onMouseDown = (event: MouseEvent): void => {
-    // If canvas is not pannable or not pannable by mouse or button is not configured for panning we do nothing
-    if (
-      !this._options.pannable ||
-      !this._options.pan.useMouse ||
-      !this._options.pan.mouseButtons?.includes(event.button)
-    ) {
-      return;
-    }
-
     // Get mouse position in canvas
     const mousePosition = Mouse.getOffsetPosition(event);
 
-    // Start panning
-    this._isPanning = true;
-    this._panStart = new Point(
-      mousePosition.x - this.panOffset.x,
-      mousePosition.y - this.panOffset.y
-    );
+    // Handle dragging
+    if (this._hoverShape && this._hoverShape.isDraggable()) {
+      // Set currently dragged shape
+      this._dragShape = this._hoverShape;
 
-    // Set cursor for panning
-    this._canvas.style.cursor = this._style.cursor.panActive;
+      // Set drag start position
+      this._dragPosition = mousePosition;
+
+      return;
+    }
+
+    // Handle panning
+    if (
+      this._options.pannable &&
+      this._options.pan.useMouse &&
+      this._options.pan.mouseButtons?.includes(event.button)
+    ) {
+      // Start panning
+      this._isPanning = true;
+      this._panStart = new Point(
+        mousePosition.x - this.panOffset.x,
+        mousePosition.y - this.panOffset.y
+      );
+
+      // Set cursor for panning
+      this._canvas.style.cursor = this._style.cursor.panActive;
+
+      return;
+    }
   }
 
   /**
@@ -188,6 +211,21 @@ export class Canvas {
    */
   private readonly onMouseMove = (event: MouseEvent): void => {
     const mousePosition = Mouse.getOffsetPosition(event);
+
+    // Handle dragging
+    if (this._dragShape) {
+      // Get difference to dragPosition
+      const delta = new Point(
+        mousePosition.x - this._dragPosition.x,
+        mousePosition.y - this._dragPosition.y
+      );
+
+      // Call onDrag() of dragShape
+      this._dragShape.onDrag(delta);
+
+      // Set new dragPosition = mousePosition
+      this._dragPosition = mousePosition;
+    }
 
     // Handle panning
     if (this._isPanning) {
@@ -201,6 +239,7 @@ export class Canvas {
 
     // Handle hover state
     let hoverSet = false;
+    this._hoverShape = null;
 
     // Iterate watchedShapes backwards, to check highest layered shapes first
     for (let i = this.watchedShapes.length - 1; i >= 0; i--) {
@@ -209,6 +248,9 @@ export class Canvas {
       if (!hoverSet && shape.isMouseOver(mousePosition.asUntransformed(this.panOffset, this.zoomScale))) {
         // Set the first hovered shape to Hover state (if not already in it)
         shape.state = ShapeState.Hover;
+
+        // Set the currently hovered shape
+        this._hoverShape = shape;
 
         // Set hover style cursor
         this._canvas.style.cursor = shape.stateStyle.cursor!;
@@ -235,8 +277,14 @@ export class Canvas {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private readonly onMouseUp = (event: MouseEvent): void => {
+    // Stop dragging
+    if (this._dragShape) {
+      this._dragShape = null;
+      this._dragPosition = new Point(0, 0);
+    }
+
+    // Stop panning
     if (this._isPanning) {
-      // Stop panning
       this._isPanning = false;
 
       // Set default cursor
@@ -252,6 +300,11 @@ export class Canvas {
    * @param event - The mouse event that triggered this handler.
    */
   private readonly onMouseLeave = (event: MouseEvent): void => {
+    // If we were dragging, handle like a mouse up
+    if (this._dragShape) {
+      this.onMouseUp(event);
+    }
+
     // If we were panning, handle like a mouse up
     if (this._isPanning) {
       this.onMouseUp(event);

@@ -68,6 +68,13 @@ export interface IShape {
   isMouseOver(mousePosition: Point): boolean;
 
   /**
+   * Handles the drag operation by applying the given delta to the current position.
+   *
+   * @param delta - The change in position represented as a `Point`.
+   */
+  onDrag(delta: Point): void;
+
+  /**
    * Gets the current state of the shape.
    *
    * @returns The current state of the shape.

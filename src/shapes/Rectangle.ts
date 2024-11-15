@@ -259,4 +259,13 @@ export class Rectangle extends Shape<RectangleDefinition, RectangleStyle, Rectan
       rotatedY <= offsetY + this._definition.height + borderWidth
     );
   }
+
+  /**
+   * Handles the drag operation by applying the given delta to the current position.
+   *
+   * @param delta - The change in position represented as a `Point`.
+   */
+  public onDrag(delta: Point): void {
+    this.move(delta.x, delta.y);
+  }
 }
