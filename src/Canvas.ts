@@ -204,13 +204,14 @@ export class Canvas {
     }
 
     // Handle hover state
+    const mousePositionUntransformed = mousePosition.asUntransformed(this.panOffset, this.zoomScale);
     let hoverSet = false;
 
     // Iterate watchedShapes backwards, to check highest layered shapes first
     for (let i = this.watchedShapes.length - 1; i >= 0; i--) {
       const shape = this.watchedShapes[i];
 
-      if (!hoverSet && shape.isMouseOver(mousePosition.asUntransformed(this.panOffset, this.zoomScale))) {
+      if (!hoverSet && shape.isMouseOver(mousePositionUntransformed)) {
         // Set the first hovered shape to Hover state (if not already in it)
         shape.state = ShapeState.Hover;
 
