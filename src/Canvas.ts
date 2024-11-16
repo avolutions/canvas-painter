@@ -216,15 +216,17 @@ export class Canvas {
     if (this._dragShape) {
       // Get difference to dragPosition
       const delta = new Point(
-        mousePosition.x - this._dragPosition.x,
-        mousePosition.y - this._dragPosition.y
+        ( mousePosition.x - this._dragPosition.x ) / this.zoomScale,
+        ( mousePosition.y - this._dragPosition.y ) / this.zoomScale
       );
 
-      // Call onDrag() of dragShape
+      // Call onDrag() of currently dragged shape
       this._dragShape.onDrag(delta);
 
-      // Set new dragPosition = mousePosition
+      // Set new dragPosition to current mousePosition
       this._dragPosition = mousePosition;
+
+      return;
     }
 
     // Handle panning
