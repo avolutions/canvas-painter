@@ -8,6 +8,18 @@ Represents options for configuring shapes.
 
 ## Properties
 
+### draggable?
+
+> `optional` **draggable**: `boolean`
+
+Determines if the shape can be dragged by mouse.
+
+#### Defined in
+
+[options/interfaces/IShapeOptions.ts:13](https://github.com/avolutions/canvas-painter/blob/main/src/options/interfaces/IShapeOptions.ts#L13)
+
+***
+
 ### visible?
 
 > `optional` **visible**: `boolean`

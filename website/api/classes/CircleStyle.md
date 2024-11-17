@@ -36,6 +36,29 @@ The partial style provided by the user.
 
 ## Properties
 
+### active?
+
+> `optional` **active**: [`ICircleBaseStyle`](../interfaces/ICircleBaseStyle.md)
+
+Active style for the shape.
+
+When the shape is in the active state, the properties defined in this style
+override the default style properties.
+
+#### Implementation of
+
+[`ICircleStyle`](../interfaces/ICircleStyle.md).[`active`](../interfaces/ICircleStyle.md#active)
+
+#### Inherited from
+
+[`ShapeStyle`](ShapeStyle.md).[`active`](ShapeStyle.md#active)
+
+#### Defined in
+
+[styles/ShapeStyle.ts:28](https://github.com/avolutions/canvas-painter/blob/main/src/styles/ShapeStyle.ts#L28)
+
+***
+
 ### borderColor
 
 > **borderColor**: `string`

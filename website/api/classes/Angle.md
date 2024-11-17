@@ -35,25 +35,33 @@ Whether the angle should be normalized to the range [0, 360).
 
 ### degrees
 
-> `get` **degrees**(): `number`
+#### Get Signature
+
+> **get** **degrees**(): `number`
 
 Gets the current angle in degrees.
 
-> `set` **degrees**(`degrees`): `void`
+##### Returns
+
+`number`
+
+The angle in degrees.
+
+#### Set Signature
+
+> **set** **degrees**(`degrees`): `void`
 
 Sets the angle in degrees, optionally normalizing it if required.
 
-#### Parameters
+##### Parameters
 
 • **degrees**: `number`
 
 The new angle in degrees.
 
-#### Returns
+##### Returns
 
-`number`
-
-The angle in degrees.
+`void`
 
 #### Defined in
 
@@ -63,25 +71,33 @@ The angle in degrees.
 
 ### radians
 
-> `get` **radians**(): `number`
+#### Get Signature
+
+> **get** **radians**(): `number`
 
 Gets the current angle in radians.
 
-> `set` **radians**(`radians`): `void`
+##### Returns
+
+`number`
+
+The angle in radians.
+
+#### Set Signature
+
+> **set** **radians**(`radians`): `void`
 
 Sets the angle in radians by converting it to degrees.
 
-#### Parameters
+##### Parameters
 
 • **radians**: `number`
 
 The new angle in radians.
 
-#### Returns
+##### Returns
 
-`number`
-
-The angle in radians.
+`void`
 
 #### Defined in
 

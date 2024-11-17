@@ -16,6 +16,22 @@ Base options for configuring the behavior of all shapes.
 
 ## Properties
 
+### draggable
+
+> **draggable**: `boolean`
+
+Determines if the shape can be dragged by mouse.
+
+#### Implementation of
+
+[`IShapeOptions`](../interfaces/IShapeOptions.md).[`draggable`](../interfaces/IShapeOptions.md#draggable)
+
+#### Defined in
+
+[options/ShapeOptions.ts:15](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L15)
+
+***
+
 ### visible
 
 > **visible**: `boolean`
@@ -40,4 +56,4 @@ Default options for shapes.
 
 #### Defined in
 
-[options/ShapeOptions.ts:15](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L15)
+[options/ShapeOptions.ts:20](https://github.com/avolutions/canvas-painter/blob/main/src/options/ShapeOptions.ts#L20)

@@ -5,6 +5,19 @@ allowing specific styles or behaviors to be applied.
 
 ## Enumeration Members
 
+### Active
+
+> **Active**: `"active"`
+
+The active state, applied when the shape is currently being manipulated,
+such as during dragging or resizing.
+
+#### Defined in
+
+[common/ShapeState.ts:22](https://github.com/avolutions/canvas-painter/blob/main/src/common/ShapeState.ts#L22)
+
+***
+
 ### Default
 
 > **Default**: `"default"`

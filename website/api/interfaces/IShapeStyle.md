@@ -8,6 +8,21 @@ Interface representing the style properties for a shape.
 
 ## Properties
 
+### active?
+
+> `optional` **active**: [`IShapeBaseStyle`](IShapeBaseStyle.md)
+
+Active style for the shape.
+
+When the shape is in the active state, the properties defined in this style
+override the default style properties.
+
+#### Defined in
+
+[styles/interfaces/IShapeStyle.ts:27](https://github.com/avolutions/canvas-painter/blob/main/src/styles/interfaces/IShapeStyle.ts#L27)
+
+***
+
 ### cursor?
 
 > `optional` **cursor**: [`Cursor`](../enumerations/Cursor.md)

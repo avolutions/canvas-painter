@@ -256,7 +256,7 @@ The new options to apply.
 
 #### Defined in
 
-[shapes/Shape.ts:203](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L203)
+[shapes/Shape.ts:220](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L220)
 
 ***
 
@@ -332,7 +332,7 @@ The new state to assign to the shape.
 
 #### Defined in
 
-[shapes/Shape.ts:221](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L221)
+[shapes/Shape.ts:238](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L238)
 
 ***
 
@@ -356,7 +356,7 @@ The computed style object for the current shape state, with state-specific overr
 
 #### Defined in
 
-[shapes/Shape.ts:243](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L243)
+[shapes/Shape.ts:260](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L260)
 
 ***
 
@@ -396,7 +396,7 @@ The new style settings to apply.
 
 #### Defined in
 
-[shapes/Shape.ts:185](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L185)
+[shapes/Shape.ts:202](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L202)
 
 ## Methods
 
@@ -422,7 +422,7 @@ The observer callback function.
 
 #### Defined in
 
-[shapes/Shape.ts:154](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L154)
+[shapes/Shape.ts:171](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L171)
 
 ***
 
@@ -444,7 +444,7 @@ Determines if the current state style includes a visible border.
 
 #### Defined in
 
-[shapes/Shape.ts:280](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L280)
+[shapes/Shape.ts:297](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L297)
 
 ***
 
@@ -467,6 +467,29 @@ appear during rendering until `show()` is called.
 #### Defined in
 
 [shapes/Shape.ts:127](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L127)
+
+***
+
+### isDraggable()
+
+> **isDraggable**(): `boolean`
+
+Checks whether the shape is draggable or not.
+
+#### Returns
+
+`boolean`
+
+Returns true if the shape is draggable.
+         Returns false if the shape is not draggable.
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`isDraggable`](Shape.md#isdraggable)
+
+#### Defined in
+
+[shapes/Shape.ts:147](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L147)
 
 ***
 
@@ -599,6 +622,32 @@ The amount to move the start point along the y-axis.
 
 ***
 
+### onDrag()
+
+> **onDrag**(`delta`): `void`
+
+Handles the drag operation by applying the given delta to the current position.
+
+#### Parameters
+
+• **delta**: [`Point`](Point.md)
+
+The change in position represented as a `Point`.
+
+#### Returns
+
+`void`
+
+#### Overrides
+
+[`Shape`](Shape.md).[`onDrag`](Shape.md#ondrag)
+
+#### Defined in
+
+[shapes/Line.ts:209](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L209)
+
+***
+
 ### removeObserver()
 
 > **removeObserver**(`observer`): `void`
@@ -621,7 +670,7 @@ The observer callback function to be removed.
 
 #### Defined in
 
-[shapes/Shape.ts:165](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L165)
+[shapes/Shape.ts:182](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L182)
 
 ***
 

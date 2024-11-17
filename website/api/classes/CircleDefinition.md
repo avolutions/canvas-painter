@@ -50,29 +50,37 @@ The center point of the circle.
 
 ### radius
 
-> `get` **radius**(): `number`
+#### Get Signature
+
+> **get** **radius**(): `number`
 
 Gets the radius of the definition.
 
-> `set` **radius**(`radius`): `void`
+##### Returns
+
+`number`
+
+The radius of the definition.
+
+#### Set Signature
+
+> **set** **radius**(`radius`): `void`
 
 Sets the radius of the definition.
 
-#### Throws
+##### Throws
 
 RangeError if negative radius is passed.
 
-#### Parameters
+##### Parameters
 
 • **radius**: `number`
 
 The new radius of the definition.
 
-#### Returns
+##### Returns
 
-`number`
-
-The radius of the definition.
+`void`
 
 #### Defined in
 
