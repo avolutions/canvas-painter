@@ -17,4 +17,12 @@ export interface IShapeStyle {
    * override the default style properties.
    */
   hover?: IShapeBaseStyle;
+
+  /**
+   * Active style for the shape.
+   *
+   * When the shape is in the active state, the properties defined in this style
+   * override the default style properties.
+   */
+  active?: IShapeBaseStyle;
 }

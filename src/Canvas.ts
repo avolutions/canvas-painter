@@ -177,6 +177,12 @@ export class Canvas {
       // Set currently dragged shape
       this._dragShape = this._hoverShape;
 
+      // Set shape state to active
+      this._dragShape.state = ShapeState.Active;
+
+      // Set active style cursor
+      this._canvas.style.cursor = this._dragShape.stateStyle.cursor!;
+
       // Set drag start position
       this._dragPosition = mousePosition;
 
@@ -263,7 +269,7 @@ export class Canvas {
       } else {
         // Reset cursor if currently hovered shape is no longer hovered
         if (shape.state === ShapeState.Hover) {
-          this._canvas.style.cursor = this._style.cursor.default;
+          this.resetCursor();
         }
 
         // Ensure all other shapes are in Default state if not hovered
@@ -282,8 +288,12 @@ export class Canvas {
   private readonly onMouseUp = (event: MouseEvent): void => {
     // Stop dragging
     if (this._dragShape) {
+      this._dragShape.state = ShapeState.Default;
       this._dragShape = null;
       this._dragPosition = new Point(0, 0);
+
+      // Set default cursor
+      this.resetCursor();
     }
 
     // Stop panning
@@ -291,7 +301,7 @@ export class Canvas {
       this._isPanning = false;
 
       // Set default cursor
-      this._canvas.style.cursor = this._style.cursor.default;
+      this.resetCursor();
     }
   }
 
@@ -749,5 +759,12 @@ export class Canvas {
     this.watchedShapes.forEach(shape => {
         shape.state = state;
     });
+  }
+
+  /**
+   * Resets the canvas cursor style to the default cursor.
+   */
+  private resetCursor() {
+    this._canvas.style.cursor = this._style.cursor.default;
   }
 }

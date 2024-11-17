@@ -18,4 +18,12 @@ export class ShapeStyle<TStyle extends IShapeBaseStyle> implements IShapeStyle {
    * override the default style properties.
    */
   public hover?: TStyle;
+
+  /**
+   * Active style for the shape.
+   *
+   * When the shape is in the active state, the properties defined in this style
+   * override the default style properties.
+   */
+  public active?: TStyle;
 }
