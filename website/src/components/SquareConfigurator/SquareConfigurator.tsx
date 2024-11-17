@@ -148,6 +148,14 @@ const SquareConfigurator: React.FC<SquareConfiguratorProps> = ({ square, onSquar
                     />
                   </div>
                   <div className={styles.formRow}>
+                    <label>draggable</label>
+                    <input
+                      type="checkbox"
+                      checked={square.options.draggable}
+                      onChange={(e) => onSquareChange('options.draggable', e.target.checked)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
                     <label>visible</label>
                     <input
                       type="checkbox"

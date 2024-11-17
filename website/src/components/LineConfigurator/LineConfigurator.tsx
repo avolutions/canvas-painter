@@ -129,6 +129,14 @@ const LineConfigurator: React.FC<LineConfiguratorProps> = ({ line, onLineChange 
               {!isLineOptionsCollapsed && (
                 <>
                   <div className={styles.formRow}>
+                    <label>draggable</label>
+                    <input
+                      type="checkbox"
+                      checked={line.options.draggable}
+                      onChange={(e) => onLineChange('options.draggable', e.target.checked)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
                     <label>visible</label>
                     <input
                       type="checkbox"

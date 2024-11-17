@@ -130,6 +130,14 @@ const CircleConfigurator: React.FC<CircleConfiguratorProps> = ({ circle, onCircl
               {!isCircleOptionsCollapsed && (
                 <>
                   <div className={styles.formRow}>
+                    <label>draggable</label>
+                    <input
+                      type="checkbox"
+                      checked={circle.options.draggable}
+                      onChange={(e) => onCircleChange('options.draggable', e.target.checked)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
                     <label>visible</label>
                     <input
                       type="checkbox"
