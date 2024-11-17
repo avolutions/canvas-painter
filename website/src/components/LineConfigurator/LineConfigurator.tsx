@@ -88,6 +88,7 @@ const LineConfigurator: React.FC<LineConfiguratorProps> = ({ line, onLineChange 
                     <select value={selectedState} onChange={(e) => setSelectedState(e.target.value)}>
                       <option value={ShapeState.Default}>{ShapeState.Default}</option>
                       <option value={ShapeState.Hover}>{ShapeState.Hover}</option>
+                      <option value={ShapeState.Active}>{ShapeState.Active}</option>
                     </select>
                   </div>
 
@@ -128,6 +129,14 @@ const LineConfigurator: React.FC<LineConfiguratorProps> = ({ line, onLineChange 
               </button>
               {!isLineOptionsCollapsed && (
                 <>
+                  <div className={styles.formRow}>
+                    <label>draggable</label>
+                    <input
+                      type="checkbox"
+                      checked={line.options.draggable}
+                      onChange={(e) => onLineChange('options.draggable', e.target.checked)}
+                    />
+                  </div>
                   <div className={styles.formRow}>
                     <label>visible</label>
                     <input
