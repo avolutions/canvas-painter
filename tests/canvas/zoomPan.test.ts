@@ -6,6 +6,7 @@ import { fireEvent } from '@testing-library/dom';
 
 import { Canvas } from "../../src/Canvas";
 import { CanvasStyle } from "../../src/styles/CanvasStyle";
+import { MockShape } from "../mocks/MockShape";
 import { MouseButton } from "../../src/types/MouseButton";
 import { Point } from "../../src/types/Point";
 import { setupCanvas } from "./canvasTestUtils";
@@ -289,6 +290,16 @@ describe('Zoom and pan function of canvas class', () => {
 
     /* Test when no button is configured */
     canvas = Canvas.init('canvas-id', { pannable: true, pan: { mouseButtons: [] } });
+    canvas['onMouseDown'](mockEvent);
+
+    expect((canvas as any)._isPanning).toBe(false);
+
+    /* Do not start panning if mouse is over draggable shape */
+    const shape = new MockShape();
+    canvas = Canvas.init('canvas-id', { pannable: true });
+    canvas.watch(shape);
+
+    canvas['onMouseMove'](mockEvent);
     canvas['onMouseDown'](mockEvent);
 
     expect((canvas as any)._isPanning).toBe(false);

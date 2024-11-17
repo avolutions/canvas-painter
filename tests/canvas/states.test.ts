@@ -5,9 +5,6 @@
 import { fireEvent } from '@testing-library/dom';
 
 import { Canvas } from "../../src/Canvas";
-import { CanvasStyle } from "../../src/styles/CanvasStyle";
-import { MouseButton } from "../../src/types/MouseButton";
-import { Point } from "../../src/types/Point";
 import { setupCanvas } from "./canvasTestUtils";
 import { MockShape } from "../mocks/MockShape";
 import { ShapeState } from '../../src/common/ShapeState';
