@@ -99,6 +99,7 @@ const RectangleConfigurator: React.FC<RectangleConfiguratorProps> = ({ rectangle
                     <select value={selectedState} onChange={(e) => setSelectedState(e.target.value)}>
                       <option value={ShapeState.Default}>{ShapeState.Default}</option>
                       <option value={ShapeState.Hover}>{ShapeState.Hover}</option>
+                      <option value={ShapeState.Active}>{ShapeState.Active}</option>
                     </select>
                   </div>
 
@@ -153,6 +154,14 @@ const RectangleConfigurator: React.FC<RectangleConfiguratorProps> = ({ rectangle
                       type="checkbox"
                       checked={rectangle.options.centered}
                       onChange={(e) => onRectangleChange('options.centered', e.target.checked)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
+                    <label>draggable</label>
+                    <input
+                      type="checkbox"
+                      checked={rectangle.options.draggable}
+                      onChange={(e) => onRectangleChange('options.draggable', e.target.checked)}
                     />
                   </div>
                   <div className={styles.formRow}>
