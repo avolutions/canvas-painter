@@ -58,9 +58,11 @@ Each shape can exist in various states that represent different levels of intera
 
 A shape can have one of the following states:
 
-- **Default**: The default state is the baseline appearance and behavior of a shape. This state applies when no specific interaction is occurring with the shape
-
-- **Hover**: The hover state is set when the mouse is moved over the shape. In this state, you can apply distinct styles to make the shape stand out, such as changing its color, adjusting its border, or highlighting it in some way. The hover state helps indicate that the shape is interactive, drawing attention to it when the user moves the cursor over the shape.
+State | Description
+--- | ---
+**Default** | The default state is the baseline appearance and behavior of a shape. This state applies when no specific interaction is occurring with the shape
+**Hover** | The hover state is set when the mouse is moved over the shape. In this state, you can apply distinct styles to make the shape stand out, such as changing its color, adjusting its border, or highlighting it in some way. The hover state helps indicate that the shape is interactive, drawing attention to it when the user moves the cursor over the shape.
+**Active** | The active state is set when the shape is being interacted with directly, such as being dragged. This state allows for specialized styles and behaviors to indicate that the shape is currently engaged in an action.
 
 The current state of a shape can be access by using the `state` getter:
 
@@ -241,6 +243,20 @@ circle.options.visible = true;
 // This will draw the circle on the canvas
 canvas.draw(circle);
 ```
+
+## Interactivity
+
+Shapes in **CanvasPainter.js** can support various forms of interactivity, allowing users to manipulate them directly through mouse or touch inputs. This chapter provides an overview of interactive features.
+
+### Draggable
+
+The draggable option determines whether a shape can be moved interactively using the mouse.
+
+Enabling the `draggable` option allows a shape to be moved around the canvas effortlessly. By setting this option to `true` (default value), the shape responds to user interactions, such as clicking and dragging, updating its position in real-time as it is moved. This feature can transform static shapes into dynamic and engaging elements, perfect for applications like diagram editors, interactive games, or creative tools.
+
+For instance, creating a draggable rectangle is as simple as passing the `draggable` option when defining the shape. Once added to the canvas, the rectangle can be clicked and dragged, giving users a hands-on experience. Visual feedback, such as applying the `active` state, ensures that users are aware the shape is in motion.
+
+Disabling this feature is equally straightforward. By setting the `draggable` option to `false`, you can prevent the shape from being moved, making it a fixed element on the canvas. This flexibility allows you to decide which shapes remain static and which can be repositioned dynamically.
 
 ## Serialize shapes
 

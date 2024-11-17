@@ -200,4 +200,13 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
     // Check if this distance is within the tolerance (half the line width)
     return distanceToLine <= lineWidth;
   }
+
+  /**
+   * Handles the drag operation by applying the given delta to the current position.
+   *
+   * @param delta - The change in position represented as a `Point`.
+   */
+  public onDrag(delta: Point): void {
+    this.move(delta.x, delta.y);
+  }
 }

@@ -6,6 +6,7 @@ import { fireEvent } from '@testing-library/dom';
 
 import { Canvas } from "../../src/Canvas";
 import { CanvasStyle } from "../../src/styles/CanvasStyle";
+import { MockShape } from "../mocks/MockShape";
 import { MouseButton } from "../../src/types/MouseButton";
 import { Point } from "../../src/types/Point";
 import { setupCanvas } from "./canvasTestUtils";
@@ -24,11 +25,16 @@ describe('Zoom and pan function of canvas class', () => {
     jest.restoreAllMocks();
   });
 
-  test('should apply default event handlers', () => {
+  test('should apply event handlers', () => {
     const spy = jest.spyOn(canvasElement, 'addEventListener');
-    const canvas = Canvas.init('canvas-id');
+    Canvas.init('canvas-id');
 
+    expect(spy).toHaveBeenCalledWith('contextmenu', expect.any(Function));
+    expect(spy).toHaveBeenCalledWith('mousedown', expect.any(Function));
+    expect(spy).toHaveBeenCalledWith('mouseleave', expect.any(Function));
     expect(spy).toHaveBeenCalledWith('mousemove', expect.any(Function));
+    expect(spy).toHaveBeenCalledWith('mouseup', expect.any(Function));
+    expect(spy).toHaveBeenCalledWith('wheel', expect.any(Function));
   });
 
   test('should call the contextmenu event listener and prevent default behavior', () => {
@@ -38,75 +44,6 @@ describe('Zoom and pan function of canvas class', () => {
     fireEvent.contextMenu((canvas as any)._canvas);
 
     expect(preventDefaultSpy).toHaveBeenCalled();
-  });
-
-  test('should apply event handler for zooming', () => {
-    const spy = jest.spyOn(canvasElement, 'addEventListener');
-
-    Canvas.init('canvas-id');
-    expect(spy).not.toHaveBeenCalledWith('wheel', expect.any(Function));
-    spy.mockClear();
-
-    Canvas.init('canvas-id', { zoomable: false });
-    expect(spy).not.toHaveBeenCalledWith('wheel', expect.any(Function));
-    spy.mockClear();
-
-    Canvas.init('canvas-id', { zoomable: true });
-    expect(spy).toHaveBeenCalledWith('wheel', expect.any(Function));
-    spy.mockClear();
-
-    Canvas.init('canvas-id', { zoomable: true, zoom: { useWheel: false } });
-    expect(spy).not.toHaveBeenCalledWith('wheel', expect.any(Function));
-    spy.mockClear();
-
-    Canvas.init('canvas-id', { zoomable: true, zoom: { useWheel: true } });
-    expect(spy).toHaveBeenCalledWith('wheel', expect.any(Function));
-    spy.mockClear();
-
-    Canvas.init('canvas-id', { zoomable: false, zoom: { useWheel: true } });
-    expect(spy).not.toHaveBeenCalledWith('wheel', expect.any(Function));
-    spy.mockClear();
-  });
-
-  test('should apply event handler for panning', () => {
-    const spy = jest.spyOn(canvasElement, 'addEventListener');
-    const getMouseleaveCalls = () => spy.mock.calls.filter(call => call[0] === 'mouseleave');
-
-    Canvas.init('canvas-id');
-    expect(spy).not.toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(spy).not.toHaveBeenCalledWith('mouseup', expect.any(Function));
-    expect(getMouseleaveCalls().length).toBe(1);
-    spy.mockClear();
-
-    Canvas.init('canvas-id', { pannable: false });
-    expect(spy).not.toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(spy).not.toHaveBeenCalledWith('mouseup', expect.any(Function));
-    expect(getMouseleaveCalls().length).toBe(1);
-    spy.mockClear();
-
-    Canvas.init('canvas-id', { pannable: true });
-    expect(spy).toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(spy).toHaveBeenCalledWith('mouseup', expect.any(Function));
-    expect(getMouseleaveCalls().length).toBe(2);
-    spy.mockClear();
-
-    Canvas.init('canvas-id', { pannable: true, pan: { useMouse: false } });
-    expect(spy).not.toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(spy).not.toHaveBeenCalledWith('mouseup', expect.any(Function));
-    expect(getMouseleaveCalls().length).toBe(1);
-    spy.mockClear();
-
-    Canvas.init('canvas-id', { pannable: true, pan: { useMouse: true } });
-    expect(spy).toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(spy).toHaveBeenCalledWith('mouseup', expect.any(Function));
-    expect(getMouseleaveCalls().length).toBe(2);
-    spy.mockClear();
-
-    Canvas.init('canvas-id', { pannable: false, pan: { useMouse: true } });
-    expect(spy).not.toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(spy).not.toHaveBeenCalledWith('mouseup', expect.any(Function));
-    expect(getMouseleaveCalls().length).toBe(1);
-    spy.mockClear();
   });
 
   test('should set and get zoomScale correctly', () => {
@@ -331,13 +268,25 @@ describe('Zoom and pan function of canvas class', () => {
     expect((canvas as any)._panStart).toEqual(new Point(40, 10));
   });
 
-  test('should not start panning if mouse button is not configured', () => {
+  test('should not start panning if canvas is not pannable or mouse button is not configured', () => {
     let canvas: Canvas;
     const mockEvent = {
       button: 0, // left
       offsetX: 47,
       offsetY: 11
     } as MouseEvent;
+
+    // Canvas is not pannable -> do not start panning
+    canvas = Canvas.init('canvas-id', { pannable: false });
+    canvas['onMouseDown'](mockEvent);
+
+    expect((canvas as any)._isPanning).toBe(false);
+
+    /* Test when use mouse is not active */
+    canvas = Canvas.init('canvas-id', { pannable: true, pan: { useMouse: false } });
+    canvas['onMouseDown'](mockEvent);
+
+    expect((canvas as any)._isPanning).toBe(false);
 
     /* Test when left button is not configured */
     canvas = Canvas.init('canvas-id', { pannable: true, pan: { mouseButtons: [ MouseButton.Right ] } });
@@ -347,6 +296,16 @@ describe('Zoom and pan function of canvas class', () => {
 
     /* Test when no button is configured */
     canvas = Canvas.init('canvas-id', { pannable: true, pan: { mouseButtons: [] } });
+    canvas['onMouseDown'](mockEvent);
+
+    expect((canvas as any)._isPanning).toBe(false);
+
+    /* Do not start panning if mouse is over draggable shape */
+    const shape = new MockShape();
+    canvas = Canvas.init('canvas-id', { pannable: true });
+    canvas.watch(shape);
+
+    canvas['onMouseMove'](mockEvent);
     canvas['onMouseDown'](mockEvent);
 
     expect((canvas as any)._isPanning).toBe(false);
@@ -388,7 +347,7 @@ describe('Zoom and pan function of canvas class', () => {
     expect(canvas.panOffset).toStrictEqual(offset);
   });
 
-  test('should stop panning on mouse up', () => {
+  test('should stop panning on mouse up and mouse leave', () => {
     let canvas: Canvas;
     const mockEvent = {
       button: 0, // left
@@ -396,6 +355,7 @@ describe('Zoom and pan function of canvas class', () => {
 
     canvas = Canvas.init('canvas-id', { pannable: true });
 
+    // mouse up should stop panning
     canvas['onMouseDown'](mockEvent);
     expect((canvas as any)._isPanning).toBe(true);
     expect((canvas as any)._canvas.style.cursor).toEqual(CanvasStyle.DefaultStyle.cursor?.panActive);
@@ -403,23 +363,51 @@ describe('Zoom and pan function of canvas class', () => {
     canvas['onMouseUp'](mockEvent);
     expect((canvas as any)._isPanning).toBe(false);
     expect((canvas as any)._canvas.style.cursor).toEqual(CanvasStyle.DefaultStyle.cursor?.default);
+
+    // mouse leave should stop panning
+    canvas['onMouseDown'](mockEvent);
+    expect((canvas as any)._isPanning).toBe(true);
+    expect((canvas as any)._canvas.style.cursor).toEqual(CanvasStyle.DefaultStyle.cursor?.panActive);
+
+    canvas['onMouseLeave'](mockEvent);
+    expect((canvas as any)._isPanning).toBe(false);
+    expect((canvas as any)._canvas.style.cursor).toEqual(CanvasStyle.DefaultStyle.cursor?.default);
   });
 
-  test('should prevent default on wheel', () => {
+  test('should prevent default on wheel if canvas is zoomable', () => {
+    let canvas: Canvas;
     const preventDefaultSpy = jest.fn();
     const mockEvent = {
       deltaY: 0,
       preventDefault: preventDefaultSpy,
     } as unknown as WheelEvent;
 
-    const canvas = Canvas.init('canvas-id');
+    // Canvas is not zoomable -> do not prevent default wheel behavior
+    canvas = Canvas.init('canvas-id');
+    canvas['onWheel'](mockEvent);
+
+    expect(preventDefaultSpy).not.toHaveBeenCalled();
+    preventDefaultSpy.mockReset();
+
+    // Canvas is zoomable -> prevent default wheel behavior
+    canvas = Canvas.init('canvas-id', { zoomable: true });
     canvas['onWheel'](mockEvent);
 
     expect(preventDefaultSpy).toHaveBeenCalled();
+    preventDefaultSpy.mockReset();
+
+    // Canvas is zoomable but not with mouse wheel -> do not prevent default wheel behavior
+    canvas = Canvas.init('canvas-id', { zoomable: true, zoom: { useWheel: false } });
+    canvas['onWheel'](mockEvent);
+
+    expect(preventDefaultSpy).not.toHaveBeenCalled();
+    preventDefaultSpy.mockReset();
   });
 
   test('should call zoomIn and zoomOut on wheel up and down', () => {
     let canvas: Canvas;
+    let zoomInSpy;
+    let zoomOutSpy;
     const mockEventUp = {
       deltaY: -100,
       preventDefault: jest.fn()
@@ -430,19 +418,44 @@ describe('Zoom and pan function of canvas class', () => {
       preventDefault: jest.fn()
     } as unknown as WheelEvent;
 
+    // Canvas is not zoomable -> do not call zoomIn and zoomOut
     canvas = Canvas.init('canvas-id');
-    const zoomInSpy = jest.spyOn(canvas, 'zoomIn');
-    const zoomOutSpy = jest.spyOn(canvas, 'zoomOut');
+    zoomInSpy = jest.spyOn(canvas, 'zoomIn');
+    zoomOutSpy = jest.spyOn(canvas, 'zoomOut');
+
+    canvas['onWheel'](mockEventUp);
+    expect(zoomInSpy).not.toHaveBeenCalledWith(undefined);
+
+    canvas['onWheel'](mockEventDown);
+    expect(zoomOutSpy).not.toHaveBeenCalledWith(undefined);
+
+    // Canvas is zoomable -> call zoomIn and zoomOut
+    canvas = Canvas.init('canvas-id', { zoomable: true });
+    zoomInSpy = jest.spyOn(canvas, 'zoomIn');
+    zoomOutSpy = jest.spyOn(canvas, 'zoomOut');
 
     canvas['onWheel'](mockEventUp);
     expect(zoomInSpy).toHaveBeenCalledWith(undefined);
 
     canvas['onWheel'](mockEventDown);
     expect(zoomOutSpy).toHaveBeenCalledWith(undefined);
+
+    // Canvas is zoomable but not with mouse wheel -> do not call zoomIn and zoomOut
+    canvas = Canvas.init('canvas-id', { zoomable: true, zoom: { useWheel: false } });
+    zoomInSpy = jest.spyOn(canvas, 'zoomIn');
+    zoomOutSpy = jest.spyOn(canvas, 'zoomOut');
+
+    canvas['onWheel'](mockEventUp);
+    expect(zoomInSpy).not.toHaveBeenCalledWith(undefined);
+
+    canvas['onWheel'](mockEventDown);
+    expect(zoomOutSpy).not.toHaveBeenCalledWith(undefined);
   });
 
   test('should call zoomIn and zoomOut to mouse position if panning is active', () => {
     let canvas: Canvas;
+    let zoomInSpy;
+    let zoomOutSpy;
     const mockEventUp = {
       deltaY: -100,
       offsetX: 42,
@@ -457,14 +470,15 @@ describe('Zoom and pan function of canvas class', () => {
       preventDefault: jest.fn()
     } as unknown as WheelEvent;
 
-    canvas = Canvas.init('canvas-id', { pannable: true });
-    const zoomInSpy = jest.spyOn(canvas, 'zoomIn');
-    const zoomOutSpy = jest.spyOn(canvas, 'zoomOut');
+     // Canvas is zoomable and pannable -> call zoomIn and zoomOut with position
+     canvas = Canvas.init('canvas-id', { zoomable: true, pannable: true });
+     zoomInSpy = jest.spyOn(canvas, 'zoomIn');
+     zoomOutSpy = jest.spyOn(canvas, 'zoomOut');
 
-    canvas['onWheel'](mockEventUp);
-    expect(zoomInSpy).toHaveBeenCalledWith(new Point(42, 11));
+     canvas['onWheel'](mockEventUp);
+     expect(zoomInSpy).toHaveBeenCalledWith(new Point(42, 11));
 
-    canvas['onWheel'](mockEventDown);
-    expect(zoomOutSpy).toHaveBeenCalledWith(new Point(42, 11));
+     canvas['onWheel'](mockEventDown);
+     expect(zoomOutSpy).toHaveBeenCalledWith(new Point(42, 11));
   });
 });

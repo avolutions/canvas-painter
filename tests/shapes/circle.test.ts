@@ -338,4 +338,13 @@ describe('Circle class', () => {
 
     expect(circle.isMouseOver(mousePosition)).toBe(false);
   });
+
+  test('should move circle while dragging', () => {
+    const circle = new Circle(50, 50, 100);
+    const moveSpy = jest.spyOn(circle, 'move');
+
+    circle.onDrag(new Point(47, 11));
+
+    expect(moveSpy).toHaveBeenCalledWith(47, 11);
+  });
 });

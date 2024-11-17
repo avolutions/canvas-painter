@@ -185,7 +185,7 @@ Style | Type | Default | Explanation
 `cursor` | [Cursor](../../api/enumerations/Cursor) | [Cursor.Default](../../api/enumerations/Cursor#default) | Specifies a custom cursor style for the shape. Overrides the default cursor when interacting with the shape.
 `width` | number | 1.0 | Defines the width of the line.
 
-You can specify styles for different shape states by providing a unique set of properties under each state (e.g., hover, selected, active). Each state-specific style overrides the default only while the shape is in that state.
+You can specify styles for different shape states by providing a unique set of properties under each state (e.g., hover). Each state-specific style overrides the default only while the shape is in that state.
 
 ```js
 {
@@ -207,6 +207,7 @@ The following table is showing all available line options and the default values
 Option | Type | Default | Explanation
 --- | --- | --- | ---
 `visible` | boolean | true | If `true`, the line will be visible.<br />If `false` or `undefined`, the line will be hidden.
+`draggable` | boolean | true | If `true`, the line can be dragged using the mouse.<br />If `false` or undefined, the line will remain stationary and cannot be moved interactively.
 
 ```js
 {

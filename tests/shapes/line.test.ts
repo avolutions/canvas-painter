@@ -458,4 +458,13 @@ describe('Line class', () => {
 
     expect(line.isMouseOver(mousePosition)).toBe(true);
   });
+
+  test('should move line while dragging', () => {
+    const line = new Line(50, 50, 100, 75);
+    const moveSpy = jest.spyOn(line, 'move');
+
+    line.onDrag(new Point(47, 11));
+
+    expect(moveSpy).toHaveBeenCalledWith(47, 11);
+  });
 });

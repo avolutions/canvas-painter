@@ -6,39 +6,49 @@ This interface defines methods for rendering the shape on a canvas and managing 
 
 ### state
 
-> `get` **state**(): [`ShapeState`](../enumerations/ShapeState.md)
+#### Get Signature
+
+> **get** **state**(): [`ShapeState`](../enumerations/ShapeState.md)
 
 Gets the current state of the shape.
 
-> `set` **state**(`state`): `void`
-
-Sets a new state for the shape.
-
-#### Parameters
-
-• **state**: [`ShapeState`](../enumerations/ShapeState.md)
-
-The new state to assign to the shape.
-
-#### Returns
+##### Returns
 
 [`ShapeState`](../enumerations/ShapeState.md)
 
 The current state of the shape.
 
+#### Set Signature
+
+> **set** **state**(`state`): `void`
+
+Sets a new state for the shape.
+
+##### Parameters
+
+• **state**: [`ShapeState`](../enumerations/ShapeState.md)
+
+The new state to assign to the shape.
+
+##### Returns
+
+`void`
+
 #### Defined in
 
-[shapes/IShape.ts:67](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L67)
+[shapes/IShape.ts:82](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L82)
 
 ***
 
 ### stateStyle
 
-> `get` **stateStyle**(): [`IShapeStyle`](IShapeStyle.md)
+#### Get Signature
+
+> **get** **stateStyle**(): [`IShapeStyle`](IShapeStyle.md)
 
 Retrieves the effective style of the shape based on its current state.
 
-#### Returns
+##### Returns
 
 [`IShapeStyle`](IShapeStyle.md)
 
@@ -46,7 +56,7 @@ The computed style object for the current shape state, with state-specific overr
 
 #### Defined in
 
-[shapes/IShape.ts:81](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L81)
+[shapes/IShape.ts:96](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L96)
 
 ## Methods
 
@@ -90,6 +100,25 @@ appear during rendering until `show()` is called.
 
 ***
 
+### isDraggable()
+
+> **isDraggable**(): `boolean`
+
+Checks whether the shape is draggable or not.
+
+#### Returns
+
+`boolean`
+
+Returns true if the shape is draggable.
+         Returns false if the shape is not draggable.
+
+#### Defined in
+
+[shapes/IShape.ts:60](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L60)
+
+***
+
 ### isMouseOver()
 
 > **isMouseOver**(`mousePosition`): `boolean`
@@ -110,7 +139,7 @@ True if the mouse is over the shape, false otherwise.
 
 #### Defined in
 
-[shapes/IShape.ts:60](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L60)
+[shapes/IShape.ts:68](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L68)
 
 ***
 
@@ -130,6 +159,28 @@ Returns true if the shape is visible and will be rendered on the canvas.
 #### Defined in
 
 [shapes/IShape.ts:52](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L52)
+
+***
+
+### onDrag()
+
+> **onDrag**(`delta`): `void`
+
+Handles the drag operation by applying the given delta to the current position.
+
+#### Parameters
+
+• **delta**: [`Point`](../classes/Point.md)
+
+The change in position represented as a `Point`.
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[shapes/IShape.ts:75](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L75)
 
 ***
 
