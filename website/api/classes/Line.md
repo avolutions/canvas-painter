@@ -186,25 +186,33 @@ List of observer functions to be notified on shape changes.
 
 ### end
 
-> `get` **end**(): [`Point`](Point.md)
+#### Get Signature
+
+> **get** **end**(): [`Point`](Point.md)
 
 Gets the ending point of the line.
 
-> `set` **end**(`end`): `void`
+##### Returns
+
+[`Point`](Point.md)
+
+The ending point of the line.
+
+#### Set Signature
+
+> **set** **end**(`end`): `void`
 
 Sets the ending point of the line.
 
-#### Parameters
+##### Parameters
 
 • **end**: [`Point`](Point.md)
 
 The new ending point of the line.
 
-#### Returns
+##### Returns
 
-[`Point`](Point.md)
-
-The ending point of the line.
+`void`
 
 #### Defined in
 
@@ -214,25 +222,33 @@ The ending point of the line.
 
 ### options
 
-> `get` **options**(): `TOptions`
+#### Get Signature
+
+> **get** **options**(): `TOptions`
 
 Gets the configuration options of the shape.
 
-> `set` **options**(`options`): `void`
+##### Returns
+
+`TOptions`
+
+The current options.
+
+#### Set Signature
+
+> **set** **options**(`options`): `void`
 
 Updates the configuration options of the shape and notifies observers.
 
-#### Parameters
+##### Parameters
 
 • **options**: `TOptions`
 
 The new options to apply.
 
-#### Returns
+##### Returns
 
-`TOptions`
-
-The current options.
+`void`
 
 #### Inherited from
 
@@ -240,31 +256,39 @@ The current options.
 
 #### Defined in
 
-[shapes/Shape.ts:203](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L203)
+[shapes/Shape.ts:220](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L220)
 
 ***
 
 ### start
 
-> `get` **start**(): [`Point`](Point.md)
+#### Get Signature
+
+> **get** **start**(): [`Point`](Point.md)
 
 Gets the starting point of the line.
 
-> `set` **start**(`start`): `void`
+##### Returns
+
+[`Point`](Point.md)
+
+The starting point of the line.
+
+#### Set Signature
+
+> **set** **start**(`start`): `void`
 
 Sets the starting point of the line.
 
-#### Parameters
+##### Parameters
 
 • **start**: [`Point`](Point.md)
 
 The new starting point of the line.
 
-#### Returns
+##### Returns
 
-[`Point`](Point.md)
-
-The starting point of the line.
+`void`
 
 #### Defined in
 
@@ -274,25 +298,33 @@ The starting point of the line.
 
 ### state
 
-> `get` **state**(): [`ShapeState`](../enumerations/ShapeState.md)
+#### Get Signature
+
+> **get** **state**(): [`ShapeState`](../enumerations/ShapeState.md)
 
 Gets the current state of the shape.
 
-> `set` **state**(`state`): `void`
+##### Returns
+
+[`ShapeState`](../enumerations/ShapeState.md)
+
+The current state of the shape.
+
+#### Set Signature
+
+> **set** **state**(`state`): `void`
 
 Sets a new state for the shape.
 
-#### Parameters
+##### Parameters
 
 • **state**: [`ShapeState`](../enumerations/ShapeState.md)
 
 The new state to assign to the shape.
 
-#### Returns
+##### Returns
 
-[`ShapeState`](../enumerations/ShapeState.md)
-
-The current state of the shape.
+`void`
 
 #### Inherited from
 
@@ -300,17 +332,19 @@ The current state of the shape.
 
 #### Defined in
 
-[shapes/Shape.ts:221](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L221)
+[shapes/Shape.ts:238](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L238)
 
 ***
 
 ### stateStyle
 
-> `get` **stateStyle**(): `TStyle`
+#### Get Signature
+
+> **get** **stateStyle**(): `TStyle`
 
 Retrieves the effective style of the shape based on its current state.
 
-#### Returns
+##### Returns
 
 `TStyle`
 
@@ -322,31 +356,39 @@ The computed style object for the current shape state, with state-specific overr
 
 #### Defined in
 
-[shapes/Shape.ts:243](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L243)
+[shapes/Shape.ts:260](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L260)
 
 ***
 
 ### style
 
-> `get` **style**(): `TStyle`
+#### Get Signature
+
+> **get** **style**(): `TStyle`
 
 Gets the style settings of the shape.
 
-> `set` **style**(`style`): `void`
+##### Returns
+
+`TStyle`
+
+The current style settings.
+
+#### Set Signature
+
+> **set** **style**(`style`): `void`
 
 Updates the style settings of the shape and notifies observers.
 
-#### Parameters
+##### Parameters
 
 • **style**: `TStyle`
 
 The new style settings to apply.
 
-#### Returns
+##### Returns
 
-`TStyle`
-
-The current style settings.
+`void`
 
 #### Inherited from
 
@@ -354,7 +396,7 @@ The current style settings.
 
 #### Defined in
 
-[shapes/Shape.ts:185](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L185)
+[shapes/Shape.ts:202](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L202)
 
 ## Methods
 
@@ -380,7 +422,7 @@ The observer callback function.
 
 #### Defined in
 
-[shapes/Shape.ts:154](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L154)
+[shapes/Shape.ts:171](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L171)
 
 ***
 
@@ -402,7 +444,7 @@ Determines if the current state style includes a visible border.
 
 #### Defined in
 
-[shapes/Shape.ts:280](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L280)
+[shapes/Shape.ts:297](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L297)
 
 ***
 
@@ -425,6 +467,29 @@ appear during rendering until `show()` is called.
 #### Defined in
 
 [shapes/Shape.ts:127](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L127)
+
+***
+
+### isDraggable()
+
+> **isDraggable**(): `boolean`
+
+Checks whether the shape is draggable or not.
+
+#### Returns
+
+`boolean`
+
+Returns true if the shape is draggable.
+         Returns false if the shape is not draggable.
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`isDraggable`](Shape.md#isdraggable)
+
+#### Defined in
+
+[shapes/Shape.ts:147](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L147)
 
 ***
 
@@ -452,7 +517,7 @@ True if the mouse is over the shape, false otherwise.
 
 #### Defined in
 
-[shapes/Line.ts:159](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L159)
+[shapes/Line.ts:170](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L170)
 
 ***
 
@@ -476,6 +541,32 @@ Returns true if the shape is visible and will be rendered on the canvas.
 #### Defined in
 
 [shapes/Shape.ts:137](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L137)
+
+***
+
+### move()
+
+> **move**(`deltaX`, `deltaY`): `void`
+
+Moves the start & end point of the line by the specified deltas along the x and y axes.
+
+#### Parameters
+
+• **deltaX**: `number` = `0`
+
+The amount to move the start & end point along the x-axis.
+
+• **deltaY**: `number` = `0`
+
+The amount to move the start & end point along the y-axis.
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[shapes/Line.ts:140](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L140)
 
 ***
 
@@ -531,6 +622,32 @@ The amount to move the start point along the y-axis.
 
 ***
 
+### onDrag()
+
+> **onDrag**(`delta`): `void`
+
+Handles the drag operation by applying the given delta to the current position.
+
+#### Parameters
+
+• **delta**: [`Point`](Point.md)
+
+The change in position represented as a `Point`.
+
+#### Returns
+
+`void`
+
+#### Overrides
+
+[`Shape`](Shape.md).[`onDrag`](Shape.md#ondrag)
+
+#### Defined in
+
+[shapes/Line.ts:209](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L209)
+
+***
+
 ### removeObserver()
 
 > **removeObserver**(`observer`): `void`
@@ -553,7 +670,7 @@ The observer callback function to be removed.
 
 #### Defined in
 
-[shapes/Shape.ts:165](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L165)
+[shapes/Shape.ts:182](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L182)
 
 ***
 
@@ -579,7 +696,7 @@ The canvas rendering context to draw the line.
 
 #### Defined in
 
-[shapes/Line.ts:139](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L139)
+[shapes/Line.ts:150](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Line.ts#L150)
 
 ***
 

@@ -24,9 +24,25 @@ The partial options provided by the user.
 
 #### Defined in
 
-[options/LineOptions.ts:25](https://github.com/avolutions/canvas-painter/blob/main/src/options/LineOptions.ts#L25)
+[options/LineOptions.ts:30](https://github.com/avolutions/canvas-painter/blob/main/src/options/LineOptions.ts#L30)
 
 ## Properties
+
+### draggable
+
+> **draggable**: `boolean`
+
+Determines if the shape can be dragged by mouse.
+
+#### Implementation of
+
+[`ILineOptions`](../interfaces/ILineOptions.md).[`draggable`](../interfaces/ILineOptions.md#draggable)
+
+#### Defined in
+
+[options/LineOptions.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/options/LineOptions.ts#L16)
+
+***
 
 ### visible
 
@@ -52,4 +68,4 @@ Default options for the line.
 
 #### Defined in
 
-[options/LineOptions.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/options/LineOptions.ts#L16)
+[options/LineOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/LineOptions.ts#L21)

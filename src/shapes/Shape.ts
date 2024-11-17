@@ -139,12 +139,29 @@ export abstract class Shape<
   }
 
   /**
+   * Checks whether the shape is draggable or not.
+   *
+   * @returns Returns true if the shape is draggable.
+   *          Returns false if the shape is not draggable.
+   */
+  public isDraggable(): boolean {
+    return !!this._options.draggable;
+  }
+
+  /**
    * Determines if the mouse is currently over the shape.
    *
    * @param mousePosition - The current mouse position.
    * @returns True if the mouse is over the shape, false otherwise.
    */
   public abstract isMouseOver(mousePosition: Point): boolean;
+
+  /**
+   * Handles the drag operation by applying the given delta to the current position.
+   *
+   * @param delta - The change in position represented as a `Point`.
+   */
+  public abstract onDrag(delta: Point): void;
 
   /**
    * Adds an observer function that will be called when the shape's state changes.

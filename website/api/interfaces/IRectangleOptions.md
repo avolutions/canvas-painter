@@ -19,6 +19,22 @@ If false or undefined, the rectangle will be positioned from the top-left corner
 
 ***
 
+### draggable?
+
+> `optional` **draggable**: `boolean`
+
+Determines if the shape can be dragged by mouse.
+
+#### Inherited from
+
+[`IShapeOptions`](IShapeOptions.md).[`draggable`](IShapeOptions.md#draggable)
+
+#### Defined in
+
+[options/interfaces/IShapeOptions.ts:13](https://github.com/avolutions/canvas-painter/blob/main/src/options/interfaces/IShapeOptions.ts#L13)
+
+***
+
 ### visible?
 
 > `optional` **visible**: `boolean`

@@ -8,6 +8,7 @@ describe('CanvasOptions', () => {
 
     expect(defaults.width).toBe(300);
     expect(defaults.height).toBe(150);
+    expect(defaults.interactive).toBe(true);
     expect(defaults.zoomable).toBe(false);
     expect(defaults.pannable).toBe(false);
     expect(defaults.zoom).toBe(ZoomOptions.DefaultOptions);
@@ -21,6 +22,7 @@ describe('CanvasOptions', () => {
     expect(options).toBeInstanceOf(CanvasOptions);
     expect(options.width).toBe(defaults.width);
     expect(options.height).toBe(defaults.height);
+    expect(options.interactive).toEqual(defaults.interactive);
     expect(options.zoomable).toBe(defaults.zoomable);
     expect(options.pannable).toBe(defaults.pannable);
     expect(options.zoom).toBeInstanceOf(ZoomOptions);
@@ -32,15 +34,17 @@ describe('CanvasOptions', () => {
   test('should set the values provided by constructor', () => {
     const width = 800;
     const height = 600;
+    const interactive = false;
     const zoomable = true;
     const pannable = true;
     const zoom = { useWheel: false };
     const pan = { useMouse: false };
 
-    const options = new CanvasOptions({ width: width, height: height, zoomable: zoomable, pannable: pannable, zoom: zoom, pan: pan });
+    const options = new CanvasOptions({ width: width, height: height, interactive: interactive, zoomable: zoomable, pannable: pannable, zoom: zoom, pan: pan });
 
     expect(options.width).toBe(width);
     expect(options.height).toBe(height);
+    expect(options.interactive).toBe(interactive);
     expect(options.zoomable).toBe(zoomable);
     expect(options.pannable).toBe(pannable);
     expect(options.zoom).toBeInstanceOf(ZoomOptions);
@@ -71,6 +75,7 @@ describe('CanvasOptions', () => {
 
     options.width = 123;
     options.height = 456;
+    options.interactive = false;
     options.zoomable = true;
     options.pannable = true;
     options.zoom = zoomOptions
@@ -78,6 +83,7 @@ describe('CanvasOptions', () => {
 
     expect(options.width).toBe(123);
     expect(options.height).toBe(456);
+    expect(options.interactive).toBe(false);
     expect(options.zoomable).toBe(true);
     expect(options.pannable).toBe(true);
     expect(options.zoom).toStrictEqual(zoomOptions);

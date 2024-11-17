@@ -12,6 +12,11 @@ export class RectangleOptions implements IRectangleOptions {
   public visible!: boolean;
 
   /**
+   * Determines if the shape can be dragged by mouse.
+   */
+  public draggable!: boolean;
+
+  /**
    * If true, the rectangle will be centered at the provided position.
    * If false or undefined, the rectangle will be positioned from the top-left corner.
    */

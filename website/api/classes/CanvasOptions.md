@@ -24,7 +24,7 @@ The partial options provided by the user.
 
 #### Defined in
 
-[options/CanvasOptions.ts:57](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L57)
+[options/CanvasOptions.ts:63](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L63)
 
 ## Properties
 
@@ -44,6 +44,22 @@ The height of the canvas in pixels.
 
 ***
 
+### interactive
+
+> **interactive**: `boolean`
+
+Determines whether interactivity is enabled for the canvas.
+
+#### Implementation of
+
+[`ICanvasOptions`](../interfaces/ICanvasOptions.md).[`interactive`](../interfaces/ICanvasOptions.md#interactive)
+
+#### Defined in
+
+[options/CanvasOptions.ts:23](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L23)
+
+***
+
 ### pan
 
 > **pan**: [`IPanOptions`](../interfaces/IPanOptions.md)
@@ -56,7 +72,7 @@ The options for configuring the pan behavior of the canvas.
 
 #### Defined in
 
-[options/CanvasOptions.ts:38](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L38)
+[options/CanvasOptions.ts:43](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L43)
 
 ***
 
@@ -72,7 +88,7 @@ Whether panning is enabled on the canvas.
 
 #### Defined in
 
-[options/CanvasOptions.ts:33](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L33)
+[options/CanvasOptions.ts:38](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L38)
 
 ***
 
@@ -104,7 +120,7 @@ The options for configuring the zoom behavior of the canvas.
 
 #### Defined in
 
-[options/CanvasOptions.ts:28](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L28)
+[options/CanvasOptions.ts:33](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L33)
 
 ***
 
@@ -120,7 +136,7 @@ Whether zooming is enabled on the canvas.
 
 #### Defined in
 
-[options/CanvasOptions.ts:23](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L23)
+[options/CanvasOptions.ts:28](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L28)
 
 ***
 
@@ -132,4 +148,4 @@ Default canvas options.
 
 #### Defined in
 
-[options/CanvasOptions.ts:43](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L43)
+[options/CanvasOptions.ts:48](https://github.com/avolutions/canvas-painter/blob/main/src/options/CanvasOptions.ts#L48)

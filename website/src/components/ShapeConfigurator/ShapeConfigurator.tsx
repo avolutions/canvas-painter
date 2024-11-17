@@ -14,10 +14,10 @@ const ShapeConfigurator: React.FC<ShapeConfiguratorProps> = ({ canvas }) => {
   const [, setRenderTrigger] = useState(0); // Dummy state variable for forcing re-renders
 
   const [shapes, setShapes] = useState<Shape[]>([]);
-  const [rectangle, setRectangle] = useState<Rectangle>(new Rectangle(0, 0, 0, 0, 0, { hover: RectangleStyle.DefaultStyle }, {}));
-  const [square, setSquare] = useState<Square>(new Square(0, 0, 0, 0, { hover: RectangleStyle.DefaultStyle }, {}));
-  const [circle, setCircle] = useState<Circle>(new Circle(0, 0, 0, { hover: CircleStyle.DefaultStyle }, {}));
-  const [line, setLine] = useState<Line>(new Line(0, 0, 0, 0, { hover: LineStyle.DefaultStyle }, {}));
+  const [rectangle, setRectangle] = useState<Rectangle>(new Rectangle(0, 0, 0, 0, 0, { hover: {}, active: {} }, {}));
+  const [square, setSquare] = useState<Square>(new Square(0, 0, 0, 0, { hover: {}, active: {} }, {}));
+  const [circle, setCircle] = useState<Circle>(new Circle(0, 0, 0, { hover: {}, active: {} }, {}));
+  const [line, setLine] = useState<Line>(new Line(0, 0, 0, 0, { hover: {}, active: {} }, {}));
 
   useEffect(() => {
     setShapes((prevShapes) => [...prevShapes, rectangle, square, circle, line]);
@@ -30,6 +30,7 @@ const ShapeConfigurator: React.FC<ShapeConfiguratorProps> = ({ canvas }) => {
   const handleShapeChange = (shape: Shape, field: string, value: any) => {
     let target = shape;
     const path = field.split('.');
+    console.log(path);
 
     for (let i = 0; i < path.length - 1; i++) {
       target = target[path[i]];
@@ -38,6 +39,7 @@ const ShapeConfigurator: React.FC<ShapeConfiguratorProps> = ({ canvas }) => {
 
     // Trigger React to re-render
     setRenderTrigger((prev) => prev + 1); // Force a re-render
+    console.log(shape.style.active);
   };
 
   return (

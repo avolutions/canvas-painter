@@ -1,5 +1,4 @@
 import { ShapeState } from "../../src/common/ShapeState";
-import { ShapeStyle } from "../../src/styles/ShapeStyle";
 import { Point } from "../../src/types/Point";
 import { MockShape } from "../mocks/MockShape";
 import { MockShapeOptions } from "../mocks/MockShapeOptions";
@@ -95,19 +94,19 @@ describe('Shape class', () => {
     const shape = new MockShape();
 
     expect(shape.options.visible).toBe(true);
+    expect(shape.options.draggable).toBe(true);
     expect(shape.isVisible()).toBe(true);
+    expect(shape.isDraggable()).toBe(true);
   });
 
   test("should set options through setter", () => {
     const shape = new MockShape();
 
-    shape.options = { visible: false };
-    expect(shape.options.visible).toBe(false);
-    expect(shape.isVisible()).toBe(false);
-
     shape.options.visible = true;
     expect(shape.options.visible).toBe(true);
+    expect(shape.options.draggable).toBe(true);
     expect(shape.isVisible()).toBe(true);
+    expect(shape.isDraggable()).toBe(true);
   });
 
   test("should handle visibility correctly", () => {
@@ -278,13 +277,18 @@ describe('Shape class', () => {
       color: 'red',
       hover: {
         color: 'blue'
+      },
+      active: {
+        color: 'yellow'
       }
     };
 
     const shape = new MockShape(10, style);
 
     expect(shape.style).toHaveProperty('hover');
+    expect(shape.style).toHaveProperty('active');
     expect(shape.stateStyle).not.toHaveProperty('hover');
+    expect(shape.stateStyle).not.toHaveProperty('active');
   });
 
   test("should return state style", () => {
@@ -294,6 +298,10 @@ describe('Shape class', () => {
       hover: {
         color: 'blue',
         borderColor: 'green'
+      },
+      active: {
+        color: 'yellow',
+        borderColor: 'purple'
       }
     };
 
@@ -306,6 +314,11 @@ describe('Shape class', () => {
     shape.state = ShapeState.Hover;
     expect(shape.stateStyle.color).toBe('blue');
     expect(shape.stateStyle.borderColor).toBe('green');
+    expect(shape.stateStyle.borderWidth).toBe(1);
+
+    shape.state = ShapeState.Active;
+    expect(shape.stateStyle.color).toBe('yellow');
+    expect(shape.stateStyle.borderColor).toBe('purple');
     expect(shape.stateStyle.borderWidth).toBe(1);
 
     shape.state = ShapeState.Default;

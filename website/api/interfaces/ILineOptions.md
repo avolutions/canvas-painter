@@ -6,6 +6,22 @@ Represents options for configuring a line shape.
 
 ## Properties
 
+### draggable?
+
+> `optional` **draggable**: `boolean`
+
+Determines if the shape can be dragged by mouse.
+
+#### Inherited from
+
+[`IShapeOptions`](IShapeOptions.md).[`draggable`](IShapeOptions.md#draggable)
+
+#### Defined in
+
+[options/interfaces/IShapeOptions.ts:13](https://github.com/avolutions/canvas-painter/blob/main/src/options/interfaces/IShapeOptions.ts#L13)
+
+***
+
 ### visible?
 
 > `optional` **visible**: `boolean`

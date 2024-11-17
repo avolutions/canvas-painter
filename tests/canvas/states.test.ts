@@ -5,9 +5,6 @@
 import { fireEvent } from '@testing-library/dom';
 
 import { Canvas } from "../../src/Canvas";
-import { CanvasStyle } from "../../src/styles/CanvasStyle";
-import { MouseButton } from "../../src/types/MouseButton";
-import { Point } from "../../src/types/Point";
 import { setupCanvas } from "./canvasTestUtils";
 import { MockShape } from "../mocks/MockShape";
 import { ShapeState } from '../../src/common/ShapeState';
@@ -44,6 +41,7 @@ describe('State functions of canvas class', () => {
     expect(shape1.state).toBe(ShapeState.Hover);
     expect(shape2.state).toBe(ShapeState.Default);
 
+    expect((canvas as any)._hoverShape).toBe(shape1);
     expect((canvas as any)._canvas.style.cursor).toBe(Cursor.Copy);
   });
 
@@ -63,6 +61,7 @@ describe('State functions of canvas class', () => {
     expect(shape1.state).toBe(ShapeState.Default);
     expect(shape2.state).toBe(ShapeState.Hover);
 
+    expect((canvas as any)._hoverShape).toBe(shape2);
     expect((canvas as any)._canvas.style.cursor).toBe(Cursor.Move);
   });
 
@@ -86,6 +85,7 @@ describe('State functions of canvas class', () => {
     expect(shape2.state).toBe(ShapeState.Default);
 
     expect((canvas as any)._canvas.style.cursor).toBe(Cursor.Default);
+    expect((canvas as any)._hoverShape).toBeNull();
   });
 
   test('should reset all states to Default if mouse is leaving canvas', () => {
@@ -103,6 +103,52 @@ describe('State functions of canvas class', () => {
     canvas.watch(shape2);
 
     fireEvent.mouseLeave((canvas as any)._canvas);
+
+    expect(shape1.state).toBe(ShapeState.Default);
+    expect(shape2.state).toBe(ShapeState.Default);
+
+    expect((canvas as any)._canvas.style.cursor).toBe(Cursor.Default);
+    expect((canvas as any)._hoverShape).toBeNull();
+  });
+
+  test('should set the active shape state and cursor correctly', () => {
+    const shape1 = new MockShape(0, { active: { cursor: Cursor.Copy } });
+    const shape2 = new MockShape(0, { active: { cursor: Cursor.Move } });
+    const canvas = Canvas.init('canvas-id');
+
+    jest.spyOn(shape1, 'isMouseOver').mockReturnValue(true);
+    jest.spyOn(shape2, 'isMouseOver').mockReturnValue(false);
+
+    canvas.watch(shape1);
+    canvas.watch(shape2);
+
+    fireEvent.mouseMove((canvas as any)._canvas);
+    fireEvent.mouseDown((canvas as any)._canvas);
+
+    expect(shape1.state).toBe(ShapeState.Active);
+    expect(shape2.state).toBe(ShapeState.Default);
+
+    expect((canvas as any)._canvas.style.cursor).toBe(Cursor.Copy);
+  });
+
+  test('should reset active state after dragging is finished', () => {
+    const shape1 = new MockShape(0, { hover: { cursor: Cursor.Copy } });
+    const shape2 = new MockShape(0, { hover: { cursor: Cursor.Move } });
+    const canvas = Canvas.init('canvas-id');
+
+    jest.spyOn(shape1, 'isMouseOver').mockReturnValue(true);
+    jest.spyOn(shape2, 'isMouseOver').mockReturnValue(false);
+
+    shape1.state = ShapeState.Hover;
+    shape2.state = ShapeState.Hover;
+
+    canvas.watch(shape1);
+    canvas.watch(shape2);
+
+    fireEvent.mouseMove((canvas as any)._canvas);
+    fireEvent.mouseDown((canvas as any)._canvas);
+    fireEvent.mouseMove((canvas as any)._canvas);
+    fireEvent.mouseUp((canvas as any)._canvas);
 
     expect(shape1.state).toBe(ShapeState.Default);
     expect(shape2.state).toBe(ShapeState.Default);

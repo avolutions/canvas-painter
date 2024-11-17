@@ -360,4 +360,13 @@ describe('Rectangle class', () => {
 
     expect(rectangle.isMouseOver(mousePosition)).toBe(true);
   });
+
+  test('should move rectangle while dragging', () => {
+    const rectangle = new Rectangle(50, 50, 100, 75, 0);
+    const moveSpy = jest.spyOn(rectangle, 'move');
+
+    rectangle.onDrag(new Point(47, 11));
+
+    expect(moveSpy).toHaveBeenCalledWith(47, 11);
+  });
 });

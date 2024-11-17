@@ -52,4 +52,8 @@ export class MockShape extends Shape<MockShapeDefinition, IMockShapeStyle, IMock
   public hasBorderTest() {
     return this.hasBorder();
   }
+
+  public onDrag(delta: Point): void {
+
+  }
 }

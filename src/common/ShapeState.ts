@@ -14,4 +14,10 @@ export enum ShapeState {
    * The hover state, applied when the mouse is over the shape.
    */
   Hover = "hover",
+
+  /**
+   * The active state, applied when the shape is currently being manipulated,
+   * such as during dragging or resizing.
+   */
+  Active = "active",
 }

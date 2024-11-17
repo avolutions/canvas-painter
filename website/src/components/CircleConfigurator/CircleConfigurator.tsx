@@ -81,6 +81,7 @@ const CircleConfigurator: React.FC<CircleConfiguratorProps> = ({ circle, onCircl
                     <select value={selectedState} onChange={(e) => setSelectedState(e.target.value)}>
                       <option value={ShapeState.Default}>{ShapeState.Default}</option>
                       <option value={ShapeState.Hover}>{ShapeState.Hover}</option>
+                      <option value={ShapeState.Active}>{ShapeState.Active}</option>
                     </select>
                   </div>
 
@@ -129,6 +130,14 @@ const CircleConfigurator: React.FC<CircleConfiguratorProps> = ({ circle, onCircl
               </button>
               {!isCircleOptionsCollapsed && (
                 <>
+                  <div className={styles.formRow}>
+                    <label>draggable</label>
+                    <input
+                      type="checkbox"
+                      checked={circle.options.draggable}
+                      onChange={(e) => onCircleChange('options.draggable', e.target.checked)}
+                    />
+                  </div>
                   <div className={styles.formRow}>
                     <label>visible</label>
                     <input

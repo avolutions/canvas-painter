@@ -26,6 +26,25 @@ Represents the style for a shape, including optional state-specific styles.
 
 ## Properties
 
+### active?
+
+> `optional` **active**: `TStyle`
+
+Active style for the shape.
+
+When the shape is in the active state, the properties defined in this style
+override the default style properties.
+
+#### Implementation of
+
+[`IShapeStyle`](../interfaces/IShapeStyle.md).[`active`](../interfaces/IShapeStyle.md#active)
+
+#### Defined in
+
+[styles/ShapeStyle.ts:28](https://github.com/avolutions/canvas-painter/blob/main/src/styles/ShapeStyle.ts#L28)
+
+***
+
 ### cursor
 
 > **cursor**: [`Cursor`](../enumerations/Cursor.md)

@@ -193,6 +193,20 @@ describe('Line class', () => {
     expect(observer).toHaveBeenCalledTimes(8);
   });
 
+  test('should not move start without passed parameters', () => {
+    const start = new Point(5, 10);
+    const end = new Point(15, 20);
+
+    const line = new Line(start, end);
+
+    line.moveStart();
+
+    expect(line.start.x).toBe(5);
+    expect(line.start.y).toBe(10);
+    expect(line.end.x).toBe(15);
+    expect(line.end.y).toBe(20);
+  });
+
   test('should move start on x- and y-axis', () => {
     const start = new Point(5, 10);
     const end = new Point(15, 20);
@@ -207,7 +221,7 @@ describe('Line class', () => {
     expect(line.end.y).toBe(20);
   });
 
-  test('should move end on x- or y-axis', () => {
+  test('should move start on x- or y-axis', () => {
     const start = new Point(5, 10);
     const end = new Point(15, 20);
 
@@ -224,6 +238,20 @@ describe('Line class', () => {
 
     expect(line.start.x).toBe(7.5);
     expect(line.start.y).toBe(3);
+    expect(line.end.x).toBe(15);
+    expect(line.end.y).toBe(20);
+  });
+
+  test('should not move end without passed parameters', () => {
+    const start = new Point(5, 10);
+    const end = new Point(15, 20);
+
+    const line = new Line(start, end);
+
+    line.moveEnd();
+
+    expect(line.start.x).toBe(5);
+    expect(line.start.y).toBe(10);
     expect(line.end.x).toBe(15);
     expect(line.end.y).toBe(20);
   });
@@ -259,6 +287,55 @@ describe('Line class', () => {
 
     expect(line.start.x).toBe(5);
     expect(line.start.y).toBe(10);
+    expect(line.end.x).toBe(17.5);
+    expect(line.end.y).toBe(13);
+  });
+
+  test('should not move start and end without passed parameters', () => {
+    const start = new Point(5, 10);
+    const end = new Point(15, 20);
+
+    const line = new Line(start, end);
+
+    line.move();
+
+    expect(line.start.x).toBe(5);
+    expect(line.start.y).toBe(10);
+    expect(line.end.x).toBe(15);
+    expect(line.end.y).toBe(20);
+  });
+
+  test('should move start and end on x- and y-axis', () => {
+    const start = new Point(5, 10);
+    const end = new Point(15, 20);
+
+    const line = new Line(start, end);
+
+    line.move(2.5, -23);
+
+    expect(line.start.x).toBe(7.5);
+    expect(line.start.y).toBe(-13);
+    expect(line.end.x).toBe(17.5);
+    expect(line.end.y).toBe(-3);
+  });
+
+  test('should move start and end on x- or y-axis', () => {
+    const start = new Point(5, 10);
+    const end = new Point(15, 20);
+
+    const line = new Line(start, end);
+
+    line.move(2.5, 0);
+
+    expect(line.start.x).toBe(7.5);
+    expect(line.start.y).toBe(10);
+    expect(line.end.x).toBe(17.5);
+    expect(line.end.y).toBe(20);
+
+    line.move(0, -7);
+
+    expect(line.start.x).toBe(7.5);
+    expect(line.start.y).toBe(3);
     expect(line.end.x).toBe(17.5);
     expect(line.end.y).toBe(13);
   });
@@ -380,5 +457,14 @@ describe('Line class', () => {
     const mousePosition = new Point(10, 11); // Near the start within tolerance
 
     expect(line.isMouseOver(mousePosition)).toBe(true);
+  });
+
+  test('should move line while dragging', () => {
+    const line = new Line(50, 50, 100, 75);
+    const moveSpy = jest.spyOn(line, 'move');
+
+    line.onDrag(new Point(47, 11));
+
+    expect(moveSpy).toHaveBeenCalledWith(47, 11);
   });
 });

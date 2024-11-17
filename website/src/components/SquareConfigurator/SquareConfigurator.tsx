@@ -92,6 +92,7 @@ const SquareConfigurator: React.FC<SquareConfiguratorProps> = ({ square, onSquar
                     <select value={selectedState} onChange={(e) => setSelectedState(e.target.value)}>
                       <option value={ShapeState.Default}>{ShapeState.Default}</option>
                       <option value={ShapeState.Hover}>{ShapeState.Hover}</option>
+                      <option value={ShapeState.Active}>{ShapeState.Active}</option>
                     </select>
                   </div>
                   <div className={styles.formRow}>
@@ -145,6 +146,14 @@ const SquareConfigurator: React.FC<SquareConfiguratorProps> = ({ square, onSquar
                       type="checkbox"
                       checked={square.options.centered}
                       onChange={(e) => onSquareChange('options.centered', e.target.checked)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
+                    <label>draggable</label>
+                    <input
+                      type="checkbox"
+                      checked={square.options.draggable}
+                      onChange={(e) => onSquareChange('options.draggable', e.target.checked)}
                     />
                   </div>
                   <div className={styles.formRow}>
