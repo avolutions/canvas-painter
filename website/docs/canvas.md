@@ -216,6 +216,29 @@ This will clear the canvas and redraw all currently watched shapes.
 canvas.redraw();
 ```
 
+## Interactivity
+
+The `interactive` option controls whether the canvas allows user interaction, such as panning, zooming, and dragging shapes in general. This setting is essential for defining how the canvas behaves in different scenarios, offering flexibility between dynamic and static use cases.
+
+When `interactive` is set to `false`, all interactivity is disabled, even if `zoomable`, `pannable`, or `draggable` are set to `true`.
+
+Interactivity can either be set by passing the options when initialize a canvas:
+
+```js
+// The canvas can support panning, zooming, and dragging shapes.
+Canvas.init('myCanvas', { interactive: true });
+
+// The canvas is static and ignores user interactions.
+Canvas.init('myCanvas', { interactive: false });
+```
+
+Or by using the `interactive` setter:
+
+```js
+canvas.interactive = false; // Disable interactivity
+canvas.interactive = true;  // Re-enable interactivity
+```
+
 ## Zooming and panning the Canvas
 
 In **CanvasPainter.js**, zooming and panning allow you to navigate and interact with a large canvas by adjusting the view, making it easier to focus on specific parts of the canvas or visualize intricate details. These two features are essential in applications like drawing tools, image editors, and data visualizations where users may need to zoom in or out and move around the canvas.
@@ -378,6 +401,7 @@ Option | Type | Default | Explanation
 --- | --- | --- | ---
 `height` | number | 150 | Sets the height of the HTML canvas element.
 `width` | number | 300 | Sets the width of the HTML canvas element.
+`interactive` | boolean | true | Toggles all interactivity on the canvas. If `false`, it overrides `zoomable`, `pannable`, and `draggable`. It disables all user interactions, making the canvas static.
 `zoomable` | boolean | false | Allows the user to zoom the canvas.
 `pannable` | boolean | false | Allows the user to pan the canvas.
 `zoom.step` | number | 0.1 | The zoom factor that is applied with each zoom event, 0.1 means 10%.
