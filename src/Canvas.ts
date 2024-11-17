@@ -173,7 +173,7 @@ export class Canvas {
     const mousePosition = Mouse.getOffsetPosition(event);
 
     // Handle dragging
-    if (this._hoverShape && this._hoverShape.isDraggable()) {
+    if (this._hoverShape?.isDraggable()) {
       // Set currently dragged shape
       this._dragShape = this._hoverShape;
 
@@ -204,8 +204,6 @@ export class Canvas {
 
       // Set cursor for panning
       this._canvas.style.cursor = this._style.cursor.panActive;
-
-      return;
     }
   }
 

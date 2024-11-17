@@ -282,6 +282,12 @@ describe('Zoom and pan function of canvas class', () => {
 
     expect((canvas as any)._isPanning).toBe(false);
 
+    /* Test when use mouse is not active */
+    canvas = Canvas.init('canvas-id', { pannable: true, pan: { useMouse: false } });
+    canvas['onMouseDown'](mockEvent);
+
+    expect((canvas as any)._isPanning).toBe(false);
+
     /* Test when left button is not configured */
     canvas = Canvas.init('canvas-id', { pannable: true, pan: { mouseButtons: [ MouseButton.Right ] } });
     canvas['onMouseDown'](mockEvent);
