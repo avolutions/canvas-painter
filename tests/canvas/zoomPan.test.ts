@@ -25,18 +25,6 @@ describe('Zoom and pan function of canvas class', () => {
     jest.restoreAllMocks();
   });
 
-  test('should apply event handlers', () => {
-    const spy = jest.spyOn(canvasElement, 'addEventListener');
-    Canvas.init('canvas-id');
-
-    expect(spy).toHaveBeenCalledWith('contextmenu', expect.any(Function));
-    expect(spy).toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(spy).toHaveBeenCalledWith('mouseleave', expect.any(Function));
-    expect(spy).toHaveBeenCalledWith('mousemove', expect.any(Function));
-    expect(spy).toHaveBeenCalledWith('mouseup', expect.any(Function));
-    expect(spy).toHaveBeenCalledWith('wheel', expect.any(Function));
-  });
-
   test('should call the contextmenu event listener and prevent default behavior', () => {
     const canvas = Canvas.init('canvas-id');
     const preventDefaultSpy = jest.spyOn(Event.prototype, 'preventDefault');

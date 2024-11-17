@@ -18,6 +18,11 @@ export class CanvasOptions implements ICanvasOptions {
   public height!: number;
 
   /**
+   * Determines whether interactivity is enabled for the canvas.
+   */
+  public interactive!: boolean;
+
+  /**
    * Whether zooming is enabled on the canvas.
    */
   public zoomable!: boolean;
@@ -43,6 +48,7 @@ export class CanvasOptions implements ICanvasOptions {
   public static readonly DefaultOptions: ICanvasOptions = {
     width: 300,
     height: 150,
+    interactive: true,
     zoomable: false,
     pannable: false,
     zoom: ZoomOptions.DefaultOptions,
