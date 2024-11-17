@@ -132,6 +132,14 @@ const CanvasConfigurator: React.FC<CanvasConfiguratorProps> = ({ canvas, setOpti
               />
             </div>
             <div className={styles.formRow}>
+              <label>interactive</label>
+              <input
+                type="checkbox"
+                checked={options.interactive}
+                onChange={(e) => handleOptionsChange('interactive', e.target.checked)}
+              />
+            </div>
+            <div className={styles.formRow}>
               <label>zoomable</label>
               <input
                 type="checkbox"

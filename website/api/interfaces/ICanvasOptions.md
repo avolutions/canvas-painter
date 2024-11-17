@@ -14,6 +14,18 @@ The height of the canvas in pixels.
 
 ***
 
+### interactive?
+
+> `optional` **interactive**: `boolean`
+
+Determines whether interactivity is enabled for the canvas.
+
+#### Defined in
+
+[options/interfaces/ICanvasOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/interfaces/ICanvasOptions.ts#L21)
+
+***
+
 ### pan?
 
 > `optional` **pan**: [`IPanOptions`](IPanOptions.md)
@@ -22,7 +34,7 @@ The options for configuring the pan behavior of the canvas.
 
 #### Defined in
 
-[options/interfaces/ICanvasOptions.ts:36](https://github.com/avolutions/canvas-painter/blob/main/src/options/interfaces/ICanvasOptions.ts#L36)
+[options/interfaces/ICanvasOptions.ts:41](https://github.com/avolutions/canvas-painter/blob/main/src/options/interfaces/ICanvasOptions.ts#L41)
 
 ***
 
@@ -34,7 +46,7 @@ Whether panning is enabled on the canvas.
 
 #### Defined in
 
-[options/interfaces/ICanvasOptions.ts:31](https://github.com/avolutions/canvas-painter/blob/main/src/options/interfaces/ICanvasOptions.ts#L31)
+[options/interfaces/ICanvasOptions.ts:36](https://github.com/avolutions/canvas-painter/blob/main/src/options/interfaces/ICanvasOptions.ts#L36)
 
 ***
 
@@ -58,7 +70,7 @@ The options for configuring the zoom behavior of the canvas.
 
 #### Defined in
 
-[options/interfaces/ICanvasOptions.ts:26](https://github.com/avolutions/canvas-painter/blob/main/src/options/interfaces/ICanvasOptions.ts#L26)
+[options/interfaces/ICanvasOptions.ts:31](https://github.com/avolutions/canvas-painter/blob/main/src/options/interfaces/ICanvasOptions.ts#L31)
 
 ***
 
@@ -70,4 +82,4 @@ Whether zooming is enabled on the canvas.
 
 #### Defined in
 
-[options/interfaces/ICanvasOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/interfaces/ICanvasOptions.ts#L21)
+[options/interfaces/ICanvasOptions.ts:26](https://github.com/avolutions/canvas-painter/blob/main/src/options/interfaces/ICanvasOptions.ts#L26)

@@ -103,6 +103,11 @@ export class Canvas {
    * Adds event listeners for the canvas element.
    */
   private addEventListener(): void {
+    // Do not add event listener if canvas is not interactive
+    if (!this._options.interactive) {
+      return;
+    }
+
     this._canvas.addEventListener('contextmenu', this.onContextMenu);
     this._canvas.addEventListener('mousedown', this.onMouseDown);
     this._canvas.addEventListener('mouseleave', this.onMouseLeave);
@@ -731,6 +736,32 @@ export class Canvas {
    */
   public get panOffset(): Point {
     return this._panOffset;
+  }
+
+  /**
+   * Enables or disables features like panning, zooming, and dragging shapes.
+   * Automatically adds or removes event listeners as needed.
+   *
+   * @param value - `true` to enable, `false` to disable interactivity.
+   */
+  public set interactive(value: boolean) {
+    // Only add/remove event listener and set value if it was changed
+    if (this._options.interactive === value) {
+      return;
+    }
+
+    // Set new value for interactive option
+    this._options.interactive = value;
+
+    // Add event listener if canvas is set to interactive
+    if (value) {
+      this.addEventListener();
+    }
+
+    // Remove event listener if canvas is not interactive anymore
+    if (!value) {
+      this.removeEventListener();
+    }
   }
 
   /**

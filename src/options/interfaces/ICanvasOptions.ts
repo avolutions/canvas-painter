@@ -16,6 +16,11 @@ export interface ICanvasOptions {
   height?: number;
 
   /**
+   * Determines whether interactivity is enabled for the canvas.
+   */
+  interactive?: boolean;
+
+  /**
    * Whether zooming is enabled on the canvas.
    */
   zoomable?: boolean;
