@@ -81,6 +81,7 @@ const CircleConfigurator: React.FC<CircleConfiguratorProps> = ({ circle, onCircl
                     <select value={selectedState} onChange={(e) => setSelectedState(e.target.value)}>
                       <option value={ShapeState.Default}>{ShapeState.Default}</option>
                       <option value={ShapeState.Hover}>{ShapeState.Hover}</option>
+                      <option value={ShapeState.Active}>{ShapeState.Active}</option>
                     </select>
                   </div>
 
