@@ -39,10 +39,11 @@ describe('RectangleOptions', () => {
   });
 
   test('should set the values provided by constructor', () => {
-    const options = new RectangleOptions({ centered: true, visible: false });
+    const options = new RectangleOptions({ centered: true, visible: false, selectable: false });
 
     expect(options.centered).toBe(true);
     expect(options.visible).toBe(false);
+    expect(options.selectable).toBe(false);
   });
 
   test('should set partial values provided by constructor', () => {
@@ -50,6 +51,7 @@ describe('RectangleOptions', () => {
 
     expect(options.centered).toBe(false);
     expect(options.visible).toBe(false);
+    expect(options.selectable).toBe(true);
   });
 
   test('should allow update of properties', () => {
@@ -57,8 +59,10 @@ describe('RectangleOptions', () => {
 
     options.centered = true;
     options.visible = false;
+    options.selectable = false;
 
     expect(options.centered).toBe(true);
     expect(options.visible).toBe(false);
+    expect(options.selectable).toBe(false);
   });
 });

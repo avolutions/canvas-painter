@@ -36,16 +36,26 @@ describe('CircleOptions', () => {
   });
 
   test('should set the values provided by constructor', () => {
+    const options = new CircleOptions({ visible: false, selectable: false });
+
+    expect(options.visible).toBe(false);
+    expect(options.selectable).toBe(false);
+  });
+
+  test('should set partial values provided by constructor', () => {
     const options = new CircleOptions({ visible: false });
 
     expect(options.visible).toBe(false);
+    expect(options.selectable).toBe(true);
   });
 
   test('should allow update of properties', () => {
     const options = new CircleOptions();
 
     options.visible = false;
+    options.selectable = false;
 
     expect(options.visible).toBe(false);
+    expect(options.selectable).toBe(false);
   });
 });

@@ -15,10 +15,16 @@ export class ShapeOptions implements IShapeOptions {
   public draggable!: boolean;
 
   /**
+   * Determines if the shape can be selected.
+   */
+  public selectable!: boolean;
+
+  /**
    * Default options for shapes.
    */
   public static readonly DefaultOptions: ShapeOptions = {
     visible: true,
-    draggable: true
+    draggable: true,
+    selectable: true
   };
 }
