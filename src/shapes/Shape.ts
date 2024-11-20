@@ -30,6 +30,9 @@ export abstract class Shape<
   /** The current state of the shape, representing its visual or interactive status. */
   protected _state: ShapeState = ShapeState.Default;
 
+  /** Indicates whether the shape is currently selected. */
+  protected _selected: boolean = false;
+
   /** List of observer functions to be notified on shape changes. */
   protected observers: (() => void)[] = [];
 
@@ -136,6 +139,46 @@ export abstract class Shape<
    */
   public isVisible(): boolean {
     return !!this._options.visible;
+  }
+
+  /**
+   * Selects the shape, if it is selectable and not already selected.
+   * If the shape is selected successfully, observers are notified of the change.
+   */
+  public select(): void {
+    if (this.isSelectable() && !this.isSelected()) {
+      this._selected = true;
+      this.notifyObservers();
+    }
+  }
+
+  /**
+   * Deselects the shape, if it is currently selected.
+   * If the shape is deselected successfully, observers are notified of the change.
+   */
+  public deselect(): void {
+    if (this.isSelected()) {
+      this._selected = false;
+      this.notifyObservers();
+    }
+  }
+
+  /**
+   * Checks whether the shape is currently selected.
+   *
+   * @returns `true` if the shape is selected; otherwise, `false`.
+   */
+  public isSelected(): boolean {
+    return this._selected;
+  }
+
+  /**
+   * Determines whether the shape can be selected.
+   *
+   * @returns `true` if the shape is selectable; otherwise, `false`.
+   */
+  public isSelectable(): boolean {
+    return !!this._options.selectable;
   }
 
   /**

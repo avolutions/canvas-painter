@@ -95,18 +95,24 @@ describe('Shape class', () => {
 
     expect(shape.options.visible).toBe(true);
     expect(shape.options.draggable).toBe(true);
+    expect(shape.options.selectable).toBe(true);
     expect(shape.isVisible()).toBe(true);
     expect(shape.isDraggable()).toBe(true);
+    expect(shape.isSelectable()).toBe(true);
   });
 
   test("should set options through setter", () => {
     const shape = new MockShape();
 
-    shape.options.visible = true;
-    expect(shape.options.visible).toBe(true);
-    expect(shape.options.draggable).toBe(true);
-    expect(shape.isVisible()).toBe(true);
-    expect(shape.isDraggable()).toBe(true);
+    shape.options.visible = false;
+    shape.options.draggable = false;
+    shape.options.selectable = false;
+    expect(shape.options.visible).toBe(false);
+    expect(shape.options.draggable).toBe(false);
+    expect(shape.options.selectable).toBe(false);
+    expect(shape.isVisible()).toBe(false);
+    expect(shape.isDraggable()).toBe(false);
+    expect(shape.isSelectable()).toBe(false);
   });
 
   test("should handle visibility correctly", () => {
@@ -119,6 +125,75 @@ describe('Shape class', () => {
 
     shape.show();
     expect(shape.isVisible()).toBe(true);
+  });
+
+  test("should not be selected initially", () => {
+    const shape = new MockShape();
+    expect(shape.isSelected()).toBe(false);
+  });
+
+  test('should select the shape if selectable and not already selected', () => {
+    const observer = jest.fn();
+    const shape = new MockShape();
+
+    shape.addObserver(observer);
+
+    shape.select();
+    expect(shape.isSelected()).toBe(true);
+    expect(observer).toHaveBeenCalled();
+  });
+
+  test('should not select the shape if it is not selectable', () => {
+    const observer = jest.fn();
+    const shape = new MockShape(0, {}, { selectable: false });
+
+    shape.addObserver(observer);
+
+    shape.select();
+    expect(shape.isSelected()).toBe(false);
+    expect(observer).not.toHaveBeenCalled();
+  });
+
+  test('should not select the shape if it is already selected', () => {
+    const observer = jest.fn();
+    const shape = new MockShape();
+
+    shape.addObserver(observer);
+
+    shape.select();
+    expect(shape.isSelected()).toBe(true);
+    expect(observer).toHaveBeenCalled();
+
+    observer.mockClear();
+
+    shape.select();
+    expect(shape.isSelected()).toBe(true);
+    expect(observer).not.toHaveBeenCalled();
+  });
+
+  test('should deselect the shape if currently selected', () => {
+    const observer = jest.fn();
+    const shape = new MockShape();
+
+    shape.addObserver(observer);
+
+    shape.select();
+    observer.mockClear();
+
+    shape.deselect();
+    expect(shape.isSelected()).toBe(false);
+    expect(observer).toHaveBeenCalled();
+  });
+
+  test('should not deselect the shape if it is not selected', () => {
+    const observer = jest.fn();
+    const shape = new MockShape();
+
+    shape.addObserver(observer);
+
+    shape.deselect();
+    expect(shape.isSelected()).toBe(false);
+    expect(observer).not.toHaveBeenCalled();
   });
 
   test("should add and remove observer", () => {
