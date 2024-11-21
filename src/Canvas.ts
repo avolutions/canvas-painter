@@ -108,12 +108,16 @@ export class Canvas {
       return;
     }
 
+    // Add event listener for canvas
     this._canvas.addEventListener('contextmenu', this.onContextMenu);
     this._canvas.addEventListener('mousedown', this.onMouseDown);
     this._canvas.addEventListener('mouseleave', this.onMouseLeave);
     this._canvas.addEventListener('mousemove', this.onMouseMove);
     this._canvas.addEventListener('mouseup', this.onMouseUp);
     this._canvas.addEventListener('wheel', this.onWheel);
+
+    // Add global event listener
+    document.addEventListener('keydown', this.onKeyDown);
   }
 
   /**
@@ -121,12 +125,16 @@ export class Canvas {
    * disable specific interactions.
    */
   private removeEventListener(): void {
+    // Remove event listener for canvas
     this._canvas.removeEventListener('contextmenu', this.onContextMenu);
     this._canvas.removeEventListener('mousedown', this.onMouseDown);
     this._canvas.removeEventListener('mouseleave', this.onMouseLeave);
     this._canvas.removeEventListener('mousemove', this.onMouseMove);
     this._canvas.removeEventListener('mouseup', this.onMouseUp);
     this._canvas.removeEventListener('wheel', this.onWheel);
+
+    // Remove global event listener
+    document.removeEventListener('keydown', this.onKeyDown);
   }
 
   /**
@@ -137,6 +145,17 @@ export class Canvas {
   private readonly onContextMenu = (event: MouseEvent): void => {
     // Prevent default context menu on right click
     event.preventDefault();
+  }
+
+  /**
+   * Handles the `keydown` event to deselect all shapes.
+   *
+   * @param event - The keyboard event triggered when the user presses a key.
+   */
+  private readonly onKeyDown = (event: KeyboardEvent): void => {
+    if (event.key === 'Escape') {
+      this.deselectShapes();
+    }
   }
 
   /**
