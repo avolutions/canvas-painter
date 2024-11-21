@@ -793,7 +793,22 @@ export class Canvas {
   /**
    * Resets the canvas cursor style to the default cursor.
    */
-  private resetCursor() {
+  private resetCursor(): void {
     this._canvas.style.cursor = this._style.cursor.default;
+  }
+
+  /**
+   * Deselects all currently watched shapes except for the optional specified shape.
+   *
+   * @param exceptShape - The shape to exclude from deselection. If not provided,
+   * all shapes are deselected.
+   *
+   */
+  public deselectShapes(exceptShape?: IShape): void {
+    this.watchedShapes.forEach((shape) => {
+      if (shape !== exceptShape) {
+        shape.deselect();
+      }
+    });
   }
 }
