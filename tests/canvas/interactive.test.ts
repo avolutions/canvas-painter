@@ -1,6 +1,8 @@
 /**
  * @jest-environment jsdom
  */
+import { fireEvent } from '@testing-library/dom';
+
 import { Canvas } from "../../src/Canvas";
 import { MockShape } from "../mocks/MockShape";
 import { setupCanvas } from "./canvasTestUtils";
@@ -106,6 +108,54 @@ describe('Interactive function of canvas class', () => {
     document.dispatchEvent(escapeEvent);
 
     expect(shape1.isSelected()).toBe(true);
+    expect(shape2.isSelected()).toBe(false);
+  });
+
+  test('should select hovered shape and deselect all other shapes', () => {
+    const canvas = Canvas.init('canvas-id');
+    const shape1 = new MockShape();
+    const shape2 = new MockShape();
+
+    shape2.select();
+
+    canvas.watch([shape1, shape2]);
+
+    (canvas as any)._hoverShape = shape1;
+
+    fireEvent.mouseDown((canvas as any)._canvas);
+
+    expect((canvas as any)._selectedShape).toBe(shape1);
+    expect(shape1.isSelected()).toBe(true);
+    expect(shape2.isSelected()).toBe(false);
+  });
+
+  test('should not select shape if not hovered', () => {
+    const canvas = Canvas.init('canvas-id');
+    const shape1 = new MockShape();
+    const shape2 = new MockShape();
+
+    canvas.watch([shape1, shape2]);
+
+    fireEvent.mouseDown((canvas as any)._canvas);
+
+    expect((canvas as any)._selectedShape).toBe(null);
+    expect(shape1.isSelected()).toBe(false);
+    expect(shape2.isSelected()).toBe(false);
+  });
+
+  test('should not select hovered shape if not selectable', () => {
+    const canvas = Canvas.init('canvas-id');
+    const shape1 = new MockShape(0, {}, { selectable: false });
+    const shape2 = new MockShape();
+
+    canvas.watch([shape1, shape2]);
+
+    (canvas as any)._hoverShape = shape1;
+
+    fireEvent.mouseDown((canvas as any)._canvas);
+
+    expect((canvas as any)._selectedShape).toBe(null);
+    expect(shape1.isSelected()).toBe(false);
     expect(shape2.isSelected()).toBe(false);
   });
 

@@ -44,6 +44,9 @@ export class Canvas {
   /** The shape currently being hovered over by the mouse. */
   private _hoverShape: IShape | null = null;
 
+  /** The shape currently being selected. */
+  private _selectedShape: IShape | null = null;
+
   /** The shape currently being dragged. */
   private _dragShape: IShape | null = null;
 
@@ -195,6 +198,18 @@ export class Canvas {
   private readonly onMouseDown = (event: MouseEvent): void => {
     // Get mouse position in canvas
     const mousePosition = Mouse.getOffsetPosition(event);
+
+    // Handle selecting
+    if (this._hoverShape && this._hoverShape.isSelectable()) {
+      // Set selected shape
+      this._selectedShape = this._hoverShape;
+
+      // Deselect all other shapes
+      this.deselectShapes(this._selectedShape);
+
+      // Select shape
+      this._selectedShape.select();
+    }
 
     // Handle dragging
     if (this._hoverShape?.isDraggable()) {
