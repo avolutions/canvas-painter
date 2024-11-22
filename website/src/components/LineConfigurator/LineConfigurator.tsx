@@ -138,6 +138,14 @@ const LineConfigurator: React.FC<LineConfiguratorProps> = ({ line, onLineChange 
                     />
                   </div>
                   <div className={styles.formRow}>
+                    <label>selectable</label>
+                    <input
+                      type="checkbox"
+                      checked={line.options.selectable}
+                      onChange={(e) => onLineChange('options.selectable', e.target.checked)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
                     <label>visible</label>
                     <input
                       type="checkbox"

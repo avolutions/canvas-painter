@@ -165,6 +165,14 @@ const RectangleConfigurator: React.FC<RectangleConfiguratorProps> = ({ rectangle
                     />
                   </div>
                   <div className={styles.formRow}>
+                    <label>selectable</label>
+                    <input
+                      type="checkbox"
+                      checked={rectangle.options.selectable}
+                      onChange={(e) => onRectangleChange('options.selectable', e.target.checked)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
                     <label>visible</label>
                     <input
                       type="checkbox"
