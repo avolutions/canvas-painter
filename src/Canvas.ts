@@ -200,7 +200,7 @@ export class Canvas {
     const mousePosition = Mouse.getOffsetPosition(event);
 
     // Handle selecting
-    if (this._hoverShape && this._hoverShape.isSelectable()) {
+    if (this._hoverShape?.isSelectable()) {
       // Set selected shape
       this._selectedShape = this._hoverShape;
 
