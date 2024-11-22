@@ -22,6 +22,22 @@ Determines if the shape can be dragged by mouse.
 
 ***
 
+### selectable?
+
+> `optional` **selectable**: `boolean`
+
+Determines if the shape can be selected.
+
+#### Inherited from
+
+[`IShapeOptions`](IShapeOptions.md).[`selectable`](IShapeOptions.md#selectable)
+
+#### Defined in
+
+[options/interfaces/IShapeOptions.ts:18](https://github.com/avolutions/canvas-painter/blob/main/src/options/interfaces/IShapeOptions.ts#L18)
+
+***
+
 ### visible?
 
 > `optional` **visible**: `boolean`
