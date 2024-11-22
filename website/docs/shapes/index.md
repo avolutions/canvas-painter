@@ -195,7 +195,7 @@ Typically in this method, the shape is rendered by using official JavaScript Can
 
 When working with `Canvas` class, the `render()` method gets the context of the `Canvas` class. But it is also possible to use shapes without `Canvas` class and provide your own context.
 
-## Show and hide shapes
+## Visibility of shapes
 
 In **CanvasPainter.js**, shapes can be dynamically shown or hidden on the canvas based on user interactions or other events. This is especially useful when creating interactive applications where certain elements need to be temporarily hidden or displayed, such as in games, dashboards, or drawing tools. The ability to control the visibility of shapes allows you to create more responsive and dynamic visual experiences.
 
@@ -247,6 +247,49 @@ canvas.draw(circle);
 ## Interactivity
 
 Shapes in **CanvasPainter.js** can support various forms of interactivity, allowing users to manipulate them directly through mouse or touch inputs. This chapter provides an overview of interactive features.
+
+### Selectable
+
+Shapes can be configured to be selectable or not, giving developers fine-grained control over user interactions. By default, all shapes are selectable. You can influence this behavior by passing the `selectable` option. You can also check whether a shape is selectable by using the `isSelectable()` method.
+
+```js
+const rectangle = new Rectangle(10, 10, 100, 50);
+rectangle.isSelectable(); // true
+
+const circle = new Rectangle(10, 10, 100, {}, { selectable: false });
+circle.isSelectable(); // false
+```
+
+Currently only one shape can be selected at a time. This means, that a selected shape will be deselected if you select another one.
+
+#### Automatically select shapes
+
+All selectable shapes watched by the canvas, will be selected automatically when clicking on it. This only works if canvas is set to `interactive`.
+
+#### Manually select shapes
+
+Shapes can be selected manually by using `select()` and `deselect()`.
+
+```js
+const rectangle = new Rectangle(10, 10, 100, 50);
+
+rectangle.select(); // selected
+rectangle.deselect(); // not selected
+```
+
+#### Get selected status
+
+To check if a shape is currently selected or not, you can use the `isSelected()` method.
+
+```js
+const rectangle = new Rectangle(10, 10, 100, 50);
+
+rectangle.select();
+rectangle.isSelected(); // true
+
+rectangle.deselect();
+rectangle.isSelected(); // false
+```
 
 ### Draggable
 

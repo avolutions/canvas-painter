@@ -203,11 +203,14 @@ The following table is showing all available circle options and the default valu
 
 Option | Type | Default | Explanation
 --- | --- | --- | ---
-`visible` | boolean | true | If `true`, the circle will be visible.<br />If `false` or `undefined`, the circle will be hidden.
 `draggable` | boolean | true | If `true`, the circle can be dragged using the mouse.<br />If `false` or undefined, the circle will remain stationary and cannot be moved interactively.
+`selectable` | boolean | true | If `true`, the circle can be selected by clicking on it<br />If `false` or undefined, the circle cannot be selected.
+`visible` | boolean | true | If `true`, the circle will be visible.<br />If `false` or `undefined`, the circle will be hidden.
 
 ```js
 {
+  draggable: true,
+  selectable: true,
   visible: true
 }
 ```
