@@ -542,4 +542,34 @@ describe('Canvas class', () => {
     expect(context.clearRect).toHaveBeenCalledWith(0, 0, 300, 150);
     expect(context.clearRect).toHaveBeenCalledTimes(1);
   });
+
+  test('should deselect all shapes if no exception is provided', () => {
+    const canvas = Canvas.init('canvas-id');
+    const shape1 = new MockShape();
+    const deselectSpy1 = jest.spyOn(shape1, 'deselect');
+    const shape2 = new MockShape();
+    const deselectSpy2 = jest.spyOn(shape2, 'deselect');
+
+    canvas.watch([shape1, shape2]);
+
+    canvas.deselectShapes();
+
+    expect(deselectSpy1).toHaveBeenCalledTimes(1);
+    expect(deselectSpy2).toHaveBeenCalledTimes(1);
+  });
+
+  test('should not deselect the shape provided as an exception', () => {
+    const canvas = Canvas.init('canvas-id');
+    const shape1 = new MockShape();
+    const deselectSpy1 = jest.spyOn(shape1, 'deselect');
+    const shape2 = new MockShape();
+    const deselectSpy2 = jest.spyOn(shape2, 'deselect');
+
+    canvas.watch([shape1, shape2]);
+
+    canvas.deselectShapes(shape1);
+
+    expect(deselectSpy1).not.toHaveBeenCalled();
+    expect(deselectSpy2).toHaveBeenCalledTimes(1);
+  });
 });

@@ -24,7 +24,7 @@ The partial options provided by the user.
 
 #### Defined in
 
-[options/RectangleOptions.ts:38](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L38)
+[options/RectangleOptions.ts:43](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L43)
 
 ## Properties
 
@@ -41,7 +41,7 @@ If false or undefined, the rectangle will be positioned from the top-left corner
 
 #### Defined in
 
-[options/RectangleOptions.ts:23](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L23)
+[options/RectangleOptions.ts:28](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L28)
 
 ***
 
@@ -58,6 +58,22 @@ Determines if the shape can be dragged by mouse.
 #### Defined in
 
 [options/RectangleOptions.ts:17](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L17)
+
+***
+
+### selectable
+
+> **selectable**: `boolean`
+
+Determines if the shape can be selected.
+
+#### Implementation of
+
+[`IRectangleOptions`](../interfaces/IRectangleOptions.md).[`selectable`](../interfaces/IRectangleOptions.md#selectable)
+
+#### Defined in
+
+[options/RectangleOptions.ts:22](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L22)
 
 ***
 
@@ -85,4 +101,4 @@ Default options for the rectangle.
 
 #### Defined in
 
-[options/RectangleOptions.ts:28](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L28)
+[options/RectangleOptions.ts:33](https://github.com/avolutions/canvas-painter/blob/main/src/options/RectangleOptions.ts#L33)

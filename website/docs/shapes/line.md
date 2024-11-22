@@ -206,11 +206,14 @@ The following table is showing all available line options and the default values
 
 Option | Type | Default | Explanation
 --- | --- | --- | ---
-`visible` | boolean | true | If `true`, the line will be visible.<br />If `false` or `undefined`, the line will be hidden.
 `draggable` | boolean | true | If `true`, the line can be dragged using the mouse.<br />If `false` or undefined, the line will remain stationary and cannot be moved interactively.
+`selectable` | boolean | true | If `true`, the line can be selected by clicking on it<br />If `false` or undefined, the line cannot be selected.
+`visible` | boolean | true | If `true`, the line will be visible.<br />If `false` or `undefined`, the line will be hidden.
 
 ```js
 {
+  draggable: true,
+  selectable: true,
   visible: true
 }
 ```

@@ -139,6 +139,14 @@ const CircleConfigurator: React.FC<CircleConfiguratorProps> = ({ circle, onCircl
                     />
                   </div>
                   <div className={styles.formRow}>
+                    <label>selectable</label>
+                    <input
+                      type="checkbox"
+                      checked={circle.options.selectable}
+                      onChange={(e) => onCircleChange('options.selectable', e.target.checked)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
                     <label>visible</label>
                     <input
                       type="checkbox"

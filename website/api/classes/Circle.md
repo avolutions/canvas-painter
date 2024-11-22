@@ -131,6 +131,22 @@ The options for configuring the shape, proxied to trigger observer notifications
 
 ***
 
+### \_selected
+
+> `protected` **\_selected**: `boolean` = `false`
+
+Indicates whether the shape is currently selected.
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`_selected`](Shape.md#_selected)
+
+#### Defined in
+
+[shapes/Shape.ts:34](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L34)
+
+***
+
 ### \_state
 
 > `protected` **\_state**: [`ShapeState`](../enumerations/ShapeState.md) = `ShapeState.Default`
@@ -175,7 +191,7 @@ List of observer functions to be notified on shape changes.
 
 #### Defined in
 
-[shapes/Shape.ts:34](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L34)
+[shapes/Shape.ts:37](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L37)
 
 ## Accessors
 
@@ -251,7 +267,7 @@ The new options to apply.
 
 #### Defined in
 
-[shapes/Shape.ts:220](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L220)
+[shapes/Shape.ts:263](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L263)
 
 ***
 
@@ -327,7 +343,7 @@ The new state to assign to the shape.
 
 #### Defined in
 
-[shapes/Shape.ts:238](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L238)
+[shapes/Shape.ts:281](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L281)
 
 ***
 
@@ -351,7 +367,7 @@ The computed style object for the current shape state, with state-specific overr
 
 #### Defined in
 
-[shapes/Shape.ts:260](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L260)
+[shapes/Shape.ts:303](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L303)
 
 ***
 
@@ -391,7 +407,7 @@ The new style settings to apply.
 
 #### Defined in
 
-[shapes/Shape.ts:202](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L202)
+[shapes/Shape.ts:245](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L245)
 
 ## Methods
 
@@ -417,7 +433,28 @@ The observer callback function.
 
 #### Defined in
 
-[shapes/Shape.ts:171](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L171)
+[shapes/Shape.ts:214](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L214)
+
+***
+
+### deselect()
+
+> **deselect**(): `void`
+
+Deselects the shape, if it is currently selected.
+If the shape is deselected successfully, observers are notified of the change.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`deselect`](Shape.md#deselect)
+
+#### Defined in
+
+[shapes/Shape.ts:159](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L159)
 
 ***
 
@@ -439,7 +476,7 @@ Determines if the current state style includes a visible border.
 
 #### Defined in
 
-[shapes/Shape.ts:297](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L297)
+[shapes/Shape.ts:340](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L340)
 
 ***
 
@@ -461,7 +498,7 @@ appear during rendering until `show()` is called.
 
 #### Defined in
 
-[shapes/Shape.ts:127](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L127)
+[shapes/Shape.ts:130](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L130)
 
 ***
 
@@ -484,7 +521,7 @@ Returns true if the shape is draggable.
 
 #### Defined in
 
-[shapes/Shape.ts:147](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L147)
+[shapes/Shape.ts:190](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L190)
 
 ***
 
@@ -516,6 +553,50 @@ True if the mouse is over the shape, false otherwise.
 
 ***
 
+### isSelectable()
+
+> **isSelectable**(): `boolean`
+
+Determines whether the shape can be selected.
+
+#### Returns
+
+`boolean`
+
+`true` if the shape is selectable; otherwise, `false`.
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`isSelectable`](Shape.md#isselectable)
+
+#### Defined in
+
+[shapes/Shape.ts:180](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L180)
+
+***
+
+### isSelected()
+
+> **isSelected**(): `boolean`
+
+Checks whether the shape is currently selected.
+
+#### Returns
+
+`boolean`
+
+`true` if the shape is selected; otherwise, `false`.
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`isSelected`](Shape.md#isselected)
+
+#### Defined in
+
+[shapes/Shape.ts:171](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L171)
+
+***
+
 ### isVisible()
 
 > **isVisible**(): `boolean`
@@ -535,7 +616,7 @@ Returns true if the shape is visible and will be rendered on the canvas.
 
 #### Defined in
 
-[shapes/Shape.ts:137](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L137)
+[shapes/Shape.ts:140](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L140)
 
 ***
 
@@ -613,7 +694,7 @@ The observer callback function to be removed.
 
 #### Defined in
 
-[shapes/Shape.ts:182](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L182)
+[shapes/Shape.ts:225](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L225)
 
 ***
 
@@ -667,6 +748,27 @@ The change of the radius.
 
 ***
 
+### select()
+
+> **select**(): `void`
+
+Selects the shape, if it is selectable and not already selected.
+If the shape is selected successfully, observers are notified of the change.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Shape`](Shape.md).[`select`](Shape.md#select)
+
+#### Defined in
+
+[shapes/Shape.ts:148](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L148)
+
+***
+
 ### show()
 
 > **show**(): `void`
@@ -685,7 +787,7 @@ during the next rendering cycle.
 
 #### Defined in
 
-[shapes/Shape.ts:118](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L118)
+[shapes/Shape.ts:121](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L121)
 
 ***
 
@@ -707,7 +809,7 @@ An array representation of the shape's definition.
 
 #### Defined in
 
-[shapes/Shape.ts:100](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L100)
+[shapes/Shape.ts:103](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L103)
 
 ***
 
@@ -729,4 +831,4 @@ A JSON string  representation of the shape's definition.
 
 #### Defined in
 
-[shapes/Shape.ts:109](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L109)
+[shapes/Shape.ts:112](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/Shape.ts#L112)

@@ -36,7 +36,7 @@ The new state to assign to the shape.
 
 #### Defined in
 
-[shapes/IShape.ts:82](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L82)
+[shapes/IShape.ts:108](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L108)
 
 ***
 
@@ -56,7 +56,7 @@ The computed style object for the current shape state, with state-specific overr
 
 #### Defined in
 
-[shapes/IShape.ts:96](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L96)
+[shapes/IShape.ts:122](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L122)
 
 ## Methods
 
@@ -79,6 +79,23 @@ A callback function to be invoked when the shape's state changes.
 #### Defined in
 
 [shapes/IShape.ts:23](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L23)
+
+***
+
+### deselect()
+
+> **deselect**(): `void`
+
+Deselects the shape, if it is currently selected.
+If the shape is deselected successfully, observers are notified of the change.
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[shapes/IShape.ts:64](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L64)
 
 ***
 
@@ -115,7 +132,7 @@ Returns true if the shape is draggable.
 
 #### Defined in
 
-[shapes/IShape.ts:60](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L60)
+[shapes/IShape.ts:86](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L86)
 
 ***
 
@@ -139,7 +156,43 @@ True if the mouse is over the shape, false otherwise.
 
 #### Defined in
 
-[shapes/IShape.ts:68](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L68)
+[shapes/IShape.ts:94](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L94)
+
+***
+
+### isSelectable()
+
+> **isSelectable**(): `boolean`
+
+Determines whether the shape can be selected.
+
+#### Returns
+
+`boolean`
+
+`true` if the shape is selectable; otherwise, `false`.
+
+#### Defined in
+
+[shapes/IShape.ts:78](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L78)
+
+***
+
+### isSelected()
+
+> **isSelected**(): `boolean`
+
+Checks whether the shape is currently selected.
+
+#### Returns
+
+`boolean`
+
+`true` if the shape is selected; otherwise, `false`.
+
+#### Defined in
+
+[shapes/IShape.ts:71](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L71)
 
 ***
 
@@ -180,7 +233,7 @@ The change in position represented as a `Point`.
 
 #### Defined in
 
-[shapes/IShape.ts:75](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L75)
+[shapes/IShape.ts:101](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L101)
 
 ***
 
@@ -225,6 +278,23 @@ The 2D rendering context of the canvas where the shape will be drawn.
 #### Defined in
 
 [shapes/IShape.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L16)
+
+***
+
+### select()
+
+> **select**(): `void`
+
+Selects the shape, if it is selectable and not already selected.
+If the shape is selected successfully, observers are notified of the change.
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[shapes/IShape.ts:58](https://github.com/avolutions/canvas-painter/blob/main/src/shapes/IShape.ts#L58)
 
 ***
 

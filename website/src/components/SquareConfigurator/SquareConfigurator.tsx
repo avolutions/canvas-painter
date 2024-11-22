@@ -157,6 +157,14 @@ const SquareConfigurator: React.FC<SquareConfiguratorProps> = ({ square, onSquar
                     />
                   </div>
                   <div className={styles.formRow}>
+                    <label>selectable</label>
+                    <input
+                      type="checkbox"
+                      checked={square.options.selectable}
+                      onChange={(e) => onSquareChange('options.selectable', e.target.checked)}
+                    />
+                  </div>
+                  <div className={styles.formRow}>
                     <label>visible</label>
                     <input
                       type="checkbox"

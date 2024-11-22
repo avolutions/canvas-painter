@@ -44,6 +44,9 @@ export class Canvas {
   /** The shape currently being hovered over by the mouse. */
   private _hoverShape: IShape | null = null;
 
+  /** The shape currently being selected. */
+  private _selectedShape: IShape | null = null;
+
   /** The shape currently being dragged. */
   private _dragShape: IShape | null = null;
 
@@ -108,12 +111,16 @@ export class Canvas {
       return;
     }
 
+    // Add event listener for canvas
     this._canvas.addEventListener('contextmenu', this.onContextMenu);
     this._canvas.addEventListener('mousedown', this.onMouseDown);
     this._canvas.addEventListener('mouseleave', this.onMouseLeave);
     this._canvas.addEventListener('mousemove', this.onMouseMove);
     this._canvas.addEventListener('mouseup', this.onMouseUp);
     this._canvas.addEventListener('wheel', this.onWheel);
+
+    // Add global event listener
+    document.addEventListener('keydown', this.onKeyDown);
   }
 
   /**
@@ -121,12 +128,16 @@ export class Canvas {
    * disable specific interactions.
    */
   private removeEventListener(): void {
+    // Remove event listener for canvas
     this._canvas.removeEventListener('contextmenu', this.onContextMenu);
     this._canvas.removeEventListener('mousedown', this.onMouseDown);
     this._canvas.removeEventListener('mouseleave', this.onMouseLeave);
     this._canvas.removeEventListener('mousemove', this.onMouseMove);
     this._canvas.removeEventListener('mouseup', this.onMouseUp);
     this._canvas.removeEventListener('wheel', this.onWheel);
+
+    // Remove global event listener
+    document.removeEventListener('keydown', this.onKeyDown);
   }
 
   /**
@@ -137,6 +148,17 @@ export class Canvas {
   private readonly onContextMenu = (event: MouseEvent): void => {
     // Prevent default context menu on right click
     event.preventDefault();
+  }
+
+  /**
+   * Handles the `keydown` event to deselect all shapes.
+   *
+   * @param event - The keyboard event triggered when the user presses a key.
+   */
+  private readonly onKeyDown = (event: KeyboardEvent): void => {
+    if (event.key === 'Escape') {
+      this.deselectShapes();
+    }
   }
 
   /**
@@ -176,6 +198,18 @@ export class Canvas {
   private readonly onMouseDown = (event: MouseEvent): void => {
     // Get mouse position in canvas
     const mousePosition = Mouse.getOffsetPosition(event);
+
+    // Handle selecting
+    if (this._hoverShape?.isSelectable()) {
+      // Set selected shape
+      this._selectedShape = this._hoverShape;
+
+      // Deselect all other shapes
+      this.deselectShapes(this._selectedShape);
+
+      // Select shape
+      this._selectedShape.select();
+    }
 
     // Handle dragging
     if (this._hoverShape?.isDraggable()) {
@@ -793,7 +827,22 @@ export class Canvas {
   /**
    * Resets the canvas cursor style to the default cursor.
    */
-  private resetCursor() {
+  private resetCursor(): void {
     this._canvas.style.cursor = this._style.cursor.default;
+  }
+
+  /**
+   * Deselects all currently watched shapes except for the optional specified shape.
+   *
+   * @param exceptShape - The shape to exclude from deselection. If not provided,
+   * all shapes are deselected.
+   *
+   */
+  public deselectShapes(exceptShape?: IShape): void {
+    this.watchedShapes.forEach((shape) => {
+      if (shape !== exceptShape) {
+        shape.deselect();
+      }
+    });
   }
 }

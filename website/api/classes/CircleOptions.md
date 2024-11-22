@@ -24,7 +24,7 @@ The partial options provided by the user.
 
 #### Defined in
 
-[options/CircleOptions.ts:30](https://github.com/avolutions/canvas-painter/blob/main/src/options/CircleOptions.ts#L30)
+[options/CircleOptions.ts:35](https://github.com/avolutions/canvas-painter/blob/main/src/options/CircleOptions.ts#L35)
 
 ## Properties
 
@@ -41,6 +41,22 @@ Determines if the shape can be dragged by mouse.
 #### Defined in
 
 [options/CircleOptions.ts:16](https://github.com/avolutions/canvas-painter/blob/main/src/options/CircleOptions.ts#L16)
+
+***
+
+### selectable
+
+> **selectable**: `boolean`
+
+Determines if the shape can be selected.
+
+#### Implementation of
+
+[`ICircleOptions`](../interfaces/ICircleOptions.md).[`selectable`](../interfaces/ICircleOptions.md#selectable)
+
+#### Defined in
+
+[options/CircleOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/CircleOptions.ts#L21)
 
 ***
 
@@ -68,4 +84,4 @@ Default options for the circle.
 
 #### Defined in
 
-[options/CircleOptions.ts:21](https://github.com/avolutions/canvas-painter/blob/main/src/options/CircleOptions.ts#L21)
+[options/CircleOptions.ts:26](https://github.com/avolutions/canvas-painter/blob/main/src/options/CircleOptions.ts#L26)

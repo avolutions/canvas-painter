@@ -52,6 +52,32 @@ export interface IShape {
   isVisible(): boolean;
 
   /**
+   * Selects the shape, if it is selectable and not already selected.
+   * If the shape is selected successfully, observers are notified of the change.
+   */
+  select(): void;
+
+  /**
+   * Deselects the shape, if it is currently selected.
+   * If the shape is deselected successfully, observers are notified of the change.
+   */
+  deselect(): void;
+
+  /**
+   * Checks whether the shape is currently selected.
+   *
+   * @returns `true` if the shape is selected; otherwise, `false`.
+   */
+  isSelected(): boolean;
+
+  /**
+   * Determines whether the shape can be selected.
+   *
+   * @returns `true` if the shape is selectable; otherwise, `false`.
+   */
+  isSelectable(): boolean;
+
+  /**
    * Checks whether the shape is draggable or not.
    *
    * @returns Returns true if the shape is draggable.

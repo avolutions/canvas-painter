@@ -11,4 +11,9 @@ export interface IShapeOptions {
    * Determines if the shape can be dragged by mouse.
    */
   draggable?: boolean;
+
+  /**
+   * Determines if the shape can be selected.
+   */
+  selectable?: boolean;
 }

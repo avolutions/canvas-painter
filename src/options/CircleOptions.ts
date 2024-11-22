@@ -16,6 +16,11 @@ export class CircleOptions implements ICircleOptions {
   public draggable!: boolean;
 
   /**
+   * Determines if the shape can be selected.
+   */
+  public selectable!: boolean;
+
+  /**
    * Default options for the circle.
    */
   public static readonly DefaultOptions: ICircleOptions = {

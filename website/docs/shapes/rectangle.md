@@ -241,12 +241,15 @@ The following table is showing all available rectangle options and the default v
 Option | Type | Default | Explanation
 --- | --- | --- | ---
 `centered` | boolean | false | If `true`, the rectangle will be centered at the provided position.<br />If `false` or `undefined`, the rectangle will be positioned from the top-left corner.
-`visible` | boolean | true | If `true`, the rectangle will be visible.<br />If `false` or `undefined`, the rectangle will be hidden.
 `draggable` | boolean | true | If `true`, the rectangle can be dragged using the mouse.<br />If `false` or undefined, the rectangle will remain stationary and cannot be moved interactively.
+`selectable` | boolean | true | If `true`, the rectangle can be selected by clicking on it<br />If `false` or undefined, the rectangle cannot be selected.
+`visible` | boolean | true | If `true`, the rectangle will be visible.<br />If `false` or `undefined`, the rectangle will be hidden.
 
 ```js
 {
   centered: false,
+  draggable: true,
+  selectable: true,
   visible: true
 }
 ```

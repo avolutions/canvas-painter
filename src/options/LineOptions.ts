@@ -16,6 +16,11 @@ export class LineOptions implements ILineOptions {
   public draggable!: boolean;
 
   /**
+   * Determines if the shape can be selected.
+   */
+  public selectable!: boolean;
+
+  /**
    * Default options for the line.
    */
   public static readonly DefaultOptions: ILineOptions = {
