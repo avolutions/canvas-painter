@@ -6,6 +6,7 @@ import { ILineStyle } from "../styles/interfaces/ILineStyle.js";
 import { LineStyle } from "../styles/LineStyle.js";
 import { Point } from "../types/Point.js";
 import { Shape } from "./Shape.js";
+import { Handle } from "../common/Handle.js";
 
 /**
  * Represents a line shape that extends the generic Shape class.
@@ -69,7 +70,21 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
     }
 
     super(definition, new LineStyle(style), new LineOptions(options));
+
+    // Add handles
+    this.handles.set('start', new Handle());
+    this.handles.set('end', new Handle());
+
+    this.addObserver(this.updateHandles);
   }
+
+  private updateHandles = (): void => {
+    const startHandle = this.handles.get('start')
+    const endHandle = this.handles.get('end')
+
+    startHandle?.setPosition(this.start);
+    endHandle?.setPosition(this.end);
+  };
 
   // Getters
 
@@ -158,7 +173,17 @@ export class Line extends Shape<LineDefinition, LineStyle, LineOptions> {
     context.lineTo(this.end.x, this.end.y);
     context.stroke();
 
+    if (this.isSelected()) {
+      this.renderHandles(context);
+    }
+
     context.restore(); // Restore the canvas state to before the transformations
+  }
+
+  private renderHandles(context: CanvasRenderingContext2D): void {
+    this.handles.forEach((handle, name) => {
+      handle.render(context);
+    });
   }
 
   /**

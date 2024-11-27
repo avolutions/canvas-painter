@@ -1,3 +1,4 @@
+import { IHandle } from "../common/IHandle.js";
 import { ISerializable } from "../common/ISerializable.js";
 import { ShapeState } from "../common/ShapeState.js";
 import { IShapeDefinition } from "../definitions/IShapeDefinition.js";
@@ -35,6 +36,8 @@ export abstract class Shape<
 
   /** List of observer functions to be notified on shape changes. */
   protected observers: (() => void)[] = [];
+
+  protected handles: Map<string, IHandle> = new Map();
 
   /**
    * Abstract method to render the shape on the canvas.
